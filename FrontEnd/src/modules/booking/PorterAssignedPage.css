@@ -1,0 +1,254 @@
+.assigned-page {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.header-stack h1 {
+    font-size: 2.25rem;
+    margin-bottom: 8px;
+}
+
+.assigned-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+}
+
+/* Porter Profile Premium */
+.porter-profile-premium {
+    padding: var(--spacing-xl);
+    background-color: var(--white);
+}
+
+.porter-main-info {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.porter-image-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+
+.porter-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+    border: 4px solid var(--background);
+    box-shadow: var(--shadow-md);
+}
+
+.online-indicator {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--success);
+    border: 3px solid var(--white);
+    border-radius: 50%;
+}
+
+.porter-text-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-3xs);
+}
+
+.name-verify {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2xs);
+}
+
+.name-verify h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.verify-badge {
+    font-size: 1.25rem;
+}
+
+.badge-row {
+    display: flex;
+    gap: var(--spacing-2xs);
+}
+
+.rating-pill {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2xs);
+    margin-top: 4px;
+}
+
+.rating-pill .star {
+    color: var(--warning);
+    font-size: 1.25rem;
+}
+
+.rating-pill strong {
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+.rating-pill .count {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.experience-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg) 0;
+    border-top: 1px solid #F1F5F9;
+    border-bottom: 1px solid #F1F5F9;
+    margin-bottom: var(--spacing-xl);
+}
+
+.e-stat {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.e-stat strong {
+    font-size: 1rem;
+    color: var(--primary);
+}
+
+.e-stat span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.contact-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+}
+
+/* Arrival & OTP */
+.arrival-card-premium {
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    background: linear-gradient(to bottom right, #FFFFFF, #F8FAFC);
+}
+
+.arrival-meta .label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.arrival-meta .value {
+    font-size: 1.5rem;
+    color: var(--secondary);
+    margin: 2px 0;
+}
+
+.arrival-meta .sub-value {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+}
+
+.arrival-track {
+    margin-top: var(--spacing-lg);
+}
+
+.track-bar {
+    height: 6px;
+    background-color: #E2E8F0;
+    border-radius: var(--radius-full);
+    position: relative;
+}
+
+.track-fill {
+    height: 100%;
+    background-color: var(--secondary);
+    border-radius: var(--radius-full);
+}
+
+.track-pointer {
+    position: absolute;
+    top: -12px;
+    right: 25%;
+    font-size: 1.25rem;
+    background: var(--white);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-md);
+    border: 2px solid var(--secondary);
+}
+
+.otp-card-premium {
+    padding: var(--spacing-lg);
+    background-color: var(--primary);
+    color: var(--white);
+    text-align: center;
+}
+
+.otp-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-sm);
+}
+
+.otp-header .label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    opacity: 0.6;
+    text-transform: uppercase;
+}
+
+.otp-header .warning-text {
+    font-size: 0.75rem;
+    color: #FDA4AF;
+    font-weight: 600;
+}
+
+.otp-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: 0.5em;
+    color: var(--secondary);
+}
+
+.assigned-footer-actions {
+    margin-top: var(--spacing-xl);
+    text-align: center;
+}
+
+.cancel-note {
+    margin-top: var(--spacing-md);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.cancel-note button {
+    background: none;
+    border: none;
+    color: var(--danger);
+    font-weight: 700;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .assigned-grid {
+        grid-template-columns: 1fr;
+    }
+}

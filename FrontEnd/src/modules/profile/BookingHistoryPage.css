@@ -1,0 +1,136 @@
+.history-page {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.history-header {
+    margin-bottom: var(--spacing-xxl);
+}
+
+.history-controls {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xxl);
+}
+
+.history-search {
+    max-width: 100%;
+}
+
+.filter-chips {
+    display: flex;
+    gap: var(--spacing-sm);
+    overflow-x: auto;
+    padding-bottom: 8px;
+}
+
+.filter-chip {
+    padding: 8px 16px;
+    background-color: var(--white);
+    border: 1px solid #E2E8F0;
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.filter-chip.active {
+    background-color: var(--secondary);
+    color: var(--white);
+    border-color: var(--secondary);
+}
+
+.history-list-expanded {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.history-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid #F1F5F9;
+    margin-bottom: var(--spacing-md);
+}
+
+.h-station-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.h-station-info strong {
+    font-size: 1.125rem;
+}
+
+.h-station-info span {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.history-card-body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.h-detail {
+    display: flex;
+    flex-direction: column;
+}
+
+.h-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-light);
+    text-transform: uppercase;
+}
+
+.h-value {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.history-card-footer {
+    display: flex;
+    gap: var(--spacing-lg);
+}
+
+.text-btn {
+    background: none;
+    border: none;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 0;
+}
+
+.text-btn:hover {
+    color: var(--primary);
+}
+
+.text-btn.primary-text {
+    color: var(--secondary);
+}
+
+.empty-state {
+    text-align: center;
+    padding: var(--spacing-xxl) 0;
+}
+
+.empty-icon {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
+}
+
+@media (max-width: 640px) {
+    .history-card-body {
+        grid-template-columns: 1fr;
+    }
+}

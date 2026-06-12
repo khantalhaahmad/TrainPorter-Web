@@ -1,0 +1,112 @@
+.fare-page {
+    max-width: 600px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+.fare-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.fare-card {
+    padding: var(--spacing-xl);
+    background-color: var(--white);
+}
+
+.fare-summary-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.receipt-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.fare-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.fare-line {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.fare-total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: var(--spacing-md);
+    border-top: 1px dashed #E2E8F0;
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-top: var(--spacing-sm);
+}
+
+.fare-info-box {
+    background-color: #F8FAFC;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    display: flex;
+    gap: var(--spacing-sm);
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+}
+
+.payment-notice {
+    margin-top: var(--spacing-xxl);
+}
+
+.payment-notice h3 {
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.payment-method-card {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.payment-icon {
+    font-size: 1.5rem;
+    width: 48px;
+    height: 48px;
+    background-color: rgba(16, 185, 129, 0.1);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-info span {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.fare-actions {
+    margin-top: var(--spacing-xxl);
+    text-align: center;
+}
+
+.cancel-text {
+    margin-top: var(--spacing-md);
+    font-size: 0.75rem;
+    color: var(--text-light);
+}

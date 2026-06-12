@@ -1,0 +1,6 @@
+/* Root layout styles if needed */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

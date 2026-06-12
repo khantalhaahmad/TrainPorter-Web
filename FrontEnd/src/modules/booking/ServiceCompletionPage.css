@@ -1,0 +1,116 @@
+.completion-page-premium {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.completion-hero {
+    margin-bottom: var(--spacing-xxl);
+}
+
+.completion-icon-wrapper {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.completion-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--spacing-xl);
+}
+
+.otp-verification-card {
+    padding: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xxl);
+}
+
+.otp-input-area {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.otp-input-area label {
+    font-size: 0.875rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+}
+
+.otp-entry-field .input-field {
+    font-size: 3rem;
+    font-weight: 800;
+    text-align: center;
+    letter-spacing: 0.5em;
+    padding: var(--spacing-lg);
+    border-color: var(--secondary);
+    color: var(--secondary);
+}
+
+.otp-hint {
+    font-size: 0.875rem;
+    color: var(--text-light);
+    text-align: center;
+}
+
+.service-details-card-premium {
+    padding: var(--spacing-lg);
+    background-color: var(--white);
+}
+
+.recap-list {
+    margin-top: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.recap-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9375rem;
+}
+
+.recap-row span {
+    color: var(--text-muted);
+}
+
+.recap-row-total {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 2px dashed #E2E8F0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.price-text {
+    color: var(--secondary);
+    font-weight: 800;
+}
+
+.trust-badge-small {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-sm);
+    background-color: #F0FDF4;
+    color: var(--success);
+    border-radius: var(--radius-md);
+    font-size: 0.75rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+@media (max-width: 800px) {
+    .completion-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .service-details-card-premium {
+        order: -1;
+    }
+}
