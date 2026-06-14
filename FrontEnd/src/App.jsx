@@ -13,6 +13,7 @@ import BookingHistoryPage from './modules/profile/BookingHistoryPage';
 import Footer from './components/Footer';
 import AuthDrawer from './components/AuthDrawer';
 import './App.css';
+import BecomePorterPage from './modules/porter/BecomePorterPage';
 
 function App() {
   const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
@@ -38,6 +39,10 @@ function App() {
           <Route path="/rate" element={<RatingPage />} />
           <Route path="/history" element={<BookingHistoryPage />} />
           <Route path="*" element={<LandingPage openAuth={openAuthDrawer} />} />
+          <Route
+  path="/become-porter"
+  element={<BecomePorterPage />}
+/>
         </Routes>
       </div>
     </Router>

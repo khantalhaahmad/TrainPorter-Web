@@ -211,6 +211,7 @@
 }
 
 /* Timeline */
+
 .how-it-works {
     background-color: var(--white);
 }
@@ -220,16 +221,25 @@
     display: flex;
     justify-content: space-between;
     margin-top: 80px;
-    padding: 0 var(--spacing-xl);
+    padding: 0 40px;
 }
+
+/* SINGLE LINE */
 
 .timeline-track {
     position: absolute;
     top: 32px;
-    left: var(--spacing-xl);
-    right: var(--spacing-xl);
+    left: 8%;
+    width: 84%;
     height: 4px;
-    background: #F1F5F9;
+
+    background: linear-gradient(
+        90deg,
+        #E2E8F0,
+        #CBD5E1
+    );
+
+    border-radius: 999px;
     z-index: 1;
 }
 
@@ -243,17 +253,52 @@
 .timeline-node {
     width: 64px;
     height: 64px;
-    background: var(--white);
-    border: 4px solid var(--secondary);
+
+    background: #ffffff;
+
+    border: 4px solid #2563eb;
+
     border-radius: 50%;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     font-size: 1.5rem;
-    margin: 0 auto var(--spacing-md);
-    box-shadow: var(--shadow-lg);
+
+    margin: 0 auto 20px;
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.15);
+
+    transition: all .3s ease;
 }
 
+.timeline-node:hover {
+    transform: translateY(-5px) scale(1.08);
+
+    box-shadow:
+        0 15px 35px rgba(37, 99, 235, 0.25);
+}
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+    .timeline {
+        flex-direction: column;
+        gap: 40px;
+        padding: 0;
+    }
+
+    .timeline-track {
+        display: none;
+    }
+
+    .timeline-item {
+        width: 100%;
+    }
+}
 /* Testimonials */
 .testimonials-grid {
     display: grid;
