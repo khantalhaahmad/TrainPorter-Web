@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './DashboardLayout.css';
-
 const DashboardLayout = ({ children }) => {
     const navigate = useNavigate();
+    const [showProfileMenu, setShowProfileMenu] = useState(false);
+const [showLogoutModal, setShowLogoutModal] = useState(false);
+
+const handleLogout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+
+    setShowLogoutModal(false);
+
+    navigate('/');
+};
 
     return (
         <div className="dashboard-layout">
@@ -28,13 +38,58 @@ const DashboardLayout = ({ children }) => {
                             <span className="icon">🔔</span>
                             <span className="notification-dot"></span>
                         </button>
-                        <div className="user-profile" onClick={() => navigate('/profile')}>
-                            <div className="user-avatar">AD</div>
-                            <div className="user-info">
-                                <strong>Ankit Das</strong>
-                                <span>Premium Member</span>
-                            </div>
-                        </div>
+                       <div className="profile-dropdown-wrapper">
+
+    <div
+        className="user-profile"
+        onClick={() => setShowProfileMenu(!showProfileMenu)}
+    >
+        <div className="user-avatar">AD</div>
+
+        <div className="user-info">
+            <strong>Talha Ahmad</strong>
+            <span>Premium Member</span>
+        </div>
+    </div>
+
+    {showProfileMenu && (
+        <div className="profile-dropdown">
+
+            <button
+                className="dropdown-item"
+                onClick={() => navigate('/profile')}
+            >
+                👤 My Profile
+            </button>
+
+            <button
+                className="dropdown-item"
+                onClick={() => navigate('/history')}
+            >
+                📜 Booking History
+            </button>
+
+            <button
+                className="dropdown-item"
+                onClick={() => navigate('/support')}
+            >
+                🎧 Help & Support
+            </button>
+
+            <button
+                className="dropdown-item logout-item"
+                onClick={() => {
+                    setShowProfileMenu(false);
+                    setShowLogoutModal(true);
+                }}
+            >
+                🚪 Logout
+            </button>
+
+        </div>
+    )}
+
+</div>
                     </div>
                 </div>
             </header>
@@ -65,6 +120,47 @@ const DashboardLayout = ({ children }) => {
                     <span>Profile</span>
                 </Link>
             </nav>
+            {showLogoutModal && (
+    <div
+        className="logout-modal-overlay"
+        onClick={() => setShowLogoutModal(false)}
+    >
+        <div
+            className="logout-modal"
+            onClick={(e) => e.stopPropagation()}
+        >
+
+            <div className="logout-icon">
+                🚂
+            </div>
+
+            <h3>Logout Confirmation</h3>
+
+            <p>
+                Are you sure you want to logout from TrainPorter?
+            </p>
+
+            <div className="logout-actions">
+
+                <button
+                    className="cancel-btn"
+                    onClick={() => setShowLogoutModal(false)}
+                >
+                    Cancel
+                </button>
+
+                <button
+                    className="confirm-btn"
+                    onClick={handleLogout}
+                >
+                    Logout
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+)}
         </div>
     );
 };

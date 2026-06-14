@@ -16,7 +16,7 @@ const AuthDrawer = ({ isOpen, onClose }) => {
     const navigate = useNavigate();
     const otpRefs = useRef([]);
     const toastTimerRef = useRef(null);
-
+    const [isVisible, setIsVisible] = useState(false);
     useEffect(() => {
         if (step === 'otp' && timer > 0) {
             const interval = setInterval(() => setTimer(timer - 1), 1000);
@@ -31,6 +31,18 @@ const AuthDrawer = ({ isOpen, onClose }) => {
         window.addEventListener('keydown', handleEsc);
         return () => window.removeEventListener('keydown', handleEsc);
     }, [onClose]);
+
+    useEffect(() => {
+    if (isOpen) {
+        setIsVisible(true);
+    } else {
+        const timeout = setTimeout(() => {
+            setIsVisible(false);
+        }, 450);
+
+        return () => clearTimeout(timeout);
+    }
+}, [isOpen]);
 
     const showToast = (type, title, message) => {
         if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
@@ -101,37 +113,55 @@ const AuthDrawer = ({ isOpen, onClose }) => {
         }
     };
 
-    const handleVerifyOTP = (e) => {
-        e.preventDefault();
-        const fullOtp = otp.join('');
+   const handleVerifyOTP = (e) => {
+    e.preventDefault();
 
-        setIsLoading(true);
-        setTimeout(() => {
-            if (fullOtp === '123456' || fullOtp === '111111') {
-                setIsLoading(false);
-                setStep('success');
+    const fullOtp = otp.join('');
+
+    setIsLoading(true);
+
+    setTimeout(() => {
+
+        if (fullOtp === '123456' || fullOtp === '111111') {
+
+            setIsLoading(false);
+
+            setStep('success');
+
+            setTimeout(() => {
+
+                navigate('/dashboard');
+
                 setTimeout(() => {
-                    onClose();
-                    navigate('/dashboard');
-                    setTimeout(() => {
-                        setStep('login');
-                        setMobile('');
-                        setOtp(['', '', '', '', '', '']);
-                    }, 500);
-                }, 1500);
-            } else {
-                setIsLoading(false);
-                setOtpError(true);
-            }
-        }, 1000);
-    };
 
+                    onClose();
+
+                    setStep('login');
+                    setMobile('');
+                    setOtp(['', '', '', '', '', '']);
+                    setOtpError(false);
+
+                }, 300);
+
+            }, 3000);
+
+        } else {
+
+            setIsLoading(false);
+            setOtpError(true);
+
+        }
+
+    }, 1200);
+};
     const formatMobile = (num) => {
         if (num.length !== 10) return num;
         return `${num.slice(0, 5)} ${num.slice(5)}`;
     };
 
-    if (!isOpen && step !== 'success') return null;
+   if (!isVisible && !isOpen && step !== 'success') {
+    return null;
+}
 
     return (
         <div className={`auth-drawer-overlay ${isOpen ? 'active' : ''}`} onClick={onClose}>
@@ -263,15 +293,36 @@ const AuthDrawer = ({ isOpen, onClose }) => {
                         )}
 
                         {step === 'success' && (
-                            <div className="auth-step-wrapper success-state-visual text-center">
-                                <div className="success-lottie-mock">
-                                    <div className="success-blob-anim"></div>
-                                    <div className="success-check-icon">✓</div>
-                                </div>
-                                <h2 className="success-status-title">OTP Verified Successfully</h2>
-                                <p className="step-subtitle">Redirecting you to dashboard...</p>
-                            </div>
-                        )}
+    <div className="auth-step-wrapper success-state-visual text-center">
+
+        <div className="train-loader">
+            🚂
+        </div>
+
+        <h2 className="success-status-title">
+            Login Successful
+        </h2>
+
+        <p className="step-subtitle">
+            Preparing your dashboard...
+        </p>
+
+        <div className="loading-bar">
+            <div className="loading-bar-fill"></div>
+        </div>
+
+        <p
+            style={{
+                marginTop: '16px',
+                fontSize: '14px',
+                color: '#64748B'
+            }}
+        >
+            Please wait while we set up your account
+        </p>
+
+    </div>
+)}
                     </div>
                 </div>
 

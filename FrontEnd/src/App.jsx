@@ -1,19 +1,26 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 import LandingPage from './modules/auth/LandingPage';
 import DashboardPage from './modules/dashboard/DashboardPage';
+
 import BookPorterPage from './modules/booking/BookPorterPage';
 import FareBreakdownPage from './modules/booking/FareBreakdownPage';
 import SearchingPorterPage from './modules/booking/SearchingPorterPage';
 import PorterAssignedPage from './modules/booking/PorterAssignedPage';
 import ServiceCompletionPage from './modules/booking/ServiceCompletionPage';
+
 import PaymentPage from './modules/payment/PaymentPage';
 import RatingPage from './modules/ratings/RatingPage';
 import BookingHistoryPage from './modules/profile/BookingHistoryPage';
+
+import BecomePorterPage from './modules/porter/BecomePorterPage';
+import AboutPage from './modules/company/AboutPage';
+
 import Footer from './components/Footer';
 import AuthDrawer from './components/AuthDrawer';
+
 import './App.css';
-import BecomePorterPage from './modules/porter/BecomePorterPage';
 
 function App() {
   const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
@@ -24,25 +31,118 @@ function App() {
   return (
     <Router>
       <div className="app-wrapper">
-        <AuthDrawer isOpen={isAuthDrawerOpen} onClose={closeAuthDrawer} />
+        <AuthDrawer
+          isOpen={isAuthDrawerOpen}
+          onClose={closeAuthDrawer}
+        />
+
         <Routes>
-          <Route path="/" element={<><LandingPage openAuth={openAuthDrawer} /><Footer /></>} />
-          {/* Legacy routes handled by drawer now, but kept for compatibility or 404 safety */}
-          <Route path="/login" element={<LandingPage openAuth={openAuthDrawer} />} />
-          <Route path="/dashboard" element={<DashboardPage />} />
-          <Route path="/book" element={<BookPorterPage />} />
-          <Route path="/fare" element={<FareBreakdownPage />} />
-          <Route path="/searching" element={<SearchingPorterPage />} />
-          <Route path="/assigned" element={<PorterAssignedPage />} />
-          <Route path="/complete" element={<ServiceCompletionPage />} />
-          <Route path="/payment" element={<PaymentPage />} />
-          <Route path="/rate" element={<RatingPage />} />
-          <Route path="/history" element={<BookingHistoryPage />} />
-          <Route path="*" element={<LandingPage openAuth={openAuthDrawer} />} />
+
+          {/* Home */}
           <Route
-  path="/become-porter"
-  element={<BecomePorterPage />}
-/>
+            path="/"
+            element={
+              <>
+                <LandingPage openAuth={openAuthDrawer} />
+                <Footer />
+              </>
+            }
+          />
+
+          {/* Auth Compatibility */}
+          <Route
+            path="/login"
+            element={
+              <>
+                <LandingPage openAuth={openAuthDrawer} />
+                <Footer />
+              </>
+            }
+          />
+
+          {/* Dashboard */}
+          <Route
+            path="/dashboard"
+            element={<DashboardPage />}
+          />
+
+          {/* Booking Flow */}
+          <Route
+            path="/book"
+            element={<BookPorterPage />}
+          />
+
+          <Route
+            path="/fare"
+            element={<FareBreakdownPage />}
+          />
+
+          <Route
+            path="/searching"
+            element={<SearchingPorterPage />}
+          />
+
+          <Route
+            path="/assigned"
+            element={<PorterAssignedPage />}
+          />
+
+          <Route
+            path="/complete"
+            element={<ServiceCompletionPage />}
+          />
+
+          {/* Payment */}
+          <Route
+            path="/payment"
+            element={<PaymentPage />}
+          />
+
+          {/* Rating */}
+          <Route
+            path="/rate"
+            element={<RatingPage />}
+          />
+
+          {/* Profile */}
+          <Route
+            path="/history"
+            element={<BookingHistoryPage />}
+          />
+
+          {/* Footer Pages */}
+
+          <Route
+            path="/become-porter"
+            element={
+              <>
+                <BecomePorterPage />
+                <Footer />
+              </>
+            }
+          />
+
+          <Route
+            path="/about"
+            element={
+              <>
+                <AboutPage />
+                <Footer />
+              </>
+            }
+          />
+
+          {/* 404 Fallback */}
+          <Route
+            path="*"
+            element={
+              <>
+                <LandingPage openAuth={openAuthDrawer} />
+                <Footer />
+              </>
+            }
+          />
+
         </Routes>
       </div>
     </Router>

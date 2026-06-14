@@ -182,3 +182,128 @@
         height: 64px;
     }
 }
+.profile-dropdown-wrapper {
+    position: relative;
+}
+
+.profile-dropdown {
+    position: absolute;
+    right: 0;
+    top: 60px;
+    width: 240px;
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0,0,0,.12);
+    border: 1px solid #E2E8F0;
+    animation: dropdownShow .2s ease;
+    z-index: 500;
+}
+
+.dropdown-item {
+    width: 100%;
+    border: none;
+    background: white;
+    text-align: left;
+    padding: 14px 18px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: .2s;
+}
+
+.dropdown-item:hover {
+    background: #F8FAFC;
+}
+
+.logout-item {
+    color: #DC2626;
+    font-weight: 600;
+}
+
+.logout-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15,23,42,.55);
+    backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn .25s ease;
+}
+
+.logout-modal {
+    width: 420px;
+    max-width: 90%;
+    background: white;
+    border-radius: 24px;
+    padding: 32px;
+    text-align: center;
+    animation: modalPop .25s ease;
+}
+
+.logout-icon {
+    font-size: 60px;
+    margin-bottom: 12px;
+}
+
+.logout-modal h3 {
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+.logout-modal p {
+    color: var(--text-muted);
+    margin-bottom: 24px;
+}
+
+.logout-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.cancel-btn,
+.confirm-btn {
+    flex: 1;
+    border: none;
+    padding: 12px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.cancel-btn {
+    background: #E2E8F0;
+}
+
+.confirm-btn {
+    background: #DC2626;
+    color: white;
+}
+
+@keyframes dropdownShow {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes modalPop {
+    from {
+        opacity: 0;
+        transform: scale(.92);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
