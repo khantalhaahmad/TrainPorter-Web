@@ -16,86 +16,45 @@
 
 .about-hero {
   position: relative;
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
   overflow: hidden;
-  background: linear-gradient(
-    135deg,
-    #081226 0%,
-    #123b9e 50%,
-    #2563eb 100%
-  );
-  color: white;
-  padding: 120px 0;
 }
 
-.about-hero::before {
-  content: "";
+/* Dark overlay for readability */
+.hero-overlay {
   position: absolute;
-  width: 500px;
-  height: 500px;
-  top: -200px;
-  right: -150px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.08);
-  filter: blur(40px);
-}
+  inset: 0;
 
-.about-hero::after {
-  content: "";
-  position: absolute;
-  width: 400px;
-  height: 400px;
-  bottom: -180px;
-  left: -120px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.06);
-  filter: blur(50px);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(8,18,38,0.92) 0%,
+      rgba(8,18,38,0.75) 40%,
+      rgba(8,18,38,0.45) 100%
+    );
+
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
   z-index: 2;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 60px;
 }
 
 .hero-left {
-  flex: 1;
-  text-align: left;
-}
-
-.hero-right {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-
-  padding: 10px 20px;
-
-  border-radius: 999px;
-
-  background: rgba(255,255,255,0.15);
-
-  backdrop-filter: blur(12px);
-
-  border: 1px solid rgba(255,255,255,0.15);
-
-  font-size: 14px;
-  font-weight: 600;
-
-  margin-bottom: 24px;
+  max-width: 700px;
 }
 
 .about-hero h1 {
-  font-size: 4.5rem;
+  font-size: 5rem;
   line-height: 1.1;
   font-weight: 800;
   margin-bottom: 24px;
@@ -104,18 +63,6 @@
 .about-hero h1 span {
   color: #93c5fd;
 }
-
-.about-hero p {
-  max-width: 650px;
-
-  font-size: 1.15rem;
-  line-height: 1.9;
-
-  opacity: 0.95;
-
-  margin-bottom: 35px;
-}
-
 /* =========================
    HERO BUTTONS
 ========================= */

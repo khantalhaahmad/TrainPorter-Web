@@ -6,10 +6,16 @@ import trainLogo from "../../assets/hero.png"; // ya favicon1.png ko assets me m
 const AboutPage = () => {
   return (
     <div className="about-page">
-      {/* Hero Section */}
-<section className="about-hero">
-  <div className="container">
+     {/* Hero Section */}
+<section
+  className="about-hero"
+  style={{
+    backgroundImage: `url(${trainLogo})`
+  }}
+>
+  <div className="hero-overlay"></div>
 
+  <div className="container">
     <div className="hero-content">
 
       <div className="hero-left">
@@ -31,7 +37,6 @@ const AboutPage = () => {
         </p>
 
         <div className="hero-buttons">
-
           <Link
             to="/book"
             className="primary-btn"
@@ -47,19 +52,13 @@ const AboutPage = () => {
           >
             Become a Porter
           </Link>
-
         </div>
 
       </div>
 
       <div className="hero-right">
 
-        <img
-          src={trainLogo}
-          alt="TrainPorter"
-          className="hero-image"
-        />
-
+        
       </div>
 
     </div>
