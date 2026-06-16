@@ -35,10 +35,11 @@
 
   background:
     linear-gradient(
-      90deg,
-      rgba(8,18,38,0.92) 0%,
-      rgba(8,18,38,0.75) 40%,
-      rgba(8,18,38,0.45) 100%
+      to right,
+      rgba(2, 8, 23, 0.98) 0%,
+      rgba(2, 8, 23, 0.95) 35%,
+      rgba(2, 8, 23, 0.80) 55%,
+      rgba(2, 8, 23, 0.35) 100%
     );
 
   z-index: 1;
@@ -47,35 +48,96 @@
 .hero-content {
   position: relative;
   z-index: 2;
+  width: 100%;
 }
 
 .hero-left {
   max-width: 700px;
+  position: relative;
+  z-index: 3;
 }
+
+/* =========================
+   HERO BADGE
+========================= */
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 12px 22px;
+
+  border-radius: 999px;
+
+  background: rgba(37, 99, 235, 0.18);
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  backdrop-filter: blur(12px);
+
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  margin-bottom: 28px;
+}
+
+/* =========================
+   HERO HEADING
+========================= */
 
 .about-hero h1 {
   font-size: 5rem;
-  line-height: 1.1;
+  line-height: 1.05;
   font-weight: 800;
-  margin-bottom: 24px;
+
+  color: #ffffff;
+
+  margin-bottom: 30px;
+
+  text-shadow: 0 4px 20px rgba(0,0,0,0.35);
 }
 
 .about-hero h1 span {
   color: #93c5fd;
 }
+
+/* =========================
+   HERO PARAGRAPH
+========================= */
+
+.about-hero p {
+  max-width: 650px;
+
+  font-size: 1.15rem;
+  line-height: 1.9;
+
+  color: rgba(255,255,255,0.92);
+
+  margin-bottom: 55px;
+
+  text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+}
+
 /* =========================
    HERO BUTTONS
 ========================= */
 
 .hero-buttons {
   display: flex;
-  gap: 16px;
+  gap: 18px;
+
+  margin-top: 20px;
+
   flex-wrap: wrap;
 }
 
 .primary-btn,
 .secondary-btn {
-  padding: 14px 28px;
+  padding: 16px 32px;
+
   border-radius: 14px;
 
   text-decoration: none;
@@ -86,25 +148,56 @@
 }
 
 .primary-btn {
-  background: white;
+  background: #ffffff;
   color: #2563eb;
+
+  box-shadow:
+    0 10px 30px rgba(255,255,255,0.15);
 }
 
 .primary-btn:hover {
   transform: translateY(-4px);
-  box-shadow: 0 15px 35px rgba(255,255,255,0.25);
+
+  box-shadow:
+    0 15px 40px rgba(255,255,255,0.25);
 }
 
 .secondary-btn {
-  border: 2px solid rgba(255,255,255,.5);
-  color: white;
+  border: 2px solid rgba(255,255,255,0.4);
+
+  background: rgba(255,255,255,0.06);
+
+  backdrop-filter: blur(10px);
+
+  color: #ffffff;
 }
 
 .secondary-btn:hover {
-  background: rgba(255,255,255,.1);
+  background: rgba(255,255,255,0.12);
+
   transform: translateY(-4px);
 }
 
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+  .about-hero h1 {
+    font-size: 3.5rem;
+  }
+
+  .about-hero p {
+    font-size: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+}
 /* =========================
    HERO IMAGE
 ========================= */

@@ -16,6 +16,7 @@ import BookingHistoryPage from './modules/profile/BookingHistoryPage';
 
 import BecomePorterPage from './modules/porter/BecomePorterPage';
 import AboutPage from './modules/company/AboutPage';
+import BlogPage from './modules/company/BlogPage';
 
 import Footer from './components/Footer';
 import AuthDrawer from './components/AuthDrawer';
@@ -131,7 +132,15 @@ function App() {
               </>
             }
           />
-
+<Route
+  path="/blog"
+  element={
+    <>
+      <BlogPage />
+      <Footer />
+    </>
+  }
+/>
           {/* 404 Fallback */}
           <Route
             path="*"

@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "./AboutPage.css";
 import { Link } from "react-router-dom";
 import "./AboutPage.css";
 import trainLogo from "../../assets/hero.png"; // ya favicon1.png ko assets me move karke use karo
 const AboutPage = () => {
+
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: "ease-out-cubic",
+    });
+  }, []);
   return (
     <div className="about-page">
      {/* Hero Section */}
@@ -18,18 +28,30 @@ const AboutPage = () => {
   <div className="container">
     <div className="hero-content">
 
-      <div className="hero-left">
+     <div
+  className="hero-left"
+  data-aos="fade-right"
+>
 
-        <span className="hero-badge">
+        <span
+  className="hero-badge"
+  data-aos="fade-down"
+>
           🚆 India's Railway Luggage Platform
         </span>
 
-        <h1>
+       <h1
+  data-aos="fade-up"
+  data-aos-delay="100"
+>
           Moving Luggage,
           <span> Simplifying Journeys</span>
         </h1>
 
-        <p>
+        <p
+  data-aos="fade-up"
+  data-aos-delay="200"
+>
           TrainPorter connects travelers with verified railway porters,
           helping passengers move luggage safely and effortlessly across
           railway stations. Our mission is to make railway travel more
@@ -63,32 +85,7 @@ const AboutPage = () => {
 
     </div>
 
-    {/* Stats Section */}
-
-    <div className="hero-stats">
-
-      <div className="about-stat-card">
-        <h3>10K+</h3>
-        <p>Bookings Completed</p>
-      </div>
-
-      <div className="about-stat-card">
-        <h3>500+</h3>
-        <p>Verified Porters</p>
-      </div>
-
-      <div className="about-stat-card">
-        <h3>25+</h3>
-        <p>Stations Covered</p>
-      </div>
-
-      <div className="about-stat-card">
-        <h3>4.9★</h3>
-        <p>Customer Rating</p>
-      </div>
-
-    </div>
-
+    
   </div>
 </section>
       {/* Our Story */}
