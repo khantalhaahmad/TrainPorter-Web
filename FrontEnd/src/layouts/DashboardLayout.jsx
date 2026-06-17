@@ -19,80 +19,122 @@ const handleLogout = () => {
         <div className="dashboard-layout">
             {/* Dashboard Header */}
             <header className="dashboard-header">
-                <div className="container header-container">
-                    <Link to="/dashboard" className="header-logo">
-                        <span className="logo-icon">🚂</span>
-                        <span className="logo-text">TrainPorter</span>
-                    </Link>
+  <div className="container header-container">
 
-                    <div className="header-station">
-                        <span className="station-icon">📍</span>
-                        <div className="station-info">
-                            <span className="station-label">Current Station</span>
-                            <span className="station-name">New Delhi (NDLS)</span>
-                        </div>
-                    </div>
+    {/* Logo */}
+    <Link to="/dashboard" className="header-logo">
+      <span className="logo-icon">🚂</span>
+      <div>
+        <span className="logo-text">TrainPorter</span>
+        <small className="logo-tagline">Smart Luggage Assistance</small>
+      </div>
+    </Link>
 
-                    <div className="header-actions">
-                        <button className="icon-btn" title="Notifications">
-                            <span className="icon">🔔</span>
-                            <span className="notification-dot"></span>
-                        </button>
-                       <div className="profile-dropdown-wrapper">
-
-    <div
-        className="user-profile"
-        onClick={() => setShowProfileMenu(!showProfileMenu)}
-    >
-        <div className="user-avatar">AD</div>
-
-        <div className="user-info">
-            <strong>Talha Ahmad</strong>
-            <span>Premium Member</span>
-        </div>
+    {/* Search Bar */}
+    <div className="header-search">
+      <input
+        type="text"
+        placeholder="Search PNR, Station..."
+      />
+      <span>🔍</span>
     </div>
 
-    {showProfileMenu && (
-        <div className="profile-dropdown">
+    {/* Current Station */}
+    <div className="header-station">
+      <span className="station-icon">📍</span>
 
-            <button
-                className="dropdown-item"
-                onClick={() => navigate('/profile')}
-            >
-                👤 My Profile
-            </button>
+      <div className="station-info">
+        <span className="station-label">
+          Current Station
+        </span>
 
-            <button
-                className="dropdown-item"
-                onClick={() => navigate('/history')}
-            >
-                📜 Booking History
-            </button>
+        <span className="station-name">
+          New Delhi (NDLS)
+        </span>
+      </div>
+    </div>
 
-            <button
-                className="dropdown-item"
-                onClick={() => navigate('/support')}
-            >
-                🎧 Help & Support
-            </button>
+    {/* Actions */}
+    <div className="header-actions">
 
-            <button
-                className="dropdown-item logout-item"
-                onClick={() => {
-                    setShowProfileMenu(false);
-                    setShowLogoutModal(true);
-                }}
-            >
-                🚪 Logout
-            </button>
+      <button className="wallet-btn">
+        💰 ₹120
+      </button>
 
+      <button
+        className="icon-btn"
+        title="Notifications"
+      >
+        <span className="icon">🔔</span>
+        <span className="notification-dot"></span>
+      </button>
+
+      <div className="profile-dropdown-wrapper">
+
+        <div
+          className="user-profile"
+          onClick={() =>
+            setShowProfileMenu(!showProfileMenu)
+          }
+        >
+          <div className="user-avatar">
+            TA
+          </div>
+
+          <div className="user-info">
+            <strong>Talha Ahmad</strong>
+            <span>Premium Member</span>
+          </div>
         </div>
-    )}
 
-</div>
-                    </div>
-                </div>
-            </header>
+        {showProfileMenu && (
+          <div className="profile-dropdown">
+
+            <button
+              className="dropdown-item"
+              onClick={() =>
+                navigate('/profile')
+              }
+            >
+              👤 My Profile
+            </button>
+
+            <button
+              className="dropdown-item"
+              onClick={() =>
+                navigate('/history')
+              }
+            >
+              📜 Booking History
+            </button>
+
+            <button
+              className="dropdown-item"
+              onClick={() =>
+                navigate('/support')
+              }
+            >
+              🎧 Help & Support
+            </button>
+
+            <button
+              className="dropdown-item logout-item"
+              onClick={() => {
+                setShowProfileMenu(false);
+                setShowLogoutModal(true);
+              }}
+            >
+              🚪 Logout
+            </button>
+
+          </div>
+        )}
+
+      </div>
+    </div>
+
+  </div>
+</header>
 
             {/* Main Content */}
             <main className="dashboard-main">

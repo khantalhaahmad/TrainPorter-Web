@@ -7,104 +7,331 @@ import Badge from '../../components/ui/Badge';
 import './DashboardPage.css';
 
 const DashboardPage = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const quickStats = [
-        { label: 'Total Bookings', value: '12', icon: '📦' },
-        { label: 'Money Saved', value: '₹450', icon: '💰' },
-        { label: 'Avg Rating', value: '4.9', icon: '⭐' },
-    ];
+  const quickStats = [
+    {
+      label: 'Total Bookings',
+      value: '12',
+      icon: '📦',
+      color: 'blue'
+    },
+    {
+      label: 'Money Saved',
+      value: '₹450',
+      icon: '💰',
+      color: 'green'
+    },
+    {
+      label: 'Avg Rating',
+      value: '4.9',
+      icon: '⭐',
+      color: 'gold'
+    },
+    {
+      label: 'Success Rate',
+      value: '100%',
+      icon: '🎯',
+      color: 'purple'
+    }
+  ];
 
-    const activities = [
-        { id: 1, title: 'Booking Completed', desc: 'Rajdhani Exp at New Delhi', time: '2 hours ago', icon: '✅' },
-        { id: 2, title: 'Refund Processed', desc: 'Transaction #TP-12345', time: 'Yesterday', icon: '💸' },
-        { id: 3, title: 'Support Ticket Closed', desc: 'Issue with luggage weight', time: '2 days ago', icon: '🎧' },
-    ];
+  const activities = [
+    {
+      id: 1,
+      title: 'Booking Completed',
+      desc: 'Rajdhani Express - NDLS',
+      time: '2 hours ago',
+      icon: '✅'
+    },
+    {
+      id: 2,
+      title: 'Refund Processed',
+      desc: 'Transaction #TP-12345',
+      time: 'Yesterday',
+      icon: '💸'
+    },
+    {
+      id: 3,
+      title: 'Support Ticket Closed',
+      desc: 'Issue with luggage weight',
+      time: '2 days ago',
+      icon: '🎧'
+    }
+  ];
 
-    return (
-        <DashboardLayout>
-            <div className="dashboard-content fade-in">
-                <header className="dashboard-header-inner">
-                    <div className="welcome-text">
-                        <h1>Hello, Talha 🚂</h1>
-                        <p className="text-muted">You have 1 active booking for today</p>
-                    </div>
-                    <Button onClick={() => navigate('/book')}>Book New Porter</Button>
-                </header>
+  return (
+    <DashboardLayout>
+      <div className="dashboard-page">
 
-                {/* Quick Stats */}
-                <div className="quick-stats-grid">
-                    {quickStats.map((stat, i) => (
-                        <Card key={i} className="stat-card-premium" padding="sm">
-                            <div className="stat-icon-bg">{stat.icon}</div>
-                            <div className="stat-meta">
-                                <h3 className="stat-v">{stat.value}</h3>
-                                <span className="stat-l">{stat.label}</span>
-                            </div>
-                        </Card>
-                    ))}
-                </div>
+        {/* HERO SECTION */}
+        <section className="dashboard-hero">
+          <div className="hero-content">
 
-                <div className="dashboard-main-grid">
-                    {/* Active Booking */}
-                    <div className="dashboard-col-left">
-                        <Card className="active-booking-premium">
-                            <div className="card-header-flex">
-                                <Badge variant="primary">Active Booking</Badge>
-                                <span className="booking-id">ID: #TP-8842</span>
-                            </div>
-                            <div className="active-booking-body">
-                                <div className="train-info">
-                                    <h2>Rajdhani Express</h2>
-                                    <span className="coach-seat">Coach B4 • Seat 22</span>
-                                </div>
-                                <div className="porter-preview">
-                                    <div className="porter-avatar">👨‍✈️</div>
-                                    <div className="porter-meta">
-                                        <strong>Ramesh Kumar assigned</strong>
-                                        <span>Arriving at Platform 4 in 5 mins</span>
-                                    </div>
-                                    <Badge variant="success">Verified</Badge>
-                                </div>
-                            </div>
-                            <div className="active-booking-footer">
-                                <Button variant="ghost" className="btn-full" onClick={() => navigate('/assigned')}>Track & Manage</Button>
-                            </div>
-                        </Card>
+            <div>
+              <span className="hero-badge">
+                👋 Good Evening, Talha
+              </span>
 
-                        <div className="quick-actions">
-                            <h3>Quick Actions</h3>
-                            <div className="action-btns">
-                                <Button variant="secondary" className="action-btn">History</Button>
-                                <Button variant="secondary" className="action-btn">Help Desk</Button>
-                                <Button variant="secondary" className="action-btn">Profile</Button>
-                            </div>
-                        </div>
-                    </div>
+              <h1>
+                Your Porter is on the way 🚂
+              </h1>
 
-                    {/* Recent Activity */}
-                    <div className="dashboard-col-right">
-                        <Card className="activity-card-premium">
-                            <h3>Recent Activity</h3>
-                            <div className="activity-list">
-                                {activities.map(activity => (
-                                    <div key={activity.id} className="activity-item">
-                                        <div className="activity-icon-sm">{activity.icon}</div>
-                                        <div className="activity-text">
-                                            <strong>{activity.title}</strong>
-                                            <p>{activity.desc}</p>
-                                            <span>{activity.time}</span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                            <Button variant="ghost" className="btn-full" onClick={() => navigate('/history')}>View All History</Button>
-                        </Card>
-                    </div>
-                </div>
+              <p>
+                Rajdhani Express • Coach B4 • Seat 22
+              </p>
             </div>
-        </DashboardLayout>
-    );
+
+            <div className="hero-actions">
+              <Button
+                onClick={() => navigate('/assigned')}
+              >
+                Track Booking
+              </Button>
+
+              <Button
+                variant="secondary"
+                onClick={() => navigate('/book')}
+              >
+                Book New Porter
+              </Button>
+            </div>
+
+          </div>
+
+          <div className="floating-train">
+            🚂
+          </div>
+        </section>
+
+        {/* STATS */}
+
+        <section className="stats-grid">
+
+          {quickStats.map((stat, index) => (
+            <Card
+              key={index}
+              className="premium-stat-card"
+            >
+              <div className="stat-top">
+
+                <div className="stat-icon">
+                  {stat.icon}
+                </div>
+
+                <span className="growth-tag">
+                  +12%
+                </span>
+
+              </div>
+
+              <h2>{stat.value}</h2>
+
+              <p>{stat.label}</p>
+
+            </Card>
+          ))}
+
+        </section>
+
+        {/* MAIN GRID */}
+
+        <section className="dashboard-grid">
+
+          {/* LEFT */}
+
+          <div className="left-section">
+
+            <Card className="active-booking-card">
+
+              <div className="booking-header">
+
+                <Badge variant="primary">
+                  Active Booking
+                </Badge>
+
+                <span className="booking-id">
+                  #TP-8842
+                </span>
+
+              </div>
+
+              <div className="booking-body">
+
+                <h2>
+                  Rajdhani Express
+                </h2>
+
+                <p>
+                  Coach B4 • Seat 22
+                </p>
+
+                <div className="porter-card">
+
+                  <div className="porter-avatar">
+                    👨‍✈️
+                  </div>
+
+                  <div>
+                    <h4>
+                      Ramesh Kumar Assigned
+                    </h4>
+
+                    <span>
+                      Arriving at Platform 4 in 5 mins
+                    </span>
+                  </div>
+
+                  <Badge variant="success">
+                    Verified
+                  </Badge>
+
+                </div>
+
+                {/* Progress */}
+
+                <div className="booking-progress">
+
+                  <div className="progress-step active">
+                    ✔ Booking
+                  </div>
+
+                  <div className="progress-step active">
+                    ✔ Assigned
+                  </div>
+
+                  <div className="progress-step current">
+                    🚶 Arriving
+                  </div>
+
+                  <div className="progress-step">
+                    📦 Pickup
+                  </div>
+
+                  <div className="progress-step">
+                    🏁 Complete
+                  </div>
+
+                </div>
+
+              </div>
+
+              <Button
+                className="full-btn"
+                onClick={() => navigate('/assigned')}
+              >
+                Track Live Booking
+              </Button>
+
+            </Card>
+
+            {/* QUICK ACTIONS */}
+
+            <Card className="quick-actions-card">
+
+              <h3>
+                Quick Actions
+              </h3>
+
+              <div className="quick-grid">
+
+                <button>📜 History</button>
+                <button>🎧 Support</button>
+                <button>👤 Profile</button>
+                <button>💳 Refunds</button>
+                <button>⭐ Reviews</button>
+                <button>⚙ Settings</button>
+
+              </div>
+
+            </Card>
+
+          </div>
+
+          {/* RIGHT */}
+
+          <div className="right-section">
+
+            <Card className="sidebar-card">
+
+              <h3>
+                Upcoming Journey
+              </h3>
+
+              <div className="journey-box">
+
+                <h4>
+                  Rajdhani Express
+                </h4>
+
+                <p>
+                  Departure: 11:40 PM
+                </p>
+
+                <p>
+                  Platform: 4
+                </p>
+
+              </div>
+
+            </Card>
+
+            <Card className="sidebar-card">
+
+              <h3>
+                Recent Activity
+              </h3>
+
+              <div className="activity-list">
+
+                {activities.map(activity => (
+                  <div
+                    key={activity.id}
+                    className="activity-item"
+                  >
+
+                    <div className="activity-icon">
+                      {activity.icon}
+                    </div>
+
+                    <div>
+
+                      <strong>
+                        {activity.title}
+                      </strong>
+
+                      <p>
+                        {activity.desc}
+                      </p>
+
+                      <span>
+                        {activity.time}
+                      </span>
+
+                    </div>
+
+                  </div>
+                ))}
+
+              </div>
+
+              <Button
+                variant="ghost"
+                className="full-btn"
+                onClick={() => navigate('/history')}
+              >
+                View All History
+              </Button>
+
+            </Card>
+
+          </div>
+
+        </section>
+
+      </div>
+    </DashboardLayout>
+  );
 };
 
 export default DashboardPage;
