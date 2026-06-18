@@ -6,8 +6,10 @@ import Button from '../../components/ui/Button';
 import Badge from '../../components/ui/Badge';
 import './DashboardPage.css';
 
+
 const DashboardPage = () => {
   const navigate = useNavigate();
+const [showCancelModal, setShowCancelModal] = useState(false);
 
   const quickStats = [
     {
@@ -138,90 +140,109 @@ const DashboardPage = () => {
 
         <section className="dashboard-grid">
 
-          {/* LEFT */}
+  {/* LEFT */}
 
-          <div className="left-section">
+  <div className="left-section">
 
-            <Card className="active-booking-card">
+    <Card className="active-booking-card">
 
-              <div className="booking-header">
+      <div className="booking-header">
 
-                <Badge variant="primary">
-                  Active Booking
-                </Badge>
+        <Badge variant="primary">
+          Active Booking
+        </Badge>
 
-                <span className="booking-id">
-                  #TP-8842
-                </span>
+        <span className="booking-id">
+          #TP-8842
+        </span>
 
-              </div>
+      </div>
 
-              <div className="booking-body">
+      <div className="booking-body">
 
-                <h2>
-                  Rajdhani Express
-                </h2>
+        <h2>
+          Rajdhani Express
+        </h2>
 
-                <p>
-                  Coach B4 • Seat 22
-                </p>
+        <p>
+          Coach B4 • Seat 22
+        </p>
 
-                <div className="porter-card">
+        <div className="booking-status-card">
 
-                  <div className="porter-avatar">
-                    👨‍✈️
-                  </div>
+          <div className="porter-card">
 
-                  <div>
-                    <h4>
-                      Ramesh Kumar Assigned
-                    </h4>
+            <div className="porter-avatar">
+              👨‍✈️
+            </div>
 
-                    <span>
-                      Arriving at Platform 4 in 5 mins
-                    </span>
-                  </div>
+            <div className="porter-info">
+              <h4>
+                Ramesh Kumar Assigned
+              </h4>
 
-                  <Badge variant="success">
-                    Verified
-                  </Badge>
+              <span>
+                Arriving at Platform 4 in 5 mins
+              </span>
+            </div>
 
-                </div>
+            <Badge variant="success">
+              Verified
+            </Badge>
 
-                {/* Progress */}
+          </div>
+          </div>
+                {/* Timeline */}
 
-                <div className="booking-progress">
+  <div className="booking-progress">
 
-                  <div className="progress-step active">
-                    ✔ Booking
-                  </div>
+    <div className="progress-step active">
+    <span className="step-icon">✔</span>
+    <span>Booking</span>
+    <small>Completed</small>
+</div>
 
-                  <div className="progress-step active">
-                    ✔ Assigned
-                  </div>
+<div className="progress-step active">
+    <span className="step-icon">✔</span>
+    <span>Assigned</span>
+    <small>Completed</small>
+</div>
 
-                  <div className="progress-step current">
-                    🚶 Arriving
-                  </div>
+<div className="progress-step current">
+    <span className="step-icon">🚶</span>
+    <span>Arriving</span>
+    <small>In Progress</small>
+</div>
 
-                  <div className="progress-step">
-                    📦 Pickup
-                  </div>
+<div className="progress-step">
+    <span className="step-icon">📦</span>
+    <span>Pickup</span>
+    <small>Pending</small>
+</div>
 
-                  <div className="progress-step">
-                    🏁 Complete
-                  </div>
+<div className="progress-step">
+    <span className="step-icon">🏁</span>
+    <span>Complete</span>
+    <small>Pending</small>
+</div>
 
-                </div>
+  </div>
 
-              </div>
+</div>
 
               <Button
-                className="full-btn"
-                onClick={() => navigate('/assigned')}
-              >
-                Track Live Booking
-              </Button>
+        className="track-btn"
+        onClick={() => navigate('/assigned')}
+    >
+        Track Live Booking
+    </Button>
+
+    <Button
+        className="cancel-btn-dashboard"
+        onClick={() => setShowCancelModal(true)}
+    >
+        Cancel Booking
+    </Button>
 
             </Card>
 
