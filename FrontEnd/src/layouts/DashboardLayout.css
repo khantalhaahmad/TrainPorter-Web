@@ -481,4 +481,30 @@
     .logo-text {
         font-size: 1.1rem;
     }
+    .confirm-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.confirm-btn:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.spinner-ui {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin-ui 0.8s linear infinite;
+}
+
+@keyframes spin-ui {
+    to {
+        transform: rotate(360deg);
+    }
+}
 }

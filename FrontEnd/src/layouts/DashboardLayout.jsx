@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './DashboardLayout.css';
+import { useAuth } from '../context/AuthContext';
 const DashboardLayout = ({ children }) => {
     const navigate = useNavigate();
+    const { logout } = useAuth();
     const [showProfileMenu, setShowProfileMenu] = useState(false);
 const [showLogoutModal, setShowLogoutModal] = useState(false);
+const [isLoggingOut, setIsLoggingOut] = useState(false);
+const handleLogout = async () => {
 
-const handleLogout = () => {
-    localStorage.clear();
-    sessionStorage.clear();
+    setIsLoggingOut(true);
+
+    await new Promise(resolve =>
+        setTimeout(resolve, 2000)
+    );
+
+    logout();
 
     setShowLogoutModal(false);
 
@@ -192,11 +200,19 @@ const handleLogout = () => {
                 </button>
 
                 <button
-                    className="confirm-btn"
-                    onClick={handleLogout}
-                >
-                    Logout
-                </button>
+    className="confirm-btn"
+    onClick={handleLogout}
+    disabled={isLoggingOut}
+>
+    {isLoggingOut ? (
+        <>
+            <span className="spinner-ui"></span>
+            Logging Out...
+        </>
+    ) : (
+        "Logout"
+    )}
+</button>
 
             </div>
 

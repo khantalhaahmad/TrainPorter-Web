@@ -20,7 +20,7 @@ import BlogPage from './modules/company/BlogPage';
 
 import Footer from './components/Footer';
 import AuthDrawer from './components/AuthDrawer';
-
+import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 
 function App() {
@@ -62,17 +62,24 @@ function App() {
           />
 
           {/* Dashboard */}
-          <Route
-            path="/dashboard"
-            element={<DashboardPage />}
-          />
+         <Route
+  path="/dashboard"
+  element={
+    <ProtectedRoute>
+      <DashboardPage />
+    </ProtectedRoute>
+  }
+/>
 
           {/* Booking Flow */}
           <Route
-            path="/book"
-            element={<BookPorterPage />}
-          />
-
+  path="/book"
+  element={
+    <ProtectedRoute>
+      <BookPorterPage />
+    </ProtectedRoute>
+  }
+/>
           <Route
             path="/fare"
             element={<FareBreakdownPage />}
@@ -106,11 +113,14 @@ function App() {
           />
 
           {/* Profile */}
-          <Route
-            path="/history"
-            element={<BookingHistoryPage />}
-          />
-
+         <Route
+  path="/history"
+  element={
+    <ProtectedRoute>
+      <BookingHistoryPage />
+    </ProtectedRoute>
+  }
+/>
           {/* Footer Pages */}
 
           <Route

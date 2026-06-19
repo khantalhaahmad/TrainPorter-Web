@@ -400,6 +400,45 @@
 .shake-anim {
     animation: shake-anim 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
+/* OTP Error Animation */
+
+.otp-digit-field.has-error {
+    border: 2px solid #EF4444 !important;
+    background: #FEF2F2;
+    color: #DC2626;
+    animation: otpFall 0.45s ease;
+}
+
+/* Individual Box Fall Effect */
+
+@keyframes otpFall {
+
+    0% {
+        transform: translateY(-12px);
+    }
+
+    30% {
+        transform: translateY(8px);
+    }
+
+    60% {
+        transform: translateY(-4px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Error Text */
+
+.otp-alert-msg {
+    color: #EF4444;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: -10px;
+    margin-bottom: 16px;
+}
 
 .drawer-bottom-disclosure {
     padding: 32px 40px;

@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from './ui/Button';
 import './AuthDrawer.css';
+import axios from "axios";
+import { useAuth } from '../context/AuthContext';
 
 const AuthDrawer = ({ isOpen, onClose }) => {
     const [step, setStep] = useState('login'); // login, otp, success
@@ -17,6 +19,7 @@ const AuthDrawer = ({ isOpen, onClose }) => {
     const otpRefs = useRef([]);
     const toastTimerRef = useRef(null);
     const [isVisible, setIsVisible] = useState(false);
+    const { login } = useAuth();
     useEffect(() => {
         if (step === 'otp' && timer > 0) {
             const interval = setInterval(() => setTimer(timer - 1), 1000);
@@ -63,25 +66,61 @@ const AuthDrawer = ({ isOpen, onClose }) => {
         setError('');
     };
 
-    const handleSendOTP = (e) => {
-        e.preventDefault();
-        const { valid, msg } = validateMobile(mobile);
+    const handleSendOTP = async (e) => {
+    e.preventDefault();
 
-        if (!valid) {
-            setError(msg || 'Invalid mobile number');
-            showToast('error', 'Invalid Mobile Number', 'Please enter a valid 10-digit Indian mobile number before continuing.');
-            return;
-        }
+    const { valid, msg } = validateMobile(mobile);
 
+    if (!valid) {
+        setError(msg || "Invalid mobile number");
+
+        showToast(
+            "error",
+            "Invalid Mobile Number",
+            "Please enter a valid 10-digit Indian mobile number before continuing."
+        );
+
+        return;
+    }
+
+    try {
         setIsLoading(true);
-        setTimeout(() => {
-            setIsLoading(false);
-            setStep('otp');
-            setTimer(30);
-            setOtp(['', '', '', '', '', '']);
-            showToast('success', 'OTP Sent Successfully', 'Verification code has been sent to your mobile number.');
-        }, 1000);
-    };
+
+        await axios.post(
+            "http://localhost:8000/api/auth/send-otp",
+            {
+                phone: mobile,
+            }
+        );
+await new Promise(resolve =>
+    setTimeout(resolve, 2000)
+);
+        setStep("otp");
+        setTimer(30);
+        setOtp(["", "", "", "", "", ""]);
+
+        showToast(
+            "success",
+            "OTP Sent Successfully",
+            "Verification code has been sent to your mobile number."
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        showToast(
+            "error",
+            "Failed",
+            "Unable to send OTP"
+        );
+
+    } finally {
+
+        setIsLoading(false);
+
+    }
+};
 
     const handleOTPChange = (index, value) => {
         const cleanedValue = value.replace(/\D/g, '');
@@ -89,8 +128,11 @@ const AuthDrawer = ({ isOpen, onClose }) => {
 
         const newOtp = [...otp];
         newOtp[index] = cleanedValue.slice(-1);
-        setOtp(newOtp);
-        setOtpError(false);
+        if (otpError) {
+    setOtpError(false);
+}
+
+setOtp(newOtp);
 
         if (cleanedValue && index < 5) {
             otpRefs.current[index + 1].focus();
@@ -113,46 +155,73 @@ const AuthDrawer = ({ isOpen, onClose }) => {
         }
     };
 
-   const handleVerifyOTP = (e) => {
+   const handleVerifyOTP = async (e) => {
     e.preventDefault();
 
-    const fullOtp = otp.join('');
+    const fullOtp = otp.join("");
 
-    setIsLoading(true);
+    try {
 
-    setTimeout(() => {
+        setIsLoading(true);
 
-        if (fullOtp === '123456' || fullOtp === '111111') {
+        const response = await axios.post(
+    "http://localhost:8000/api/auth/verify-otp",
+    {
+        phone: mobile,
+        otp: fullOtp,
+    }
+);
 
-            setIsLoading(false);
+// Premium loading delay
+await new Promise(resolve =>
+    setTimeout(resolve, 2000)
+);
 
-            setStep('success');
+const token =
+  response.data.token ||
+  response.data.data?.token;
+
+login(token);
+
+setStep("success");
+
+        setTimeout(() => {
+
+            navigate("/dashboard");
 
             setTimeout(() => {
 
-                navigate('/dashboard');
+                onClose();
 
-                setTimeout(() => {
+                setStep("login");
+                setMobile("");
+                setOtp(["", "", "", "", "", ""]);
+                setOtpError(false);
 
-                    onClose();
+            }, 300);
 
-                    setStep('login');
-                    setMobile('');
-                    setOtp(['', '', '', '', '', '']);
-                    setOtpError(false);
+        }, 2000);
 
-                }, 300);
+   } catch (error) {
 
-            }, 3000);
+    console.error(error);
 
-        } else {
+    setOtpError(false);
 
-            setIsLoading(false);
-            setOtpError(true);
+    setTimeout(() => {
 
-        }
+        setOtp(["", "", "", "", "", ""]);
+        setOtpError(true);
 
-    }, 1200);
+        otpRefs.current[0]?.focus();
+
+    }, 10);
+
+} finally {
+
+    setIsLoading(false);
+
+}
 };
     const formatMobile = (num) => {
         if (num.length !== 10) return num;
