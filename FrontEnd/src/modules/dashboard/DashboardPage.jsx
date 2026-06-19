@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import Card from '../../components/ui/Card';
@@ -10,7 +10,7 @@ import './DashboardPage.css';
 const DashboardPage = () => {
   const navigate = useNavigate();
 const [showCancelModal, setShowCancelModal] = useState(false);
-
+const [hasActiveBooking, setHasActiveBooking] = useState(true);
   const quickStats = [
     {
       label: 'Total Bookings',
@@ -85,6 +85,11 @@ const [showCancelModal, setShowCancelModal] = useState(false);
             </div>
 
             <div className="hero-actions">
+                {hasActiveBooking && (
+  <div className="booking-warning">
+    ⚠️ Complete or cancel your current booking before creating a new booking.
+  </div>
+)}
               <Button
                 onClick={() => navigate('/assigned')}
               >
@@ -92,11 +97,23 @@ const [showCancelModal, setShowCancelModal] = useState(false);
               </Button>
 
               <Button
-                variant="secondary"
-                onClick={() => navigate('/book')}
-              >
-                Book New Porter
-              </Button>
+  variant="secondary"
+  disabled={hasActiveBooking}
+  onClick={() => {
+    if (hasActiveBooking) {
+      alert(
+        'You already have an active porter booking. Complete or cancel it first.'
+      );
+      return;
+    }
+
+    navigate('/book');
+  }}
+>
+  {hasActiveBooking
+    ? 'Active Booking Exists'
+    : 'Book New Porter'}
+</Button>
             </div>
 
           </div>
@@ -192,59 +209,69 @@ const [showCancelModal, setShowCancelModal] = useState(false);
 
           </div>
           </div>
-                {/* Timeline */}
+               {/* Timeline */}
 
-  <div className="booking-progress">
+<div className="booking-status-card">
+
+```
+<div className="booking-progress">
 
     <div className="progress-step active">
-    <span className="step-icon">✔</span>
-    <span>Booking</span>
-    <small>Completed</small>
-</div>
+        <span className="step-icon">✔</span>
+        <span>Booking</span>
+        <small>Completed</small>
+    </div>
 
-<div className="progress-step active">
-    <span className="step-icon">✔</span>
-    <span>Assigned</span>
-    <small>Completed</small>
-</div>
+    <div className="progress-step active">
+        <span className="step-icon">✔</span>
+        <span>Assigned</span>
+        <small>Completed</small>
+    </div>
 
-<div className="progress-step current">
-    <span className="step-icon">🚶</span>
-    <span>Arriving</span>
-    <small>In Progress</small>
-</div>
+    <div className="progress-step current">
+        <span className="step-icon">🚶</span>
+        <span>Arriving</span>
+        <small>In Progress</small>
+    </div>
 
-<div className="progress-step">
-    <span className="step-icon">📦</span>
-    <span>Pickup</span>
-    <small>Pending</small>
-</div>
+    <div className="progress-step">
+        <span className="step-icon">📦</span>
+        <span>Pickup</span>
+        <small>Pending</small>
+    </div>
 
-<div className="progress-step">
-    <span className="step-icon">🏁</span>
-    <span>Complete</span>
-    <small>Pending</small>
-</div>
-
-  </div>
+    <div className="progress-step">
+        <span className="step-icon">🏁</span>
+        <span>Complete</span>
+        <small>Pending</small>
+    </div>
 
 </div>
 
-              <Button
-        className="track-btn"
-        onClick={() => navigate('/assigned')}
-    >
-        Track Live Booking
-    </Button>
+</div>
 
-    <Button
-        className="cancel-btn-dashboard"
-        onClick={() => setShowCancelModal(true)}
-    >
-        Cancel Booking
-    </Button>
+</div> {/* booking-body close */}
 
-            </Card>
+<div className="booking-actions">
+
+
+<Button
+    className="track-btn"
+    onClick={() => navigate('/assigned')}
+>
+    Track Live Booking
+</Button>
+
+<Button
+    className="cancel-btn-dashboard"
+    onClick={() => setShowCancelModal(true)}
+>
+    Cancel Booking
+</Button>
+
+</div>
+
+</Card>
 
             {/* QUICK ACTIONS */}
 
@@ -348,10 +375,54 @@ const [showCancelModal, setShowCancelModal] = useState(false);
 
           </div>
 
-        </section>
+                </section>
+
+        {showCancelModal && (
+          <div
+            className="cancel-modal-overlay"
+            onClick={() => setShowCancelModal(false)}
+          >
+            <div
+              className="cancel-modal"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <h2>Cancel Booking</h2>
+
+              <p>
+                Are you sure you want to cancel this porter booking?
+              </p>
+
+              <div className="cancel-fee-box">
+                Cancellation Fee: ₹20
+              </div>
+
+              <div className="cancel-actions-modal">
+
+                <button
+                  className="keep-booking-btn"
+                  onClick={() => setShowCancelModal(false)}
+                >
+                  Keep Booking
+                </button>
+
+                <button
+  className="danger-btn"
+  onClick={() => {
+    setHasActiveBooking(false);
+    setShowCancelModal(false);
+  }}
+>
+  Confirm Cancel
+</button>
+
+              </div>
+            </div>
+          </div>
+        )}
 
       </div>
     </DashboardLayout>
+    
   );
 };
 

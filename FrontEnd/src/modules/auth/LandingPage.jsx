@@ -34,42 +34,85 @@ const LandingPage = ({ openAuth }) => {
                     <img src={heroImg} alt="Indian Railway Station" />
                     <div className="hero-overlay"></div>
                 </div>
-                <div className="container hero-container">
-                    <div className="hero-content fade-in">
-                        <Badge variant="primary" className="hero-badge">#1 Railway Assistance App</Badge>
-                        <h1 className="text-gradient">Travel Light, <br />Travel Right.</h1>
-                        <p className="hero-description">
-                            Experience the future of railway luggage assistance. Book verified porters in seconds and enjoy your journey without the heavy lifting.
-                        </p>
-                        <div className="hero-actions">
-                            <Button size="lg" onClick={openAuth}>Get Started Now</Button>
-                            <Button variant="secondary" size="lg" className="hero-secondary-btn">Watch How it Works</Button>
-                        </div>
-                    </div>
+                
+                    <div className="container hero-container">
 
-                    <div className="hero-visuals fade-in">
-                        <div className="glass-card stat-card-1">
-                            <span className="stat-icon">✅</span>
-                            <div className="stat-info">
-                                <strong>500+</strong>
-                                <span>Verified Porters</span>
-                            </div>
-                        </div>
-                        <div className="glass-card stat-card-2">
-                            <span className="stat-icon">⭐</span>
-                            <div className="stat-info">
-                                <strong>4.9/5</strong>
-                                <span>User Rating</span>
-                            </div>
-                        </div>
-                        <div className="glass-card stat-card-3">
-                            <span className="stat-icon">⏱️</span>
-                            <div className="stat-info">
-                                <strong>5 Min</strong>
-                                <span>Avg. Arrival</span>
-                            </div>
-                        </div>
-                    </div>
+
+<div className="landing-hero-content fade-in">
+
+    <Badge
+        variant="primary"
+        className="landing-hero-badge"
+    >
+        #1 Railway Assistance App
+    </Badge>
+
+    <h1>
+        Travel Light,
+        <br />
+        Travel Right.
+    </h1>
+
+    <p className="landing-hero-description">
+        Experience the future of railway luggage assistance.
+        Book verified porters in seconds and enjoy your journey
+        without the heavy lifting.
+    </p>
+
+    <div className="landing-hero-actions">
+
+        <Button
+            size="lg"
+            onClick={openAuth}
+        >
+            Get Started Now
+        </Button>
+
+        <Button
+            variant="secondary"
+            size="lg"
+            className="landing-hero-secondary-btn"
+        >
+            Watch How it Works
+        </Button>
+
+    </div>
+
+</div>
+
+<div className="landing-hero-visuals fade-in">
+
+    <div className="landing-glass-card stat-card-1">
+        <span className="landing-stat-icon">✅</span>
+
+        <div className="landing-stat-info">
+            <strong>500+</strong>
+            <span>Verified Porters</span>
+        </div>
+    </div>
+
+    <div className="landing-glass-card stat-card-2">
+        <span className="landing-stat-icon">⭐</span>
+
+        <div className="landing-stat-info">
+            <strong>4.9/5</strong>
+            <span>User Rating</span>
+        </div>
+    </div>
+
+    <div className="landing-glass-card stat-card-3">
+        <span className="landing-stat-icon">⏱️</span>
+
+        <div className="landing-stat-info">
+            <strong>5 Min</strong>
+            <span>Avg. Arrival</span>
+        </div>
+    </div>
+
+
+
+</div>
+
                 </div>
             </section>
 
