@@ -12,7 +12,21 @@ const userSchema = new mongoose.Schema(
       type: String,
       default: "",
     },
+coins: {
+  type: Number,
+  default: 100
+},
 
+membership: {
+  type: String,
+  enum: [
+    "Bronze",
+    "Silver",
+    "Gold",
+    "Platinum"
+  ],
+  default: "Bronze"
+},
     role: {
       type: String,
       enum: [

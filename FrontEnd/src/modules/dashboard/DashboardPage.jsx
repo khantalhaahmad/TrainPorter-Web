@@ -1,66 +1,96 @@
-import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import Card from '../../components/ui/Card';
 import Button from '../../components/ui/Button';
 import Badge from '../../components/ui/Badge';
 import './DashboardPage.css';
-
-
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 const DashboardPage = () => {
   const navigate = useNavigate();
-const [showCancelModal, setShowCancelModal] = useState(false);
-const [hasActiveBooking, setHasActiveBooking] = useState(true);
-  const quickStats = [
-    {
-      label: 'Total Bookings',
-      value: '12',
-      icon: '📦',
-      color: 'blue'
-    },
-    {
-      label: 'Money Saved',
-      value: '₹450',
-      icon: '💰',
-      color: 'green'
-    },
-    {
-      label: 'Avg Rating',
-      value: '4.9',
-      icon: '⭐',
-      color: 'gold'
-    },
-    {
-      label: 'Success Rate',
-      value: '100%',
-      icon: '🎯',
-      color: 'purple'
-    }
-  ];
+  const [dashboardData, setDashboardData] = useState(null);
+const [loading, setLoading] = useState(true);
+useEffect(() => {
+  fetchDashboard();
+}, []);
 
-  const activities = [
-    {
-      id: 1,
-      title: 'Booking Completed',
-      desc: 'Rajdhani Express - NDLS',
-      time: '2 hours ago',
-      icon: '✅'
-    },
-    {
-      id: 2,
-      title: 'Refund Processed',
-      desc: 'Transaction #TP-12345',
-      time: 'Yesterday',
-      icon: '💸'
-    },
-    {
-      id: 3,
-      title: 'Support Ticket Closed',
-      desc: 'Issue with luggage weight',
-      time: '2 days ago',
-      icon: '🎧'
-    }
-  ];
+const fetchDashboard = async () => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const res = await axios.get(
+      "http://localhost:8000/api/dashboard",
+      {
+        headers: {
+          Authorization: token,
+        },
+      }
+    );
+
+    const handleCancelBooking = async () => {
+  try {
+
+    const token =
+      localStorage.getItem("token");
+
+    await axios.put(
+      `http://localhost:8000/api/bookings/cancel/${dashboardData.activeBooking._id}`,
+      {},
+      {
+        headers: {
+          Authorization: token
+        }
+      }
+    );
+
+    setShowCancelModal(false);
+
+    await fetchDashboard(); // auto refresh
+
+  } catch (error) {
+    alert(
+      error.response?.data?.message ||
+      "Unable to cancel booking"
+    );
+  }
+};
+
+    setDashboardData(res.data.data);
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
+const [showCancelModal, setShowCancelModal] = useState(false);
+const hasActiveBooking =
+  dashboardData?.activeBooking !== null;
+  const quickStats = [
+  {
+    label: 'Total Bookings',
+    value: dashboardData?.totalBookings || 0,
+    icon: '📦',
+    color: 'blue'
+  },
+  {
+    label: 'Money Saved',
+    value: `₹${dashboardData?.moneySaved || 0}`,
+    icon: '💰',
+    color: 'green'
+  },
+  {
+    label: 'Avg Rating',
+    value: dashboardData?.avgRating || 0,
+    icon: '⭐',
+    color: 'gold'
+  },
+  {
+    label: 'Success Rate',
+    value: `${dashboardData?.successRate || 0}%`,
+    icon: '🎯',
+    color: 'purple'
+  }
+];
 
   return (
     <DashboardLayout>
@@ -72,16 +102,22 @@ const [hasActiveBooking, setHasActiveBooking] = useState(true);
 
             <div>
               <span className="hero-badge">
-                👋 Good Evening, Talha
+                👋 Good Evening, {dashboardData?.user?.name || "User"}
               </span>
 
               <h1>
-                Your Porter is on the way 🚂
+               
               </h1>
 
-              <p>
-                Rajdhani Express • Coach B4 • Seat 22
-              </p>
+             <h2>
+  {dashboardData?.activeBooking?.trainName ||
+    "No Active Booking"}
+</h2>
+
+<p>
+  Coach {dashboardData?.activeBooking?.coach}
+  • Seat {dashboardData?.activeBooking?.seatNumber}
+</p>
             </div>
 
             <div className="hero-actions">
@@ -123,7 +159,7 @@ const [hasActiveBooking, setHasActiveBooking] = useState(true);
           </div>
         </section>
 
-        {/* STATS */}
+        {/* STATS const ac*/}
 
         <section className="stats-grid">
 
@@ -159,7 +195,9 @@ const [hasActiveBooking, setHasActiveBooking] = useState(true);
 
   {/* LEFT */}
 
-  <div className="left-section">
+<div className="left-section">
+
+  {hasActiveBooking ? (
 
     <Card className="active-booking-card">
 
@@ -170,7 +208,7 @@ const [hasActiveBooking, setHasActiveBooking] = useState(true);
         </Badge>
 
         <span className="booking-id">
-          #TP-8842
+          #{dashboardData?.activeBooking?._id?.slice(-6)}
         </span>
 
       </div>
@@ -178,12 +216,54 @@ const [hasActiveBooking, setHasActiveBooking] = useState(true);
       <div className="booking-body">
 
         <h2>
-          Rajdhani Express
+          {dashboardData?.activeBooking?.trainName}
         </h2>
 
-        <p>
-          Coach B4 • Seat 22
-        </p>
+        <div className="booking-details-grid">
+
+          <div className="booking-detail-item">
+            <span>🚆 Train No</span>
+            <strong>
+              {dashboardData?.activeBooking?.trainNumber}
+            </strong>
+          </div>
+
+          <div className="booking-detail-item">
+            <span>📍 Station</span>
+            <strong>
+              {dashboardData?.activeBooking?.station}
+            </strong>
+          </div>
+
+          <div className="booking-detail-item">
+            <span>🚪 Coach</span>
+            <strong>
+              {dashboardData?.activeBooking?.coach}
+            </strong>
+          </div>
+
+          <div className="booking-detail-item">
+            <span>💺 Seat</span>
+            <strong>
+              {dashboardData?.activeBooking?.seatNumber}
+            </strong>
+          </div>
+
+          <div className="booking-detail-item">
+            <span>🧳 Luggage</span>
+            <strong>
+              {dashboardData?.activeBooking?.luggageCount} Bags
+            </strong>
+          </div>
+
+          <div className="booking-detail-item">
+            <span>💰 Amount</span>
+            <strong>
+              ₹{dashboardData?.activeBooking?.amount}
+            </strong>
+          </div>
+
+        </div>
 
         <div className="booking-status-card">
 
@@ -195,106 +275,96 @@ const [hasActiveBooking, setHasActiveBooking] = useState(true);
 
             <div className="porter-info">
               <h4>
-                Ramesh Kumar Assigned
+                Porter Not Assigned Yet
               </h4>
 
               <span>
-                Arriving at Platform 4 in 5 mins
+                Waiting for porter assignment
               </span>
             </div>
 
-            <Badge variant="success">
-              Verified
+            <Badge variant="warning">
+              {dashboardData?.activeBooking?.status}
             </Badge>
 
           </div>
-          </div>
-               {/* Timeline */}
 
-<div className="booking-status-card">
+        </div>
 
-```
-<div className="booking-progress">
+      </div>
 
-    <div className="progress-step active">
-        <span className="step-icon">✔</span>
-        <span>Booking</span>
-        <small>Completed</small>
+      <div className="booking-actions">
+
+        <Button
+          className="track-btn"
+          onClick={() => navigate('/assigned')}
+        >
+          Track Live Booking
+        </Button>
+
+        <Button
+          className="cancel-btn-dashboard"
+          onClick={() => setShowCancelModal(true)}
+        >
+          Cancel Booking
+        </Button>
+
+      </div>
+
+    </Card>
+
+  ) : (
+
+    <Card className="active-booking-card no-booking">
+
+      <div className="empty-booking">
+
+        <div className="empty-icon">
+          🚂
+        </div>
+
+        <h2>
+          No Active Booking
+        </h2>
+
+        <p>
+          You currently don't have any active porter bookings.
+        </p>
+
+        <Button
+          onClick={() => navigate('/book')}
+        >
+          Book a Porter
+        </Button>
+
+      </div>
+
+    </Card>
+
+  )}
+
+  {/* QUICK ACTIONS */}
+
+  <Card className="quick-actions-card">
+
+    <h3>
+      Quick Actions
+    </h3>
+
+    <div className="quick-grid">
+
+      <button>📜 History</button>
+      <button>🎧 Support</button>
+      <button>👤 Profile</button>
+      <button>💳 Refunds</button>
+      <button>⭐ Reviews</button>
+      <button>⚙ Settings</button>
+
     </div>
 
-    <div className="progress-step active">
-        <span className="step-icon">✔</span>
-        <span>Assigned</span>
-        <small>Completed</small>
-    </div>
-
-    <div className="progress-step current">
-        <span className="step-icon">🚶</span>
-        <span>Arriving</span>
-        <small>In Progress</small>
-    </div>
-
-    <div className="progress-step">
-        <span className="step-icon">📦</span>
-        <span>Pickup</span>
-        <small>Pending</small>
-    </div>
-
-    <div className="progress-step">
-        <span className="step-icon">🏁</span>
-        <span>Complete</span>
-        <small>Pending</small>
-    </div>
+  </Card>
 
 </div>
-
-</div>
-
-</div> {/* booking-body close */}
-
-<div className="booking-actions">
-
-
-<Button
-    className="track-btn"
-    onClick={() => navigate('/assigned')}
->
-    Track Live Booking
-</Button>
-
-<Button
-    className="cancel-btn-dashboard"
-    onClick={() => setShowCancelModal(true)}
->
-    Cancel Booking
-</Button>
-
-</div>
-
-</Card>
-
-            {/* QUICK ACTIONS */}
-
-            <Card className="quick-actions-card">
-
-              <h3>
-                Quick Actions
-              </h3>
-
-              <div className="quick-grid">
-
-                <button>📜 History</button>
-                <button>🎧 Support</button>
-                <button>👤 Profile</button>
-                <button>💳 Refunds</button>
-                <button>⭐ Reviews</button>
-                <button>⚙ Settings</button>
-
-              </div>
-
-            </Card>
-
-          </div>
 
           {/* RIGHT */}
 
@@ -332,34 +402,34 @@ const [hasActiveBooking, setHasActiveBooking] = useState(true);
 
               <div className="activity-list">
 
-                {activities.map(activity => (
-                  <div
-                    key={activity.id}
-                    className="activity-item"
-                  >
+               {dashboardData?.recentActivities?.map(
+  (activity) => (
+    <div
+      key={activity._id}
+      className="activity-item"
+    >
+      <div className="activity-icon">
+        📌
+      </div>
 
-                    <div className="activity-icon">
-                      {activity.icon}
-                    </div>
+      <div>
+        <strong>
+          {activity.title}
+        </strong>
 
-                    <div>
+        <p>
+          {activity.description}
+        </p>
 
-                      <strong>
-                        {activity.title}
-                      </strong>
-
-                      <p>
-                        {activity.desc}
-                      </p>
-
-                      <span>
-                        {activity.time}
-                      </span>
-
-                    </div>
-
-                  </div>
-                ))}
+        <span>
+          {new Date(
+            activity.createdAt
+          ).toLocaleString()}
+        </span>
+      </div>
+    </div>
+  )
+)}
 
               </div>
 
@@ -407,10 +477,7 @@ const [hasActiveBooking, setHasActiveBooking] = useState(true);
 
                 <button
   className="danger-btn"
-  onClick={() => {
-    setHasActiveBooking(false);
-    setShowCancelModal(false);
-  }}
+  onClick={handleCancelBooking}
 >
   Confirm Cancel
 </button>

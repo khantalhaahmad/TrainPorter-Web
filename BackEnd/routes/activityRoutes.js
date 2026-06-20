@@ -10,15 +10,22 @@ const authMiddleware =
   );
 
 const {
-  getDashboard,
+  getMyActivities,
+  createActivity,
 } = require(
-  "../controllers/dashboardController"
+  "../controllers/activityController"
 );
 
 router.get(
+  "/my-activities",
+  authMiddleware,
+  getMyActivities
+);
+
+router.post(
   "/",
   authMiddleware,
-  getDashboard
+  createActivity
 );
 
 module.exports = router;
