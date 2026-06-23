@@ -1,21 +1,47 @@
 const Booking = require("../models/Booking");
 const Activity = require("../models/Activity");
+const calculateFare = require(
+  "../utils/fareCalculator"
+);
 
 const createBooking = async (
   req,
   res
 ) => {
   try {
+
+    const fareData =
+  calculateFare(
+    req.body.luggageCount || 1
+  );
+
     const booking =
-      await Booking.create({
-        ...req.body,
-        userId: req.user.id,
-      });
+  await Booking.create({
+    ...req.body,
+
+    userId: req.user.id,
+
+    amount: fareData.amount,
+
+    fareBreakdown:
+      fareData.breakdown,
+
+    status: "assigned",
+
+    assignedPorter: {
+      porterId:
+        "DUMMY_PORTER_001",
+      name:
+        "Dummy Porter",
+      phone:
+        "9999999999",
+    },
+  });
 
     await Activity.create({
       userId: req.user.id,
       title: "Booking Created",
-      description: `${booking.trainName} booking created`,
+      description: `${booking.trainName} booking created and porter assigned`,
       type: "booking",
     });
 
@@ -23,14 +49,16 @@ const createBooking = async (
       success: true,
       data: booking,
     });
+
   } catch (error) {
+
     res.status(500).json({
       success: false,
       message: error.message,
     });
+
   }
 };
-
 const getMyBookings = async (
   req,
   res
@@ -90,7 +118,21 @@ const updateBookingStatus =
   async (req, res) => {
     try {
       const { status } = req.body;
+const validStatuses = [
+  "assigned",
+  "accepted",
+  "arrived",
+  "in_progress",
+  "completed",
+  "cancelled",
+];
 
+if (!validStatuses.includes(status)) {
+  return res.status(400).json({
+    success: false,
+    message: "Invalid status",
+  });
+}
       const booking =
         await Booking.findByIdAndUpdate(
           req.params.id,
@@ -142,7 +184,7 @@ const updateBookingStatus =
       });
     }
   };
-  
+
 const cancelBooking = async (
   req,
   res
@@ -161,32 +203,36 @@ const cancelBooking = async (
       });
     }
 
-    if (booking.status !== "pending") {
-      return res.status(400).json({
-        success: false,
-        message:
-          "Only pending bookings can be cancelled",
-      });
-    }
+    if (
+  booking.status === "arrived" ||
+  booking.status === "in_progress" ||
+  booking.status === "completed" ||
+  booking.status === "cancelled"
+) {
+  return res.status(400).json({
+    success: false,
+    message:
+      "Booking cannot be cancelled now",
+  });
+}
 
-    booking.status = "cancelled";
+booking.status = "cancelled";
 
-    await booking.save();
+await booking.save();
 
-    await Activity.create({
-      userId: booking.userId,
-      title: "Booking Cancelled",
-      description: `${booking.trainName} booking cancelled`,
-      type: "booking",
-    });
+await Activity.create({
+  userId: booking.userId,
+  title: "Booking Cancelled",
+  description: `${booking.trainName} booking cancelled`,
+  type: "booking",
+});
 
-    res.status(200).json({
-      success: true,
-      message:
-        "Booking cancelled successfully",
-      data: booking,
-    });
-
+res.status(200).json({
+  success: true,
+  message:
+    "Booking cancelled successfully",
+  data: booking,
+});
   } catch (error) {
 
     res.status(500).json({

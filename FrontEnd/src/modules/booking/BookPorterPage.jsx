@@ -16,6 +16,15 @@ const BookPorterPage = () => {
         large: 0
     });
 
+const [bookingData, setBookingData] = useState({
+    trainNumber: '',
+    trainName: '',
+    station: '',
+    coach: '',
+    seatNumber: '',
+    phone: '',
+});
+
     const updateLuggage = (type, val) => {
         setLuggage(prev => ({
             ...prev,
@@ -24,6 +33,59 @@ const BookPorterPage = () => {
     };
 
     const totalItems = luggage.small + luggage.medium + luggage.large;
+
+ const handleNextStep = () => {
+
+    if (
+        bookingData.trainNumber.length < 5 ||
+        bookingData.trainNumber.length > 6
+    ) {
+        alert('Train number must be 5-6 digits');
+        return;
+    }
+
+  if (bookingData.trainName.trim().length < 3) {
+    alert('Train name is too short');
+    return;
+}
+
+    if (!bookingData.coach.trim()) {
+        alert('Enter coach number');
+        return;
+    }
+
+    if (
+        Number(bookingData.seatNumber) < 1 ||
+        Number(bookingData.seatNumber) > 99
+    ) {
+        alert('Enter valid seat number');
+        return;
+    }
+
+    if (bookingData.phone.length !== 10) {
+        alert('Enter valid mobile number');
+        return;
+    }
+
+    setStep(2);
+};
+const handleFarePage = () => {
+
+    if (totalItems === 0) {
+        alert("Select at least one luggage item");
+        return;
+    }
+
+    localStorage.setItem(
+        "bookingData",
+        JSON.stringify({
+            ...bookingData,
+            luggageCount: totalItems,
+        })
+    );
+
+    navigate("/fare");
+};
 
     return (
         <DashboardLayout>
@@ -51,19 +113,124 @@ const BookPorterPage = () => {
                             <Card className="booking-card-premium">
                                 <div className="card-header-inner">
                                     <h2>Train Details</h2>
-                                    <p className="text-muted">Where should your porter meet you?</p>
-                                </div>
-                                <div className="form-grid">
-                                    <Input label="Train Number / Name" placeholder="e.g. 12424 / Rajdhani Exp" icon={<span>🚂</span>} />
-                                    <div className="row-grid">
-                                        <Input label="Coach" placeholder="e.g. B4" />
-                                        <Input label="Seat/Berth" placeholder="e.g. 22" />
-                                    </div>
-                                    <Input label="Contact Number" placeholder="Enter mobile number" icon={<span>📱</span>} />
-                                </div>
-                                <div className="form-actions-premium">
-                                    <Button size="lg" className="btn-full" onClick={() => setStep(2)}>Next: Luggage Selection</Button>
-                                </div>
+<p className="text-muted">
+    Enter your journey details so we can assign the nearest verified porter.
+</p>
+</div>
+
+<div className="form-grid">
+
+    <Input
+    label="Train Number"
+    placeholder=""
+    maxLength={6}
+    value={bookingData.trainNumber}
+    onChange={(e) => {
+        const value = e.target.value.replace(/\D/g, '');
+
+        if (value.length <= 6) {
+            setBookingData({
+                ...bookingData,
+                trainNumber: value,
+            });
+        }
+    }}
+    icon={<span></span>}
+/>
+
+    <Input
+        label="Train Name"
+        placeholder=""
+        icon={<span></span>}
+        value={bookingData.trainName}
+        onChange={(e) => {
+    const value = e.target.value;
+
+    if (/^[A-Za-z\s]*$/.test(value)) {
+        setBookingData({
+            ...bookingData,
+            trainName: value,
+        });
+    }
+}}
+    />
+
+    <Input
+        label="Station"
+        placeholder=""
+        icon={<span></span>}
+        value={bookingData.station}
+        onChange={(e) =>
+            setBookingData({
+                ...bookingData,
+                station: e.target.value,
+            })
+        }
+    />
+
+    <div className="row-grid">
+       <Input
+    label="Coach"
+    placeholder=""
+    maxLength={3}
+    value={bookingData.coach}
+    onChange={(e) => {
+        let value = e.target.value.toUpperCase();
+
+        if (/^[A-Z]{0,2}[0-9]{0,2}$/.test(value)) {
+            setBookingData({
+                ...bookingData,
+                coach: value,
+            });
+        }
+    }}
+/>
+        <Input
+    label="Seat/Berth"
+    placeholder=""
+    maxLength={2}
+    value={bookingData.seatNumber}
+    onChange={(e) => {
+        const value = e.target.value.replace(/\D/g, '');
+
+        if (value.length <= 2) {
+            setBookingData({
+                ...bookingData,
+                seatNumber: value,
+            });
+        }
+    }}
+/>
+
+    </div>
+
+    <Input
+        label="Contact Number"
+        placeholder="Enter mobile number"
+        icon={<span>📱</span>}
+        value={bookingData.phone}
+        onChange={(e) => {
+    const value = e.target.value.replace(/\D/g, '');
+
+    if (value.length <= 10) {
+        setBookingData({
+            ...bookingData,
+            phone: value,
+        });
+    }
+}}
+    />
+</div>
+
+<div className="form-actions-premium">
+    <Button
+        size="lg"
+        className="btn-full"
+        onClick={handleNextStep}
+    >
+        Next: Select Luggage →
+    </Button>
+</div>
                             </Card>
                         )}
 
@@ -79,7 +246,12 @@ const BookPorterPage = () => {
                                         { id: 'medium', label: 'Medium Suitcase', sub: 'Check-in luggage', icon: '🧳', color: '#EFF6FF' },
                                         { id: 'large', label: 'Extra Large', sub: 'Oversized trunks', icon: '📦', color: '#FFF7ED' },
                                     ].map((item) => (
-                                        <div key={item.id} className="luggage-item-premium">
+                                      <div
+    key={item.id}
+    className={`luggage-item-premium ${
+        luggage[item.id] > 0 ? 'selected' : ''
+    }`}
+>
                                             <div className="luggage-visual" style={{ backgroundColor: item.color }}>{item.icon}</div>
                                             <div className="luggage-info">
                                                 <strong>{item.label}</strong>
@@ -95,7 +267,7 @@ const BookPorterPage = () => {
                                 </div>
                                 <div className="form-actions-premium dual">
                                     <Button variant="secondary" onClick={() => setStep(1)}>Back</Button>
-                                    <Button size="lg" className="btn-full" onClick={() => navigate('/fare')}>Next: Fare Breakdown</Button>
+                                    <Button size="lg" className="btn-full" onClick={handleFarePage}>Next: Fare Breakdown</Button>
                                 </div>
                             </Card>
                         )}
@@ -107,7 +279,7 @@ const BookPorterPage = () => {
                             <div className="summary-list">
                                 <div className="summary-row">
                                     <span>Station</span>
-                                    <strong>New Delhi (NDLS)</strong>
+                                   <strong>{bookingData.station}</strong>
                                 </div>
                                 <div className="summary-row">
                                     <span>Service Mode</span>
@@ -120,7 +292,7 @@ const BookPorterPage = () => {
                             </div>
                             <div className="summary-total">
                                 <span>Est. Fare</span>
-                                <strong>₹{totalItems * 80 + 50}.00*</strong>
+                                <strong>₹{50 + (totalItems * 20)}</strong>
                             </div>
                             <p className="fare-disclaimer">*Final fare calculated at checkout</p>
                         </Card>

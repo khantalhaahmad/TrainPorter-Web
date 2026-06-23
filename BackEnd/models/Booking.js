@@ -48,16 +48,66 @@ const bookingSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    fareBreakdown: {
+  baseFare: {
+    type: Number,
+    default: 0,
+  },
 
+  luggageCharge: {
+    type: Number,
+    default: 0,
+  },
+
+  peakCharge: {
+    type: Number,
+    default: 0,
+  },
+
+  nightCharge: {
+    type: Number,
+    default: 0,
+  },
+  platformFee: {
+    type: Number,
+    default: 0,
+  },
+
+  gst: {
+    type: Number,
+    default: 0,
+  },
+
+  total: {
+    type: Number,
+    default: 0,
+  },
+},
+assignedPorter: {
+  porterId: {
+    type: String,
+    default: "DUMMY_PORTER_001",
+  },
+  name: {
+    type: String,
+    default: "Dummy Porter",
+  },
+  phone: {
+    type: String,
+    default: "9999999999",
+  },
+},
     status: {
       type: String,
       enum: [
-        "pending",
-        "accepted",
-        "in_progress",
-        "completed",
-        "cancelled",
-      ],
+  "pending",
+  "assigned",
+  "accepted",
+  "arrived",
+  "in_progress",
+  "completed",
+  "cancelled",
+],
       default: "pending",
     },
 

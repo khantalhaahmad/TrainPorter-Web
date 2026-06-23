@@ -26,6 +26,27 @@ const fetchDashboard = async () => {
         },
       }
     );
+     // 👇 YAHA ADD KARNA HAI
+    console.log(
+      "Dashboard API Response:",
+      res.data.data
+    );
+
+    console.log(
+      "Active Booking:",
+      res.data.data.activeBooking
+    );
+
+    setDashboardData(
+      res.data.data
+    );
+
+  } catch (error) {
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
 
     const handleCancelBooking = async () => {
   try {
@@ -55,13 +76,6 @@ const fetchDashboard = async () => {
   }
 };
 
-    setDashboardData(res.data.data);
-  } catch (error) {
-    console.error(error);
-  } finally {
-    setLoading(false);
-  }
-};
 const [showCancelModal, setShowCancelModal] = useState(false);
 const hasActiveBooking =
   dashboardData?.activeBooking !== null;
