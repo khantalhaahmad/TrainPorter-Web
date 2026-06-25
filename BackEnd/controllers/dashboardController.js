@@ -29,10 +29,12 @@ const getDashboard = async (
         userId,
         status: {
           $in: [
-            "pending",
-            "accepted",
-            "in_progress",
-          ],
+  "pending",
+  "assigned",
+  "accepted",
+  "arrived",
+  "in_progress",
+],
         },
       });
 

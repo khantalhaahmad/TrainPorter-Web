@@ -26,6 +26,18 @@ const fetchDashboard = async () => {
         },
       }
     );
+    console.log(
+  "FULL DASHBOARD:",
+  res.data.data
+);
+
+console.log(
+  "ACTIVE BOOKING:",
+  res.data.data.activeBooking
+);
+setDashboardData(
+  res.data.data
+);
      // 👇 YAHA ADD KARNA HAI
     console.log(
       "Dashboard API Response:",
@@ -78,7 +90,13 @@ const fetchDashboard = async () => {
 
 const [showCancelModal, setShowCancelModal] = useState(false);
 const hasActiveBooking =
-  dashboardData?.activeBooking !== null;
+  !!dashboardData?.activeBooking;
+
+  console.log(
+  "hasActiveBooking:",
+  hasActiveBooking
+);
+
   const quickStats = [
   {
     label: 'Total Bookings',
