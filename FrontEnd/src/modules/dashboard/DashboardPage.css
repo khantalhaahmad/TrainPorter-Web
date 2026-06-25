@@ -16,17 +16,14 @@
 .dashboard-hero {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(
-        135deg,
-        #2563EB,
-        #1E40AF
-    );
+    background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 50%, #1E3A8A 100%);
     border-radius: 28px;
-    padding: 40px;
-    color: white;
-    min-height: 220px;
+    padding: 42px 48px;
+    color: #fff;
+    min-height: 240px;
     display: flex;
     align-items: center;
+    box-shadow: 0 20px 45px rgba(37, 99, 235, .25);
 }
 
 .hero-content {
@@ -34,44 +31,112 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 40px;
+    position: relative;
     z-index: 2;
 }
 
 .hero-badge {
-    display: inline-block;
-    padding: 8px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
     border-radius: 999px;
     background: rgba(255,255,255,.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,.15);
     font-size: 14px;
-    margin-bottom: 16px;
-    backdrop-filter: blur(8px);
+    font-weight: 600;
+    margin-bottom: 22px;
 }
 
-.dashboard-hero h1 {
+/* Train Name */
+
+.hero-train-info h2 {
     font-size: 2.4rem;
     font-weight: 800;
-    margin-bottom: 10px;
+    line-height: 1.2;
+    margin-bottom: 22px;
+    color: #fff;
+    max-width: 550px;
 }
 
-.dashboard-hero p {
-    font-size: 1rem;
-    opacity: .9;
+/* Coach + Seat */
+
+.hero-details {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
 }
+
+.hero-chip {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 170px;
+    padding: 14px 18px;
+    border-radius: 16px;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.18);
+    backdrop-filter: blur(12px);
+    transition: all .3s ease;
+}
+
+.hero-chip:hover {
+    transform: translateY(-3px);
+    background: rgba(255,255,255,.18);
+}
+
+.hero-chip span {
+    font-size: 24px;
+}
+
+.hero-chip small {
+    display: block;
+    font-size: 12px;
+    color: rgba(255,255,255,.75);
+    margin-bottom: 3px;
+}
+
+.hero-chip strong {
+    display: block;
+    font-size: 17px;
+    font-weight: 700;
+    color: #fff;
+}
+
+/* Right Side Buttons */
 
 .hero-actions {
     display: flex;
-    gap: 12px;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-end;
+    min-width: 260px;
 }
+
+.booking-warning {
+    max-width: 260px;
+    padding: 12px 16px;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: 14px;
+    font-size: 13px;
+    line-height: 1.5;
+    backdrop-filter: blur(10px);
+}
+
+/* Floating Train */
 
 .floating-train {
     position: absolute;
-    right: 50px;
-    bottom: 20px;
-    font-size: 5rem;
-    opacity: .15;
+    right: 45px;
+    bottom: 15px;
+    font-size: 6rem;
+    opacity: .08;
+    pointer-events: none;
     animation: floatTrain 6s ease-in-out infinite;
 }
-
 /* =========================
    STATS
 ========================= */
@@ -154,208 +219,188 @@
    ACTIVE BOOKING
 ========================= */
 
-.active-booking-card {
-    padding: 28px;
-    border-radius: 24px;
-    border: 1px solid #DBEAFE;
-    background: linear-gradient(
-        180deg,
-        #FFFFFF,
-        #F8FBFF
-    );
-    box-shadow: 0 10px 30px rgba(15,23,42,.05);
+.active-booking-card{
+    padding:32px;
+    border-radius:24px;
+    background:linear-gradient(180deg,#FFFFFF,#F8FBFF);
+    border:1px solid #DBEAFE;
+    box-shadow:0 15px 35px rgba(15,23,42,.06);
 }
 
-.booking-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+/* HEADER */
+
+.booking-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:20px;
+    margin-bottom:30px;
 }
 
-.booking-id {
-    font-size: .9rem;
-    font-weight: 700;
-    color: #64748B;
+.booking-title{
+    margin-top:14px;
+    font-size:2rem;
+    font-weight:800;
+    color:#0F172A;
+    line-height:1.2;
 }
 
-.booking-body h2 {
-    font-size: 3rem;
-    margin-top: 20px;
-    margin-bottom: 8px;
-    color: #0F172A;
-    font-weight: 800;
+.booking-id-box{
+    text-align:right;
+    flex-shrink:0;
 }
 
-.booking-body p {
-    color: #2563EB;
-    font-weight: 700;
-    font-size: 1.15rem;
+.booking-id-box small{
+    display:block;
+    font-size:.75rem;
+    color:#94A3B8;
+    margin-bottom:6px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+}
+
+.booking-id-box strong{
+    font-size:1rem;
+    color:#0F172A;
+    font-weight:700;
+}
+
+/* DETAILS */
+
+.booking-details-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin:32px 0;
+}
+
+.detail-card{
+    display:flex;
+    align-items:center;
+    gap:16px;
+    padding:18px;
+    background:#fff;
+    border:1px solid #E2E8F0;
+    border-radius:18px;
+    transition:.25s ease;
+}
+
+.detail-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(15,23,42,.08);
+}
+
+.detail-icon{
+    width:56px;
+    height:56px;
+    border-radius:14px;
+    background:#EFF6FF;
+    color:#2563EB;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.4rem;
+    flex-shrink:0;
+}
+
+.detail-card p{
+    margin:0;
+    font-size:.82rem;
+    color:#64748B;
+    font-weight:600;
+}
+
+.detail-card h4{
+    margin-top:4px;
+    font-size:1.1rem;
+    color:#0F172A;
+    font-weight:800;
 }
 
 /* STATUS CARD */
 
-.booking-status-card {
-    margin-top: 28px;
-    background: white;
-    border: 1px solid #E2E8F0;
-    border-radius: 22px;
-    overflow: hidden;
+.booking-status-card{
+    margin-top:10px;
+    padding:22px;
+    background:#F8FAFC;
+    border:1px solid #E2E8F0;
+    border-radius:20px;
 }
 
 /* PORTER */
 
-.porter-card {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 26px;
-    border-bottom: 1px solid #E2E8F0;
+.porter-card{
+    display:flex;
+    align-items:center;
+    gap:18px;
 }
 
-.porter-avatar {
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    background: #F1F5F9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    flex-shrink: 0;
+.porter-avatar{
+    width:68px;
+    height:68px;
+    border-radius:50%;
+    background:#DBEAFE;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:2rem;
+    flex-shrink:0;
 }
 
-.porter-info {
-    flex: 1;
+.porter-info{
+    flex:1;
 }
 
-.porter-info h4 {
-    margin: 0;
-    font-size: 1.1rem;
-    font-weight: 800;
-    color: #0F172A;
+.porter-info h4{
+    margin:0;
+    font-size:1.1rem;
+    font-weight:700;
+    color:#0F172A;
 }
 
-.porter-info span {
-    display: block;
-    margin-top: 5px;
-    color: #64748B;
-    font-size: .95rem;
+.porter-info p{
+    margin:6px 0 4px;
+    font-size:.95rem;
+    font-weight:600;
+    color:#334155;
 }
 
-/* =========================
-   TIMELINE
-========================= */
-
-.booking-progress {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 14px;
-    padding: 28px;
+.porter-info small{
+    display:block;
+    font-size:.8rem;
+    color:#64748B;
+    line-height:1.5;
 }
 
-/* Gray connector line */
+/* BUTTONS */
 
-.booking-progress::before {
-    content: "";
-    position: absolute;
-    left: 10%;
-    right: 10%;
-    top: 72px;
-    height: 3px;
-    background: #CBD5E1;
-    z-index: 0;
+.booking-actions{
+    display:flex;
+    gap:18px;
+    margin-top:28px;
 }
 
-/* Green progress line */
-
-.booking-progress::after {
-    content: "";
-    position: absolute;
-    left: 10%;
-    width: 33%;
-    top: 72px;
-    height: 3px;
-    background: #22C55E;
-    z-index: 1;
+.track-btn,
+.cancel-btn-dashboard{
+    flex:1;
+    height:56px;
+    border-radius:14px;
+    font-size:1rem;
+    font-weight:700;
 }
 
-.progress-step {
-    position: relative;
-    z-index: 2;
-
-    width: 125px;
-    height: 120px;
-
-    background: white;
-    border: 1px solid #E2E8F0;
-    border-radius: 18px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    gap: 6px;
-
-    text-align: center;
-    transition: .25s ease;
+.track-btn{
+    background:#2563EB;
 }
 
-.progress-step:hover {
-    transform: translateY(-4px);
+.cancel-btn-dashboard{
+    background:#fff;
+    border:1px solid #EF4444;
+    color:#EF4444;
 }
 
-.step-icon {
-    font-size: 1.7rem;
-}
-
-.progress-step span {
-    font-size: .95rem;
-    font-weight: 700;
-}
-
-.progress-step small {
-    font-size: .75rem;
-    opacity: .75;
-    font-weight: 500;
-}
-
-.progress-step.active {
-    background: #DCFCE7;
-    border-color: #BBF7D0;
-    color: #15803D;
-}
-
-.progress-step.current {
-    background: #DBEAFE;
-    border-color: #BFDBFE;
-    color: #2563EB;
-}
-
-/* BUTTON */
-
-.full-btn {
-    width: 100%;
-    margin-top: 24px;
-    height: 60px;
-    border-radius: 16px;
-    font-size: 1rem;
-    font-weight: 700;
-}
-.booking-actions {
-    display: flex;
-    gap: 16px;
-    margin-top: 24px;
-}
-
-.track-btn {
-    flex: 2;
-}
-
-.cancel-btn-dashboard {
-    flex: 1;
+.cancel-btn-dashboard:hover{
+    background:#FEE2E2;
 }
 /* =========================
    RESPONSIVE

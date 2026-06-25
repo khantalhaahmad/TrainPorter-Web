@@ -141,17 +141,40 @@ const hasActiveBooking =
                
               </h1>
 
-             <h2>
-  {dashboardData?.activeBooking?.trainName ||
-    "No Active Booking"}
-</h2>
+             <div className="hero-train-info">
 
-<p>
-  Coach {dashboardData?.activeBooking?.coach}
-  • Seat {dashboardData?.activeBooking?.seatNumber}
-</p>
-            </div>
+  <h2>
+    {dashboardData?.activeBooking?.trainName || "No Active Booking"}
+  </h2>
 
+  {hasActiveBooking && (
+    <div className="hero-details">
+
+      <div className="hero-chip">
+        <span></span>
+        <div>
+          <small>Coach </small>
+          <strong>
+            {dashboardData?.activeBooking?.coach}
+          </strong>
+        </div>
+      </div>
+
+      <div className="hero-chip">
+        <span></span>
+        <div>
+          <small>Seat </small>
+          <strong>
+            {dashboardData?.activeBooking?.seatNumber}
+          </strong>
+        </div>
+      </div>
+
+    </div>
+  )}
+
+</div>
+</div>
             <div className="hero-actions">
                 {hasActiveBooking && (
   <div className="booking-warning">
@@ -230,120 +253,196 @@ const hasActiveBooking =
 <div className="left-section">
 
   {hasActiveBooking ? (
+<Card className="active-booking-card">
 
-    <Card className="active-booking-card">
+  <div className="booking-header">
 
-      <div className="booking-header">
+    <div>
 
-        <Badge variant="primary">
-          Active Booking
-        </Badge>
+      <Badge variant="primary">
+        Active Booking
+      </Badge>
 
-        <span className="booking-id">
-          #{dashboardData?.activeBooking?._id?.slice(-6)}
-        </span>
+      <h2 className="booking-title">
+        {dashboardData?.activeBooking?.trainName}
+      </h2>
 
-      </div>
+    </div>
 
-      <div className="booking-body">
+    <div className="booking-id-box">
 
-        <h2>
-          {dashboardData?.activeBooking?.trainName}
-        </h2>
+      <small>
+        Booking ID
+      </small>
 
-        <div className="booking-details-grid">
+      <strong>
+        #{dashboardData?.activeBooking?._id?.slice(-6)}
+      </strong>
 
-          <div className="booking-detail-item">
-            <span>🚆 Train No</span>
-            <strong>
-              {dashboardData?.activeBooking?.trainNumber}
-            </strong>
-          </div>
+    </div>
 
-          <div className="booking-detail-item">
-            <span>📍 Station</span>
-            <strong>
-              {dashboardData?.activeBooking?.station}
-            </strong>
-          </div>
+  </div>
 
-          <div className="booking-detail-item">
-            <span>🚪 Coach</span>
-            <strong>
-              {dashboardData?.activeBooking?.coach}
-            </strong>
-          </div>
+  <div className="booking-details-grid">
 
-          <div className="booking-detail-item">
-            <span>💺 Seat</span>
-            <strong>
-              {dashboardData?.activeBooking?.seatNumber}
-            </strong>
-          </div>
+    <div className="detail-card">
+      <div className="detail-icon">🚆</div>
 
-          <div className="booking-detail-item">
-            <span>🧳 Luggage</span>
-            <strong>
-              {dashboardData?.activeBooking?.luggageCount} Bags
-            </strong>
-          </div>
+      <div>
 
-          <div className="booking-detail-item">
-            <span>💰 Amount</span>
-            <strong>
-              ₹{dashboardData?.activeBooking?.amount}
-            </strong>
-          </div>
+        <p>Train Number</p>
 
-        </div>
-
-        <div className="booking-status-card">
-
-          <div className="porter-card">
-
-            <div className="porter-avatar">
-              👨‍✈️
-            </div>
-
-            <div className="porter-info">
-              <h4>
-                Porter Not Assigned Yet
-              </h4>
-
-              <span>
-                Waiting for porter assignment
-              </span>
-            </div>
-
-            <Badge variant="warning">
-              {dashboardData?.activeBooking?.status}
-            </Badge>
-
-          </div>
-
-        </div>
+        <h4>
+          {dashboardData?.activeBooking?.trainNumber}
+        </h4>
 
       </div>
 
-      <div className="booking-actions">
+    </div>
 
-        <Button
-          className="track-btn"
-          onClick={() => navigate('/assigned')}
-        >
-          Track Live Booking
-        </Button>
+    <div className="detail-card">
 
-        <Button
-          className="cancel-btn-dashboard"
-          onClick={() => setShowCancelModal(true)}
-        >
-          Cancel Booking
-        </Button>
+      <div className="detail-icon">
+        📍
+      </div>
+
+      <div>
+
+        <p>Station</p>
+
+        <h4>
+          {dashboardData?.activeBooking?.station}
+        </h4>
 
       </div>
 
-    </Card>
+    </div>
+
+    <div className="detail-card">
+
+      <div className="detail-icon">
+        🚪
+      </div>
+
+      <div>
+
+        <p>Coach</p>
+
+        <h4>
+          {dashboardData?.activeBooking?.coach}
+        </h4>
+
+      </div>
+
+    </div>
+
+    <div className="detail-card">
+
+      <div className="detail-icon">
+        💺
+      </div>
+
+      <div>
+
+        <p>Seat</p>
+
+        <h4>
+          {dashboardData?.activeBooking?.seatNumber}
+        </h4>
+
+      </div>
+
+    </div>
+
+    <div className="detail-card">
+
+      <div className="detail-icon">
+        🧳
+      </div>
+
+      <div>
+
+        <p>Luggage</p>
+
+        <h4>
+          {dashboardData?.activeBooking?.luggageCount} Bags
+        </h4>
+
+      </div>
+
+    </div>
+
+    <div className="detail-card">
+
+      <div className="detail-icon">
+        💰
+      </div>
+
+      <div>
+
+        <p>Amount</p>
+
+        <h4>
+          ₹{dashboardData?.activeBooking?.amount}
+        </h4>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div className="booking-status-card">
+
+    <div className="porter-card">
+
+      <div className="porter-avatar">
+        👨‍✈️
+      </div>
+
+      <div className="porter-info">
+
+        <h4>
+          Porter Not Assigned
+        </h4>
+
+        <p>
+          Waiting for porter assignment...
+        </p>
+
+        <small>
+          You'll receive a notification once a porter accepts your booking.
+        </small>
+
+      </div>
+
+      <Badge variant="warning">
+        {dashboardData?.activeBooking?.status}
+      </Badge>
+
+    </div>
+
+  </div>
+
+  <div className="booking-actions">
+
+    <Button
+      className="track-btn"
+      onClick={() => navigate('/assigned')}
+    >
+      Track Live Booking
+    </Button>
+
+    <Button
+      className="cancel-btn-dashboard"
+      onClick={() => setShowCancelModal(true)}
+    >
+      Cancel Booking
+    </Button>
+
+  </div>
+
+</Card>
 
   ) : (
 
@@ -402,30 +501,7 @@ const hasActiveBooking =
 
           <div className="right-section">
 
-            <Card className="sidebar-card">
-
-              <h3>
-                Upcoming Journey
-              </h3>
-
-              <div className="journey-box">
-
-                <h4>
-                  Rajdhani Express
-                </h4>
-
-                <p>
-                  Departure: 11:40 PM
-                </p>
-
-                <p>
-                  Platform: 4
-                </p>
-
-              </div>
-
-            </Card>
-
+           
             <Card className="sidebar-card">
 
               <h3>
@@ -434,8 +510,9 @@ const hasActiveBooking =
 
               <div className="activity-list">
 
-               {dashboardData?.recentActivities?.map(
-  (activity) => (
+              {dashboardData?.recentActivities
+  ?.slice(0, 3)
+  .map((activity) => (
     <div
       key={activity._id}
       className="activity-item"

@@ -64,12 +64,31 @@ const getMyBookings = async (
   res
 ) => {
   try {
-    const bookings =
-      await Booking.find({
-        userId: req.user.id,
-      }).sort({
-        createdAt: -1,
-      });
+   const filter = {
+    userId: req.user.id,
+};
+
+if (req.query.status === "active") {
+
+    filter.status = {
+        $in: [
+            "assigned",
+            "accepted",
+            "arrived",
+            "in_progress",
+        ],
+    };
+
+} else if (req.query.status) {
+
+    filter.status = req.query.status;
+
+}
+
+const bookings = await Booking.find(filter)
+.sort({
+    createdAt: -1,
+});
 
     res.status(200).json({
       success: true,
