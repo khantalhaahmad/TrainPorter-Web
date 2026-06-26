@@ -1,5 +1,7 @@
 require("dotenv").config();
 
+require("./config/cloudinary");
+
 const express = require("express");
 const cors = require("cors");
 
@@ -7,12 +9,16 @@ const connectDB = require("./config/db");
 
 const app = express();
 
-
+// =========================
 // Database
+// =========================
+
 connectDB();
 
-
+// =========================
 // Middlewares
+// =========================
+
 app.use(
   cors({
     origin: "http://localhost:5173",
@@ -22,8 +28,9 @@ app.use(
 
 app.use(express.json());
 
-
+// =========================
 // Routes
+// =========================
 
 app.use(
   "/api/auth",
@@ -45,8 +52,18 @@ app.use(
   require("./routes/dashboardRoutes")
 );
 
+// =========================
+// Porter Routes
+// =========================
 
+app.use(
+  "/api/porter",
+  require("./routes/porterRoutes")
+);
+
+// =========================
 // Test Route
+// =========================
 
 app.get("/", (req, res) => {
   res.json({
@@ -55,8 +72,9 @@ app.get("/", (req, res) => {
   });
 });
 
-
+// =========================
 // 404 Handler
+// =========================
 
 app.use((req, res) => {
   res.status(404).json({
@@ -65,8 +83,9 @@ app.use((req, res) => {
   });
 });
 
-
+// =========================
 // Server
+// =========================
 
 const PORT = process.env.PORT || 5000;
 

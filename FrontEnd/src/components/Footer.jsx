@@ -136,18 +136,11 @@ const Footer = () => {
                         </div>
 
                         <p className="newsletter-text">
-                            Join our newsletter for travel tips, offers and
-                            platform updates.
+                            
                         </p>
 
                         <div className="newsletter-form">
-                            <input
-                                type="email"
-                                placeholder="Enter your email"
-                            />
-                            <button type="button">
-                                ➜
-                            </button>
+                            
                         </div>
                     </div>
 
