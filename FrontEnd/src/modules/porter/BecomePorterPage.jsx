@@ -546,12 +546,14 @@ const toggleFAQ = (index) => {
               network.
             </p>
 
-            <a
-              href="/porter-application"
-              className="apply-btn-large"
-            >
-              Apply Now →
-            </a>
+           <a
+  href="/become-porter/apply"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="apply-btn-large"
+>
+  Apply Now →
+</a>
           </motion.div>
         </div>
       </section>

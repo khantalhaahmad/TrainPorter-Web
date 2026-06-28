@@ -22,6 +22,7 @@ import Footer from './components/Footer';
 import AuthDrawer from './components/AuthDrawer';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
+import BecomePorterApplyPage from './modules/porter/BecomePorterApplyPage';
 
 function App() {
   const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
@@ -132,7 +133,17 @@ function App() {
               </>
             }
           />
-
+<Route
+  path="/become-porter/apply"
+  element={
+    <ProtectedRoute>
+      <>
+        <BecomePorterApplyPage />
+        <Footer />
+      </>
+    </ProtectedRoute>
+  }
+/>
           <Route
             path="/about"
             element={

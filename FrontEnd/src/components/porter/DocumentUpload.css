@@ -1,0 +1,690 @@
+/* ===========================
+   DOCUMENT UPLOAD
+=========================== */
+
+.document-upload-container {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.section-heading {
+    margin-bottom: 35px;
+}
+
+.section-heading h2 {
+    font-size: 2rem;
+    color: #0f172a;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.section-heading p {
+    color: #64748b;
+    font-size: 15px;
+}
+
+/* ===========================
+   GRID
+=========================== */
+
+.document-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+    gap: 28px;
+}
+
+/* ===========================
+   CARD
+=========================== */
+
+.document-card {
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    transition: .35s;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, .06);
+}
+
+.document-card:hover {
+    border-color: #2563eb;
+    box-shadow: 0 20px 45px rgba(37, 99, 235, .12);
+}
+
+/* ===========================
+   UPLOAD AREA
+=========================== */
+
+.upload-area {
+    min-height: 280px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    padding: 35px;
+
+    text-align: center;
+
+    transition: .35s;
+}
+
+.upload-area:hover {
+    background: #f8fbff;
+}
+
+.upload-icon {
+    color: #2563eb;
+    margin-bottom: 18px;
+}
+
+.upload-area h4 {
+    font-size: 20px;
+    color: #0f172a;
+    margin-bottom: 10px;
+}
+
+.upload-area p {
+    color: #64748b;
+    line-height: 1.6;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.required {
+    display: inline-block;
+    padding: 6px 14px;
+
+    background: #dbeafe;
+    color: #2563eb;
+
+    border-radius: 40px;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    margin-bottom: 22px;
+}
+
+/* ===========================
+   BUTTON
+=========================== */
+
+.browse-btn {
+    border: none;
+
+    padding: 14px 28px;
+
+    border-radius: 12px;
+
+    cursor: pointer;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    transition: .35s;
+}
+
+.browse-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(37,99,235,.25);
+}
+
+/* ===========================
+   UPLOADED CARD
+=========================== */
+
+.uploaded-card {
+    padding: 22px;
+}
+
+.preview-wrapper {
+    width: 100%;
+    height: 210px;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    background: #f8fafc;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 18px;
+}
+
+/* ===========================
+   IMAGE
+=========================== */
+
+.preview-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+/* ===========================
+   PDF
+=========================== */
+
+.pdf-preview {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: #ef4444;
+
+    font-size: 50px;
+}
+
+/* ===========================
+   DETAILS
+=========================== */
+
+.file-details h4 {
+    color: #0f172a;
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.file-details span {
+    display: block;
+
+    color: #475569;
+
+    font-size: 14px;
+
+    word-break: break-word;
+}
+
+.file-details small {
+    display: inline-block;
+    margin-top: 8px;
+
+    color: #94a3b8;
+}
+
+/* ===========================
+   STATUS
+=========================== */
+
+.status-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 20px;
+}
+
+.success-icon {
+    color: #22c55e;
+}
+
+/* ===========================
+   REMOVE BUTTON
+=========================== */
+
+.remove-btn {
+
+    width: 42px;
+    height: 42px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.remove-btn:hover {
+
+    background: #dc2626;
+
+    color: white;
+
+    transform: rotate(90deg);
+
+}
+
+/* ===========================
+   NOTE
+=========================== */
+
+.upload-note {
+
+    margin-top: 35px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 18px;
+
+    border-radius: 16px;
+
+    background: #eff6ff;
+
+    color: #2563eb;
+
+    font-size: 14px;
+
+    border: 1px solid #bfdbfe;
+
+}
+/* ==========================================================
+   PREMIUM EFFECTS (PART B.2)
+========================================================== */
+
+/* Glass Effect */
+
+.document-card{
+    position:relative;
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+}
+
+.document-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:linear-gradient(
+        135deg,
+        rgba(255,255,255,.45),
+        rgba(255,255,255,0)
+    );
+
+    opacity:0;
+
+    transition:.4s;
+
+    pointer-events:none;
+
+}
+
+.document-card:hover::before{
+
+    opacity:1;
+
+}
+
+/* Gradient Border */
+
+.document-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-1px;
+
+    border-radius:24px;
+
+    padding:1px;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #38bdf8,
+        #7c3aed
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    opacity:0;
+
+    transition:.35s;
+
+}
+
+.document-card:hover::after{
+
+    opacity:1;
+
+}
+
+/* Upload Animation */
+
+.upload-icon{
+
+    animation:floatIcon 3s ease-in-out infinite;
+
+}
+
+@keyframes floatIcon{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+/* Upload Hover */
+
+.upload-area:hover .upload-icon{
+
+    transform:scale(1.15);
+
+    color:#1d4ed8;
+
+}
+
+/* Upload Card Hover */
+
+.upload-area:hover h4{
+
+    color:#2563eb;
+
+}
+
+.upload-area:hover p{
+
+    color:#475569;
+
+}
+
+/* Preview Animation */
+
+.preview-image{
+
+    transition:.45s;
+
+}
+
+.document-card:hover .preview-image{
+
+    transform:scale(1.05);
+
+}
+
+/* File Name */
+
+.file-details span{
+
+    overflow:hidden;
+
+    white-space:nowrap;
+
+    text-overflow:ellipsis;
+
+}
+
+/* Success Icon */
+
+.success-icon{
+
+    animation:pop .45s ease;
+
+}
+
+@keyframes pop{
+
+0%{
+
+transform:scale(.4);
+
+opacity:0;
+
+}
+
+100%{
+
+transform:scale(1);
+
+opacity:1;
+
+}
+
+}
+
+/* Remove Button */
+
+.remove-btn:active{
+
+    transform:scale(.92);
+
+}
+
+/* Upload Note */
+
+.upload-note{
+
+    transition:.35s;
+
+}
+
+.upload-note:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:0 12px 30px rgba(37,99,235,.15);
+
+}
+
+/* Responsive */
+
+@media(max-width:992px){
+
+.document-grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:768px){
+
+.document-grid{
+
+grid-template-columns:1fr;
+
+}
+
+.upload-area{
+
+min-height:230px;
+
+padding:25px;
+
+}
+
+.preview-wrapper{
+
+height:180px;
+
+}
+
+.section-heading h2{
+
+font-size:28px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.document-card{
+
+border-radius:18px;
+
+}
+
+.upload-area{
+
+padding:20px;
+
+}
+
+.upload-area h4{
+
+font-size:18px;
+
+}
+
+.upload-area p{
+
+font-size:13px;
+
+}
+
+.browse-btn{
+
+width:100%;
+
+}
+
+.status-row{
+
+flex-direction:column;
+
+gap:15px;
+
+align-items:flex-start;
+
+}
+
+.remove-btn{
+
+align-self:flex-end;
+
+}
+
+}
+
+/* Loading Pulse */
+
+.loading-placeholder{
+
+width:100%;
+
+height:220px;
+
+border-radius:18px;
+
+background:linear-gradient(
+90deg,
+#f1f5f9,
+#ffffff,
+#f1f5f9
+);
+
+background-size:300%;
+
+animation:loading 1.5s infinite;
+
+}
+
+@keyframes loading{
+
+0%{
+
+background-position:100%;
+
+}
+
+100%{
+
+background-position:-100%;
+
+}
+
+}
+
+/* Drag Active */
+
+.upload-area.drag-active{
+
+border:2px dashed #2563eb;
+
+background:#eff6ff;
+
+transform:scale(.98);
+
+}
+
+/* Smooth */
+
+.document-card,
+.upload-area,
+.remove-btn,
+.browse-btn,
+.preview-image{
+
+transition:all .35s ease;
+
+}
+.next-btn:disabled{
+
+opacity:.55;
+
+cursor:not-allowed;
+
+transform:none;
+
+box-shadow:none;
+
+}
+.upload-success{
+
+margin-top:10px;
+
+color:#16a34a;
+
+font-size:13px;
+
+font-weight:600;
+
+}
