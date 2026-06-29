@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './DashboardLayout.css';
 import { useAuth } from '../context/AuthContext';
+import logo from "../assets/hero1copy.png";
 const DashboardLayout = ({ children }) => {
     const navigate = useNavigate();
     const { logout } = useAuth();
@@ -29,14 +30,25 @@ const handleLogout = async () => {
             <header className="dashboard-header">
   <div className="container header-container">
 
-    {/* Logo */}
     <Link to="/dashboard" className="header-logo">
-      <span className="logo-icon">🚂</span>
-      <div>
+
+    <div className="logo-circle">
+        <img
+            src={logo}
+            alt="TrainPorter Logo"
+            className="header-logo-image"
+        />
+    </div>
+
+    <div className="logo-content">
         <span className="logo-text">TrainPorter</span>
-        <small className="logo-tagline">Smart Luggage Assistance</small>
-      </div>
-    </Link>
+
+        <small className="logo-tagline">
+            Smart Luggage Assistance
+        </small>
+    </div>
+
+</Link>
 
     {/* Search Bar */}
     <div className="header-search">
@@ -65,9 +77,7 @@ const handleLogout = async () => {
     {/* Actions */}
     <div className="header-actions">
 
-      <button className="wallet-btn">
-        💰 ₹120
-      </button>
+     
 
       <button
         className="icon-btn"

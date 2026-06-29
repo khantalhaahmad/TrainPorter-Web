@@ -1,87 +1,240 @@
 /* ================================
-FOOTER
+   FOOTER
 ================================ */
 
-.footer {
-background: #ffffff;
-padding: 80px 0 24px;
-border-top: 1px solid #e2e8f0;
-position: relative;
-overflow: hidden;
+.footer{
+    background:#ffffff;
+    padding:80px 0 24px;
+    border-top:1px solid #E2E8F0;
+    position:relative;
+    overflow:hidden;
 }
 
-.footer-container {
-position: relative;
-z-index: 2;
+.footer-container{
+    position:relative;
+    z-index:2;
 }
 
-.footer-top {
-display: grid;
-grid-template-columns: 1.2fr 1.8fr 1fr;
-gap: 48px;
-margin-bottom: 48px;
+.footer-top{
+    display:grid;
+    grid-template-columns:1.2fr 1.8fr 1fr;
+    gap:48px;
+    margin-bottom:48px;
 }
 
-.footer-brand {
-display: flex;
-flex-direction: column;
-gap: 16px;
+/* =================================
+   BRAND
+================================= */
+
+.footer-brand{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
 }
 
-.footer-logo {
-display: flex;
-align-items: center;
-gap: 10px;
-text-decoration: none;
+/* Logo */
+
+.footer-logo{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    text-decoration:none;
 }
 
-.footer-logo .logo-icon {
-font-size: 2rem;
+/* Circular Logo */
+
+.footer-logo-circle{
+
+    width:72px;
+    height:72px;
+
+    border-radius:50%;
+
+    background:#ffffff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border:2px solid #E2E8F0;
+
+    box-shadow:
+        0 10px 30px rgba(15,23,42,.08);
+
+    transition:.35s ease;
 }
 
-.footer-logo .logo-text {
-font-size: 1.6rem;
-font-weight: 800;
-color: #0f172a;
+.footer-logo-circle:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 14px 35px rgba(37,99,235,.18);
 }
 
-.footer-description {
-color: #64748b;
-line-height: 1.8;
-font-size: 0.95rem;
-max-width: 320px;
+/* Logo Image */
+
+.footer-logo-image{
+
+    width:56px;
+    height:56px;
+
+    object-fit:contain;
 }
 
-/* ================================
-SOCIAL ICONS
-================================ */
+/* Brand Text */
 
-.social-links {
-display: flex;
-gap: 12px;
-margin-top: 10px;
+.footer-brand-text{
+
+    display:flex;
+    flex-direction:column;
 }
 
-.social-icon {
-width: 44px;
-height: 44px;
-border-radius: 50%;
-background: #f8fafc;
-border: 1px solid #e2e8f0;
-display: flex;
-align-items: center;
-justify-content: center;
-text-decoration: none;
-transition: all 0.3s ease;
+.footer-logo-text{
+
+    font-size:1.9rem;
+    font-weight:800;
+
+    color:#0F172A;
+
+    line-height:1;
 }
 
-.social-icon:hover {
-background: #2563eb;
-color: white;
-border-color: #2563eb;
-transform: translateY(-4px);
+.footer-logo-tagline{
+
+    margin-top:5px;
+
+    font-size:.9rem;
+
+    color:#64748B;
+
+    font-weight:500;
+
+    letter-spacing:.2px;
 }
 
+/* Description */
+
+.footer-description{
+
+    color:#64748B;
+
+    line-height:1.9;
+
+    font-size:.97rem;
+
+    max-width:340px;
+}
+/* ===========================
+   SOCIAL ICONS
+=========================== */
+
+.social-links{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+/* Icon Button */
+
+.social-icon{
+    width:50px;
+    height:50px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    border-radius:50%;
+
+    background:#F8FAFC;
+    border:1px solid #E2E8F0;
+
+    text-decoration:none;
+
+    transition:all .35s ease;
+}
+
+/* React Icon */
+
+.social-icon svg{
+    font-size:22px;
+    transition:.35s ease;
+}
+
+/* ===========================
+   DEFAULT COLORS
+=========================== */
+
+.social-icon:nth-child(1) svg{
+    color:#E4405F;
+}
+
+.social-icon:nth-child(2) svg{
+    color:#1877F2;
+}
+
+.social-icon:nth-child(3) svg{
+    color:#000000;
+}
+
+.social-icon:nth-child(4) svg{
+    color:#FF0000;
+}
+
+/* ===========================
+   HOVER EFFECT
+=========================== */
+
+.social-icon:hover{
+    transform:translateY(-5px);
+}
+
+/* Instagram */
+
+.social-icon:nth-child(1):hover{
+
+    background:linear-gradient(
+        45deg,
+        #F58529,
+        #FEDA77,
+        #DD2A7B,
+        #8134AF,
+        #515BD4
+    );
+
+    border:none;
+}
+
+/* Facebook */
+
+.social-icon:nth-child(2):hover{
+
+    background:#1877F2;
+    border-color:#1877F2;
+}
+
+/* X */
+
+.social-icon:nth-child(3):hover{
+
+    background:#000000;
+    border-color:#000000;
+}
+
+/* YouTube */
+
+.social-icon:nth-child(4):hover{
+
+    background:#FF0000;
+    border-color:#FF0000;
+}
+
+/* Hover par icon white */
+
+.social-icon:hover svg{
+    color:#ffffff !important;
+}
 /* ================================
 FOOTER LINKS
 ================================ */

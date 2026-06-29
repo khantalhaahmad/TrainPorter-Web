@@ -2,6 +2,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Footer.css';
 import porterProfile from "../assets/porter-profile copy.png";
+import logo from "../assets/hero1copy.png";
+import {
+    FaInstagram,
+    FaFacebookF,
+    FaXTwitter,
+    FaYoutube
+} from "react-icons/fa6";
 const Footer = () => {
     return (
         <footer className="footer">
@@ -9,24 +16,70 @@ const Footer = () => {
                 <div className="footer-top">
 
                     {/* BRAND */}
-                    <div className="footer-brand">
-                        <Link to="/" className="footer-logo">
-                            <span className="logo-icon">🚂</span>
-                            <span className="logo-text">TrainPorter</span>
-                        </Link>
+<div className="footer-brand">
+
+    <Link to="/" className="footer-logo">
+
+        <div className="footer-logo-circle">
+            <img
+                src={logo}
+                alt="TrainPorter Logo"
+                className="footer-logo-image"
+            />
+        </div>
+
+        <div className="footer-brand-text">
+            <span className="footer-logo-text">
+                TrainPorter
+            </span>
+
+            <span className="footer-logo-tagline">
+                Smart Luggage Assistance
+            </span>
+        </div>
+
+    </Link>
 
                         <p className="footer-description">
                             India's first premium railway luggage assistance
                             platform. We connect travelers with verified railway
                             porters for a safe, seamless and hassle-free journey.
                         </p>
+<div className="social-links">
 
-                        <div className="social-links">
-                            <a href="#" className="social-icon">𝕏</a>
-                            <a href="#" className="social-icon">📸</a>
-                            <a href="#" className="social-icon">🔗</a>
-                            <a href="#" className="social-icon">🎵</a>
-                        </div>
+    <a
+        href="#"
+        className="social-icon"
+        aria-label="Instagram"
+    >
+        <FaInstagram />
+    </a>
+
+    <a
+        href="#"
+        className="social-icon"
+        aria-label="Facebook"
+    >
+        <FaFacebookF />
+    </a>
+
+    <a
+        href="#"
+        className="social-icon"
+        aria-label="X (Twitter)"
+    >
+        <FaXTwitter />
+    </a>
+
+    <a
+        href="#"
+        className="social-icon"
+        aria-label="YouTube"
+    >
+        <FaYoutube />
+    </a>
+
+</div>
                     </div>
 
                     {/* LINKS */}

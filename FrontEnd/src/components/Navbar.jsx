@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Button from './ui/Button';
 import './Navbar.css';
 import { useAuth } from '../context/AuthContext';
+import logo from "../assets/hero1copy.png";
 
 const Navbar = ({ openAuth }) => {
     const [scrolled, setScrolled] = useState(false);
@@ -39,18 +40,28 @@ const Navbar = ({ openAuth }) => {
             <div className="container navbar-container">
 
                 {/* Logo */}
-                <Link
-                    to="/"
-                    className="navbar-logo-badge"
-                >
-                    <div className="logo-icon-container">
-                        🚂
-                    </div>
+<Link
+    to="/"
+    className="navbar-logo-badge"
+>
+    <div className="logo-icon-container">
+        <img
+            src={logo}
+            alt="TrainPorter Logo"
+            className="navbar-logo-image"
+        />
+    </div>
 
-                    <span className="logo-text">
-                        TrainPorter
-                    </span>
-                </Link>
+    <div className="navbar-brand">
+        <span className="logo-text">
+            TrainPorter
+        </span>
+
+        <span className="logo-tagline">
+            Smart Luggage Assistance
+        </span>
+    </div>
+</Link>
 
                 {/* Desktop Links */}
                 <div className="navbar-links desktop-only">
