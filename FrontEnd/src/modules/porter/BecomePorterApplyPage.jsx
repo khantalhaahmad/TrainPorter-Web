@@ -448,17 +448,7 @@ Next →
 
         <label>PAN Number</label>
 
-        <span
-          className={
-            formData.panNumber.length === 10
-              ? "verified"
-              : "pending"
-          }
-        >
-          {formData.panNumber.length === 10
-            ? "✓"
-            : "•"}
-        </span>
+        
       </div>
 
     </div>
@@ -552,8 +542,8 @@ placeholder=" "
 
 <div className="input-group">
 <input
-name="ifsc"
-value={formData.ifsc}
+name="ifscCode"
+value={formData.ifscCode}
 onChange={handleChange}
 placeholder=" "
 />
