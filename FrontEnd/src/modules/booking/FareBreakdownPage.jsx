@@ -141,106 +141,161 @@ const FareBreakdownPage = () => {
         <DashboardLayout>
             <div className="fare-page fade-in">
 
-                <div className="fare-header">
-                    <Button
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => navigate(-1)}
-                    >
-                        ← Back
-                    </Button>
+               <div className="fare-header">
 
-                    <h2>
-                        Fare Breakdown
-                    </h2>
-                </div>
+    <Button
+        variant="ghost"
+        size="sm"
+        className="back-btn"
+        onClick={() => navigate(-1)}
+    >
+        ← Back
+    </Button>
 
-                <Card className="fare-card">
+    <div className="fare-title">
 
-                    <div className="fare-summary-header">
-                        <div className="receipt-icon">
-                            🧾
-                        </div>
+        <span className="fare-badge">
+            🧾 Booking Review
+        </span>
 
-                        <h3>
-                            Booking Summary
-                        </h3>
+        <h1>
+            Fare Breakdown
+        </h1>
 
-                        <p className="text-muted">
-                            Dynamic pricing based
-                            on luggage count,
-                            demand and timing
-                        </p>
-                    </div>
+        <p>
+            Review your booking details and confirm
+            your porter in just one click.
+        </p>
 
-                    <div className="fare-items">
+    </div>
 
-                        <div className="fare-line">
-                            <span>
-                                Base Fare
-                            </span>
-                            <span>
-                                ₹{fareData.baseFare}
-                            </span>
-                        </div>
+</div>
 
-                        <div className="fare-line">
-                            <span>
-                                Luggage Charge
-                            </span>
-                            <span>
-                                ₹{fareData.luggageCharge}
-                            </span>
-                        </div>
+<Card className="fare-card">
 
-                        <div className="fare-line">
-                            <span>
-                                Peak Hour Charge
-                            </span>
-                            <span>
-                                ₹{fareData.peakCharge}
-                            </span>
-                        </div>
+    <div className="booking-top">
 
-                        <div className="fare-line">
-                            <span>
-                                Night Charge
-                            </span>
-                            <span>
-                                ₹{fareData.nightCharge}
-                            </span>
-                        </div>
+        <div className="train-icon">
+            🚆
+        </div>
 
-                        <div className="fare-line">
-                            <span>
-                                Platform Fee
-                            </span>
-                            <span>
-                                ₹{fareData.platformFee}
-                            </span>
-                        </div>
+        <div>
 
-                        <div className="fare-line">
-                            <span>
-                                GST (5%)
-                            </span>
-                            <span>
-                                ₹{fareData.gst}
-                            </span>
-                        </div>
+            <h3>
+                {bookingData.trainName}
+            </h3>
 
-                        <div className="fare-total">
-                            <span>
-                                Total Amount
-                            </span>
+            <p>
+                Train No.
+                {" "}
+                {bookingData.trainNumber}
+            </p>
 
-                            <span>
-                                ₹{fareData.total}
-                            </span>
-                        </div>
-                    </div>
+        </div>
 
-                </Card>
+    </div>
+
+    <div className="trip-info">
+
+        <div className="trip-item">
+            <span>📍 Station</span>
+            <strong>
+                {bookingData.station}
+            </strong>
+        </div>
+
+        <div className="trip-item">
+            <span>💺 Coach</span>
+            <strong>
+                {bookingData.coach}
+            </strong>
+        </div>
+
+        <div className="trip-item">
+            <span>🪑 Seat</span>
+            <strong>
+                {bookingData.seatNumber}
+            </strong>
+        </div>
+
+        <div className="trip-item">
+            <span>🧳 Luggage</span>
+            <strong>
+                {bookingData.luggageCount}
+                {" "}
+                Bags
+            </strong>
+        </div>
+
+    </div>
+
+    <div className="fare-divider"></div>
+
+    <div className="fare-items">
+
+        <div className="fare-line">
+            <span>Base Fare</span>
+            <strong>
+                ₹{fareData.baseFare}
+            </strong>
+        </div>
+
+        <div className="fare-line">
+            <span>Luggage Charge</span>
+            <strong>
+                ₹{fareData.luggageCharge}
+            </strong>
+        </div>
+
+        <div className="fare-line">
+            <span>Peak Hour</span>
+            <strong>
+                ₹{fareData.peakCharge}
+            </strong>
+        </div>
+
+        <div className="fare-line">
+            <span>Night Charge</span>
+            <strong>
+                ₹{fareData.nightCharge}
+            </strong>
+        </div>
+
+        <div className="fare-line">
+            <span>Platform Fee</span>
+            <strong>
+                ₹{fareData.platformFee}
+            </strong>
+        </div>
+
+        <div className="fare-line">
+            <span>GST (5%)</span>
+            <strong>
+                ₹{fareData.gst}
+            </strong>
+        </div>
+
+    </div>
+
+    <div className="total-card">
+
+        <div>
+
+            <p>Total Payable</p>
+
+            <small>
+                Includes all taxes
+            </small>
+
+        </div>
+
+        <h2>
+            ₹{fareData.total}
+        </h2>
+
+    </div>
+
+</Card>
 
                 <div className="payment-notice">
                     <h3>
@@ -249,50 +304,173 @@ const FareBreakdownPage = () => {
 
                     <Card className="payment-method-card">
 
-                        <div className="payment-icon">
-                            💵
-                        </div>
+    <div className="payment-left">
 
-                        <div className="payment-info">
-                            <strong>
-                                Pay After Service
-                            </strong>
+        <div className="payment-icon">
+            💵
+        </div>
 
-                            <span>
-                                Cash / UPI after
-                                successful luggage
-                                delivery
-                            </span>
-                        </div>
+        <div>
 
-                        <Badge variant="success">
-                            Recommended
-                        </Badge>
+            <h4>
+                Pay After Service
+            </h4>
 
-                    </Card>
+            <p>
+                Cash / UPI after successful luggage delivery.
+            </p>
+
+            <Badge variant="success">
+                Recommended
+            </Badge>
+
+        </div>
+
+    </div>
+
+    <div className="payment-check">
+        ✔
+    </div>
+
+</Card>
                 </div>
 
-                <div className="fare-actions">
+<div className="fare-actions">
 
-                    <Button
-                        size="lg"
-                        className="btn-full"
-                        onClick={
-                            handleConfirmBooking
-                        }
-                    >
-                        Confirm & Find Porter
-                    </Button>
+    {/* ================= Service Includes ================= */}
 
-                    <p className="cancel-text">
-                        Free cancellation before
-                        porter arrives
-                    </p>
+    <div className="service-section">
 
-                </div>
+        <div className="section-heading">
+
+            <span className="section-tag">
+                WHY CHOOSE US
+            </span>
+
+            <h3>Service Includes</h3>
+
+            <p>
+                Every TrainPorter booking comes with premium
+                safety, security and real-time assistance.
+            </p>
+
+        </div>
+
+        <div className="service-grid">
+
+            <div className="service-card">
+                <div className="service-icon">🛡️</div>
+                <h4>Railway Verified</h4>
+                <p>Authorized and verified porter service.</p>
+            </div>
+
+            <div className="service-card">
+                <div className="service-icon">📍</div>
+                <h4>Live Tracking</h4>
+                <p>Track your porter in real-time.</p>
+            </div>
+
+            <div className="service-card">
+                <div className="service-icon">🔐</div>
+                <h4>OTP Pickup</h4>
+                <p>Secure luggage handover using OTP.</p>
+            </div>
+
+            <div className="service-card">
+                <div className="service-icon">🧳</div>
+                <h4>Luggage Insurance</h4>
+                <p>Your luggage stays protected.</p>
+            </div>
+
+            <div className="service-card">
+                <div className="service-icon">👷</div>
+                <h4>Verified Porter</h4>
+                <p>Background verified professionals.</p>
+            </div>
+
+            <div className="service-card">
+                <div className="service-icon">🎧</div>
+                <h4>24×7 Support</h4>
+                <p>Instant help whenever you need it.</p>
+            </div>
+
+        </div>
+
+    </div>
+
+    {/* ================= Secure Payment ================= */}
+
+    <div className="secure-note">
+
+        <div className="secure-left">
+
+            <div className="secure-icon">
+                🔒
+            </div>
+
+            <div>
+
+                <h4>No Advance Payment</h4>
+
+                <p>
+                    Pay only after your luggage is safely
+                    delivered.
+                </p>
 
             </div>
-        </DashboardLayout>
+
+        </div>
+
+        <div className="secure-badge">
+            100% Secure
+        </div>
+
+    </div>
+
+    {/* ================= Footer ================= */}
+
+    <div className="cancel-wrapper">
+
+        <span className="cancel-line"></span>
+
+        <p className="cancel-text">
+            ✔ Free cancellation before porter is assigned
+        </p>
+
+        <span className="cancel-line"></span>
+
+    </div>
+
+</div>
+
+{/* ================= Sticky Booking Bar ================= */}
+
+<div className="sticky-booking-bar">
+
+    <div className="sticky-booking-content">
+<div className="sticky-price">
+
+    <span>Total Payable</span>
+
+    <h3>₹{fareData.total}</h3>
+
+    <small>Average arrival: 2–5 min</small>
+
+</div>
+        <Button
+            size="lg"
+            className="sticky-btn"
+            onClick={handleConfirmBooking}
+        >
+            Confirm & Find Porter →
+        </Button>
+
+    </div>
+
+</div>
+
+</div>
+</DashboardLayout>
     );
 };
 
@@ -300,9 +478,7 @@ const Badge = ({
     children,
     variant,
 }) => (
-    <span
-        className={`badge badge-${variant}`}
-    >
+    <span className={`badge badge-${variant}`}>
         {children}
     </span>
 );

@@ -22,7 +22,7 @@ const BookPorterPage = () => {
     const [step, setStep] = useState(1);
     const [luggage, setLuggage] = useState({
         small: 0,
-        medium: 1,
+        medium: 0,
         large: 0
     });
 
@@ -155,8 +155,6 @@ const handleFarePage = () => {
 
 <div className="card-icon">
 
-🚆
-
 </div>
 
 <div>
@@ -181,7 +179,7 @@ Provide your train details to connect with the nearest verified porter.
 
     <Input
     label="Train Number"
-    placeholder=""
+    placeholder="Train number"
     maxLength={6}
     value={bookingData.trainNumber}
     onChange={(e) => {
@@ -199,8 +197,8 @@ Provide your train details to connect with the nearest verified porter.
 
     <Input
         label="Train Name"
-        placeholder=""
-        icon={<span></span>}
+        placeholder="Train Name"
+        icon={<Train size={18}/>}
         value={bookingData.trainName}
         onChange={(e) => {
     const value = e.target.value;
@@ -216,7 +214,7 @@ Provide your train details to connect with the nearest verified porter.
 
     <Input
         label="Station"
-        placeholder=""
+        placeholder="Station Name"
        icon={<MapPin size={18}/>}
         value={bookingData.station}
         onChange={(e) =>
@@ -230,7 +228,7 @@ Provide your train details to connect with the nearest verified porter.
     <div className="row-grid">
        <Input
     label="Coach"
-    placeholder=""
+    placeholder="Coach Number"
     maxLength={3}
     icon={<Ticket size={18}/>}
     value={bookingData.coach}
@@ -247,7 +245,7 @@ Provide your train details to connect with the nearest verified porter.
 />
         <Input
     label="Seat/Berth"
-    placeholder=""
+    placeholder="Seat/Berth Number"
     maxLength={2}
    icon={<Hash size={18} />}
     value={bookingData.seatNumber}
@@ -284,32 +282,27 @@ Provide your train details to connect with the nearest verified porter.
 </div>
 <div className="trust-box">
 
-<div>
+  <div className="trust-item">
+    <span>✔</span>
+    Railway Verified
+  </div>
 
-✔ Railway Verified
+  <div className="trust-item">
+    <span>✔</span>
+    OTP Protection
+  </div>
 
-</div>
+  <div className="trust-item">
+    <span>✔</span>
+    Live Tracking
+  </div>
 
-<div>
-
-✔ OTP Protection
-
-</div>
-
-<div>
-
-✔ Live Tracking
-
-</div>
-
-<div>
-
-✔ Insured Service
+  <div className="trust-item">
+    <span>✔</span>
+    Insured Service
+  </div>
 
 </div>
-
-</div>
-
 <div className="form-actions-premium">
     <Button
         size="lg"
@@ -401,96 +394,131 @@ luggage[item.id]>0 ? "selected":""
                             </motion.div>
                         )}
                     </div>
+<div className="book-sidebar">
 
-                    <div className="book-sidebar">
-                      <motion.div
+    <motion.div
+        initial={{ x: 50, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ delay: 0.2 }}
+    >
 
-initial={{
-x:50,
-opacity:0
-}}
+        <Card className="booking-summary-sticky">
 
-animate={{
-x:0,
-opacity:1
-}}
+            <h3>Booking Summary</h3>
 
-transition={{
-delay:.2
-}}
+            <div className="summary-list">
 
->
-
-<motion.div
-    initial={{ x: 50, opacity: 0 }}
-    animate={{ x: 0, opacity: 1 }}
-    transition={{ delay: 0.2 }}
->
-    <Card className="booking-summary-sticky">
-
-        <h3>Booking Summary</h3>
-
-        <div className="summary-list">
-
-            <div className="summary-row">
-                <span>📍 Station</span>
-                <strong>{bookingData.station || "--"}</strong>
-            </div>
-
-            <div className="summary-row">
-                <span>🚆 Service</span>
-                <Badge variant="secondary">
-                    Arrival
-                </Badge>
-            </div>
-
-            <div className="summary-row">
-                <span>🧳 Total Items</span>
-                <strong>{totalItems} Items</strong>
-            </div>
-
-        </div>
-
-        <div className="summary-total">
-            <span>Estimated Fare</span>
-            <strong>₹{50 + totalItems * 20}</strong>
-        </div>
-
-        <p className="fare-disclaimer">
-            *Final fare will be calculated before confirmation.
-        </p>
-
-        <div className="summary-benefits">
-
-            <div className="benefit-item">
-                <span>⚡</span>
-                <div>
-                    <strong>Avg Arrival</strong>
-                    <small>2 mins</small>
+                <div className="summary-row">
+                    <span>📍 Station</span>
+                    <strong>{bookingData.station || "--"}</strong>
                 </div>
-            </div>
 
-            <div className="benefit-item">
-                <span>⭐</span>
-                <div>
-                    <strong>Rating</strong>
-                    <small>4.9/5</small>
+                <div className="summary-row">
+                    <span>🚆 Service</span>
+
+                    <Badge variant="secondary">
+                        Arrival
+                    </Badge>
                 </div>
-            </div>
 
-            <div className="benefit-item">
-                <span>🛡</span>
-                <div>
-                    <strong>Verified</strong>
-                    <small>100%</small>
+                <div className="summary-row">
+                    <span>🧳 Total Items</span>
+
+                    <strong>
+                        {totalItems} {totalItems === 1 ? "Item" : "Items"}
+                    </strong>
                 </div>
+
             </div>
 
-        </div>
+            <div className="summary-total">
 
-    </Card>
-</motion.div>
-</motion.div>
+                <span>Estimated Fare</span>
+
+                <strong>
+                    ₹{totalItems === 0 ? 0 : 50 + totalItems * 20}
+                </strong>
+
+            </div>
+
+            <p className="fare-disclaimer">
+
+                {totalItems === 0
+                    ? "Select luggage to see estimated fare."
+                    : "Final fare may vary based on station and timing."}
+
+            </p>
+
+            {/* ===== BOOKING BENEFITS ===== */}
+
+            <div className="booking-summary-benefits">
+
+                {/* Avg Arrival */}
+
+                <div className="booking-benefit-card booking-green">
+
+                    <div className="booking-benefit-icon">
+                        ⚡
+                    </div>
+
+                    <div className="booking-benefit-content">
+                        <div className="booking-benefit-title">
+                            Avg Arrival
+                        </div>
+                    </div>
+
+                    <div className="booking-benefit-value booking-green-text">
+                        2 <small>mins</small>
+                    </div>
+
+                </div>
+
+                {/* Rating */}
+
+                <div className="booking-benefit-card booking-yellow">
+
+                    <div className="booking-benefit-icon">
+                        ⭐
+                    </div>
+
+                    <div className="booking-benefit-content">
+                        <div className="booking-benefit-title">
+                            Rating
+                        </div>
+                    </div>
+
+                    <div className="booking-benefit-value booking-yellow-text">
+                        4.9 <small>/ 5</small>
+                    </div>
+
+                </div>
+
+                {/* Verified */}
+
+                <div className="booking-benefit-card booking-blue">
+
+                    <div className="booking-benefit-icon">
+                        🛡
+                    </div>
+
+                    <div className="booking-benefit-content">
+                        <div className="booking-benefit-title">
+                            Verified
+                        </div>
+                    </div>
+
+                    <div className="booking-benefit-value booking-blue-text">
+                        100%
+                    </div>
+
+                </div>
+
+            </div>
+
+        </Card>
+
+    </motion.div>
+
 </div>
                     </div>
                 </div>

@@ -1,112 +1,664 @@
-.fare-page {
-    max-width: 600px;
-    margin: 0 auto;
-    padding-bottom: 40px;
+/* ==========================================
+   Fare Breakdown Page
+========================================== */
+
+.fare-page{
+    max-width:900px;
+    margin:0 auto;
+    padding:10px 0 60px;
 }
 
-.fare-header {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-xl);
+/* ==========================================
+   Header
+========================================== */
+
+.fare-header{
+    display:flex;
+    align-items:flex-start;
+    gap:18px;
+    margin-bottom:30px;
 }
 
-.fare-card {
-    padding: var(--spacing-xl);
-    background-color: var(--white);
+.back-btn{
+    flex-shrink:0;
 }
 
-.fare-summary-header {
-    text-align: center;
-    margin-bottom: var(--spacing-xl);
+.fare-title{
+    flex:1;
 }
 
-.receipt-icon {
-    font-size: 3rem;
-    margin-bottom: var(--spacing-md);
+.fare-badge{
+    display:inline-block;
+    padding:6px 14px;
+    background:#DBEAFE;
+    color:#2563EB;
+    border-radius:999px;
+    font-size:.8rem;
+    font-weight:700;
+    margin-bottom:12px;
 }
 
-.fare-items {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-xl);
+.fare-title h1{
+    font-size:2rem;
+    font-weight:800;
+    color:#0F172A;
+    margin-bottom:6px;
 }
 
-.fare-line {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    font-weight: 500;
+.fare-title p{
+    color:#64748B;
+    line-height:1.6;
 }
 
-.fare-total {
-    display: flex;
-    justify-content: space-between;
-    padding-top: var(--spacing-md);
-    border-top: 1px dashed #E2E8F0;
-    font-size: 1.25rem;
-    font-weight: 800;
-    color: var(--primary);
-    margin-top: var(--spacing-sm);
+/* ==========================================
+   Card
+========================================== */
+
+.fare-card{
+    background:#fff;
+    border:1px solid #E2E8F0;
+    border-radius:24px;
+    padding:32px;
+    box-shadow:
+        0 18px 45px rgba(15,23,42,.07);
 }
 
-.fare-info-box {
-    background-color: #F8FAFC;
-    padding: var(--spacing-md);
-    border-radius: var(--radius-md);
-    display: flex;
-    gap: var(--spacing-sm);
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    line-height: 1.4;
+/* ==========================================
+   Booking Header
+========================================== */
+
+.booking-top{
+    display:flex;
+    align-items:center;
+    gap:18px;
+    margin-bottom:30px;
 }
 
-.payment-notice {
-    margin-top: var(--spacing-xxl);
+.train-icon{
+    width:72px;
+    height:72px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
+    color:#fff;
+    font-size:2rem;
 }
 
-.payment-notice h3 {
-    font-size: 1.125rem;
-    margin-bottom: var(--spacing-md);
+.booking-top h3{
+    font-size:1.35rem;
+    font-weight:700;
+    color:#0F172A;
+    margin-bottom:4px;
 }
 
-.payment-method-card {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
+.booking-top p{
+    color:#64748B;
 }
 
-.payment-icon {
-    font-size: 1.5rem;
-    width: 48px;
-    height: 48px;
-    background-color: rgba(16, 185, 129, 0.1);
-    border-radius: var(--radius-md);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* ==========================================
+   Booking Details
+========================================== */
+
+.trip-info{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+    margin-bottom:28px;
 }
 
-.payment-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
+.trip-item{
+    padding:16px;
+    border-radius:16px;
+    background:#F8FAFC;
+    border:1px solid #E2E8F0;
+    transition:.3s;
 }
 
-.payment-info span {
-    font-size: 0.75rem;
-    color: var(--text-muted);
+.trip-item:hover{
+    transform:translateY(-3px);
+    border-color:#BFDBFE;
 }
 
-.fare-actions {
-    margin-top: var(--spacing-xxl);
-    text-align: center;
+.trip-item span{
+    display:block;
+    color:#64748B;
+    font-size:.82rem;
+    margin-bottom:6px;
 }
 
-.cancel-text {
-    margin-top: var(--spacing-md);
-    font-size: 0.75rem;
-    color: var(--text-light);
+.trip-item strong{
+    color:#0F172A;
+    font-size:1rem;
+}
+
+.fare-divider{
+    height:1px;
+    background:#E2E8F0;
+    margin:30px 0;
+}
+
+/* ==========================================
+   Fare Items
+========================================== */
+
+.fare-items{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+.fare-line{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:16px 18px;
+    border-radius:16px;
+    background:#F8FAFC;
+    border:1px solid #EDF2F7;
+    transition:.3s;
+}
+
+.fare-line:hover{
+    transform:translateY(-2px);
+    border-color:#BFDBFE;
+    box-shadow:0 12px 28px rgba(37,99,235,.08);
+}
+
+.fare-line span{
+    color:#64748B;
+    font-weight:500;
+}
+
+.fare-line strong{
+    color:#0F172A;
+    font-size:1rem;
+    font-weight:700;
+}
+
+/* ==========================================
+   Total Card
+========================================== */
+
+.total-card{
+    margin-top:32px;
+    padding:26px 32px;
+    border-radius:22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:linear-gradient(135deg,#1D4ED8,#3B82F6);
+    color:#fff;
+
+    box-shadow:
+        0 20px 45px rgba(37,99,235,.28);
+
+    overflow:hidden;
+    position:relative;
+}
+
+.total-card div{
+    position:relative;
+    z-index:2;
+}
+
+.total-card p{
+    margin:0;
+    font-size:1.1rem;
+    font-weight:700;
+    color:#fff;
+}
+
+.total-card small{
+    display:block;
+    margin-top:6px;
+    color:rgba(255,255,255,.85);
+    font-size:.9rem;
+}
+
+.total-card h2{
+    position:relative;
+    z-index:2;
+
+    margin:0;
+
+    font-size:3rem;
+    font-weight:800;
+    color:#fff;
+
+    letter-spacing:1px;
+    line-height:1;
+}
+/* ==========================================
+   Payment
+========================================== */
+
+.payment-notice{
+    margin-top:38px;
+}
+
+.payment-notice h3{
+    font-size:1.2rem;
+    margin-bottom:18px;
+    color:#0F172A;
+}
+
+.payment-method-card{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px;
+    border-radius:22px;
+    background:#fff;
+    border:1px solid #DCFCE7;
+    transition:.3s;
+}
+
+.payment-method-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 18px 35px rgba(34,197,94,.12);
+}
+
+.payment-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.payment-icon{
+    width:60px;
+    height:60px;
+    border-radius:18px;
+    background:#DCFCE7;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.6rem;
+}
+
+.payment-left h4{
+    margin-bottom:5px;
+    color:#0F172A;
+}
+
+.payment-left p{
+    color:#64748B;
+    font-size:.88rem;
+}
+
+.payment-check{
+    width:44px;
+    height:44px;
+    border-radius:50%;
+    background:#22C55E;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1rem;
+    font-weight:700;
+}
+
+/* ==========================================
+   Badge
+========================================== */
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:.75rem;
+    font-weight:700;
+    letter-spacing:.4px;
+}
+
+.badge-success{
+    background:#DCFCE7;
+    color:#15803D;
+    border:1px solid #BBF7D0;
+}
+
+/* ==========================================
+   Fare Actions
+========================================== */
+
+.fare-actions{
+    margin-top:60px;
+    margin-bottom:180px; /* Space for sticky bar */
+}
+
+/* ==========================================
+   Service Section
+========================================== */
+
+.service-section{
+    margin-bottom:40px;
+}
+
+.section-heading{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.section-tag{
+    display:inline-block;
+    padding:8px 16px;
+    background:#DBEAFE;
+    color:#2563EB;
+    border-radius:999px;
+    font-size:.78rem;
+    font-weight:700;
+    letter-spacing:1px;
+    margin-bottom:16px;
+}
+
+.section-heading h3{
+    font-size:2rem;
+    font-weight:800;
+    color:#0F172A;
+    margin-bottom:12px;
+}
+
+.section-heading p{
+    max-width:600px;
+    margin:auto;
+    color:#64748B;
+    line-height:1.7;
+}
+
+/* ==========================================
+   Service Cards
+========================================== */
+
+.service-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.service-card{
+    background:#fff;
+    border:1px solid #E2E8F0;
+    border-radius:22px;
+    padding:28px 22px;
+    text-align:center;
+    transition:.35s;
+    box-shadow:0 12px 30px rgba(15,23,42,.05);
+}
+
+.service-card:hover{
+    transform:translateY(-8px);
+    border-color:#2563EB;
+    box-shadow:0 24px 45px rgba(37,99,235,.12);
+}
+
+.service-icon{
+    width:72px;
+    height:72px;
+    margin:0 auto 20px;
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:2rem;
+    background:linear-gradient(135deg,#EFF6FF,#DCFCE7);
+}
+
+.service-card h4{
+    font-size:1.1rem;
+    font-weight:700;
+    color:#0F172A;
+    margin-bottom:10px;
+}
+
+.service-card p{
+    color:#64748B;
+    line-height:1.7;
+    font-size:.88rem;
+}
+
+/* ==========================================
+   Secure Note
+========================================== */
+
+.secure-note{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-top:40px;
+
+    padding:24px 28px;
+
+    border-radius:22px;
+
+    background:linear-gradient(135deg,#F0FDF4,#ECFDF5);
+
+    border:1px solid #BBF7D0;
+}
+
+.secure-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+}
+
+.secure-icon{
+    width:60px;
+    height:60px;
+    border-radius:18px;
+    background:#DCFCE7;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:1.6rem;
+}
+
+.secure-left h4{
+    font-size:1.1rem;
+    color:#166534;
+    margin-bottom:4px;
+}
+
+.secure-left p{
+    color:#15803D;
+    font-size:.9rem;
+}
+
+.secure-badge{
+    background:#16A34A;
+    color:#fff;
+    padding:10px 18px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:.85rem;
+}
+
+/* ==========================================
+   Cancel
+========================================== */
+
+.cancel-wrapper{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    margin-top:28px;
+}
+
+.cancel-line{
+    flex:1;
+    height:1px;
+    background:#CBD5E1;
+}
+
+.cancel-text{
+    margin:0;
+    color:#64748B;
+    font-size:.9rem;
+    font-weight:600;
+    white-space:nowrap;
+}
+
+/* ==========================================
+   Sticky Bottom Booking Bar
+========================================== */
+
+.sticky-booking-bar{
+    position:fixed;
+    left:0;
+    right:0;
+    bottom:0;
+
+    z-index:9999;
+
+    background:rgba(255,255,255,.96);
+    backdrop-filter:blur(18px);
+
+    border-top:1px solid #E2E8F0;
+
+    box-shadow:0 -12px 35px rgba(15,23,42,.08);
+
+    padding:14px 28px;
+}
+.sticky-booking-content{
+
+    max-width:1200px;
+    margin:auto;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:28px;
+}
+.sticky-price span{
+
+    display:block;
+
+    font-size:.82rem;
+
+    color:#64748B;
+
+    margin-bottom:3px;
+}
+
+.sticky-price h3{
+
+    margin:0;
+
+    font-size:2.3rem;
+
+    font-weight:800;
+
+    color:#2563EB;
+
+    line-height:1;
+}
+.sticky-btn{
+
+    width:360px;
+
+    height:56px;
+
+    border-radius:14px;
+
+    font-size:1rem;
+
+    font-weight:700;
+
+    background:linear-gradient(
+        135deg,
+        #2563EB,
+        #3B82F6
+    );
+
+    color:#fff;
+
+    transition:.3s;
+
+    box-shadow:
+        0 12px 28px rgba(37,99,235,.28);
+}
+
+.sticky-btn:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 18px 36px rgba(37,99,235,.35);
+}
+.sticky-price small{
+
+    display:block;
+
+    margin-top:4px;
+
+    color:#16A34A;
+
+    font-size:.82rem;
+
+    font-weight:600;
+}
+/* ==========================================
+   Responsive
+========================================== */
+
+@media(max-width:992px){
+
+    .service-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .service-grid{
+        grid-template-columns:1fr;
+    }
+
+    .section-heading h3{
+        font-size:1.6rem;
+    }
+
+    .secure-note{
+        flex-direction:column;
+        text-align:center;
+        gap:18px;
+    }
+
+    .secure-left{
+        flex-direction:column;
+    }
+
+    .cancel-line{
+        display:none;
+    }
+
+    .sticky-booking-content{
+        flex-direction:column;
+        gap:16px;
+    }
+
+    .sticky-price{
+        text-align:center;
+    }
+
+    .sticky-btn{
+        width:100%;
+        min-width:unset;
+    }
+
+    .fare-actions{
+        margin-bottom:220px;
+    }
+
 }
