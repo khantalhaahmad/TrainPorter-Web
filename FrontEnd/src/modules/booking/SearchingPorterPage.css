@@ -353,11 +353,11 @@
 ========================================================== */
 
 .timeline-card{
-    padding:24px 28px;
+    padding:22px;
     display:flex;
     flex-direction:column;
+    gap:10px;
 }
-
 /* ==========================================================
    HEADER
 ========================================================== */
@@ -443,24 +443,37 @@
 /* ==========================================================
    TIMELINE LIST
 ========================================================== */
-
 .timeline-list{
     display:flex;
     flex-direction:column;
-    gap:2px;
+    gap:0;
 }
 
 /* ==========================================================
    EACH ROW
 ========================================================== */
-
 .timeline-item{
+
     display:grid;
-    grid-template-columns:34px 1fr 105px;
+
+    grid-template-columns:34px 1fr 90px;
+
     align-items:center;
+
     gap:10px;
-    padding:8px 0;
+
+    padding:12px 0;
+
+    min-height:58px;
+
     border-bottom:1px solid #EEF2F7;
+
+    background:transparent !important;
+
+    border-radius:0 !important;
+
+    box-shadow:none !important;
+
 }
 
 .timeline-item:last-child{
@@ -522,22 +535,36 @@
 /* ==========================================================
    RIGHT
 ========================================================== */
-
 .timeline-right{
-    display:flex;
-    flex-direction:column;
-    align-items:flex-end;
-    gap:4px;
-}
 
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    justify-content:center;
+
+    gap:2px;
+
+    width:90px;
+
+}
 .timeline-time{
-    font-size:12px;
+    font-size:11px;
+
+    font-weight:600;
     color:#94A3B8;
 }
 
 .badge{
-    padding:5px 12px;
-    font-size:12px;
+     padding:4px 10px;
+
+    font-size:11px;
+
+    min-width:78px;
+
+    text-align:center;
     border-radius:999px;
 }
 /* ==========================================================
@@ -1093,7 +1120,187 @@
 }
 
 }
+/* ===========================
+   PORTER SEARCH CARD
+=========================== */
 
-/* ==========================================================
-   END
-========================================================== */
+.porter-search-card{
+    padding:28px;
+    border-radius:24px;
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+}
+
+/* Header */
+
+.porter-search-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:22px;
+}
+
+.porter-search-heading{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+
+.porter-search-icon-box{
+    width:50px;
+    height:50px;
+    border-radius:14px;
+    background:#EEF4FF;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.porter-search-heading-content h2{
+    margin:0;
+    font-size:34px;
+    font-weight:800;
+    color:#0F172A;
+    line-height:1.1;
+}
+
+.porter-search-heading-content p{
+    margin-top:6px;
+    font-size:14px;
+    color:#64748B;
+}
+
+.eta-badge{
+    padding:10px 18px;
+    border-radius:999px;
+    background:#EAF2FF;
+    color:#2563EB;
+    font-weight:700;
+    font-size:14px;
+}
+
+/* List */
+
+.porter-search-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
+/* Each Step Card */
+
+.porter-search-item{
+
+    background:#fff;
+
+    border:1px solid #E5E7EB;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    display:grid;
+
+    grid-template-columns:34px 1fr 100px;
+
+    gap:16px;
+
+    align-items:center;
+
+}
+
+/* Left */
+
+.porter-search-left{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.porter-search-circle{
+    width:28px;
+    height:28px;
+    border-radius:50%;
+    border:2px solid #CBD5E1;
+    background:#fff;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:14px;
+    font-weight:700;
+}
+
+.porter-search-line{
+    width:2px;
+    height:40px;
+    background:#E2E8F0;
+    margin-top:5px;
+}
+
+/* completed */
+
+.porter-search-item.completed .porter-search-circle{
+    background:#22C55E;
+    border-color:#22C55E;
+    color:#fff;
+}
+
+.porter-search-item.active .porter-search-circle{
+    background:#2563EB;
+    border-color:#2563EB;
+}
+
+/* Center */
+
+.porter-search-center h4{
+    margin:0;
+    font-size:20px;
+    font-weight:700;
+    color:#0F172A;
+}
+
+.porter-search-center small{
+    display:block;
+    margin-top:4px;
+    color:#64748B;
+    font-size:13px;
+}
+
+/* Right */
+
+.porter-search-right{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    gap:8px;
+}
+
+.porter-search-time{
+    font-size:12px;
+    color:#94A3B8;
+}
+
+.porter-search-status{
+    padding:6px 14px;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:700;
+}
+
+.porter-search-completed{
+    background:#DCFCE7;
+    color:#15803D;
+}
+
+.porter-search-active{
+    background:#DBEAFE;
+    color:#2563EB;
+}
+
+.porter-search-waiting{
+    background:#F1F5F9;
+    color:#64748B;
+}

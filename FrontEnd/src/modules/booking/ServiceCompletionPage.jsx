@@ -97,25 +97,25 @@ const ServiceCompletionPage = () => {
 
             <div className="completion-page-premium fade-in">
 
-                <div className="completion-hero text-center">
+                <div className="completion-hero">
 
-                    <div className="completion-icon-wrapper">
-                        📦
-                    </div>
+    <div className="completion-icon-wrapper">
+        📦
+    </div>
 
-                    <h1>
-                        Complete Service
-                    </h1>
+    <h1>
+        Complete Service
+    </h1>
 
-                    <p className="text-muted">
+    <div className="hero-subtitle">
 
-                        Enter the verification code
-                        shared by the porter to
-                        complete your service.
+        <span>
+            ✔ Verification code shared by your porter
+        </span>
 
-                    </p>
+    </div>
 
-                </div>
+</div>
 
                 <div className="completion-grid">
 
@@ -123,55 +123,168 @@ const ServiceCompletionPage = () => {
 
                         <div className="otp-input-area">
 
-                            <label>
-                                Completion OTP
-                            </label>
+                            <div className="otp-title">
 
-                            <Input
-                                placeholder="0000"
-                                maxLength="4"
-                                value={otp}
-                                onChange={(e) =>
-                                    setOtp(
-                                        e.target.value.replace(
-                                            /\D/g,
-                                            ''
-                                        )
-                                    )
-                                }
-                                className="otp-entry-field"
-                            />
+    <div className="otp-title-icon">
+        🛡️
+    </div>
 
-                            <p className="otp-hint">
+    <div>
 
-                                Enter the OTP provided
-                                by the porter after
-                                luggage delivery.
+        <h3>
+            Completion OTP
+        </h3>
 
-                            </p>
+        <p>
+            Verification code shared by your porter
+        </p>
 
-                        </div>
+    </div>
 
-                        <Button
-                            size="lg"
-                            className="btn-full"
-                            disabled={
-                                otp.length !== 4
-                            }
-                            onClick={
-                                handleCompleteService
-                            }
-                        >
-                            Verify & Finalize
-                        </Button>
+</div>
+
+                           <div className="otp-input-wrapper">
+
+    <div className="otp-divider">
+
+        <span></span>
+
+        <p>
+            Enter 4-Digit Code
+        </p>
+
+        <span></span>
+
+    </div>
+
+    <div className="otp-boxes">
+
+    {[0,1,2,3].map((index)=>(
+
+        <div
+            key={index}
+            className={`otp-box ${
+                otp[index] ? "filled" : ""
+            }`}
+        >
+
+            {otp[index] || ""}
+
+        </div>
+
+    ))}
+
+    <input
+
+        type="text"
+
+        maxLength={4}
+
+        value={otp}
+
+        onChange={(e)=>
+            setOtp(
+                e.target.value
+                    .replace(/\D/g,"")
+            )
+        }
+
+        className="otp-hidden-input"
+
+    />
+
+</div>
+</div>
+
+<div className="otp-info">
+
+    <p className="otp-hint">
+
+        Enter the OTP shared by your porter after
+        successful luggage delivery.
+
+    </p>
+
+   <div className="otp-tips">
+
+    <div className="otp-tip-card">
+
+        <div className="tip-icon">
+            🕒
+        </div>
+
+        <div>
+
+            <small>
+                Expires In
+            </small>
+
+            <strong>
+                05:00
+            </strong>
+
+        </div>
+
+    </div>
+
+    <div className="otp-tip-card">
+
+        <div className="tip-icon secure">
+            🛡
+        </div>
+
+        <div>
+
+            <small>
+                Status
+            </small>
+
+            <strong>
+                Secure Verification
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+</div>
+                       <Button
+    size="lg"
+    className="btn-full"
+    disabled={otp.length !== 4}
+    onClick={handleCompleteService}
+>
+
+    🛡 Verify & Finalize
+
+</Button>
 
                     </Card>
 
                     <Card className="service-details-card-premium">
 
-                        <h3>
-                            Service Recap
-                        </h3>
+                       <div className="recap-header">
+
+    <div className="recap-left">
+
+        <div className="recap-icon">
+            📋
+        </div>
+
+        <h3>
+            Service Recap
+        </h3>
+
+    </div>
+
+    <span className="summary-badge">
+        Summary
+    </span>
+
+</div>
 
                         <div className="recap-list">
 
@@ -301,14 +414,26 @@ const ServiceCompletionPage = () => {
 
                         </div>
 
-                        <div className="trust-badge-small">
+                       <div className="trust-badge-small">
 
-                            <span>🔒</span>
+    <span>
+        🔒
+    </span>
 
-                            Secure Railway Verified
-                            Service
+    <p>
+        Secure Railway Verified Service
+    </p>
 
-                        </div>
+    <span>
+        ✅
+    </span>
+
+</div>
+<p className="secure-note">
+
+    🔒 Your data is 100% secure and encrypted
+
+</p>
 
                     </Card>
 

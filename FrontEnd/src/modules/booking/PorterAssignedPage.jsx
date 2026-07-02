@@ -7,6 +7,7 @@ import Badge from '../../components/ui/Badge';
 import porterPhoto from '../../assets/porter-profile.png';
 import './PorterAssignedPage.css';
 
+
 const PorterAssignedPage = () => {
 
     const navigate = useNavigate();
@@ -88,22 +89,25 @@ const PorterAssignedPage = () => {
 
             <div className="assigned-page fade-in">
 
-                <div className="header-stack text-center">
+               <div className="header-stack">
 
-                    <div className="success-lottie-placeholder">
-                        🎉
-                    </div>
+    <div className="success-lottie-placeholder">
+        🎉
+    </div>
 
-                    <h1>
-                        Porter Assigned Successfully
-                    </h1>
+    <h1>
+        Porter Assigned Successfully
+    </h1>
 
-                    <p className="text-muted">
-                        Your porter is on the way.
-                    </p>
+    <div className="success-divider">
 
-                </div>
+        <span>
+            ✔ Your porter is on the way.
+        </span>
 
+    </div>
+
+</div>
                 <div className="assigned-grid">
 
                     <Card className="porter-profile-premium">
@@ -200,89 +204,111 @@ const PorterAssignedPage = () => {
 
                     <div className="assigned-meta-stack">
 
-                        <Card className="arrival-card-premium">
+                     <Card className="arrival-card-premium">
 
-                            <div className="arrival-icon">
-                                📍
-                            </div>
+    <div className="arrival-header">
 
-                            <div className="arrival-meta">
+        <div className="arrival-icon">
+            📍
+        </div>
 
-                                <span className="label">
-                                    Station
-                                </span>
+        <div className="arrival-meta">
 
-                                <h3 className="value">
-                                    {booking.station}
-                                </h3>
+           <span className="label">
+    PORTER STATUS
+</span>
 
-                                <p className="sub-value">
-                                    Coach {booking.coach}
-                                    {' | '}
-                                    Seat {booking.seatNumber}
-                                </p>
+<h3 className="value">
+    Walking towards Coach {booking.coach}
+</h3>
 
-                            </div>
+<p className="sub-value">
+    Destination • {booking.station} • Seat {booking.seatNumber}
+</p>
 
-                            <div className="arrival-track">
+        </div>
 
-                                <div className="track-bar">
+    </div>
 
-                                    <div
-                                        className="track-fill"
-                                        style={{
-                                            width:
-                                                '40%',
-                                        }}
-                                    />
+    <div className="arrival-track">
 
-                                    <div className="track-pointer">
-                                        👨‍✈️
-                                    </div>
+        <div className="track-bar">
 
-                                </div>
+            <div
+                className="track-fill"
+                style={{ width: "40%" }}
+            />
 
-                            </div>
+            <div className="track-pointer">
+                👨‍✈️
+            </div>
 
-                        </Card>
+        </div>
+
+    </div>
+{/* 👇 YAHAN ADD KARNA HAI */}
+
+    <div className="journey-info">
+
+        <span>
+            📍 Current: Platform Entry Gate
+        </span>
+
+        <span>
+            🚶 45% Completed
+        </span>
+
+    </div>
+
+</Card>
+
+                       <Card className="otp-card-premium">
+
+    <div className="status-top">
+
+        <div>
+
+            <span className="label">
+                Booking Status
+            </span>
+
+            <div className="otp-value">
+                {booking.status?.replace('_',' ').toUpperCase()}
+            </div>
+
+        </div>
+
+        <div className="status-badge">
+                    Live Tracking
+        </div>
+
+    </div>
+
+</Card>
 
                         <Card className="otp-card-premium">
 
-                            <div className="otp-header">
+    <div className="status-top">
 
-                                <span className="label">
-                                    Booking Status
-                                </span>
+        <div>
 
-                            </div>
+            <span className="label">
+                Total Fare
+            </span>
 
-                            <div className="otp-value">
-                                {booking.status
-                                    ?.replace(
-                                        '_',
-                                        ' '
-                                    )
-                                    .toUpperCase()}
-                            </div>
+            <div className="otp-value">
+                ₹{booking.amount}
+            </div>
 
-                        </Card>
+        </div>
 
-                        <Card className="otp-card-premium">
+        <div className="status-badge">
+            Secure Booking
+        </div>
 
-                            <div className="otp-header">
+    </div>
 
-                                <span className="label">
-                                    Total Fare
-                                </span>
-
-                            </div>
-
-                            <div className="otp-value">
-                                ₹{booking.amount}
-                            </div>
-
-                        </Card>
-
+</Card>
                         <div className="assigned-footer-actions">
 
                             <Button

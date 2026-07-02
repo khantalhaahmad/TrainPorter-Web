@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import DashboardLayout from "../../layouts/DashboardLayout";
-import Button from "../../components/ui/Button";
-import Card from "../../components/ui/Card";
-import "./SearchingPorterPage.css";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import DashboardLayout from '../../layouts/DashboardLayout';
+import Button from '../../components/ui/Button';
+import Card from '../../components/ui/Card';
+import './SearchingPorterPage.css';
 
 const SearchingPorterPage = () => {
+
     const navigate = useNavigate();
 
     const [booking, setBooking] = useState(null);
@@ -13,270 +14,352 @@ const SearchingPorterPage = () => {
 
     const statuses = [
         {
-            title: "Booking Received",
-            time: "10:24 AM",
+            title: 'Booking Received',
+            description: 'Your booking has been confirmed.'
         },
         {
-            title: "Searching nearby porter",
+            title: 'Searching Nearby Porter',
+            description: 'Finding the closest verified porter.'
         },
         {
-            title: "Porter assigned",
+            title: 'Porter Assigned',
+            description: 'Porter details will appear shortly.'
         },
         {
-            title: "Ready to serve",
-        },
+            title: 'Ready To Serve',
+            description: 'Your porter is ready for pickup.'
+        }
     ];
 
     useEffect(() => {
+
         const savedBooking = JSON.parse(
-            localStorage.getItem("currentBooking")
+            localStorage.getItem('currentBooking')
         );
 
         if (!savedBooking) {
-            navigate("/book");
+            navigate('/book');
             return;
         }
 
         setBooking(savedBooking);
 
         const timer = setInterval(() => {
+
             setStatusIndex((prev) =>
-                prev < statuses.length - 1 ? prev + 1 : prev
+                prev < statuses.length - 1
+                    ? prev + 1
+                    : prev
             );
+
         }, 1200);
 
         const redirect = setTimeout(() => {
-            navigate("/assigned");
-        }, 5000);
+
+            navigate('/assigned');
+
+        }, 20000);
 
         return () => {
+
             clearInterval(timer);
             clearTimeout(redirect);
+
         };
+
     }, [navigate]);
 
     const handleCancelBooking = async () => {
+
         try {
+
             if (!booking) return;
 
-            const token = localStorage.getItem("token");
+            const token =
+                localStorage.getItem('token');
 
             const response = await fetch(
+
                 `http://localhost:8000/api/bookings/cancel/${booking._id}`,
+
                 {
-                    method: "PUT",
+
+                    method: 'PUT',
+
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
+
                 }
+
             );
 
-            const data = await response.json();
+            const data =
+                await response.json();
 
-            if (!response.ok) {
+            if (!response.ok)
                 throw new Error(data.message);
-            }
 
-            localStorage.removeItem("currentBooking");
+            localStorage.removeItem(
+                'currentBooking'
+            );
 
-            navigate("/book");
+            navigate('/book');
+
         } catch (err) {
+
             alert(err.message);
+
         }
+
     };
 
     return (
-        <DashboardLayout>
-            <div className="searching-page">
 
-                {/* Header */}
+    <DashboardLayout>
 
-                <div className="search-header">
-                    <h1>Assigning Your Porter</h1>
+    <div className="searching-page">
 
-                    <p>
-                        Please wait while we connect you with a verified porter.
-                    </p>
-                </div>
+        {/* ================= HEADER ================= */}
 
-                {/* Main Grid */}
+        <div className="search-header">
 
-                <div className="search-layout">
+            <h1>
+                Assigning Your Porter
+            </h1>
 
-                    {/* LEFT */}
+            <p>
+                Please wait while we connect you with a verified railway porter.
+            </p>
 
-                    <Card className="radar-card">
+        </div>
 
-                        <div className="radar-orbit">
+        {/* ================= CONTENT ================= */}
 
-                            <div className="radar-scanner"></div>
+        <div className="search-layout">
 
-                            <div className="radar-circles">
+            {/* ====================================================
+                            LEFT CARD
+            ==================================================== */}
 
-                                <div className="c1"></div>
-                                <div className="c2"></div>
-                                <div className="c3"></div>
+            <Card className="radar-card">
 
-                            </div>
+                <div className="radar-orbit">
 
-                            <div className="center-icon">
-                                👨‍✈️
-                            </div>
+                    <div className="radar-scanner"></div>
 
-                            <div className="dot d1"></div>
-                            <div className="dot d2"></div>
-                            <div className="dot d3"></div>
+                    <div className="radar-circles">
 
-                        </div>
-
-                        <div className="search-status">
-
-                            <div className="live-dot"></div>
-
-                            <span>
-                                Searching nearby porters...
-                            </span>
-
-                        </div>
-
-                    </Card>
-
-                    {/* RIGHT */}
-
-                    <Card className="timeline-card">
-
-                        <div className="timeline-top">
-
-                            <div className="timeline-heading">
-
-                                <div className="timeline-icon-box">
-                                    🛡️
-                                </div>
-
-                                <h2>
-                                    Finding the Best Porter
-                                </h2>
-
-                            </div>
-
-                            <div className="eta-badge">
-                                ETA 2–5 min
-                            </div>
-
-                        </div>
-
-                        <div className="timeline-list">
-
-                            {statuses.map((item, index) => (
-
-                                <div
-                                    key={index}
-                                    className={`timeline-item ${
-                                        index < statusIndex
-                                            ? "completed"
-                                            : index === statusIndex
-                                            ? "active"
-                                            : ""
-                                    }`}
-                                >
-
-                                    <div className="timeline-left">
-
-                                        <div className="timeline-circle">
-
-                                            {index < statusIndex ? "✓" : ""}
-
-                                        </div>
-
-                                        {index !== statuses.length - 1 && (
-                                            <div className="timeline-line"></div>
-                                        )}
-
-                                    </div>
-
-                                    <div className="timeline-center">
-
-                                        <h4>
-                                            {item.title}
-                                        </h4>
-
-                                    </div>
-
-                                    <div className="timeline-right">
-
-                                        {index < statusIndex && (
-                                            <>
-                                                <span className="timeline-time">
-                                                    {item.time || "10:24 AM"}
-                                                </span>
-
-                                                <span className="badge completed-badge">
-                                                    Completed
-                                                </span>
-                                            </>
-                                        )}
-
-                                        {index === statusIndex && (
-                                            <span className="badge active-badge">
-                                                In Progress
-                                            </span>
-                                        )}
-
-                                        {index > statusIndex && (
-                                            <span className="badge waiting-badge">
-                                                Waiting
-                                            </span>
-                                        )}
-
-                                    </div>
-
-                                </div>
-
-                            ))}
-
-                        </div>
-
-                    </Card>
-
-                </div>
-
-                {/* Bottom */}
-
-                <Card className="trust-card">
-
-                    <div className="trust-left">
-
-                        <div className="trust-icon">
-                            🛡️
-                        </div>
-
-                        <div>
-
-                            <h3>
-                                100% Verified Railway Porter
-                            </h3>
-
-                            <p>
-                                OTP Protected Pickup • Live Tracking • Luggage Safety
-                            </p>
-
-                        </div>
+                        <div className="c1"></div>
+                        <div className="c2"></div>
+                        <div className="c3"></div>
 
                     </div>
 
-                    <Button
-                        className="cancel-btn"
-                        variant="secondary"
-                        onClick={handleCancelBooking}
-                    >
-                        ✕ Cancel Booking
-                    </Button>
+                    <div className="center-icon">
+                        👨‍✈️
+                    </div>
 
-                </Card>
+                    <div className="dot d1"></div>
+                    <div className="dot d2"></div>
+                    <div className="dot d3"></div>
+
+                </div>
+
+                <div className="search-status">
+
+                    <div className="live-dot"></div>
+
+                    <span>
+                        Searching nearby porters...
+                    </span>
+
+                </div>
+
+            </Card>
+
+            {/* ====================================================
+                    RIGHT CARD
+==================================================== */}
+
+<Card className="porter-search-card">
+
+    <div className="porter-search-top">
+
+        <div className="porter-search-heading">
+
+            <div className="porter-search-icon-box">
+                🛡️
+            </div>
+
+            <div className="porter-search-heading-content">
+
+                <h2>Finding the Best Porter</h2>
+
+                <p>Connecting you with the nearest verified porter</p>
 
             </div>
+
+        </div>
+
+        <div className="eta-badge">
+            ETA 2–5 min
+        </div>
+
+    </div>
+
+    <div className="porter-search-list">
+
+        {statuses.map((item, index) => (
+
+            <div
+                key={index}
+                className={`porter-search-item ${
+                    index < statusIndex
+                        ? "completed"
+                        : index === statusIndex
+                        ? "active"
+                        : "waiting"
+                }`}
+            >
+
+                {/* LEFT */}
+
+                <div className="porter-search-left">
+
+                    <div className="porter-search-circle">
+
+                        {index < statusIndex ? "✓" : ""}
+
+                    </div>
+
+                    {index !== statuses.length - 1 && (
+
+                        <div className="porter-search-line"></div>
+
+                    )}
+
+                </div>
+
+                {/* CENTER */}
+
+                <div className="porter-search-center">
+
+                    <h4>{item.title}</h4>
+
+                    <small>{item.description}</small>
+
+                </div>
+
+                {/* RIGHT */}
+
+                <div className="porter-search-right">
+
+                    {index < statusIndex ? (
+
+                        <>
+
+                            <span className="porter-search-time">
+
+                                {new Date().toLocaleTimeString([], {
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                })}
+
+                            </span>
+
+                            <span className="porter-search-status porter-search-completed">
+
+                                Completed
+
+                            </span>
+
+                        </>
+
+                    ) : index === statusIndex ? (
+
+                        <span className="porter-search-status porter-search-active">
+
+                            In Progress
+
+                        </span>
+
+                    ) : (
+
+                        <span className="porter-search-status porter-search-waiting">
+
+                            Waiting
+
+                        </span>
+
+                    )}
+
+                </div>
+
+            </div>
+
+        ))}
+
+    </div>
+{/* ===================== BOTTOM ===================== */}
+
+<Card className="trust-card">
+
+    <div className="trust-left">
+
+        <div className="trust-icon">
+
+            🛡️
+
+        </div>
+
+        <div>
+
+            <h3>
+
+                100% Verified Railway Porter
+
+            </h3>
+
+            <p>
+
+                OTP Protected Pickup • Live Tracking • Luggage Insurance
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <Button
+
+        className="cancel-btn"
+
+        variant="secondary"
+
+        onClick={handleCancelBooking}
+
+    >
+
+        ✕ Cancel Booking
+
+    </Button>
+
+</Card>
+
+
+
+                    </Card>
+
+                </div>
+
+                
+            </div>
+
         </DashboardLayout>
+
     );
+
 };
 
 export default SearchingPorterPage;
