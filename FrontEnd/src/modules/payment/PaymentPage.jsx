@@ -21,18 +21,59 @@ const PaymentPage = () => {
         return (
             <DashboardLayout>
                 <div className="payment-success-premium fade-in">
-                    <div className="success-lottie-placeholder">🎊</div>
-                    <h1 className="text-gradient">Payment Received!</h1>
-                    <p className="text-muted">Your transaction was successful.</p>
+                   <div className="payment-success-header">
 
+    <div className="success-lottie-placeholder">
+
+        🎉
+
+    </div>
+
+    <h1>
+
+        Payment Successful
+
+    </h1>
+
+    <div className="payment-success-badge">
+
+        ✔ Amount received successfully
+
+    </div>
+
+</div>
                     <Card className="premium-receipt-card">
-                        <div className="receipt-premium-header">
-                            <div className="receipt-brand">
-                                <span>🚂</span>
-                                <strong>TrainPorter</strong>
-                            </div>
-                            <Badge variant="success">PAID</Badge>
-                        </div>
+                   <div className="receipt-premium-header">
+
+    <div className="receipt-brand">
+
+        🚂
+
+        <div>
+
+            <strong>
+
+                TrainPorter
+
+            </strong>
+
+            <small>
+
+                Digital Receipt
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <Badge variant="success">
+
+        PAID
+
+    </Badge>
+
+</div>
 
                         <div className="receipt-premium-body">
                             <div className="premium-line">
@@ -63,13 +104,26 @@ const PaymentPage = () => {
                     </Card>
 
                     <div className="success-footer-actions">
-                        <Button size="lg" className="btn-full" onClick={() => navigate('/rate')}>
-                            Next: Rate Experience
-                        </Button>
-                        <Button variant="secondary" className="btn-full">
-                            Download PDF Receipt
-                        </Button>
-                    </div>
+
+<Button
+size="lg"
+className="btn-full"
+>
+
+⭐ Rate Porter
+
+</Button>
+
+<Button
+variant="secondary"
+className="btn-full secondary-btn"
+>
+
+📄 Download Receipt
+
+</Button>
+
+</div>
                 </div>
             </DashboardLayout>
         );
@@ -78,42 +132,123 @@ const PaymentPage = () => {
     return (
         <DashboardLayout>
             <div className="payment-page-premium fade-in">
-                <div className="payment-hero-premium text-center">
-                    <h2>Total Payable</h2>
-                    <h1 className="payment-price-hero">₹240.00</h1>
-                    <p className="text-muted">Safe & Secure Payment</p>
-                </div>
+         <div className="payment-hero-premium">
+
+    <div className="payment-hero-icon">
+        💳
+    </div>
+
+    <h2>
+        Total Payable
+    </h2>
+
+    <h1 className="payment-price-hero">
+        ₹240.00
+    </h1>
+
+    <div className="payment-security-badge">
+
+        <span>🛡 Secure Payment</span>
+
+        <span>🔒 SSL Protected</span>
+
+    </div>
+
+</div>
 
                 <div className="payment-methods-premium">
                     <h3>Select Payment Method</h3>
                     <div className="methods-grid-premium">
                         <Card
-                            className={`method-card-premium ${method === 'upi' ? 'active' : ''}`}
-                            onClick={() => handlePayment('upi')}
-                            hover
-                        >
-                            <div className="method-icon-bg">📱</div>
-                            <div className="method-text-meta">
-                                <strong>UPI / Online</strong>
-                                <span>Instant payment via GPay, PhonePe, Paytm</span>
-                            </div>
-                            <div className="method-select-radio"></div>
-                            {method === 'upi' && <div className="loader-mini"></div>}
-                        </Card>
+className={`method-card-premium ${
+method==="upi" ? "active" : ""
+}`}
+onClick={()=>handlePayment("upi")}
+hover
+>
 
+    <div className="method-left">
+
+        <div className="method-icon-bg">
+            📱
+        </div>
+
+        <div className="method-text-meta">
+
+            <strong>
+                UPI / Online
+            </strong>
+
+            <span>
+                GPay • PhonePe • Paytm
+            </span>
+
+            <div className="payment-tags">
+
+                <span>
+                    Instant
+                </span>
+
+                <span>
+                    Recommended
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div className="method-right">
+
+        <div className="method-select-radio"></div>
+
+    </div>
+
+</Card>
                         <Card
-                            className={`method-card-premium ${method === 'cash' ? 'active' : ''}`}
-                            onClick={() => handlePayment('cash')}
-                            hover
-                        >
-                            <div className="method-icon-bg">💵</div>
-                            <div className="method-text-meta">
-                                <strong>Pay by Cash</strong>
-                                <span>Hand over cash directly to the porter</span>
-                            </div>
-                            <div className="method-select-radio"></div>
-                            {method === 'cash' && <div className="loader-mini"></div>}
-                        </Card>
+className={`method-card-premium ${
+method==="cash" ? "active" : ""
+}`}
+onClick={()=>handlePayment("cash")}
+hover
+>
+
+    <div className="method-left">
+
+        <div className="method-icon-bg">
+            💵
+        </div>
+
+        <div className="method-text-meta">
+
+            <strong>
+                Pay by Cash
+            </strong>
+
+            <span>
+                Pay directly to porter
+            </span>
+
+            <div className="payment-tags">
+
+                <span>
+                    Offline
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div className="method-right">
+
+        <div className="method-select-radio"></div>
+
+    </div>
+
+</Card>
                     </div>
                 </div>
 
