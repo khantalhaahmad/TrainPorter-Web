@@ -81,3 +81,6 @@
         padding: var(--spacing-sm);
     }
 }
+.card-body-no-padding{
+    padding:0 !important;
+}

@@ -189,44 +189,41 @@ const BookingHistoryPage = () => {
 
         <div className="history-page">
 
-            <div className="history-hero">
+           <div className="history-hero">
 
-                <div>
-                    </div>
+    <div className="history-left">
 
-                    <span className="history-badge">
-                        📖 Booking History
-                    </span>
+        <span className="history-badge">
+            📖 Booking History
+        </span>
 
-                    <h1>
-                        Your Journey History
-                    </h1>
+        <h1>
+            Your Journey
+            <br />
+            History
+        </h1>
 
-                    <p>
-                        View all your porter bookings,
-                        completed trips and cancellations.
-                    </p>
+        <p>
+            View all your porter bookings,
+            completed trips and cancellations.
+        </p>
 
-                </div>
+    </div>
 
-                <div className="history-summary">
+    <div className="history-summary">
 
-                    <div className="summary-box">
+        <div className="summary-box">
 
-                        <h2>
-                            {bookings.length}
-                        </h2>
+            <h2>{bookings.length}</h2>
 
-                        <span>
-                            Total Bookings
-                        </span>
+            <span>Total Bookings</span>
 
-                    </div>
+        </div>
 
-                </div>
+    </div>
 
-            </div>
-
+</div>
+</div>
             <Card className="history-toolbar">
 
                 <Input

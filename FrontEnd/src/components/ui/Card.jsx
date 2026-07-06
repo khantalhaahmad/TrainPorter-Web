@@ -22,9 +22,11 @@ const Card = ({
                     {subtitle && <p className="card-subtitle">{subtitle}</p>}
                 </div>
             )}
-            <div className="card-body">
-                {children}
-            </div>
+           <div
+    className={`card-body ${className.includes("no-booking-card") ? "card-body-no-padding" : ""}`}
+>
+    {children}
+</div>
             {footer && (
                 <div className="card-footer">
                     {footer}

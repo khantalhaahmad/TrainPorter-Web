@@ -1696,7 +1696,7 @@ PAYMENT LOADER
 
     inset:0;
 
-    z-index:9999;
+    z-index:99999;
 
     display:flex;
 
@@ -1706,19 +1706,23 @@ PAYMENT LOADER
 
     padding:24px;
 
-    background:rgba(15,23,42,.45);
+    /* Much lighter overlay */
+    background:rgba(15,23,42,.18);
 
-    backdrop-filter:blur(12px);
+    /* Blur reduced */
+    backdrop-filter:blur(4px);
 
-    animation:popupFade .35s ease;
+    -webkit-backdrop-filter:blur(4px);
+
+    animation:popupFade .25s ease;
 
 }
 
-/* ==========================================
-POPUP CARD
-========================================== */
+/* =====================================================
+   APPLE POPUP CARD
+===================================================== */
 
-.rating-popup-card{
+.apple-rating-popup{
 
     position:relative;
 
@@ -1726,31 +1730,31 @@ POPUP CARD
 
     width:100%;
 
-    max-width:560px;
+    max-width:430px;
 
-    padding:42px;
+    background:#FFFFFF;
 
-    border-radius:30px;
+    border-radius:22px;
 
-    background:
-    linear-gradient(
-        180deg,
-        #FFFFFF,
-        #FBFDFF);
+    padding:34px 34px 24px;
 
-    border:1px solid #E7EEF8;
+    text-align:center;
+
+    border:1px solid rgba(15,23,42,.06);
 
     box-shadow:
 
-        0 35px 90px rgba(15,23,42,.18);
+        0 18px 45px rgba(15,23,42,.16),
 
-    animation:popupScale .35s ease;
+        0 6px 16px rgba(15,23,42,.08);
+
+    animation:popupScale .25s ease;
 
 }
 
-/* Top Gradient */
+/* Top Gradient Line */
 
-.rating-popup-card::before{
+.apple-rating-popup::before{
 
     content:"";
 
@@ -1762,67 +1766,66 @@ POPUP CARD
 
     width:100%;
 
-    height:6px;
+    height:5px;
 
     background:
 
-    linear-gradient(
+        linear-gradient(
 
-        90deg,
+            90deg,
 
-        #2563EB,
+            #2563EB,
 
-        #3B82F6,
+            #3B82F6,
 
-        #22C55E
+            #22C55E
 
-    );
+        );
 
 }
 
-/* Decorative Glow */
+/* Soft Glow */
 
-.rating-popup-card::after{
+.apple-rating-popup::after{
 
     content:"";
 
     position:absolute;
 
-    right:-100px;
+    top:-90px;
 
-    top:-100px;
+    right:-90px;
 
-    width:220px;
+    width:170px;
 
-    height:220px;
+    height:170px;
 
     border-radius:50%;
 
     background:
 
-    radial-gradient(
+        radial-gradient(
 
-        circle,
+            circle,
 
-        rgba(37,99,235,.10),
+            rgba(37,99,235,.06),
 
-        transparent
+            transparent 70%
 
-    );
+        );
 
 }
+/* =====================================================
+   ICON
+===================================================== */
 
-/* ==========================================
-ICON
-========================================== */
+.apple-rating-icon{
 
-.rating-popup-icon{
+    width:78px;
 
-    width:92px;
+    height:78px;
 
-    height:92px;
-
-    margin:0 auto 22px;
+    margin:0 auto 18px;
 
     border-radius:50%;
 
@@ -1832,65 +1835,279 @@ ICON
 
     justify-content:center;
 
-    font-size:46px;
-
-    color:#fff;
+    font-size:38px;
 
     background:
 
-    linear-gradient(
+        linear-gradient(
 
-        135deg,
+            135deg,
 
-        #F59E0B,
+            #FFD54A,
 
-        #FBBF24
+            #F7B500
 
-    );
+        );
 
     box-shadow:
 
-        0 20px 50px rgba(245,158,11,.30);
-
-    animation:ratingFloat 2.2s ease infinite;
+        0 10px 28px rgba(247,181,0,.25);
 
 }
 
-/* ==========================================
-TITLE
-========================================== */
+/* =====================================================
+   TITLE
+===================================================== */
 
-.rating-popup-card h2{
+.apple-rating-popup h2{
 
     margin:0;
 
-    text-align:center;
+    font-size:28px;
 
-    font-size:34px;
+    font-weight:800;
 
-    font-weight:900;
-
-    color:#0F172A;
+    color:#111827;
 
 }
 
-.rating-popup-card p{
+.apple-rating-popup p{
 
-    margin-top:12px;
-
-    text-align:center;
+    margin:10px 0 24px;
 
     font-size:15px;
 
-    line-height:1.8;
+    color:#6B7280;
 
-    color:#64748B;
+}
+/* =====================================================
+   APPLE STARS
+===================================================== */
+
+.apple-stars{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:12px;
+
+    margin-bottom:24px;
 
 }
 
-/* ==========================================
-ANIMATIONS
-========================================== */
+.apple-star{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:14px;
+
+    background:#FFFFFF;
+
+    border:2px solid #E5E7EB;
+
+    font-size:30px;
+
+    color:#C7CED9;
+
+    transition:.25s;
+
+}
+
+.apple-star:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.apple-star.active{
+
+    color:#F6C343;
+
+    border-color:#F6C343;
+
+    background:#FFF9E8;
+
+}
+
+/* =====================================================
+   FEEDBACK AREA
+===================================================== */
+
+.apple-feedback{
+
+    width:100%;
+
+    min-height:120px;
+
+    resize:none;
+
+    outline:none;
+
+    border:none;
+
+    border-radius:18px;
+
+    padding:18px 20px;
+
+    background:#F8FAFC;
+
+    border:2px solid #E2E8F0;
+
+    color:#0F172A;
+
+    font-size:15px;
+
+    line-height:1.7;
+
+    transition:.30s;
+
+    margin-bottom:22px;
+
+}
+
+.apple-feedback::placeholder{
+
+    color:#94A3B8;
+
+}
+
+.apple-feedback:focus{
+
+    background:#FFFFFF;
+
+    border-color:#2563EB;
+
+    box-shadow:
+
+        0 0 0 5px rgba(37,99,235,.10),
+
+        0 16px 35px rgba(37,99,235,.10);
+
+}
+/* =====================================================
+   SUBMIT BUTTON
+===================================================== */
+
+.apple-submit-btn{
+
+    width:100%;
+
+    height:56px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563EB,
+            #1D4ED8
+        );
+
+    color:#FFFFFF;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    letter-spacing:.3px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 18px 40px rgba(37,99,235,.28);
+
+    transition:.30s ease;
+
+    position:relative;
+
+    overflow:hidden;
+
+    margin-bottom:18px;
+
+}
+
+.apple-submit-btn:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 25px 50px rgba(37,99,235,.35);
+
+}
+
+.apple-submit-btn:active{
+
+    transform:scale(.98);
+
+}
+
+/* Shine Effect */
+
+.apple-submit-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:-120%;
+
+    width:50%;
+
+    height:100%;
+
+    background:
+
+        rgba(255,255,255,.28);
+
+    transform:skewX(-25deg);
+
+    transition:.8s;
+
+}
+
+.apple-submit-btn:hover::before{
+
+    left:170%;
+
+}
+
+/* =====================================================
+   NOT NOW BUTTON
+===================================================== */
+
+.apple-notnow-btn{
+
+    background:none;
+
+    border:none;
+
+    color:#2563EB;
+
+    font-size:17px;
+
+    font-weight:500;
+
+    cursor:pointer;
+
+    margin-top:6px;
+
+}
+
+.apple-notnow-btn:hover{
+
+    text-decoration:underline;
+
+}
+/* =====================================================
+   POPUP ANIMATION
+===================================================== */
 
 @keyframes popupFade{
 
@@ -1944,723 +2161,181 @@ ANIMATIONS
 
 }
 /* =====================================================
-   STARS
+   SUBMIT BUTTON
 ===================================================== */
 
-.rating-stars{
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    gap:14px;
-
-    margin:34px 0 28px;
-
-}
-
-.rating-stars .star{
-
-    width:62px;
-
-    height:62px;
-
-    border-radius:18px;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    cursor:pointer;
-
-    user-select:none;
-
-    font-size:34px;
-
-    color:#CBD5E1;
-
-    background:#F8FAFC;
-
-    border:2px solid #E2E8F0;
-
-    transition:.30s ease;
-
-}
-
-.rating-stars .star:hover{
-
-    transform:translateY(-8px) scale(1.08);
-
-}
-
-.rating-stars .star.active{
-
-    color:#FACC15;
-
-    background:linear-gradient(
-        135deg,
-        #FEF3C7,
-        #FFF8E1
-    );
-
-    border-color:#FACC15;
-
-    box-shadow:
-        0 14px 35px rgba(250,204,21,.30);
-
-}
-
-/* =====================================================
-FEEDBACK
-===================================================== */
-
-.rating-feedback{
+.apple-submit-btn{
 
     width:100%;
 
-    min-height:130px;
-
-    margin-top:12px;
-
-    padding:18px 20px;
-
-    resize:none;
-
-    outline:none;
-
-    border-radius:20px;
-
-    border:2px solid #E2E8F0;
-
-    background:#fff;
-
-    font-size:15px;
-
-    color:#0F172A;
-
-    line-height:1.8;
-
-    transition:.30s;
-
-}
-
-.rating-feedback:focus{
-
-    border-color:#2563EB;
-
-    box-shadow:
-
-        0 0 0 5px rgba(37,99,235,.10),
-
-        0 15px 35px rgba(37,99,235,.10);
-
-}
-
-.rating-feedback::placeholder{
-
-    color:#94A3B8;
-
-}
-
-/* =====================================================
-BUTTON AREA
-===================================================== */
-
-.rating-actions{
-
-    display:flex;
-
-    gap:16px;
-
-    margin-top:28px;
-
-}
-
-/* ==========================================
-SUBMIT
-========================================== */
-
-.rating-actions .btn-full{
-
-    flex:1;
-
-    height:58px;
+    height:56px;
 
     border:none;
 
     border-radius:18px;
 
+    background:
+        linear-gradient(
+            135deg,
+            #2563EB,
+            #1D4ED8
+        );
+
+    color:#FFFFFF;
+
     font-size:16px;
 
     font-weight:700;
 
-    transition:.30s;
+    letter-spacing:.3px;
 
-}
-
-.rating-actions .btn-full:first-child{
-
-    color:#fff;
-
-    background:
-
-    linear-gradient(
-        135deg,
-        #2563EB,
-        #1D4ED8
-    );
+    cursor:pointer;
 
     box-shadow:
+        0 18px 40px rgba(37,99,235,.28);
 
-        0 16px 35px rgba(37,99,235,.25);
-
-}
-
-.rating-actions .btn-full:first-child:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:
-
-        0 22px 50px rgba(37,99,235,.35);
-
-}
-
-/* ==========================================
-SKIP
-========================================== */
-
-.rating-actions .secondary-btn{
-
-    background:#fff;
-
-    border:2px solid #E2E8F0;
-
-    color:#475569;
-
-}
-
-.rating-actions .secondary-btn:hover{
-
-    border-color:#2563EB;
-
-    color:#2563EB;
-
-    transform:translateY(-3px);
-
-}
-
-/* ==========================================
-DISABLED
-========================================== */
-
-.rating-actions .btn-full:disabled{
-
-    opacity:.55;
-
-    cursor:not-allowed;
-
-    transform:none;
-
-    box-shadow:none;
-
-}
-/* =====================================================
-   SAVING OVERLAY
-===================================================== */
-
-.saving-overlay{
-
-    position:fixed;
-
-    inset:0;
-
-    z-index:10000;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    background:rgba(15,23,42,.55);
-
-    backdrop-filter:blur(12px);
-
-    animation:overlayFade .3s ease;
-
-}
-
-/* =====================================================
-LOADER CARD
-===================================================== */
-
-.saving-card{
+    transition:.30s ease;
 
     position:relative;
 
     overflow:hidden;
 
-    width:100%;
-
-    max-width:470px;
-
-    padding:42px;
-
-    border-radius:30px;
-
-    text-align:center;
-
-    background:
-        linear-gradient(
-            180deg,
-            #FFFFFF,
-            #FBFDFF
-        );
-
-    border:1px solid #E2E8F0;
-
-    box-shadow:
-        0 35px 90px rgba(15,23,42,.18);
-
-    animation:loaderScale .35s ease;
+    margin-bottom:18px;
 
 }
 
-.saving-card::before{
-
-    content:"";
-
-    position:absolute;
-
-    left:0;
-
-    top:0;
-
-    width:100%;
-
-    height:6px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #2563EB,
-            #22C55E
-        );
-
-}
-
-/* =====================================================
-SPINNER
-===================================================== */
-
-.saving-spinner{
-
-    width:90px;
-
-    height:90px;
-
-    margin:0 auto 24px;
-
-    border-radius:50%;
-
-    border:7px solid #E2E8F0;
-
-    border-top-color:#2563EB;
-
-    border-right-color:#22C55E;
-
-    animation:savingSpin .9s linear infinite;
-
-}
-
-@keyframes savingSpin{
-
-    to{
-
-        transform:rotate(360deg);
-
-    }
-
-}
-
-/* =====================================================
-TEXT
-===================================================== */
-
-.saving-card h2{
-
-    margin:0;
-
-    font-size:30px;
-
-    font-weight:900;
-
-    color:#0F172A;
-
-}
-
-.saving-card p{
-
-    margin:14px 0 28px;
-
-    color:#64748B;
-
-    font-size:15px;
-
-    line-height:1.8;
-
-}
-
-/* =====================================================
-PROGRESS BAR
-===================================================== */
-
-.saving-progress{
-
-    width:100%;
-
-    height:10px;
-
-    overflow:hidden;
-
-    border-radius:999px;
-
-    background:#E2E8F0;
-
-}
-
-.saving-progress-fill{
-
-    height:100%;
-
-    width:100%;
-
-    border-radius:999px;
-
-    background:
-        linear-gradient(
-            90deg,
-            #2563EB,
-            #22C55E
-        );
-
-    animation:progressFill 2.5s linear;
-
-}
-
-@keyframes progressFill{
-
-    from{
-
-        width:0;
-
-    }
-
-    to{
-
-        width:100%;
-
-    }
-
-}
-
-/* =====================================================
-ANIMATION
-===================================================== */
-
-@keyframes overlayFade{
-
-    from{
-
-        opacity:0;
-
-    }
-
-    to{
-
-        opacity:1;
-
-    }
-
-}
-
-@keyframes loaderScale{
-
-    from{
-
-        opacity:0;
-
-        transform:scale(.9);
-
-    }
-
-    to{
-
-        opacity:1;
-
-        transform:scale(1);
-
-    }
-
-}
-/* =====================================================
-   MICRO INTERACTIONS
-===================================================== */
-
-.rating-popup-card,
-.saving-card{
-
-    will-change:transform;
-
-}
-
-.rating-popup-card:hover{
+.apple-submit-btn:hover{
 
     transform:translateY(-3px);
 
-}
-
-/* ==========================================
-STAR PULSE
-========================================== */
-
-.rating-stars .star.active{
-
-    animation:starPulse .45s ease;
+    box-shadow:
+        0 25px 50px rgba(37,99,235,.35);
 
 }
 
-@keyframes starPulse{
+.apple-submit-btn:active{
 
-    0%{
-
-        transform:scale(.8);
-
-    }
-
-    50%{
-
-        transform:scale(1.18);
-
-    }
-
-    100%{
-
-        transform:scale(1);
-
-    }
+    transform:scale(.98);
 
 }
 
-/* ==========================================
-BUTTON SHINE
-========================================== */
+/* Shine Effect */
 
-.rating-actions .btn-full{
-
-    position:relative;
-
-    overflow:hidden;
-
-}
-
-.rating-actions .btn-full::before{
+.apple-submit-btn::before{
 
     content:"";
 
     position:absolute;
 
-    left:-130%;
-
     top:0;
+
+    left:-120%;
 
     width:50%;
 
     height:100%;
 
-    transform:skewX(-25deg);
+    background:
 
-    background:rgba(255,255,255,.28);
+        rgba(255,255,255,.28);
+
+    transform:skewX(-25deg);
 
     transition:.8s;
 
 }
 
-.rating-actions .btn-full:hover::before{
+.apple-submit-btn:hover::before{
 
-    left:180%;
-
-}
-
-/* ==========================================
-TEXTAREA SCROLLBAR
-========================================== */
-
-.rating-feedback::-webkit-scrollbar{
-
-    width:8px;
+    left:170%;
 
 }
 
-.rating-feedback::-webkit-scrollbar-thumb{
+/* =====================================================
+   NOT NOW BUTTON
+===================================================== */
 
-    background:#CBD5E1;
+.apple-notnow-btn{
 
-    border-radius:999px;
+    background:none;
 
-}
+    border:none;
 
-.rating-feedback::-webkit-scrollbar-thumb:hover{
+    color:#64748B;
 
-    background:#94A3B8;
+    font-size:15px;
 
-}
+    font-weight:600;
 
-/* ==========================================
-POPUP SHADOW GLOW
-========================================== */
+    cursor:pointer;
 
-.rating-popup-card{
-
-    box-shadow:
-
-        0 35px 90px rgba(15,23,42,.18),
-
-        0 0 60px rgba(37,99,235,.08);
+    transition:.25s;
 
 }
 
-.saving-card{
+.apple-notnow-btn:hover{
 
-    box-shadow:
+    color:#0F172A;
 
-        0 35px 90px rgba(15,23,42,.18),
-
-        0 0 60px rgba(34,197,94,.08);
+    text-decoration:underline;
 
 }
 
-/* ==========================================
-SMOOTH TRANSITIONS
-========================================== */
+/* =====================================================
+   POPUP ANIMATION
+===================================================== */
 
-.rating-popup-card *,
+@keyframes popupFade{
 
-.saving-card *{
+    from{
 
-    transition:.25s ease;
+        opacity:0;
 
-}
+    }
 
-/* ==========================================
-RESPONSIVE
-========================================== */
+    to{
 
-@media(max-width:768px){
+        opacity:1;
 
-.rating-popup-card{
-
-padding:28px 22px;
-
-border-radius:24px;
+    }
 
 }
 
-.rating-popup-icon{
+@keyframes popupScale{
 
-width:72px;
+    from{
 
-height:72px;
+        opacity:0;
 
-font-size:36px;
+        transform:scale(.88);
 
-margin-bottom:18px;
+    }
 
-}
+    to{
 
-.rating-popup-card h2{
+        opacity:1;
 
-font-size:28px;
+        transform:scale(1);
 
-}
-
-.rating-popup-card p{
-
-font-size:14px;
+    }
 
 }
 
-.rating-stars{
+@keyframes ratingFloat{
 
-gap:10px;
+    0%,100%{
 
-margin:26px 0;
+        transform:translateY(0);
 
-}
+    }
 
-.rating-stars .star{
+    50%{
 
-width:52px;
+        transform:translateY(-8px);
 
-height:52px;
-
-font-size:28px;
+    }
 
 }
-
-.rating-feedback{
-
-min-height:110px;
-
-font-size:14px;
-
-padding:16px;
-
-}
-
-.rating-actions{
-
-flex-direction:column;
-
-}
-
-.rating-actions .btn-full{
-
-width:100%;
-
-height:54px;
-
-}
-
-.saving-card{
-
-max-width:92%;
-
-padding:30px 22px;
-
-}
-
-.saving-spinner{
-
-width:72px;
-
-height:72px;
-
-}
-
-.saving-card h2{
-
-font-size:24px;
-
-}
-
-}
-
 /* ==========================================
 SMALL DEVICES
 ========================================== */

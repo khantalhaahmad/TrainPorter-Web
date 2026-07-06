@@ -6,6 +6,7 @@ import Badge from '../../components/ui/Badge';
 import './DashboardPage.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import luggageImg from "../../assets/luggage1.png";
 const DashboardPage = () => {
   const navigate = useNavigate();
   const [dashboardData, setDashboardData] = useState(null);
@@ -446,54 +447,71 @@ const hasActiveBooking =
 
   ) : (
 
-    <Card className="active-booking-card no-booking">
+    <Card
+    className="active-booking-card"
+    padding="none"
+>
 
-      <div className="empty-booking">
+    <div className="no-booking-card">
 
-        <div className="empty-icon">
-          🚂
+        <div className="no-booking-left">
+
+            <div className="empty-icon">
+                
+            </div>
+
+            <h2>No Active Booking</h2>
+
+            <p>
+                You currently don't have any active porter bookings.
+            </p>
+
+            <Button
+                className="book-btn"
+                onClick={() => navigate("/book")}
+            >
+                🧳 Book a Porter
+            </Button>
+
         </div>
 
-        <h2>
-          No Active Booking
-        </h2>
+        <div className="no-booking-right">
 
-        <p>
-          You currently don't have any active porter bookings.
-        </p>
+            <div className="luggage-bg">
 
-        <Button
-          onClick={() => navigate('/book')}
-        >
-          Book a Porter
-        </Button>
+                <img
+                    src={luggageImg}
+                    alt="Luggage"
+                    className="luggage-image"
+                />
 
-      </div>
+            </div>
 
-    </Card>
+        </div>
 
+    </div>
+
+</Card>
   )}
 
   {/* QUICK ACTIONS */}
 
   <Card className="quick-actions-card">
 
-    <h3>
-      Quick Actions
-    </h3>
+  <h3>Quick Actions</h3>
 
-    <div className="quick-grid">
+  <div className="quick-grid">
 
-      <button>📜 History</button>
-      <button>🎧 Support</button>
-      <button>👤 Profile</button>
-      <button>💳 Refunds</button>
-      <button>⭐ Reviews</button>
-      <button>⚙ Settings</button>
+    <button>📜 History</button>
+    <button>🎧 Support</button>
+    <button>👤 Profile</button>
+    <button>💳 Refunds</button>
+    <button>⭐ Reviews</button>
+    <button>⚙ Settings</button>
 
-    </div>
+  </div>
 
-  </Card>
+</Card>
 
 </div>
 
@@ -502,55 +520,46 @@ const hasActiveBooking =
           <div className="right-section">
 
            
-            <Card className="sidebar-card">
+           <Card className="sidebar-card">
 
-              <h3>
-                Recent Activity
-              </h3>
+  <h3>Recent Activity</h3>
 
-              <div className="activity-list">
+  <div className="activity-list">
 
-              {dashboardData?.recentActivities
-  ?.slice(0, 3)
-  .map((activity) => (
-    <div
-      key={activity._id}
-      className="activity-item"
-    >
-      <div className="activity-icon">
-        📌
-      </div>
+    {dashboardData?.recentActivities
+      ?.slice(0, 3)
+      .map((activity) => (
+        <div
+          key={activity._id}
+          className="activity-item"
+        >
+          <div className="activity-icon">
+            📌
+          </div>
 
-      <div>
-        <strong>
-          {activity.title}
-        </strong>
+          <div>
+            <strong>{activity.title}</strong>
 
-        <p>
-          {activity.description}
-        </p>
+            <p>{activity.description}</p>
 
-        <span>
-          {new Date(
-            activity.createdAt
-          ).toLocaleString()}
-        </span>
-      </div>
-    </div>
-  )
-)}
+            <span>
+              {new Date(activity.createdAt).toLocaleString()}
+            </span>
+          </div>
+        </div>
+      ))}
 
-              </div>
+  </div>
 
-              <Button
-                variant="ghost"
-                className="full-btn"
-                onClick={() => navigate('/history')}
-              >
-                View All History
-              </Button>
+  <Button
+    variant="ghost"
+    className="full-btn"
+    onClick={() => navigate('/history')}
+  >
+    View All History
+  </Button>
 
-            </Card>
+</Card>
 
           </div>
 

@@ -23,7 +23,7 @@ import AuthDrawer from './components/AuthDrawer';
 import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 import BecomePorterApplyPage from './modules/porter/BecomePorterApplyPage';
-
+import ScrollToTop from "./components/ScrollToTop";
 function App() {
   const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
 
@@ -32,13 +32,17 @@ function App() {
 
   return (
     <Router>
-      <div className="app-wrapper">
-        <AuthDrawer
-          isOpen={isAuthDrawerOpen}
-          onClose={closeAuthDrawer}
-        />
 
-        <Routes>
+  <ScrollToTop />
+
+  <div className="app-wrapper">
+
+    <AuthDrawer
+      isOpen={isAuthDrawerOpen}
+      onClose={closeAuthDrawer}
+    />
+
+    <Routes>
 
           {/* Home */}
           <Route

@@ -256,9 +256,9 @@ onClick={() => setShowRatingPopup(true)}
 
 <div className="rating-popup-overlay">
 
-    <div className="rating-popup-card">
+    <div className="apple-rating-popup">
 
-        <div className="rating-popup-icon">
+        <div className="apple-rating-icon">
 
             ⭐
 
@@ -272,11 +272,11 @@ onClick={() => setShowRatingPopup(true)}
 
         <p>
 
-            Your feedback helps us improve the TrainPorter experience.
+            How was your luggage service?
 
         </p>
 
-        <div className="rating-stars">
+        <div className="apple-stars">
 
             {[1,2,3,4,5].map((star)=>(
 
@@ -284,7 +284,7 @@ onClick={() => setShowRatingPopup(true)}
 
                     key={star}
 
-                    className={`star ${
+                    className={`apple-star ${
                         star <= (hoverRating || rating)
                         ? "active"
                         : ""
@@ -312,59 +312,60 @@ onClick={() => setShowRatingPopup(true)}
 
         </div>
 
-        <textarea
+        {rating > 0 && (
 
-            className="rating-feedback"
+            <>
 
-            rows="4"
+                <textarea
 
-            placeholder="Tell us about your experience (optional)..."
+                    className="apple-feedback"
 
-            value={feedback}
+                    rows="3"
 
-            onChange={(e)=>
-                setFeedback(e.target.value)
-            }
+                    placeholder="Tell us about your experience (optional)..."
 
-        />
+                    value={feedback}
 
-        <div className="rating-actions">
+                    onChange={(e)=>
+                        setFeedback(e.target.value)
+                    }
 
-            <Button
+                />
 
-                className="btn-full"
+                <Button
 
-                onClick={handleSubmitRating}
+                    className="apple-submit-btn"
 
-                disabled={rating===0}
+                    onClick={handleSubmitRating}
 
-            >
+                >
 
-                ⭐ Submit Review
+                    Submit Review
 
-            </Button>
+                </Button>
 
-            <Button
+            </>
 
-                variant="secondary"
+        )}
 
-                className="btn-full secondary-btn"
+        <button
 
-                onClick={handleSkipRating}
+            className="apple-notnow-btn"
 
-            >
+            onClick={handleSkipRating}
 
-                Skip
+        >
 
-            </Button>
+            Not Now
 
-        </div>
+        </button>
 
     </div>
 
 </div>
 
 )}
+
 {isSavingReview && (
 
 <div className="saving-overlay">
