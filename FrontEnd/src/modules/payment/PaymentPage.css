@@ -765,7 +765,7 @@ SUCCESS ICON
 
     height:110px;
 
-    margin:0 auto 24px;
+    margin:0 auto 8px;
 
     border-radius:50%;
 
@@ -817,7 +817,7 @@ SUCCESS TITLE
 
     margin:0;
 
-    font-size:46px;
+    font-size:30px;
 
     font-weight:900;
 
@@ -839,11 +839,13 @@ SUCCESS TITLE
 
     align-items:center;
 
-    gap:8px;
+    justify-content:center;
 
-    margin-top:20px;
+    gap:6px;
 
-    padding:12px 24px;
+    padding:8px 18px;
+
+    margin-top:10px;
 
     border-radius:999px;
 
@@ -853,12 +855,14 @@ SUCCESS TITLE
 
     color:#166534;
 
-    font-size:15px;
+    font-size:13px;
 
     font-weight:700;
 
-}
+    box-shadow:
+        0 8px 18px rgba(34,197,94,.12);
 
+}
 /* =====================================================
 RECEIPT CARD
 ===================================================== */
@@ -1062,11 +1066,13 @@ TOTAL
 
 .premium-line-total{
 
-    margin-top:18px;
+    margin-top:14px;
 
-    padding:22px;
+    padding:14px 18px;
 
-    border-radius:20px;
+    min-height:70px;
+
+    border-radius:16px;
 
     display:flex;
 
@@ -1082,13 +1088,18 @@ TOTAL
 
     color:#fff;
 
+    box-shadow:
+        0 12px 30px rgba(37,99,235,.22);
+
 }
 
 .premium-line-total span{
 
-    font-size:15px;
+    font-size:13px;
 
     font-weight:600;
+
+    opacity:.9;
 
 }
 
@@ -1098,9 +1109,11 @@ TOTAL
 
     color:#fff;
 
-    font-size:40px;
+    font-size:28px;
 
     font-weight:900;
+
+    line-height:1;
 
 }
 
@@ -1545,5 +1558,1151 @@ RESPONSIVE
         font-size:15px;
 
     }
+
+}
+/* ==========================================
+PAYMENT LOADER
+========================================== */
+
+.payment-loader-page{
+
+    min-height:80vh;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.payment-loader-card{
+
+    width:420px;
+
+    padding:40px;
+
+    text-align:center;
+
+    border-radius:28px;
+
+    background:#fff;
+
+    border:1px solid #E2E8F0;
+
+    box-shadow:
+        0 25px 60px rgba(15,23,42,.10);
+
+}
+
+.payment-loader-spinner{
+
+    width:78px;
+
+    height:78px;
+
+    margin:0 auto 26px;
+
+    border-radius:50%;
+
+    border:7px solid #E2E8F0;
+
+    border-top-color:#2563EB;
+
+    animation:paymentSpin .9s linear infinite;
+
+}
+
+@keyframes paymentSpin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+.payment-loader-card h2{
+
+    margin-bottom:10px;
+
+    font-size:28px;
+
+    color:#0F172A;
+
+}
+
+.payment-loader-card p{
+
+    color:#64748B;
+
+    line-height:1.7;
+
+}
+
+.loader-progress{
+
+    margin-top:30px;
+
+    height:10px;
+
+    background:#E2E8F0;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+
+.loader-progress-fill{
+
+    height:100%;
+
+    width:100%;
+
+    background:linear-gradient(
+        90deg,
+        #2563EB,
+        #22C55E
+    );
+
+    animation:loaderBar 3s linear;
+
+}
+
+@keyframes loaderBar{
+
+    from{
+
+        width:0;
+
+    }
+
+    to{
+
+        width:100%;
+
+    }
+
+}
+/* =====================================================
+   RATING POPUP OVERLAY
+===================================================== */
+
+.rating-popup-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:9999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:24px;
+
+    background:rgba(15,23,42,.45);
+
+    backdrop-filter:blur(12px);
+
+    animation:popupFade .35s ease;
+
+}
+
+/* ==========================================
+POPUP CARD
+========================================== */
+
+.rating-popup-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    width:100%;
+
+    max-width:560px;
+
+    padding:42px;
+
+    border-radius:30px;
+
+    background:
+    linear-gradient(
+        180deg,
+        #FFFFFF,
+        #FBFDFF);
+
+    border:1px solid #E7EEF8;
+
+    box-shadow:
+
+        0 35px 90px rgba(15,23,42,.18);
+
+    animation:popupScale .35s ease;
+
+}
+
+/* Top Gradient */
+
+.rating-popup-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:6px;
+
+    background:
+
+    linear-gradient(
+
+        90deg,
+
+        #2563EB,
+
+        #3B82F6,
+
+        #22C55E
+
+    );
+
+}
+
+/* Decorative Glow */
+
+.rating-popup-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:-100px;
+
+    top:-100px;
+
+    width:220px;
+
+    height:220px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+
+        circle,
+
+        rgba(37,99,235,.10),
+
+        transparent
+
+    );
+
+}
+
+/* ==========================================
+ICON
+========================================== */
+
+.rating-popup-icon{
+
+    width:92px;
+
+    height:92px;
+
+    margin:0 auto 22px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:46px;
+
+    color:#fff;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        #F59E0B,
+
+        #FBBF24
+
+    );
+
+    box-shadow:
+
+        0 20px 50px rgba(245,158,11,.30);
+
+    animation:ratingFloat 2.2s ease infinite;
+
+}
+
+/* ==========================================
+TITLE
+========================================== */
+
+.rating-popup-card h2{
+
+    margin:0;
+
+    text-align:center;
+
+    font-size:34px;
+
+    font-weight:900;
+
+    color:#0F172A;
+
+}
+
+.rating-popup-card p{
+
+    margin-top:12px;
+
+    text-align:center;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+    color:#64748B;
+
+}
+
+/* ==========================================
+ANIMATIONS
+========================================== */
+
+@keyframes popupFade{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes popupScale{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.88);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+
+@keyframes ratingFloat{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-8px);
+
+    }
+
+}
+/* =====================================================
+   STARS
+===================================================== */
+
+.rating-stars{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:14px;
+
+    margin:34px 0 28px;
+
+}
+
+.rating-stars .star{
+
+    width:62px;
+
+    height:62px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    user-select:none;
+
+    font-size:34px;
+
+    color:#CBD5E1;
+
+    background:#F8FAFC;
+
+    border:2px solid #E2E8F0;
+
+    transition:.30s ease;
+
+}
+
+.rating-stars .star:hover{
+
+    transform:translateY(-8px) scale(1.08);
+
+}
+
+.rating-stars .star.active{
+
+    color:#FACC15;
+
+    background:linear-gradient(
+        135deg,
+        #FEF3C7,
+        #FFF8E1
+    );
+
+    border-color:#FACC15;
+
+    box-shadow:
+        0 14px 35px rgba(250,204,21,.30);
+
+}
+
+/* =====================================================
+FEEDBACK
+===================================================== */
+
+.rating-feedback{
+
+    width:100%;
+
+    min-height:130px;
+
+    margin-top:12px;
+
+    padding:18px 20px;
+
+    resize:none;
+
+    outline:none;
+
+    border-radius:20px;
+
+    border:2px solid #E2E8F0;
+
+    background:#fff;
+
+    font-size:15px;
+
+    color:#0F172A;
+
+    line-height:1.8;
+
+    transition:.30s;
+
+}
+
+.rating-feedback:focus{
+
+    border-color:#2563EB;
+
+    box-shadow:
+
+        0 0 0 5px rgba(37,99,235,.10),
+
+        0 15px 35px rgba(37,99,235,.10);
+
+}
+
+.rating-feedback::placeholder{
+
+    color:#94A3B8;
+
+}
+
+/* =====================================================
+BUTTON AREA
+===================================================== */
+
+.rating-actions{
+
+    display:flex;
+
+    gap:16px;
+
+    margin-top:28px;
+
+}
+
+/* ==========================================
+SUBMIT
+========================================== */
+
+.rating-actions .btn-full{
+
+    flex:1;
+
+    height:58px;
+
+    border:none;
+
+    border-radius:18px;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    transition:.30s;
+
+}
+
+.rating-actions .btn-full:first-child{
+
+    color:#fff;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        #2563EB,
+        #1D4ED8
+    );
+
+    box-shadow:
+
+        0 16px 35px rgba(37,99,235,.25);
+
+}
+
+.rating-actions .btn-full:first-child:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 22px 50px rgba(37,99,235,.35);
+
+}
+
+/* ==========================================
+SKIP
+========================================== */
+
+.rating-actions .secondary-btn{
+
+    background:#fff;
+
+    border:2px solid #E2E8F0;
+
+    color:#475569;
+
+}
+
+.rating-actions .secondary-btn:hover{
+
+    border-color:#2563EB;
+
+    color:#2563EB;
+
+    transform:translateY(-3px);
+
+}
+
+/* ==========================================
+DISABLED
+========================================== */
+
+.rating-actions .btn-full:disabled{
+
+    opacity:.55;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+    box-shadow:none;
+
+}
+/* =====================================================
+   SAVING OVERLAY
+===================================================== */
+
+.saving-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:10000;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(15,23,42,.55);
+
+    backdrop-filter:blur(12px);
+
+    animation:overlayFade .3s ease;
+
+}
+
+/* =====================================================
+LOADER CARD
+===================================================== */
+
+.saving-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    width:100%;
+
+    max-width:470px;
+
+    padding:42px;
+
+    border-radius:30px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            180deg,
+            #FFFFFF,
+            #FBFDFF
+        );
+
+    border:1px solid #E2E8F0;
+
+    box-shadow:
+        0 35px 90px rgba(15,23,42,.18);
+
+    animation:loaderScale .35s ease;
+
+}
+
+.saving-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:0;
+
+    width:100%;
+
+    height:6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563EB,
+            #22C55E
+        );
+
+}
+
+/* =====================================================
+SPINNER
+===================================================== */
+
+.saving-spinner{
+
+    width:90px;
+
+    height:90px;
+
+    margin:0 auto 24px;
+
+    border-radius:50%;
+
+    border:7px solid #E2E8F0;
+
+    border-top-color:#2563EB;
+
+    border-right-color:#22C55E;
+
+    animation:savingSpin .9s linear infinite;
+
+}
+
+@keyframes savingSpin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+/* =====================================================
+TEXT
+===================================================== */
+
+.saving-card h2{
+
+    margin:0;
+
+    font-size:30px;
+
+    font-weight:900;
+
+    color:#0F172A;
+
+}
+
+.saving-card p{
+
+    margin:14px 0 28px;
+
+    color:#64748B;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+}
+
+/* =====================================================
+PROGRESS BAR
+===================================================== */
+
+.saving-progress{
+
+    width:100%;
+
+    height:10px;
+
+    overflow:hidden;
+
+    border-radius:999px;
+
+    background:#E2E8F0;
+
+}
+
+.saving-progress-fill{
+
+    height:100%;
+
+    width:100%;
+
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #2563EB,
+            #22C55E
+        );
+
+    animation:progressFill 2.5s linear;
+
+}
+
+@keyframes progressFill{
+
+    from{
+
+        width:0;
+
+    }
+
+    to{
+
+        width:100%;
+
+    }
+
+}
+
+/* =====================================================
+ANIMATION
+===================================================== */
+
+@keyframes overlayFade{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
+
+@keyframes loaderScale{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.9);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+
+    }
+
+}
+/* =====================================================
+   MICRO INTERACTIONS
+===================================================== */
+
+.rating-popup-card,
+.saving-card{
+
+    will-change:transform;
+
+}
+
+.rating-popup-card:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/* ==========================================
+STAR PULSE
+========================================== */
+
+.rating-stars .star.active{
+
+    animation:starPulse .45s ease;
+
+}
+
+@keyframes starPulse{
+
+    0%{
+
+        transform:scale(.8);
+
+    }
+
+    50%{
+
+        transform:scale(1.18);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+/* ==========================================
+BUTTON SHINE
+========================================== */
+
+.rating-actions .btn-full{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.rating-actions .btn-full::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-130%;
+
+    top:0;
+
+    width:50%;
+
+    height:100%;
+
+    transform:skewX(-25deg);
+
+    background:rgba(255,255,255,.28);
+
+    transition:.8s;
+
+}
+
+.rating-actions .btn-full:hover::before{
+
+    left:180%;
+
+}
+
+/* ==========================================
+TEXTAREA SCROLLBAR
+========================================== */
+
+.rating-feedback::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.rating-feedback::-webkit-scrollbar-thumb{
+
+    background:#CBD5E1;
+
+    border-radius:999px;
+
+}
+
+.rating-feedback::-webkit-scrollbar-thumb:hover{
+
+    background:#94A3B8;
+
+}
+
+/* ==========================================
+POPUP SHADOW GLOW
+========================================== */
+
+.rating-popup-card{
+
+    box-shadow:
+
+        0 35px 90px rgba(15,23,42,.18),
+
+        0 0 60px rgba(37,99,235,.08);
+
+}
+
+.saving-card{
+
+    box-shadow:
+
+        0 35px 90px rgba(15,23,42,.18),
+
+        0 0 60px rgba(34,197,94,.08);
+
+}
+
+/* ==========================================
+SMOOTH TRANSITIONS
+========================================== */
+
+.rating-popup-card *,
+
+.saving-card *{
+
+    transition:.25s ease;
+
+}
+
+/* ==========================================
+RESPONSIVE
+========================================== */
+
+@media(max-width:768px){
+
+.rating-popup-card{
+
+padding:28px 22px;
+
+border-radius:24px;
+
+}
+
+.rating-popup-icon{
+
+width:72px;
+
+height:72px;
+
+font-size:36px;
+
+margin-bottom:18px;
+
+}
+
+.rating-popup-card h2{
+
+font-size:28px;
+
+}
+
+.rating-popup-card p{
+
+font-size:14px;
+
+}
+
+.rating-stars{
+
+gap:10px;
+
+margin:26px 0;
+
+}
+
+.rating-stars .star{
+
+width:52px;
+
+height:52px;
+
+font-size:28px;
+
+}
+
+.rating-feedback{
+
+min-height:110px;
+
+font-size:14px;
+
+padding:16px;
+
+}
+
+.rating-actions{
+
+flex-direction:column;
+
+}
+
+.rating-actions .btn-full{
+
+width:100%;
+
+height:54px;
+
+}
+
+.saving-card{
+
+max-width:92%;
+
+padding:30px 22px;
+
+}
+
+.saving-spinner{
+
+width:72px;
+
+height:72px;
+
+}
+
+.saving-card h2{
+
+font-size:24px;
+
+}
+
+}
+
+/* ==========================================
+SMALL DEVICES
+========================================== */
+
+@media(max-width:480px){
+
+.rating-popup-card{
+
+padding:24px 18px;
+
+}
+
+.rating-stars{
+
+gap:8px;
+
+}
+
+.rating-stars .star{
+
+width:46px;
+
+height:46px;
+
+font-size:24px;
+
+}
+
+.rating-feedback{
+
+min-height:100px;
+
+}
+
+.saving-spinner{
+
+width:64px;
+
+height:64px;
+
+border-width:6px;
+
+}
 
 }

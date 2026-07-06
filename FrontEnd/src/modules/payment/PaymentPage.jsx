@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DashboardLayout from '../../layouts/DashboardLayout';
 import Button from '../../components/ui/Button';
@@ -10,13 +10,135 @@ const PaymentPage = () => {
     const navigate = useNavigate();
     const [isSuccess, setIsSuccess] = useState(false);
     const [method, setMethod] = useState('');
+    const [showRatingPopup, setShowRatingPopup] = useState(false);
+    const [rating, setRating] = useState(0);
+    const [feedback, setFeedback] = useState("");
+    const [isSavingReview, setIsSavingReview] = useState(false);
+    const [hoverRating, setHoverRating] = useState(0);
+    const booking = React.useMemo(() => {
 
+    return JSON.parse(
+        localStorage.getItem("currentBooking")
+    );
+
+}, []);
+
+useEffect(() => {
+
+    if (!booking) {
+
+        navigate("/history", {
+            replace: true
+        });
+
+    }
+
+}, [booking, navigate]);
+    const transactionId =`TP-${Date.now()}`;
+    const [paymentTime, setPaymentTime] = useState('');
+    const [isProcessing, setIsProcessing] = useState(false);
     const handlePayment = (selectedMethod) => {
-        setMethod(selectedMethod);
-        // Simulate payment processing
-        setTimeout(() => setIsSuccess(true), 2000);
-    };
 
+    setMethod(selectedMethod);
+
+    setIsProcessing(true);
+
+    setTimeout(() => {
+
+        const now = new Date();
+
+        const formatted = now.toLocaleString("en-IN",{
+            day:"2-digit",
+            month:"long",
+            year:"numeric",
+            hour:"2-digit",
+            minute:"2-digit",
+            hour12:true
+        });
+
+        setPaymentTime(formatted);
+
+        setIsProcessing(false);
+
+        setIsSuccess(true);
+
+    },10000);
+
+};
+const handleSubmitRating = () => {
+
+    setShowRatingPopup(false);
+
+    setIsSavingReview(true);
+
+    setTimeout(() => {
+
+        localStorage.removeItem("currentBooking");
+
+        navigate("/history", {
+            replace: true
+        });
+
+    }, 2500);
+
+};
+
+const handleSkipRating = () => {
+
+    setShowRatingPopup(false);
+
+    setIsSavingReview(true);
+
+    setTimeout(() => {
+
+        localStorage.removeItem("currentBooking");
+
+        navigate("/history", {
+            replace: true
+        });
+
+    }, 2500);
+
+};
+
+if (isProcessing) {
+
+    return (
+
+        <DashboardLayout>
+
+            <div className="payment-loader-page">
+
+                <div className="payment-loader-card">
+
+                    <div className="payment-loader-spinner"></div>
+
+                    <h2>
+                        Processing Payment...
+                    </h2>
+
+                    <p>
+
+                        Please wait while we securely
+                        verify your payment.
+
+                    </p>
+
+                    <div className="loader-progress">
+
+                        <div className="loader-progress-fill"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </DashboardLayout>
+
+    );
+
+}
     if (isSuccess) {
         return (
             <DashboardLayout>
@@ -78,25 +200,206 @@ const PaymentPage = () => {
                         <div className="receipt-premium-body">
                             <div className="premium-line">
                                 <span>Transaction ID</span>
-                                <strong>#TP-93847520</strong>
+                                
+<strong>
+
+#{transactionId}
+
+</strong>
                             </div>
                             <div className="premium-line">
-                                <span>Date & Time</span>
-                                <strong>12 June 2024, 04:30 PM</strong>
-                            </div>
+
+    <span>Date & Time</span>
+
+    <strong>
+        {paymentTime}
+    </strong>
+
+</div>
                             <div className="premium-line divider">
                                 <span>Porter Details</span>
-                                <strong>Ramesh Kumar (ID: 420)</strong>
+                                <strong>
+
+{booking?.assignedPorter?.name}
+(ID:
+{booking?.assignedPorter?.porterId})
+
+</strong>
                             </div>
                             <div className="premium-line">
                                 <span>Service</span>
-                                <strong>Luggage Assistance (3 Items)</strong>
+                                <strong>
+
+Luggage Assistance
+(
+{booking?.luggageCount} Items)
+
+</strong>
                             </div>
                             <div className="premium-line-total">
                                 <span>Total Paid</span>
-                                <h2 className="price-text">₹240.00</h2>
+                               <h2 className="price-text">
+
+₹{booking?.amount}
+
+</h2>
                             </div>
+                            <Button
+className="done-btn"
+onClick={() => setShowRatingPopup(true)}
+>
+✅ Done
+</Button>
                         </div>
+                    
+                     {showRatingPopup && (
+
+<div className="rating-popup-overlay">
+
+    <div className="rating-popup-card">
+
+        <div className="rating-popup-icon">
+
+            ⭐
+
+        </div>
+
+        <h2>
+
+            Rate Your Porter
+
+        </h2>
+
+        <p>
+
+            Your feedback helps us improve the TrainPorter experience.
+
+        </p>
+
+        <div className="rating-stars">
+
+            {[1,2,3,4,5].map((star)=>(
+
+                <span
+
+                    key={star}
+
+                    className={`star ${
+                        star <= (hoverRating || rating)
+                        ? "active"
+                        : ""
+                    }`}
+
+                    onMouseEnter={()=>
+                        setHoverRating(star)
+                    }
+
+                    onMouseLeave={()=>
+                        setHoverRating(0)
+                    }
+
+                    onClick={()=>
+                        setRating(star)
+                    }
+
+                >
+
+                    ★
+
+                </span>
+
+            ))}
+
+        </div>
+
+        <textarea
+
+            className="rating-feedback"
+
+            rows="4"
+
+            placeholder="Tell us about your experience (optional)..."
+
+            value={feedback}
+
+            onChange={(e)=>
+                setFeedback(e.target.value)
+            }
+
+        />
+
+        <div className="rating-actions">
+
+            <Button
+
+                className="btn-full"
+
+                onClick={handleSubmitRating}
+
+                disabled={rating===0}
+
+            >
+
+                ⭐ Submit Review
+
+            </Button>
+
+            <Button
+
+                variant="secondary"
+
+                className="btn-full secondary-btn"
+
+                onClick={handleSkipRating}
+
+            >
+
+                Skip
+
+            </Button>
+
+        </div>
+
+    </div>
+
+</div>
+
+)}
+{isSavingReview && (
+
+<div className="saving-overlay">
+
+    <div className="saving-card">
+
+        <div className="saving-spinner">
+
+        </div>
+
+        <h2>
+
+            Saving your feedback...
+
+        </h2>
+
+        <p>
+
+            Please wait while we update your booking history.
+
+        </p>
+
+        <div className="saving-progress">
+
+            <div className="saving-progress-fill">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+)}
 
                         <div className="receipt-premium-footer">
                             <p>Verified by Indian Railways Support</p>
@@ -106,17 +409,9 @@ const PaymentPage = () => {
                     <div className="success-footer-actions">
 
 <Button
-size="lg"
-className="btn-full"
->
-
-⭐ Rate Porter
-
-</Button>
-
-<Button
 variant="secondary"
 className="btn-full secondary-btn"
+onClick={() => window.print()}
 >
 
 📄 Download Receipt
@@ -143,9 +438,8 @@ className="btn-full secondary-btn"
     </h2>
 
     <h1 className="payment-price-hero">
-        ₹240.00
-    </h1>
-
+₹{booking?.amount}
+</h1>
     <div className="payment-security-badge">
 
         <span>🛡 Secure Payment</span>
@@ -249,8 +543,10 @@ hover
     </div>
 
 </Card>
+
                     </div>
                 </div>
+                
 
                 <div className="security-assurance">
                     <div className="assurance-item">
@@ -270,5 +566,7 @@ hover
         </DashboardLayout>
     );
 };
+
+
 
 export default PaymentPage;
