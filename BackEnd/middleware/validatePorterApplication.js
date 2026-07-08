@@ -54,6 +54,10 @@ const validatePorterApplication = [
     .trim()
     .notEmpty()
     .withMessage("State is required."),
+    body("district")
+.trim()
+.notEmpty()
+.withMessage("District is required."),
 
   body("pincode")
     .trim()
@@ -161,6 +165,11 @@ const validatePorterApplication = [
     .withMessage("IFSC code is required.")
     .matches(/^[A-Z]{4}0[A-Z0-9]{6}$/)
     .withMessage("Invalid IFSC code."),
+
+    body("bankName")
+.trim()
+.notEmpty()
+.withMessage("Bank name is required."),
 
   body("upiId")
     .optional({

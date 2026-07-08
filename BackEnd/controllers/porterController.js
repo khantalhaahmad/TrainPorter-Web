@@ -137,6 +137,8 @@ const applyPorter = async (req, res) => {
 
       address,
 
+      district,
+
       city,
 
       state,
@@ -153,9 +155,11 @@ const applyPorter = async (req, res) => {
 
       aadhaarNumber,
 
-      accountHolder,
+    accountHolder,
 
-      accountNumber,
+bankName,
+
+accountNumber,
 
       ifscCode,
 
@@ -192,10 +196,16 @@ const applyPorter = async (req, res) => {
     // ==========================
 
     if (
-      !req.files?.profilePhoto ||
-      !req.files?.aadhaarFront ||
-      !req.files?.aadhaarBack
-    ) {
+  !req.files?.profilePhoto ||
+  !req.files?.aadhaarFront ||
+  !req.files?.aadhaarBack ||
+  !req.files?.railwayLicense
+) {
+  return errorResponse(
+    res,
+    "Profile Photo, Aadhaar Front, Aadhaar Back and Railway License are required."
+  );
+}{
 
       return errorResponse(
         res,
@@ -253,8 +263,11 @@ const applyPorter = async (req, res) => {
       existingApplication.gender = gender;
       existingApplication.dateOfBirth = dateOfBirth;
 
-      existingApplication.address = address;
-      existingApplication.city = city;
+    existingApplication.address = address;
+
+existingApplication.district = district;
+
+existingApplication.city = city;
       existingApplication.state = state;
       existingApplication.pincode = pincode;
 
@@ -273,11 +286,14 @@ const applyPorter = async (req, res) => {
       existingApplication.aadhaarNumber =
         aadhaarNumber;
 
-      existingApplication.accountHolder =
-        accountHolder;
+     existingApplication.accountHolder =
+accountHolder;
 
-      existingApplication.accountNumber =
-        accountNumber;
+existingApplication.bankName =
+bankName;
+
+existingApplication.accountNumber =
+accountNumber;
 
       existingApplication.ifscCode =
         ifscCode;
@@ -349,6 +365,8 @@ const applyPorter = async (req, res) => {
 
         address,
 
+        district,
+
         city,
 
         state,
@@ -365,9 +383,11 @@ const applyPorter = async (req, res) => {
 
         aadhaarNumber,
 
-        accountHolder,
+       accountHolder,
 
-        accountNumber,
+bankName,
+
+accountNumber,
 
         ifscCode,
 
@@ -813,10 +833,13 @@ const updateApplication = async (
     // ==========================================
 
     application.address =
-      address || application.address;
+address;
 
-    application.city =
-      city || application.city;
+application.district =
+district || application.district;
+
+application.city =
+city;
 
     application.state =
       state || application.state;

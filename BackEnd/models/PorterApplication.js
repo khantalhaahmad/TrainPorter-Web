@@ -72,6 +72,11 @@ const porterApplicationSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    district: {
+  type: String,
+  required: true,
+  trim: true,
+},
 
     pincode: {
       type: String,
@@ -147,7 +152,11 @@ const porterApplicationSchema = new mongoose.Schema(
       default: "",
       trim: true,
     },
-
+bankName: {
+  type: String,
+  required: true,
+  trim: true,
+},
     // ==========================
     // Emergency Contact
     // ==========================
