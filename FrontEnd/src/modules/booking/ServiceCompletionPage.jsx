@@ -5,7 +5,9 @@ import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import Input from '../../components/ui/Input';
 import './ServiceCompletionPage.css';
-
+import porterluggage from '../../assets/porter-with-luggage.png';
+import successShield from "../../assets/success-shield.png";
+import walletIcon from "../../assets/wallet.png";
 const ServiceCompletionPage = () => {
 
     const navigate = useNavigate();
@@ -14,7 +16,7 @@ const ServiceCompletionPage = () => {
 
     const [booking, setBooking] =
         useState(null);
-
+const [timeLeft, setTimeLeft] = useState(300); // 5 minutes
     useEffect(() => {
 
         const currentBooking =
@@ -32,7 +34,28 @@ const ServiceCompletionPage = () => {
         setBooking(currentBooking);
 
     }, [navigate]);
+    useEffect(() => {
 
+    if (timeLeft <= 0) return;
+
+    const timer = setInterval(() => {
+
+        setTimeLeft((prev) => prev - 1);
+
+    }, 1000);
+
+    return () => clearInterval(timer);
+
+}, [timeLeft]);
+const formatTime = (seconds) => {
+
+    const mins = Math.floor(seconds / 60);
+
+    const secs = seconds % 60;
+
+    return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+
+};
     const handleCompleteService =
         async () => {
 
@@ -99,21 +122,66 @@ const ServiceCompletionPage = () => {
 
                 <div className="completion-hero">
 
-    <div className="completion-icon-wrapper">
-        📦
+    {/* LEFT HERO IMAGE */}
+
+    <div className="hero-left">
+<img
+    src={porterluggage}
+    alt="Porter"
+/>
+
     </div>
 
-    <h1>
-        Complete Service
-    </h1>
+    {/* CENTER */}
 
-    <div className="hero-subtitle">
+    <div className="hero-center">
 
-        <span>
-            ✔ Verification code shared by your porter
+    
+        <h1>
+            Complete Service
+        </h1>
+
+       <div className="hero-subtitle">
+
+    <span>
+
+        <span className="hero-check">
+
+            ✓
+
         </span>
 
+        Verification code shared by your porter
+
+    </span>
+
+</div>
     </div>
+
+    {/* RIGHT HERO */}
+
+   <div className="hero-right">
+
+    <img
+        src={successShield}
+        alt="Success"
+    />
+
+    <p>
+
+        Your luggage delivery is
+
+        <br/>
+
+        <strong>
+
+            completed successfully!
+
+        </strong>
+
+    </p>
+
+</div>
 
 </div>
 
@@ -128,6 +196,11 @@ const ServiceCompletionPage = () => {
     <div className="otp-title-icon">
         🛡️
     </div>
+    <div className="otp-status">
+
+    🔒 Secure OTP Verification
+
+</div>
 
     <div>
 
@@ -195,6 +268,15 @@ const ServiceCompletionPage = () => {
 
 </div>
 </div>
+<div className="otp-progress">
+
+    <span>
+
+        Delivery Completed
+
+    </span>
+
+</div>
 
 <div className="otp-info">
 
@@ -219,9 +301,11 @@ const ServiceCompletionPage = () => {
                 Expires In
             </small>
 
-            <strong>
-                05:00
-            </strong>
+          <strong className={timeLeft <= 30 ? "timer-danger" : ""}>
+
+    {timeLeft > 0 ? formatTime(timeLeft) : "Expired"}
+
+</strong>
 
         </div>
 
@@ -251,14 +335,28 @@ const ServiceCompletionPage = () => {
 
 </div>
 </div>
-                       <Button
-    size="lg"
-    className="btn-full"
-    disabled={otp.length !== 4}
-    onClick={handleCompleteService}
+<Button
+size="lg"
+className="btn-full"
+disabled={otp.length!==4}
+onClick={handleCompleteService}
 >
 
-    🛡 Verify & Finalize
+<div className="verify-btn-content">
+
+<span>
+
+🛡 Verify & Finalize
+
+</span>
+
+<span>
+
+➜
+
+</span>
+
+</div>
 
 </Button>
 
@@ -286,157 +384,239 @@ const ServiceCompletionPage = () => {
 
 </div>
 
-                        <div className="recap-list">
+                       <div className="recap-list">
 
-                            <div className="recap-row">
+    {/* Porter */}
 
-                                <span>
-                                    Porter Assigned
-                                </span>
+    <div className="recap-row">
 
-                                <strong>
-                                    {
-                                        booking
-                                            ?.assignedPorter
-                                            ?.name
-                                    }
-                                </strong>
+        <div className="row-left">
 
-                            </div>
+            <span className="row-icon">👤</span>
 
-                            <div className="recap-row">
+            <span>Porter Assigned</span>
 
-                                <span>
-                                    Porter ID
-                                </span>
+        </div>
 
-                                <strong>
-                                    {
-                                        booking
-                                            ?.assignedPorter
-                                            ?.porterId
-                                    }
-                                </strong>
+        <strong>
+            {booking?.assignedPorter?.name}
+        </strong>
 
-                            </div>
+    </div>
 
-                            <div className="recap-row">
+    {/* Porter ID */}
 
-                                <span>
-                                    Station
-                                </span>
+    <div className="recap-row">
 
-                                <strong>
-                                    {
-                                        booking
-                                            ?.station
-                                    }
-                                </strong>
+        <div className="row-left">
 
-                            </div>
+            <span className="row-icon">🆔</span>
 
-                            <div className="recap-row">
+            <span>Porter ID</span>
 
-                                <span>
-                                    Coach
-                                </span>
+        </div>
 
-                                <strong>
-                                    {
-                                        booking
-                                            ?.coach
-                                    }
-                                </strong>
+        <strong>
+            {booking?.assignedPorter?.porterId}
+        </strong>
 
-                            </div>
+    </div>
 
-                            <div className="recap-row">
+    {/* Station */}
 
-                                <span>
-                                    Seat Number
-                                </span>
+    <div className="recap-row">
 
-                                <strong>
-                                    {
-                                        booking
-                                            ?.seatNumber
-                                    }
-                                </strong>
+        <div className="row-left">
 
-                            </div>
+            <span className="row-icon">🚉</span>
 
-                            <div className="recap-row">
+            <span>Station</span>
 
-                                <span>
-                                    Luggage Count
-                                </span>
+        </div>
 
-                                <strong>
-                                    {
-                                        booking
-                                            ?.luggageCount
-                                    } Items
-                                </strong>
+        <strong>
+            {booking?.station}
+        </strong>
 
-                            </div>
+    </div>
 
-                            <div className="recap-row">
+    {/* Coach */}
 
-                                <span>
-                                    Booking Status
-                                </span>
+    <div className="recap-row">
 
-                                <strong>
-                                    {booking?.status
-                                        ?.replace(
-                                            '_',
-                                            ' '
-                                        )
-                                        .toUpperCase()}
-                                </strong>
+        <div className="row-left">
 
-                            </div>
+            <span className="row-icon">🚆</span>
 
-                            <div className="recap-row-total">
+            <span>Coach</span>
 
-                                <span>
-                                    Total Amount Due
-                                </span>
+        </div>
 
-                                <h2 className="price-text">
-                                    ₹
-                                    {
-                                        booking?.amount
-                                    }
-                                </h2>
+        <strong>
+            {booking?.coach}
+        </strong>
 
-                            </div>
+    </div>
 
-                        </div>
+    {/* Seat */}
 
-                       <div className="trust-badge-small">
+    <div className="recap-row">
 
-    <span>
-        🔒
-    </span>
+        <div className="row-left">
 
-    <p>
-        Secure Railway Verified Service
-    </p>
+            <span className="row-icon">💺</span>
 
-    <span>
-        ✅
-    </span>
+            <span>Seat Number</span>
+
+        </div>
+
+        <strong>
+            {booking?.seatNumber}
+        </strong>
+
+    </div>
+
+    {/* Luggage */}
+
+    <div className="recap-row">
+
+        <div className="row-left">
+
+            <span className="row-icon">🧳</span>
+
+            <span>Luggage Count</span>
+
+        </div>
+
+        <strong>
+            {booking?.luggageCount} Items
+        </strong>
+
+    </div>
+
+    {/* Status */}
+
+    <div className="recap-row">
+
+        <div className="row-left">
+
+            <span className="row-icon">🟢</span>
+
+            <span>Booking Status</span>
+
+        </div>
+
+        <strong className="status-success">
+
+            {booking?.status
+                ?.replace("_", " ")
+                .toUpperCase()}
+
+        </strong>
+
+    </div>
+
+    {/* Amount */}
+<div className="recap-row-total">
+
+    <div className="amount-label">
+        Total Amount Due
+    </div>
+
+    <div className="amount-price">
+        ₹{booking?.amount}
+    </div>
+
+    <div className="amount-wallet">
+
+        <img
+    src={walletIcon}
+    alt="Wallet"
+/>
+
+    </div>
 
 </div>
-<p className="secure-note">
+</div>
+                       <div className="trust-section">
 
-    🔒 Your data is 100% secure and encrypted
+    <div className="trust-badge-small">
 
-</p>
+        <span>🔒</span>
 
+        <p>Secure Railway Verified Service</p>
+
+        <span>✅</span>
+
+    </div>
+
+    <div className="secure-note">
+
+        🔒 Your data is 100% secure and encrypted
+
+    </div>
+
+</div>
                     </Card>
+<div className="service-features-strip">
 
+    <div className="feature-box">
+
+        <span className="feature-icon">🛡</span>
+
+        <div>
+
+            <h4>Railway Verified</h4>
+
+            <p>Trusted & Secure</p>
+
+        </div>
+
+    </div>
+
+    <div className="feature-box">
+
+        <span className="feature-icon">🔒</span>
+
+        <div>
+
+            <h4>OTP Protection</h4>
+
+            <p>100% Safe</p>
+
+        </div>
+
+    </div>
+
+    <div className="feature-box">
+
+        <span className="feature-icon">📍</span>
+
+        <div>
+
+            <h4>Live Tracking</h4>
+
+            <p>Real-time Updates</p>
+
+        </div>
+
+    </div>
+
+    <div className="feature-box">
+
+        <span className="feature-icon">☂</span>
+
+        <div>
+
+            <h4>Insured Service</h4>
+
+            <p>Complete Protection</p>
+
+        </div>
+
+    </div>
+
+</div>
                 </div>
 
             </div>

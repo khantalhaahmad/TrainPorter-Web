@@ -2105,6 +2105,112 @@ PAYMENT LOADER
     text-decoration:underline;
 
 }
+/* ==========================================
+SAVING OVERLAY
+========================================== */
+
+.saving-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:99999;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:rgba(15,23,42,.35);
+
+    backdrop-filter:blur(6px);
+
+}
+.saving-card{
+
+    width:420px;
+
+    padding:36px;
+
+    text-align:center;
+
+    border-radius:24px;
+
+    background:#fff;
+
+    box-shadow:0 25px 60px rgba(15,23,42,.18);
+
+}
+.saving-spinner{
+
+    width:72px;
+
+    height:72px;
+
+    margin:0 auto 22px;
+
+    border-radius:50%;
+
+    border:7px solid #E2E8F0;
+
+    border-top-color:#2563EB;
+
+    animation:savingSpin .8s linear infinite;
+
+}
+.saving-progress{
+
+    margin-top:24px;
+
+    height:8px;
+
+    background:#E2E8F0;
+
+    border-radius:999px;
+
+    overflow:hidden;
+
+}
+.saving-progress-fill{
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #2563EB,
+        #22C55E
+    );
+
+    animation:savingBar 2.5s linear forwards;
+
+}
+@keyframes savingSpin{
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+@keyframes savingBar{
+
+    from{
+
+        width:0;
+
+    }
+
+    to{
+
+        width:100%;
+
+    }
+
+}
 /* =====================================================
    POPUP ANIMATION
 ===================================================== */

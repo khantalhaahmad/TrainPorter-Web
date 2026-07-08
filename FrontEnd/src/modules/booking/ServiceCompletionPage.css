@@ -97,23 +97,139 @@
 
     position:relative;
 
-    z-index:2;
+    display:flex;
 
-    text-align:center;
+    justify-content:space-between;
 
-    padding:8px 0 24px;
+    align-items:center;
+
+    min-height:150px;
+
+    padding:5px 20px 15px;
+
+    margin-bottom:20px;
 
 }
 
+.hero-left{
+
+    width:320px;
+
+    display:flex;
+
+    justify-content:flex-start;
+
+    align-items:flex-end;
+
+}
+
+.hero-left img{
+
+    width:260px;
+
+    height:auto;
+
+    object-fit:contain;
+
+    transform:translateY(8px);
+
+    animation:heroFloat 3s ease-in-out infinite;
+
+}
+
+.hero-center{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+.hero-right{
+
+    width:180px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
+}
+
+.hero-right img{
+
+    width:70px;
+
+    margin-bottom:10px;
+
+}
+
+.hero-right p{
+
+    margin:0;
+
+    font-size:14px;
+
+    line-height:1.5;
+
+    color:#64748B;
+
+}
+
+.hero-right strong{
+
+    color:#2563EB;
+
+    font-size:15px;
+
+}
+.hero-check{
+
+    width:20px;
+
+    height:20px;
+
+    border-radius:50%;
+
+    background:#22C55E;
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    flex-shrink:0;
+
+}
 /* =====================================================
    ICON
 ===================================================== */
 
 .completion-icon-wrapper{
 
-    width:72px;
+   width:70px;
 
-    height:72px;
+height:70px;
 
     margin:0 auto 14px;
 
@@ -171,11 +287,11 @@
 
     margin:0;
 
-    font-size:42px;
-    margin-bottom:16px;
+    font-size:32px;
+    margin-bottom:10px 0;
     font-weight:800;
 
-    line-height:1.05;
+    line-height:1.1;
 
     background:
 
@@ -214,9 +330,9 @@
 
     align-items:center;
 
-    gap:10px;
+    gap:8px;
 
-    padding:14px 30px;
+    padding:8px 16px;
 
     border-radius:999px;
 
@@ -226,13 +342,9 @@
 
     color:#166534;
 
-    font-size:17px;
+    font-size:13px;
 
-    font-weight:700;
-
-    box-shadow:
-
-        0 12px 35px rgba(34,197,94,.12);
+    font-weight:600;
 
 }
 /* =====================================================
@@ -247,7 +359,11 @@
 
     z-index:2;
 
-    padding:34px;
+   padding:28px;
+
+max-width:520px;
+
+
 
     border-radius:32px;
 
@@ -332,22 +448,18 @@ OTP BOXES
 
     justify-content:center;
 
-    gap:16px;
-
-    margin:28px 0;
+    margin:18px 0;
+gap:12px;
 
 }
 
 /* Box */
 
 .otp-box{
-
-    width:72px;
-
-    height:82px;
-
-    border-radius:20px;
-
+width:58px;
+height:66px;
+font-size:28px;
+border-radius:16px;
     border:2px solid #D9E6F8;
 
     background:#fff;
@@ -357,8 +469,6 @@ OTP BOXES
     align-items:center;
 
     justify-content:center;
-
-    font-size:34px;
 
     font-weight:800;
 
@@ -412,9 +522,8 @@ OTP TITLE
 
     gap:18px;
 
-    padding-bottom:24px;
-
-    margin-bottom:28px;
+    padding-bottom:16px;
+margin-bottom:18px;
 
     border-bottom:1px solid #EEF2F7;
 
@@ -625,7 +734,9 @@ OTP HINT
 
     margin:0;
 
-    padding:18px 20px;
+   padding:12px 15px;
+font-size:13px;
+line-height:1.5;
 
     border-radius:18px;
 
@@ -657,7 +768,23 @@ OTP HINT
     flex-shrink:0;
 
 }
+.timer-danger{
 
+    color:#DC2626;
+
+    animation:blink .8s infinite;
+
+}
+
+@keyframes blink{
+
+    50%{
+
+        opacity:.4;
+
+    }
+
+}
 /* ==========================================
 OTP TIPS
 ========================================== */
@@ -688,7 +815,7 @@ OTP INFO CARDS
 
     gap:14px;
 
-    padding:16px;
+  padding:12px;
 
     border-radius:18px;
 
@@ -716,9 +843,9 @@ OTP INFO CARDS
 
 .tip-icon{
 
-    width:48px;
+    width:40px;
 
-    height:48px;
+    height:40px;
 
     border-radius:14px;
 
@@ -728,7 +855,7 @@ OTP INFO CARDS
 
     justify-content:center;
 
-    font-size:22px;
+    font-size:18px;
 
     background:#EFF6FF;
 
@@ -784,11 +911,11 @@ VERIFY BUTTON
 
     overflow:hidden;
 
-    margin-top:26px;
+    margin-top:18px;
 
     width:100%;
 
-    height:64px;
+    height:54px;
 
     border:none;
 
@@ -803,7 +930,7 @@ VERIFY BUTTON
 
     color:#fff;
 
-    font-size:17px;
+    font-size:16px;
 
     font-weight:700;
 
@@ -909,7 +1036,9 @@ BOTTOM TRUST STRIP
 
     z-index:2;
 
-    padding:34px;
+padding:22px;
+
+max-width:520px;
 
     border-radius:30px;
 
@@ -950,7 +1079,7 @@ HEADER
 
     align-items:center;
 
-    margin-bottom:28px;
+margin-bottom:18px;
 
 }
 
@@ -998,7 +1127,7 @@ HEADER
 
     margin:0;
 
-    font-size:26px;
+   font-size:22px;
 
     font-weight:800;
 
@@ -1030,11 +1159,13 @@ ROWS
 
 .recap-list{
 
-    display:flex;
+    border:1px solid #E5EDF8;
 
-    flex-direction:column;
+    border-radius:18px;
 
-    gap:14px;
+    overflow:hidden;
+
+    background:#fff;
 
 }
 
@@ -1046,21 +1177,85 @@ ROWS
 
     align-items:center;
 
-    padding:16px 18px;
+    padding:15px 18px;
 
-    border-radius:16px;
+    border-bottom:1px solid #EEF2F7;
 
-    background:#F8FAFC;
+    background:#fff;
 
-    border:1px solid #E2E8F0;
+}
 
-    transition:.25s;
+.row-left{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.row-icon{
+
+    width:26px;
+
+    height:26px;
+
+    border-radius:8px;
+
+    background:#EFF6FF;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:14px;
+
+}
+
+.status-success{
+
+color:#16A34A !important;
+
+font-weight:700;
+
+}
+
+.amount-top{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-bottom:6px;
+
+}
+
+.amount-top span{
+
+    font-size:15px;
+
+    font-weight:500;
+
+    color:rgba(255,255,255,.88);
+
+}
+
+.amount-icon{
+
+font-size:28px;
 
 }
 
 .recap-row:hover{
 
-    background:#FFFFFF;
+   background:#F8FBFF;
 
     transform:translateX(4px);
 
@@ -1082,68 +1277,72 @@ ROWS
 
     font-size:15px;
 
+    font-weight:700;
+
     color:#0F172A;
 
-    font-weight:700;
+}
+.recap-row:last-child{
+
+    border-bottom:none;
 
 }
 
 /* =====================================================
 TOTAL
 ===================================================== */
-
 .recap-row-total{
 
-    margin-top:18px;
+    margin-top:16px;
 
-    padding:22px;
+    height:78px;
 
-    border-radius:22px;
+    padding:0 22px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #2563EB,
-            #1D4ED8
-        );
+    display:flex;
 
-    color:#fff;
+    align-items:center;
 
-    text-align:center;
+    justify-content:space-between;
 
-}
+    border-radius:18px;
 
-.recap-row-total span{
+    background:#F8FAFF;
 
-    display:block;
+    border:1.5px solid #D8E7FF;
 
-    opacity:.9;
-
-    font-size:14px;
-
-    margin-bottom:10px;
+    box-shadow:
+        0 8px 22px rgba(37,99,235,.08);
 
 }
 
-.price-text{
+.amount-label{
 
-    margin:0;
+    font-size:18px;
 
-    font-size:40px;
+    font-weight:700;
 
-    font-weight:800;
-
-    color:#fff;
+    color:#0F172A;
 
 }
 
-/* =====================================================
-TRUST BADGE
-===================================================== */
+.amount-price{
 
-.trust-badge-small{
+    font-size:54px;
 
-    margin-top:24px;
+    font-weight:900;
+
+    color:#2563EB;
+
+    line-height:1;
+
+}
+
+.amount-wallet{
+
+    width:56px;
+
+    height:56px;
 
     display:flex;
 
@@ -1151,43 +1350,86 @@ TRUST BADGE
 
     justify-content:center;
 
+    border-radius:16px;
+
+    background:#EEF5FF;
+
+}
+
+.amount-wallet img{
+
+    width:34px;
+
+    height:34px;
+
+    object-fit:contain;
+
+    opacity:.9;
+
+}
+/* =====================================================
+TRUST BADGE
+===================================================== */
+
+.trust-section{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
     gap:12px;
 
-    padding:14px 18px;
+    margin-top:16px;
 
-    border-radius:18px;
+}
+.trust-badge-small{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    padding:14px;
+
+    border-radius:16px;
 
     background:#F0FDF4;
 
     border:1px solid #BBF7D0;
 
-    color:#166534;
-
-    font-size:15px;
+    font-size:13px;
 
     font-weight:700;
 
-}
+    color:#166534;
 
-.trust-badge-small p{
+}
+.secure-note{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
 
     margin:0;
 
-}
+    padding:14px;
 
-/* =====================================================
-SECURE NOTE
-===================================================== */
+    border-radius:16px;
 
-.secure-note{
+    background:#F0FDF4;
 
-    margin-top:16px;
+    border:1px solid #BBF7D0;
 
-    text-align:center;
+    color:#64748B;
 
     font-size:13px;
 
-    color:#64748B;
+    font-weight:600;
 
 }
 /* =====================================================
@@ -1202,7 +1444,11 @@ SECURE NOTE
 
     display:grid;
 
-    grid-template-columns:480px 1fr;
+    grid-template-columns:520px 520px;
+
+justify-content:center;
+
+gap:28px;
 
     gap:32px;
 
@@ -1219,9 +1465,13 @@ CARD ANIMATION
 .otp-verification-card,
 .service-details-card-premium{
 
-    animation:cardFade .55s ease;
-
+    width:100%;
+    max-width:520px;
+    min-height:620px;
+    height:auto;
+ animation:cardFade .55s ease;
 }
+
 
 @keyframes cardFade{
 
@@ -1554,6 +1804,129 @@ gap:6px;
 .price-text{
 
 font-size:30px;
+
+}
+
+}
+/* ===========================================
+BOTTOM FEATURES STRIP
+=========================================== */
+
+.service-features-strip{
+
+    grid-column:1 / -1;
+
+    width:100%;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:18px;
+
+    margin-top:24px;
+
+}
+
+.feature-box{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:#FFFFFF;
+
+    border:1px solid #E5EDF8;
+
+    box-shadow:
+        0 10px 25px rgba(15,23,42,.05);
+
+    transition:.3s;
+
+}
+
+/* Hover */
+
+.feature-box:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#2563EB;
+
+    box-shadow:
+        0 18px 40px rgba(37,99,235,.12);
+
+}
+
+/* =========================================== */
+
+.feature-icon{
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:14px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#EFF6FF;
+
+    font-size:22px;
+
+    flex-shrink:0;
+
+}
+
+/* =========================================== */
+
+.feature-box h4{
+
+    margin:0;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#0F172A;
+
+}
+
+.feature-box p{
+
+    margin:4px 0 0;
+
+    font-size:12px;
+
+    color:#64748B;
+
+}
+
+@media(max-width:992px){
+
+.service-features-strip{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:600px){
+
+.service-features-strip{
+
+grid-template-columns:1fr;
 
 }
 

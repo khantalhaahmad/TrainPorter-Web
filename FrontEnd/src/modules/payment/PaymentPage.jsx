@@ -366,6 +366,10 @@ onClick={() => setShowRatingPopup(true)}
 
 )}
 
+                        <div className="receipt-premium-footer">
+                            <p>Verified by Indian Railways Support</p>
+                        </div>
+                    </Card>
 {isSavingReview && (
 
 <div className="saving-overlay">
@@ -401,12 +405,6 @@ onClick={() => setShowRatingPopup(true)}
 </div>
 
 )}
-
-                        <div className="receipt-premium-footer">
-                            <p>Verified by Indian Railways Support</p>
-                        </div>
-                    </Card>
-
                     <div className="success-footer-actions">
 
 <Button

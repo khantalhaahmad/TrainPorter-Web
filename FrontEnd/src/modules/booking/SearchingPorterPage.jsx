@@ -44,26 +44,37 @@ const SearchingPorterPage = () => {
 
         setBooking(savedBooking);
 
-        const timer = setInterval(() => {
+       const timers = [];
 
-            setStatusIndex((prev) =>
-                prev < statuses.length - 1
-                    ? prev + 1
-                    : prev
-            );
+timers.push(
+    setTimeout(() => {
+        setStatusIndex(1);
+    }, 6000) // 6 sec
+);
 
-        }, 1200);
+timers.push(
+    setTimeout(() => {
+        setStatusIndex(2);
+    }, 13000) // 13 sec
+);
+
+timers.push(
+    setTimeout(() => {
+        setStatusIndex(3);
+    }, 19000) // 19 sec
+);
 
         const redirect = setTimeout(() => {
 
             navigate('/assigned');
 
-        }, 20000);
+        }, 25000);
 
         return () => {
 
-            clearInterval(timer);
-            clearTimeout(redirect);
+           timers.forEach(clearTimeout);
+
+clearTimeout(redirect);
 
         };
 
@@ -308,45 +319,34 @@ const SearchingPorterPage = () => {
     <div className="trust-left">
 
         <div className="trust-icon">
-
             🛡️
-
         </div>
 
         <div>
 
-            <h3>
-
-                100% Verified Railway Porter
-
-            </h3>
+            <h3>100% Verified Railway Porter</h3>
 
             <p>
-
                 OTP Protected Pickup • Live Tracking • Luggage Insurance
-
             </p>
 
         </div>
 
     </div>
 
-    <Button
+    <div className="trust-actions">
 
-        className="cancel-btn"
+        <Button
+            className="cancel-btn"
+            variant="secondary"
+            onClick={handleCancelBooking}
+        >
+            ✕ Cancel Booking
+        </Button>
 
-        variant="secondary"
-
-        onClick={handleCancelBooking}
-
-    >
-
-        ✕ Cancel Booking
-
-    </Button>
+    </div>
 
 </Card>
-
 
 
                     </Card>

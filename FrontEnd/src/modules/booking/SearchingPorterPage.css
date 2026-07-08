@@ -610,38 +610,50 @@
 
 .trust-card{
 
-    margin-top:20px;
+    margin-top:24px;
 
-    background:linear-gradient(
-        135deg,
-        #F8FFFC 0%,
-        #F0FDF4 100%
-    );
+    display:flex;
 
-    border:1px solid #D1FAE5;
+    justify-content:space-between;
 
-    border-radius:24px;
+    align-items:center;
+
+    gap:24px;
 
     padding:22px 26px;
 
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:24px;
+    border-radius:22px;
 
-    box-shadow:
-        0 10px 30px rgba(34,197,94,.08);
+    background:linear-gradient(
+        135deg,
+        #F0FDF4,
+        #FFFFFF
+    );
+
+    border:1px solid #D1FAE5;
 
 }
 
 .trust-left{
 
     display:flex;
+
     align-items:center;
+
     gap:18px;
 
-}
+    flex:1;
 
+}
+.trust-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+}
 .trust-icon{
 
     width:62px;
@@ -691,35 +703,37 @@
 
 .cancel-btn{
 
-    width:210px;
-    height:54px;
+    min-width:180px;
 
-    border-radius:16px;
+    height:48px;
+
+    border-radius:14px;
 
     background:#FFFFFF;
 
-    border:2px solid #EF4444;
-
     color:#DC2626;
 
-    font-size:.95rem;
+    border:1px solid #FECACA;
 
     font-weight:700;
 
-    transition:all .30s ease;
+    font-size:15px;
 
-    flex-shrink:0;
+    transition:.3s;
 
 }
 
 .cancel-btn:hover{
 
-    background:#FEE2E2;
+    background:#DC2626;
+
+    color:#FFFFFF;
+
+    border-color:#DC2626;
 
     transform:translateY(-2px);
 
-    box-shadow:
-        0 12px 24px rgba(239,68,68,.18);
+    box-shadow:0 10px 25px rgba(220,38,38,.25);
 
 }
 
