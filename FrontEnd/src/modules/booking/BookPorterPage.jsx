@@ -396,11 +396,12 @@ luggage[item.id]>0 ? "selected":""
                     </div>
 <div className="book-sidebar">
 
-    <motion.div
-        initial={{ x: 50, opacity: 0 }}
-        animate={{ x: 0, opacity: 1 }}
-        transition={{ delay: 0.2 }}
-    >
+<motion.div
+    className="booking-summary-wrapper"
+    initial={{ x: 50, opacity: 0 }}
+    animate={{ x: 0, opacity: 1 }}
+    transition={{ delay: 0.2 }}
+>
 
         <Card className="booking-summary-sticky">
 

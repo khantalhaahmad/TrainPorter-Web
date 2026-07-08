@@ -5,17 +5,72 @@
     flex-direction: column;
     gap: var(--spacing-xl);
 }
+/* ==========================================
+   BOOKING HERO
+========================================== */
 
-/* Progress Tracker */
-.booking-progress {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto var(--spacing-xl);
-    width: 100%;
+.booking-hero{
+    margin-bottom:32px;
 }
 
+.hero-badge{
+    display:inline-flex;
+    align-items:center;
+
+    padding:10px 20px;
+
+    border-radius:999px;
+
+    background:#E8F1FF;
+    color:#2563EB;
+
+    font-size:.85rem;
+    font-weight:700;
+
+    letter-spacing:.4px;
+
+    margin-bottom:18px;
+}
+
+.booking-hero h1{
+    font-size:2.8rem;      /* Pehle agar 4rem+ hai to ye chhota karega */
+    font-weight:800;
+    line-height:1.05;
+    letter-spacing:-1.5px;
+
+    color:#2563EB;
+
+    margin:0 0 14px;
+}
+.booking-hero p{
+    max-width:1000px;      /* bada kar diya taaki ek line me aa sake */
+    width:100%;
+
+    font-size:0.95rem;     /* pehle 1.15rem tha */
+    font-weight:500;
+
+    color:#64748B;
+
+    line-height:1.5;
+
+    margin-top:8px;
+
+    white-space:nowrap;    /* ek hi line me rakhega */
+}
+/* Progress Tracker */
+.booking-progress{
+    display:flex;
+    justify-content:space-between;
+    position:relative;
+
+    max-width:600px;
+    width:100%;
+
+    margin:0 0 var(--spacing-xl);
+    margin-left:30px;
+
+    margin-top:-40px;
+}
 .progress-step {
     display: flex;
     flex-direction: column;
@@ -78,9 +133,27 @@
     display:grid;
     grid-template-columns:1fr 390px;
     gap:24px;
+    align-items:start;
 }
-.booking-card-premium {
-    padding: var(--spacing-xl);
+
+.book-sidebar{
+    margin-top:-20px;
+}
+.book-grid{
+    display:grid;
+    grid-template-columns:1fr 390px;
+    gap:24px;
+    align-items:start;
+}
+
+.book-sidebar{
+    margin-top:-20px;
+}
+.booking-card-premium{
+    position:relative;
+    top:-70px;
+    left:-20px;
+    padding-top:20px;
 }
 
 .card-header-inner {
@@ -282,13 +355,22 @@
 .trust-item:hover::before{
     left:100%;
 }
+
+.booking-summary-wrapper{
+    transform: translateY(-35px);
+}
+
+.booking-summary-wrapper{
+    transform: translateY(-50px);
+}
 /* =========================================
    BOOKING SUMMARY SIDEBAR
 ========================================= */
 
 .booking-summary-sticky{
-    position:sticky;
-    top:100px;
+    position:relative;
+    top:-200px;
+
     background:#fff;
     border-radius:24px;
     padding:28px;
