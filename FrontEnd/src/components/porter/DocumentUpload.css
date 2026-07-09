@@ -342,15 +342,10 @@
 /* Gradient Border */
 
 .document-card::after{
-
     content:"";
-
     position:absolute;
-
     inset:-1px;
-
     border-radius:24px;
-
     padding:1px;
 
     background:linear-gradient(
@@ -365,13 +360,12 @@
         linear-gradient(#fff 0 0);
 
     -webkit-mask-composite:xor;
-
     mask-composite:exclude;
 
     opacity:0;
-
     transition:.35s;
 
+    pointer-events: none;   /* ⭐ IMPORTANT */
 }
 
 .document-card:hover::after{
@@ -581,9 +575,8 @@ font-size:13px;
 }
 
 .browse-btn{
-
-width:100%;
-
+    position: relative;
+    z-index: 10;
 }
 
 .status-row{

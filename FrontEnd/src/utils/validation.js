@@ -111,9 +111,7 @@ export const validateIdentity = (formData) => {
       "Aadhaar Number must contain exactly 12 digits.";
   }
 
-  if (!formData.panNumber.trim()) {
-    errors.panNumber = "PAN Number is required.";
-  } else if (
+else if (
     !/^[A-Z]{5}[0-9]{4}[A-Z]{1}$/.test(
       formData.panNumber.toUpperCase()
     )
@@ -225,20 +223,25 @@ export const validateStep = (
 ) => {
   switch (step) {
     case 1:
-      return validatePersonal(formData);
+  return validatePersonal(formData);
 
-    case 2:
-      return validateAddress(formData);
+case 2:
+  return validateAddress(formData);
 
-    case 3:
-      return validateIdentity(formData);
+case 3:
+  return validateRailway(formData);
 
-    case 4:
-      return validateBank(formData);
+case 4:
+  return validateIdentity(formData);
 
-    case 5:
-      return validateDocuments(files);
+case 5:
+  return validateBank(formData);
 
+case 6:
+  return validateEmergency(formData);
+
+case 7:
+  return validateDocuments(files);
     default:
       return {};
   }

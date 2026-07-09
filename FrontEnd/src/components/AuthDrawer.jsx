@@ -177,11 +177,29 @@ await new Promise(resolve =>
     setTimeout(resolve, 2000)
 );
 
-const token =
-  response.data.token ||
-  response.data.data?.token;
+console.log("========================================");
+console.log("FULL AXIOS RESPONSE =>", response);
+console.log("RESPONSE.DATA =>", response.data);
+console.log("RESPONSE.DATA.DATA =>", response.data?.data);
+console.log("RESPONSE.DATA.USER =>", response.data?.user);
+console.log("RESPONSE.DATA.DATA.USER =>", response.data?.data?.user);
+console.log("========================================");
 
-login(token);
+const token =
+  response.data?.token ||
+  response.data?.data?.token;
+
+const user =
+  response.data?.user ||
+  response.data?.data?.user;
+
+console.log("TOKEN =>", token);
+console.log("USER =>", user);
+
+login(token, user);
+
+console.log("USER AFTER LOGIN =>", localStorage.getItem("user"));
+console.log("TOKEN AFTER LOGIN =>", localStorage.getItem("token"));
 
 setStep("success");
 

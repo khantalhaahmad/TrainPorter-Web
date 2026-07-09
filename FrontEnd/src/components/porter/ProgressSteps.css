@@ -1,0 +1,694 @@
+/* ==========================================================
+   PROGRESS SECTION
+========================================================== */
+
+.bp-progress-section{
+
+    width:100%;
+
+    padding:10px 8% 50px;
+
+}
+
+.bp-progress-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.92);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(37,99,235,.08);
+
+    border-radius:28px;
+
+    padding:34px 38px;
+
+    box-shadow:
+    0 20px 60px rgba(15,23,42,.08);
+
+}
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.bp-progress-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:28px;
+
+}
+
+.bp-progress-header-left{
+
+    flex:1;
+
+}
+
+.bp-progress-title{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+
+}
+
+.bp-progress-description{
+
+    font-size:15px;
+
+    color:#64748b;
+
+    line-height:1.7;
+
+}
+
+/* ==========================================================
+   STEP COUNTER
+========================================================== */
+
+.bp-progress-counter{
+
+    min-width:95px;
+
+    height:58px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:5px;
+
+    border-radius:18px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    font-weight:700;
+
+    box-shadow:
+    0 10px 25px rgba(37,99,235,.08);
+
+}
+
+.bp-progress-counter-current{
+
+    font-size:28px;
+
+}
+
+.bp-progress-counter-divider{
+
+    color:#94a3b8;
+
+}
+
+.bp-progress-counter-total{
+
+    font-size:18px;
+
+}
+
+/* ==========================================================
+   PROGRESS BAR
+========================================================== */
+
+.bp-progress-bar-wrapper{
+
+    margin-bottom:42px;
+
+}
+
+.bp-progress-bar-track{
+
+    width:100%;
+
+    height:10px;
+
+    overflow:hidden;
+
+    border-radius:999px;
+
+    background:#edf2ff;
+
+}
+
+.bp-progress-bar-fill{
+
+    height:100%;
+
+    border-radius:999px;
+
+    background:
+    linear-gradient(
+    90deg,
+    #2563eb,
+    #3b82f6,
+    #60a5fa
+    );
+
+    transition:width .45s ease;
+
+}
+
+/* ==========================================================
+   STEP LIST
+========================================================== */
+
+.bp-progress-step-list{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    gap:12px;
+
+}
+
+.bp-progress-step-item{
+
+    flex:1;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+    position:relative;
+
+}
+
+/* ==========================================================
+   STEP CIRCLE
+========================================================== */
+
+.bp-progress-step-circle{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:#f1f5f9;
+
+    color:#64748b;
+
+    font-size:18px;
+
+    font-weight:700;
+
+    border:2px solid transparent;
+
+    transition:.35s;
+
+}
+
+/* ==========================================================
+   LABEL
+========================================================== */
+
+.bp-progress-step-label{
+
+    margin-top:14px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:#64748b;
+
+}
+
+/* ==========================================================
+   ACTIVE STEP
+========================================================== */
+
+.bp-progress-step-active
+.bp-progress-step-circle{
+
+    background:
+    linear-gradient(
+    135deg,
+    #2563eb,
+    #3b82f6
+    );
+
+    color:#fff;
+
+    border-color:#2563eb;
+
+    transform:scale(1.08);
+
+    box-shadow:
+    0 15px 35px rgba(37,99,235,.25);
+
+}
+
+.bp-progress-step-active
+.bp-progress-step-label{
+
+    color:#2563eb;
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+   COMPLETED STEP
+========================================================== */
+
+.bp-progress-step-completed
+.bp-progress-step-circle{
+
+    background:#22c55e;
+
+    color:#fff;
+
+    border-color:#22c55e;
+
+}
+
+.bp-progress-step-completed
+.bp-progress-step-label{
+
+    color:#16a34a;
+
+}
+/* ==========================================================
+   CONNECTOR LINE
+========================================================== */
+
+.bp-progress-step-item{
+
+    position:relative;
+
+}
+
+.bp-progress-step-item:not(:last-child)::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:26px;
+
+    left:55%;
+
+    width:100%;
+
+    height:2px;
+
+    background:#e2e8f0;
+
+    z-index:0;
+
+}
+
+.bp-progress-step-completed:not(:last-child)::after{
+
+    background:linear-gradient(
+        90deg,
+        #22c55e,
+        #4ade80
+    );
+
+}
+
+/* ==========================================================
+   KEEP CIRCLE ABOVE LINE
+========================================================== */
+
+.bp-progress-step-circle{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+/* ==========================================================
+   HOVER EFFECTS
+========================================================== */
+
+.bp-progress-step-item{
+
+    transition:.35s;
+
+}
+
+.bp-progress-step-item:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.bp-progress-step-item:hover
+.bp-progress-step-circle{
+
+    transform:scale(1.08);
+
+    box-shadow:
+    0 15px 35px rgba(37,99,235,.18);
+
+}
+
+/* ==========================================================
+   CARD SHINE
+========================================================== */
+
+.bp-progress-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-180px;
+
+    right:-180px;
+
+    width:320px;
+
+    height:320px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        rgba(37,99,235,.08),
+        transparent 70%
+    );
+
+    pointer-events:none;
+
+}
+
+.bp-progress-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    left:-120px;
+
+    bottom:-120px;
+
+    width:260px;
+
+    height:260px;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        rgba(59,130,246,.06),
+        transparent 70%
+    );
+
+    pointer-events:none;
+
+}
+
+/* ==========================================================
+   GLOW ANIMATION
+========================================================== */
+
+.bp-progress-step-active
+.bp-progress-step-circle{
+
+    animation:bpProgressPulse 2.4s infinite;
+
+}
+
+@keyframes bpProgressPulse{
+
+0%{
+
+box-shadow:
+0 0 0 0 rgba(37,99,235,.30);
+
+}
+
+70%{
+
+box-shadow:
+0 0 0 18px rgba(37,99,235,0);
+
+}
+
+100%{
+
+box-shadow:
+0 0 0 0 rgba(37,99,235,0);
+
+}
+
+}
+
+/* ==========================================================
+   PROGRESS BAR ANIMATION
+========================================================== */
+
+.bp-progress-bar-fill{
+
+    background-size:200% 100%;
+
+    animation:bpProgressGradient 5s linear infinite;
+
+}
+
+@keyframes bpProgressGradient{
+
+0%{
+
+background-position:0%;
+
+}
+
+100%{
+
+background-position:200%;
+
+}
+
+}
+
+/* ==========================================================
+   COUNTER ANIMATION
+========================================================== */
+
+.bp-progress-counter{
+
+    transition:.35s;
+
+}
+
+.bp-progress-counter:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 18px 35px rgba(37,99,235,.16);
+
+}
+
+/* ==========================================================
+   GLASS BORDER
+========================================================== */
+
+.bp-progress-card{
+
+    border:
+
+    1px solid rgba(255,255,255,.8);
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:1100px){
+
+.bp-progress-step-label{
+
+font-size:13px;
+
+}
+
+.bp-progress-step-circle{
+
+width:46px;
+
+height:46px;
+
+font-size:16px;
+
+}
+
+}
+
+@media(max-width:900px){
+
+.bp-progress-header{
+
+flex-direction:column;
+
+gap:18px;
+
+}
+
+.bp-progress-counter{
+
+align-self:flex-start;
+
+}
+
+.bp-progress-step-list{
+
+overflow-x:auto;
+
+justify-content:flex-start;
+
+padding-bottom:12px;
+
+gap:26px;
+
+}
+
+.bp-progress-step-item{
+
+min-width:95px;
+
+}
+
+.bp-progress-step-item:not(:last-child)::after{
+
+display:none;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.bp-progress-section{
+
+padding:15px 20px 40px;
+
+}
+
+.bp-progress-card{
+
+padding:24px;
+
+border-radius:22px;
+
+}
+
+.bp-progress-title{
+
+font-size:22px;
+
+}
+
+.bp-progress-description{
+
+font-size:14px;
+
+}
+
+.bp-progress-counter{
+
+height:52px;
+
+min-width:82px;
+
+}
+
+.bp-progress-counter-current{
+
+font-size:22px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.bp-progress-card{
+
+padding:20px;
+
+}
+
+.bp-progress-title{
+
+font-size:20px;
+
+}
+
+.bp-progress-description{
+
+font-size:13px;
+
+}
+
+.bp-progress-step-circle{
+
+width:42px;
+
+height:42px;
+
+font-size:15px;
+
+}
+
+.bp-progress-step-label{
+
+font-size:12px;
+
+}
+
+}
+
+/* ==========================================================
+   SMOOTH TRANSITIONS
+========================================================== */
+
+.bp-progress-card,
+.bp-progress-step-item,
+.bp-progress-step-circle,
+.bp-progress-counter,
+.bp-progress-bar-fill{
+
+transition:all .35s ease;
+
+}

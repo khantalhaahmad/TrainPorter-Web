@@ -205,12 +205,6 @@ accountNumber,
     res,
     "Profile Photo, Aadhaar Front, Aadhaar Back and Railway License are required."
   );
-}{
-
-      return errorResponse(
-        res,
-        "Profile Photo, Aadhaar Front and Aadhaar Back are required."
-      );
 
     }
 

@@ -1,0 +1,707 @@
+/* ==========================================================
+   SIDEBAR WRAPPER
+========================================================== */
+
+.bp-sidebar-wrapper{
+
+    width:100%;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+/* ==========================================================
+   COMMON CARD
+========================================================== */
+
+.bp-sidebar-top-card,
+.bp-sidebar-benefit-card,
+.bp-sidebar-rating-card,
+.bp-sidebar-info-card{
+
+    position:relative;
+
+    overflow:hidden;
+
+    background:rgba(255,255,255,.92);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    border:1px solid rgba(37,99,235,.08);
+
+    border-radius:24px;
+
+    box-shadow:
+    0 18px 45px rgba(15,23,42,.08);
+
+    transition:.35s;
+
+}
+
+.bp-sidebar-top-card:hover,
+.bp-sidebar-benefit-card:hover,
+.bp-sidebar-rating-card:hover,
+.bp-sidebar-info-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:
+    0 25px 55px rgba(37,99,235,.14);
+
+}
+
+/* ==========================================================
+   TOP CARD
+========================================================== */
+
+.bp-sidebar-top-card{
+
+    padding:32px;
+
+    text-align:center;
+
+}
+
+.bp-sidebar-top-icon{
+
+    width:78px;
+
+    height:78px;
+
+    margin:auto;
+
+    margin-bottom:22px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    color:#fff;
+
+    box-shadow:
+    0 18px 40px rgba(37,99,235,.28);
+
+}
+
+.bp-sidebar-top-title{
+
+    font-size:28px;
+
+    font-weight:800;
+
+    color:#0f172a;
+
+    margin-bottom:14px;
+
+}
+
+.bp-sidebar-top-description{
+
+    color:#64748b;
+
+    font-size:15px;
+
+    line-height:1.8;
+
+}
+
+/* ==========================================================
+   BENEFIT LIST
+========================================================== */
+
+.bp-sidebar-benefit-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/* ==========================================================
+   BENEFIT CARD
+========================================================== */
+
+.bp-sidebar-benefit-card{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:18px;
+
+    padding:22px;
+
+}
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.bp-sidebar-benefit-icon{
+
+    min-width:56px;
+
+    width:56px;
+
+    height:56px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(
+        135deg,
+        #eff6ff,
+        #dbeafe
+    );
+
+    color:#2563eb;
+
+    transition:.35s;
+
+}
+
+.bp-sidebar-benefit-card:hover
+.bp-sidebar-benefit-icon{
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    color:#fff;
+
+    transform:rotate(-8deg) scale(1.05);
+
+}
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.bp-sidebar-benefit-content{
+
+    flex:1;
+
+}
+
+.bp-sidebar-benefit-content h4{
+
+    font-size:18px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+
+}
+
+.bp-sidebar-benefit-content p{
+
+    color:#64748b;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+}
+
+/* ==========================================================
+   GLASS SHINE
+========================================================== */
+
+.bp-sidebar-top-card::before,
+.bp-sidebar-benefit-card::before,
+.bp-sidebar-rating-card::before,
+.bp-sidebar-info-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-120px;
+
+    right:-120px;
+
+    width:220px;
+
+    height:220px;
+
+    border-radius:50%;
+
+    background:radial-gradient(
+        rgba(255,255,255,.45),
+        transparent 70%
+    );
+
+    pointer-events:none;
+
+}
+
+/* ==========================================================
+   ACTIVE HOVER
+========================================================== */
+
+.bp-sidebar-benefit-card:hover h4{
+
+    color:#2563eb;
+
+}
+
+.bp-sidebar-benefit-card:hover{
+
+    border-color:#2563eb;
+
+}
+
+/* ==========================================================
+   SMOOTH
+========================================================== */
+
+.bp-sidebar-top-card,
+.bp-sidebar-benefit-card,
+.bp-sidebar-benefit-icon{
+
+    transition:all .35s ease;
+
+}
+/* ==========================================================
+   RATING CARD
+========================================================== */
+
+.bp-sidebar-rating-card{
+
+    padding:28px;
+
+    text-align:center;
+
+}
+
+.bp-sidebar-rating-stars{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:6px;
+
+    margin-bottom:18px;
+
+}
+
+.bp-sidebar-rating-card h3{
+
+    font-size:26px;
+
+    font-weight:800;
+
+    color:#0f172a;
+
+    margin-bottom:12px;
+
+}
+
+.bp-sidebar-rating-card p{
+
+    color:#64748b;
+
+    line-height:1.8;
+
+    font-size:15px;
+
+}
+
+/* ==========================================================
+   QUICK FACTS
+========================================================== */
+
+.bp-sidebar-info-card{
+
+    padding:28px;
+
+}
+
+.bp-sidebar-info-card h3{
+
+    font-size:24px;
+
+    font-weight:800;
+
+    color:#0f172a;
+
+    margin-bottom:24px;
+
+}
+
+.bp-sidebar-info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:1px solid #edf2f7;
+
+}
+
+.bp-sidebar-info-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.bp-sidebar-info-row span{
+
+    color:#64748b;
+
+    font-size:15px;
+
+}
+
+.bp-sidebar-info-row strong{
+
+    color:#2563eb;
+
+    font-size:17px;
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+   FLOATING GLOW
+========================================================== */
+
+.bp-sidebar-wrapper{
+
+    position:relative;
+
+}
+
+.bp-sidebar-wrapper::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:120px;
+
+    right:-80px;
+
+    width:220px;
+
+    height:220px;
+
+    border-radius:50%;
+
+    background:
+
+    radial-gradient(
+
+        rgba(37,99,235,.10),
+
+        transparent 75%
+
+    );
+
+    filter:blur(45px);
+
+    pointer-events:none;
+
+}
+
+/* ==========================================================
+   PREMIUM BORDER
+========================================================== */
+
+.bp-sidebar-top-card::after,
+.bp-sidebar-benefit-card::after,
+.bp-sidebar-rating-card::after,
+.bp-sidebar-info-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-1px;
+
+    border-radius:24px;
+
+    padding:1px;
+
+    background:
+
+    linear-gradient(
+
+        135deg,
+
+        rgba(37,99,235,.25),
+
+        rgba(96,165,250,.05),
+
+        rgba(255,255,255,0)
+
+    );
+
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite:xor;
+
+    mask-composite:exclude;
+
+    opacity:0;
+
+    transition:.35s;
+
+}
+
+.bp-sidebar-top-card:hover::after,
+.bp-sidebar-benefit-card:hover::after,
+.bp-sidebar-rating-card:hover::after,
+.bp-sidebar-info-card:hover::after{
+
+    opacity:1;
+
+}
+
+/* ==========================================================
+   ICON ANIMATION
+========================================================== */
+
+.bp-sidebar-top-icon{
+
+    animation:bpSidebarFloat 3s ease-in-out infinite;
+
+}
+
+@keyframes bpSidebarFloat{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-8px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+/* ==========================================================
+   RATING CARD HOVER
+========================================================== */
+
+.bp-sidebar-rating-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.bp-sidebar-rating-card:hover
+.bp-sidebar-rating-stars{
+
+    transform:scale(1.08);
+
+}
+
+.bp-sidebar-rating-stars{
+
+    transition:.35s;
+
+}
+
+/* ==========================================================
+   INFO ROW HOVER
+========================================================== */
+
+.bp-sidebar-info-row{
+
+    transition:.3s;
+
+}
+
+.bp-sidebar-info-row:hover{
+
+    padding-left:10px;
+
+}
+
+.bp-sidebar-info-row:hover strong{
+
+    color:#1d4ed8;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:1200px){
+
+.bp-sidebar-top-title{
+
+font-size:24px;
+
+}
+
+}
+
+@media(max-width:992px){
+
+.bp-sidebar-wrapper{
+
+margin-top:40px;
+
+}
+
+.bp-sidebar-benefit-list{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:18px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.bp-sidebar-benefit-list{
+
+grid-template-columns:1fr;
+
+}
+
+.bp-sidebar-top-card{
+
+padding:24px;
+
+}
+
+.bp-sidebar-rating-card{
+
+padding:22px;
+
+}
+
+.bp-sidebar-info-card{
+
+padding:22px;
+
+}
+
+.bp-sidebar-top-title{
+
+font-size:22px;
+
+}
+
+.bp-sidebar-rating-card h3{
+
+font-size:22px;
+
+}
+
+.bp-sidebar-info-card h3{
+
+font-size:20px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.bp-sidebar-benefit-card{
+
+padding:18px;
+
+gap:14px;
+
+}
+
+.bp-sidebar-benefit-icon{
+
+width:48px;
+
+height:48px;
+
+min-width:48px;
+
+border-radius:14px;
+
+}
+
+.bp-sidebar-benefit-content h4{
+
+font-size:16px;
+
+}
+
+.bp-sidebar-benefit-content p{
+
+font-size:13px;
+
+}
+
+.bp-sidebar-top-title{
+
+font-size:20px;
+
+}
+
+}
+
+/* ==========================================================
+   SMOOTH TRANSITIONS
+========================================================== */
+
+.bp-sidebar-rating-card,
+.bp-sidebar-info-card,
+.bp-sidebar-info-row,
+.bp-sidebar-rating-stars{
+
+transition:all .35s ease;
+
+}

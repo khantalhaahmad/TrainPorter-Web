@@ -1,7 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./BecomePorterApplyPage.css";
 import DocumentUpload from "../../components/porter/DocumentUpload";
+import { useAuth } from "../../context/AuthContext";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import HeroBanner from "../../components/porter/HeroBanner";
+import ProgressSteps from "../../components/porter/ProgressSteps";
+import BenefitsSidebar from "../../components/porter/BenefitsSidebar";
+import StatsSection from "../../components/porter/StatsSection";
+import TrustSection from "../../components/porter/TrustSection";
+
 const BecomePorterApplyPage = () => {
   const [formData, setFormData] = useState({
     
@@ -12,11 +21,12 @@ const BecomePorterApplyPage = () => {
   gender: "",
   dateOfBirth: "",
 
-  // Address
-  address: "",
-  city: "",
-  state: "",
-  pincode: "",
+// Address
+address: "",
+city: "",
+district: "",   // NEW
+state: "",
+pincode: "",
 
   // Railway
   preferredStation: "",
@@ -28,11 +38,12 @@ const BecomePorterApplyPage = () => {
   aadhaarNumber: "",
 
   // Bank
-  accountHolder: "",
-  accountNumber: "",
-  confirmAccountNumber: "", // Frontend validation only
-  ifscCode: "",
-  upiId: "",
+accountHolder: "",
+bankName: "",      // NEW
+accountNumber: "",
+confirmAccountNumber: "",
+ifscCode: "",
+upiId: "",
 
   // Emergency
   emergencyContact: "",
@@ -40,6 +51,29 @@ const BecomePorterApplyPage = () => {
   // Terms
   termsAccepted: false,
 });
+
+const { user } = useAuth();
+
+console.log("AUTH USER:", user);
+useEffect(() => {
+
+  if (user) {
+
+    setFormData(prev => ({
+
+      ...prev,
+
+      phone: user.phone || "",
+
+      fullName: user.fullName || "",
+
+      email: user.email || ""
+
+    }));
+
+  }
+
+}, [user]);
 const [step, setStep] = useState(1);
 
 const [files, setFiles] = useState({
@@ -49,6 +83,11 @@ const [files, setFiles] = useState({
   railwayLicense: null,
   policeVerification: null,
 });
+
+const navigate = useNavigate();
+
+const [loading, setLoading] = useState(false);
+
  const handleChange = (e) => {
   const { name, value } = e.target;
 
@@ -67,7 +106,7 @@ if (name === "ifscCode") {
   }));
 };
 const nextStep = () => {
-  if (step < 5) {
+  if(step<TOTAL_STEPS) {
     setStep((prev) => prev + 1);
 
     window.scrollTo({
@@ -99,10 +138,35 @@ const formatIFSC = (value) => {
     .replace(/[^A-Z0-9]/g, "")
     .slice(0, 11);
 };
-const progress = (step / 5) * 100;
+const TOTAL_STEPS = 7;
+
+const progress = (step / TOTAL_STEPS) * 100;
+
+const isPersonalValid =
+  formData.fullName.trim() !== "" &&
+  formData.phone.trim() !== "" &&
+  formData.gender !== "" &&
+  formData.dateOfBirth !== "";
 
 const isIdentityValid =
   formData.aadhaarNumber.replace(/\s/g, "").length === 12;
+
+  const isAddressValid =
+formData.address &&
+formData.city &&
+formData.district &&
+formData.state &&
+formData.pincode.length===6;
+
+const isRailwayValid =
+formData.preferredStation &&
+formData.stationCode &&
+formData.languages.length>0;
+
+const isEmergencyValid =
+/^[6-9]\d{9}$/.test(
+formData.emergencyContact
+);
 
 const isBankValid =
   formData.accountHolder.trim() !== "" &&
@@ -110,89 +174,170 @@ const isBankValid =
   formData.accountNumber === formData.confirmAccountNumber &&
   /^[A-Z]{4}0[A-Z0-9]{6}$/.test(formData.ifscCode);
 
+  const handleSubmit = async () => {
+  try {
+    setLoading(true);
+
+    const form = new FormData();
+
+    // ==========================
+    // Personal Details
+    // ==========================
+
+    form.append("fullName", formData.fullName);
+    form.append("phone", formData.phone);
+    form.append("email", formData.email);
+    form.append("gender", formData.gender);
+    form.append("dateOfBirth", formData.dateOfBirth);
+
+    // ==========================
+    // Address
+    // ==========================
+
+    form.append("address", formData.address);
+    form.append("district", formData.district);
+    form.append("city", formData.city);
+    form.append("state", formData.state);
+    form.append("pincode", formData.pincode);
+
+    // ==========================
+    // Railway Details
+    // ==========================
+
+    form.append("preferredStation", formData.preferredStation);
+    form.append("stationCode", formData.stationCode);
+    form.append("experience", formData.experience || 0);
+
+    formData.languages.forEach((language) => {
+      form.append("languages", language);
+    });
+
+    // ==========================
+    // Identity
+    // ==========================
+
+    form.append(
+      "aadhaarNumber",
+      formData.aadhaarNumber.replace(/\s/g, "")
+    );
+
+    // ==========================
+    // Bank Details
+    // ==========================
+
+    form.append("accountHolder", formData.accountHolder);
+    form.append("bankName", formData.bankName);
+    form.append("accountNumber", formData.accountNumber);
+    form.append("ifscCode", formData.ifscCode);
+    form.append("upiId", formData.upiId);
+
+    // ==========================
+    // Emergency Contact
+    // ==========================
+
+    form.append(
+      "emergencyContact",
+      formData.emergencyContact
+    );
+
+    // ==========================
+    // Agreement
+    // ==========================
+
+    form.append(
+      "termsAccepted",
+      String(formData.termsAccepted)
+    );
+
+    // ==========================
+    // Documents
+    // ==========================
+
+    if (files.profilePhoto) {
+      form.append("profilePhoto", files.profilePhoto);
+    }
+
+    if (files.aadhaarFront) {
+      form.append("aadhaarFront", files.aadhaarFront);
+    }
+
+    if (files.aadhaarBack) {
+      form.append("aadhaarBack", files.aadhaarBack);
+    }
+
+    if (files.railwayLicense) {
+      form.append("railwayLicense", files.railwayLicense);
+    }
+
+    if (files.policeVerification) {
+      form.append(
+        "policeVerification",
+        files.policeVerification
+      );
+    }
+
+    // ==========================
+    // API Call
+    // ==========================
+
+   const response = await axios.post(
+  `${import.meta.env.VITE_API_URL}/api/porter/apply`,
+  form,
+  {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Content-Type": "multipart/form-data",
+    },
+  }
+);
+
+    console.log("Application Submitted:", response.data);
+
+    alert(
+      response.data.message ||
+        "Application submitted successfully."
+    );
+
+    navigate("/dashboard");
+  } catch (error) {
+    console.error("Apply Porter Error:", error);
+
+    if (error.response?.data?.errors) {
+      console.log(error.response.data.errors);
+    }
+
+    alert(
+      error.response?.data?.message ||
+        "Application submission failed."
+    );
+  } finally {
+    setLoading(false);
+  }
+};
+
 const isDocumentsValid =
   files.profilePhoto &&
   files.aadhaarFront &&
-  files.aadhaarBack;
+  files.aadhaarBack &&
+  files.railwayLicense;
 
   return (
     <div className="porter-apply-page">
-      {/* Hero */}
-
-      <motion.section
-        className="porter-hero"
-        initial={{ opacity: 0, y: 70 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: .8 }}
-      >
-        <span className="hero-badge">
-          🚉 Join India's Smart Porter Network
-        </span>
-
-        <h1>
-          Become a
-          <span> TrainPorter Partner</span>
-        </h1>
-
-        <p>
-          Earn money by helping passengers carry luggage safely across railway
-          stations. Flexible work, secure payments and verified bookings.
-        </p>
-      </motion.section>
+      
+      <HeroBanner />
 
       {/* Progress */}
 
-      <motion.section
-        className="progress-card"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: .3 }}
-      >
-        <div className="progress-header">
-          <h3>Application Progress</h3>
-
-          <span>{progress}%</span>
-        </div>
-
-        <div className="progress-bar">
-          <div
-            className="progress-fill"
-            style={{ width: `${progress}%` }}
-          ></div>
-        </div>
-
-       <div className="steps">
-
-  <div className={`step ${step>=1 ? "active":""}`}>
-      <div>1</div>
-      <span>Personal</span>
-  </div>
-
-  <div className={`step ${step>=2 ? "active":""}`}>
-      <div>2</div>
-      <span>Address</span>
-  </div>
-
-  <div className={`step ${step>=3 ? "active":""}`}>
-      <div>3</div>
-      <span>ID</span>
-  </div>
-
-  <div className={`step ${step>=4 ? "active":""}`}>
-      <div>4</div>
-      <span>Bank</span>
-  </div>
-
-  <div className={`step ${step>=5 ? "active":""}`}>
-      <div>5</div>
-      <span>Documents</span>
-  </div>
-
-</div>
-      </motion.section>
+      <ProgressSteps
+currentStep={step}
+totalSteps={7}
+/>
 
       {/* Personal Details */}
 
+      <div className="bp-main-layout">
+
+<div className="bp-main-form">
       <motion.section
   className="form-card"
   key={step}
@@ -219,14 +364,27 @@ placeholder=" "
 <label>Full Name</label>
 </div>
 
-<div className="input-group">
-<input
-name="phone"
-value={formData.phone}
-onChange={handleChange}
-placeholder=" "
-/>
-<label>Mobile Number</label>
+<div className="input-group verify-group">
+
+  <input
+    type="tel"
+    name="phone"
+    value={formData.phone}
+    readOnly
+    placeholder=" "
+    className="verified-input"
+  />
+
+  <label>Mobile Number</label>
+
+  <span className="verified">
+    ✓
+  </span>
+
+  <small className="verified-text">
+    Verified via OTP
+  </small>
+
 </div>
 
 <div className="input-group">
@@ -272,6 +430,7 @@ Date of Birth
 <button
 className="next-btn"
 onClick={nextStep}
+disabled={!isPersonalValid}
 >
 
 Next →
@@ -400,8 +559,142 @@ Next →
 
 </>
 )}
-
 {step === 3 && (
+<>
+<div className="card-title">
+
+<h2>Railway Details</h2>
+
+<p>
+Tell us where you want to work as a TrainPorter.
+</p>
+
+</div>
+
+<div className="form-grid">
+
+<div className="input-group">
+
+<input
+name="preferredStation"
+value={formData.preferredStation}
+onChange={handleChange}
+placeholder=" "
+/>
+
+<label>Preferred Railway Station</label>
+
+</div>
+
+<div className="input-group">
+
+<input
+name="stationCode"
+value={formData.stationCode}
+onChange={handleChange}
+placeholder=" "
+style={{textTransform:"uppercase"}}
+/>
+
+<label>Station Code</label>
+
+</div>
+
+<div className="input-group">
+
+<input
+type="number"
+name="experience"
+value={formData.experience}
+onChange={handleChange}
+placeholder=" "
+min="0"
+/>
+
+<label>Experience (Years)</label>
+
+</div>
+
+<div className="input-group">
+
+<select
+name="languages"
+value={formData.languages[0] || ""}
+onChange={(e)=>
+setFormData(prev=>({
+...prev,
+languages:[e.target.value]
+}))
+}
+>
+
+<option value="">Select Language</option>
+
+<option>Hindi</option>
+
+<option>English</option>
+
+<option>Urdu</option>
+
+<option>Bengali</option>
+
+<option>Marathi</option>
+
+<option>Tamil</option>
+
+<option>Telugu</option>
+
+<option>Gujarati</option>
+
+</select>
+
+<label className="active">
+Language
+</label>
+
+</div>
+
+</div>
+
+<div className="info-box">
+
+<h4>🚉 Railway Assignment</h4>
+
+<p>
+
+Select the railway station where you want to provide porter services.
+This information helps us assign bookings in your preferred location.
+
+</p>
+
+</div>
+
+<div className="button-row between">
+
+<button
+className="back-btn"
+onClick={prevStep}
+>
+
+← Back
+
+</button>
+
+<button
+className="next-btn"
+onClick={nextStep}
+>
+
+Next →
+
+</button>
+
+</div>
+
+</>
+)}
+
+{step === 4 && (
   <>
     <div className="card-title">
       <h2>Identity Verification</h2>
@@ -439,14 +732,6 @@ Next →
       </div>
 
       <div className="input-group verify-group">
-        <input
-          name="panNumber"
-          value={formData.panNumber}
-          onChange={handleChange}
-          placeholder=" "
-        />
-
-        <label>PAN Number</label>
 
         
       </div>
@@ -484,7 +769,7 @@ Next →
   </>
 )}
 
-{step === 4 && (
+{step === 5 && (
 <>
 <div className="card-title">
 <h2>Bank Details</h2>
@@ -601,15 +886,110 @@ Next →
 
 </>
 )}
+{step === 6 && (
+<>
+<div className="card-title">
 
-{step === 5 && (
+<h2>Emergency Contact</h2>
+
+<p>
+
+Provide a trusted contact person whom we can reach in case of emergency.
+
+</p>
+
+</div>
+
+<div className="form-grid">
+
+<div className="input-group">
+
+<input
+name="emergencyContact"
+value={formData.emergencyContact}
+onChange={handleChange}
+placeholder=" "
+maxLength={10}
+/>
+
+<label>Emergency Contact Number</label>
+
+</div>
+
+</div>
+
+<div className="info-box">
+
+<h4>📞 Emergency Support</h4>
+
+<p>
+
+Your emergency contact will only be used in case of safety-related situations.
+This information remains private and secure.
+
+</p>
+
+</div>
+
+<div className="button-row between">
+
+<button
+className="back-btn"
+onClick={prevStep}
+>
+
+← Back
+
+</button>
+
+<button
+className="next-btn"
+onClick={nextStep}
+>
+
+Next →
+
+</button>
+
+</div>
+
+</>
+)}
+
+
+{step === 7 && (
   <>
     <DocumentUpload
       files={files}
       setFiles={setFiles}
     />
 
+    <div className="terms-box">
+
+      <label className="terms-label">
+
+        <input
+          type="checkbox"
+          name="termsAccepted"
+          checked={formData.termsAccepted}
+          onChange={(e) =>
+            setFormData((prev) => ({
+              ...prev,
+              termsAccepted: e.target.checked,
+            }))
+          }
+        />
+
+        <span>
+          I agree to the Terms & Conditions
+        </span>
+
+      </label>
+
+    </div>
+
     <div className="button-row between">
+
       <button
         className="back-btn"
         onClick={prevStep}
@@ -617,19 +997,37 @@ Next →
         ← Back
       </button>
 
-     <button
+   <button
   className="next-btn"
-  disabled={!isDocumentsValid}
+  onClick={handleSubmit}
+  disabled={
+    loading ||
+    !isDocumentsValid ||
+    !formData.termsAccepted
+  }
 >
-  Submit Application
+  {loading ? "Submitting..." : "Submit Application"}
 </button>
+
     </div>
   </>
 )}
 
 
-      </motion.section>
-    </div>
+     </motion.section>
+
+</div>
+
+<StatsSection />
+
+<TrustSection />
+
+</div>
+
+<BenefitsSidebar />
+
+</div>
+    
   );
 };
 

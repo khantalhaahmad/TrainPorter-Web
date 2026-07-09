@@ -6,24 +6,45 @@ export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(
     !!localStorage.getItem("token")
   );
+const login = (token, userData) => {
 
-  const login = (token) => {
-    localStorage.setItem("token", token);
-    setIsLoggedIn(true);
-  };
+  localStorage.setItem("token", token);
 
-  const logout = () => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
-  };
+  localStorage.setItem(
+    "user",
+    JSON.stringify(userData)
+  );
+
+  setUser(userData);
+
+  setIsLoggedIn(true);
+
+};
+
+const logout = () => {
+
+  localStorage.removeItem("token");
+
+  localStorage.removeItem("user");
+
+  setUser(null);
+
+  setIsLoggedIn(false);
+
+};
+const [user, setUser] = useState(() => {
+  const savedUser = localStorage.getItem("user");
+  return savedUser ? JSON.parse(savedUser) : null;
+});
 
   return (
     <AuthContext.Provider
-      value={{
-        isLoggedIn,
-        login,
-        logout,
-      }}
+     value={{
+  user,
+  isLoggedIn,
+  login,
+  logout,
+}}
     >
       {children}
     </AuthContext.Provider>

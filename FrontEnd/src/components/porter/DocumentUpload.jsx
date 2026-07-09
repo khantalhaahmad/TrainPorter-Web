@@ -54,14 +54,34 @@ const DocumentUpload = ({
 }) => {
   const inputRefs = useRef({});
 
-  const openFilePicker = (key) => {
-    inputRefs.current[key]?.click();
-  };
+const openFilePicker = (key) => {
+
+  console.log("OPEN:", key);
+
+  console.log(inputRefs.current[key]);
+
+  inputRefs.current[key].click();
+
+};
 
 const MAX_SIZE = 5 * 1024 * 1024;
 
+const allowedTypes = [
+  "image/jpeg",
+  "image/png",
+  "image/jpg",
+  "image/webp",
+  "application/pdf",
+];
+
 const handleFile = (key, file) => {
+
   if (!file) return;
+
+  if (!allowedTypes.includes(file.type)) {
+    alert("Only JPG, JPEG, PNG, WEBP and PDF files are allowed.");
+    return;
+  }
 
   if (file.size > MAX_SIZE) {
     alert("File size should be less than 5 MB.");
@@ -72,19 +92,8 @@ const handleFile = (key, file) => {
     ...prev,
     [key]: file,
   }));
+
 };
-
-const allowedTypes = [
-  "image/jpeg",
-  "image/png",
-  "image/jpg",
-  "application/pdf",
-];
-
-if (!allowedTypes.includes(file.type)) {
-  alert("Only JPG, PNG and PDF files are allowed.");
-  return;
-}
 
   const removeFile = (key) => {
     setFiles((prev) => ({
@@ -99,13 +108,6 @@ if (!allowedTypes.includes(file.type)) {
 
   const renderPreview = (file) => {
   if (!file) return null;
-
-  const isDocumentsValid =
-  files.profilePhoto &&
-  files.aadhaarFront &&
-  files.aadhaarBack;
-
-return isDocumentsValid;
 
   // Image Preview
   if (file.type.startsWith("image/")) {
@@ -169,19 +171,17 @@ return isDocumentsValid;
 >
 
               <input
-                ref={(el) =>
-                  (inputRefs.current[doc.key] = el)
-                }
-                type="file"
-                hidden
-                accept={doc.accept}
-                onChange={(e) =>
-                  handleFile(
-                    doc.key,
-                    e.target.files[0]
-                  )
-                }
-              />
+  ref={(el) => {
+    inputRefs.current[doc.key] = el;
+    console.log(doc.key, el);
+  }}
+  type="file"
+  hidden
+  accept={doc.accept}
+  onChange={(e) =>
+    handleFile(doc.key, e.target.files?.[0])
+  }
+/>
 
               {!file ? (
                 <div
@@ -206,11 +206,16 @@ return isDocumentsValid;
                   )}
 
                   <button
-                    type="button"
-                    className="browse-btn"
-                  >
-                    Browse File
-                  </button>
+  type="button"
+  className="browse-btn"
+  onClick={(e) => {
+    e.stopPropagation();
+    console.log("Browse Button Clicked");
+    openFilePicker(doc.key);
+  }}
+>
+  Browse File
+</button>
                 </div>
               ) : (
                 <div className="uploaded-card">
