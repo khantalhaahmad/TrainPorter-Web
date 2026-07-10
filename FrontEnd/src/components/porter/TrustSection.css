@@ -4,205 +4,60 @@
 
 .bp-trust-section{
 
-    position:relative;
+    padding:10px 8% 25px;
 
-    overflow:hidden;
-
-    padding:90px 8%;
-
-    background:
-    linear-gradient(
-        180deg,
-        #ffffff,
-        #f8fbff
-    );
+    background:linear-gradient(180deg,#ffffff,#f8fbff);
 
 }
 
 /* ==========================================================
-   HEADER
+   WRAPPER
 ========================================================== */
 
-.bp-trust-header{
-
-    max-width:760px;
-
-    margin:0 auto 65px;
-
-    text-align:center;
-
-}
-
-.bp-trust-badge{
-
-    display:inline-flex;
-
-    align-items:center;
-
-    gap:10px;
-
-    padding:10px 22px;
-
-    border-radius:999px;
-
-    background:#eff6ff;
-
-    color:#2563eb;
-
-    font-size:14px;
-
-    font-weight:700;
-
-    margin-bottom:24px;
-
-}
-
-.bp-trust-heading{
-
-    font-size:48px;
-
-    font-weight:800;
-
-    color:#0f172a;
-
-    line-height:1.2;
-
-    margin-bottom:18px;
-
-}
-
-.bp-trust-heading span{
-
-    color:#2563eb;
-
-}
-
-.bp-trust-subheading{
-
-    font-size:18px;
-
-    color:#64748b;
-
-    line-height:1.8;
-
-}
-
-/* ==========================================================
-   GRID
-========================================================== */
-
-.bp-trust-grid{
-
+.bp-trust-wrapper{
     display:grid;
+    grid-template-columns:1fr 420px;
 
-    grid-template-columns:repeat(3,1fr);
-
-    gap:28px;
-
-}
-
-/* ==========================================================
-   CARD
-========================================================== */
-
-.bp-trust-card{
-
-    position:relative;
-
-    overflow:hidden;
-
-    background:rgba(255,255,255,.92);
-
-    backdrop-filter:blur(18px);
-
-    -webkit-backdrop-filter:blur(18px);
-
-    border:1px solid rgba(37,99,235,.08);
-
-    border-radius:28px;
-
-    padding:34px;
-
-    transition:.35s;
-
-    box-shadow:
-    0 20px 50px rgba(15,23,42,.08);
-
-}
-
-/* ==========================================================
-   QUOTE ICON
-========================================================== */
-
-.bp-trust-quote-icon{
-
-    color:#2563eb;
-
-    opacity:.18;
-
-    margin-bottom:20px;
-
-}
-
-/* ==========================================================
-   REVIEW
-========================================================== */
-
-.bp-trust-review{
-
-    font-size:16px;
-
-    color:#475569;
-
-    line-height:1.9;
-
-    margin-bottom:28px;
-
-    min-height:170px;
-
-}
-
-/* ==========================================================
-   RATING
-========================================================== */
-
-.bp-trust-rating{
-
-    display:flex;
+    gap:32px;
 
     align-items:center;
 
-    gap:4px;
+    padding:18px 26px;
 
-    margin-bottom:24px;
+    border-radius:22px;
 
+    background:#fff;
+
+    border:1px solid #edf2f7;
+
+    box-shadow:0 12px 30px rgba(15,23,42,.06);
 }
 
 /* ==========================================================
-   USER
+   LEFT SIDE
 ========================================================== */
 
-.bp-trust-user{
+.bp-trust-left{
 
     display:flex;
 
-    align-items:center;
+    align-items:flex-start;
 
-    gap:14px;
-
+    gap:22px;
+ padding:0;
+max-width:360px;
+align-self:center;
 }
 
-/* ==========================================================
-   AVATAR
-========================================================== */
+.bp-trust-left-icon{
 
-.bp-trust-avatar{
+    width:64px;
 
-    width:58px;
+    height:64px;
 
-    height:58px;
+    min-width:64px;
 
-    border-radius:50%;
+    border-radius:20px;
 
     display:flex;
 
@@ -210,40 +65,99 @@
 
     align-items:center;
 
-    background:
-
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #3b82f6
-    );
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
 
     color:#fff;
 
-    font-size:22px;
+    box-shadow:
+    0 18px 40px rgba(37,99,235,.20);
+
+}
+
+.bp-trust-left h2{
+
+    font-size:15px;
 
     font-weight:800;
 
-    box-shadow:
-    0 15px 30px rgba(37,99,235,.25);
+    color:#0f172a;
+
+    line-height:1.2;
+
+    margin-bottom:8px;
+    line-height:1.25;
+
+}
+
+.bp-trust-left p{
+
+    font-size:13px;
+
+    color:#64748b;
+
+    line-height:1.55;
+
+    max-width:2700px;
 
 }
 
 /* ==========================================================
-   USER INFO
+   SLIDER CARD
 ========================================================== */
 
-.bp-trust-user-details{
+.bp-trust-slider{
+  width:300px;
+    position:relative;
 
-    flex:1;
+    background:#fff;
+
+    border:1px solid #e2e8f0;
+
+      border-radius:20px;
+
+      padding:18px 20px;
+    min-height:170px;
+    box-shadow:
+    0 20px 45px rgba(15,23,42,.08);
+
+    transition:.35s;
+    border-radius:20px;
+}
+
+.bp-trust-slider:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 28px 60px rgba(37,99,235,.12);
 
 }
 
-.bp-trust-user-details h4{
+.bp-trust-quote{
+    width:24px;
+    height:24px;
+    margin-bottom:10px;
+}
 
-    font-size:18px;
+.bp-trust-slider p{
 
-    font-weight:700;
+    font-size:15px;
+
+    color:#475569;
+
+    line-height:1.8;
+
+     margin:8px 0 12px;
+
+  min-height:auto;
+
+}
+
+.bp-trust-slider strong{
+
+    display:block;
+
+    font-size:16px;
 
     color:#0f172a;
 
@@ -251,356 +165,110 @@
 
 }
 
-.bp-trust-user-details p{
+.bp-trust-slider span{
 
-    font-size:14px;
+    display:block;
+
+    font-size:12px;
 
     color:#64748b;
 
 }
 
 /* ==========================================================
-   VERIFIED
+   DOTS
 ========================================================== */
 
-.bp-trust-verified{
+.bp-trust-dots{
 
-    color:#22c55e;
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
+
+    margin-top:14px;
+
+}
+
+.bp-dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#cbd5e1;
+
+    transition:.35s;
+
+}
+
+.bp-dot.active{
+
+    width:28px;
+
+    border-radius:999px;
+
+    background:#2563eb;
 
 }
 
 /* ==========================================================
-   HOVER
+   FOOTER
 ========================================================== */
 
-.bp-trust-card:hover{
+.bp-trust-footer{
 
-    transform:translateY(-10px);
-
-    border-color:#2563eb;
-
-    box-shadow:
-
-    0 30px 60px rgba(37,99,235,.15);
-
-}
-
-.bp-trust-card:hover
-.bp-trust-avatar{
-
-    transform:scale(1.08);
-
-}
-
-.bp-trust-card:hover
-.bp-trust-user-details h4{
-
-    color:#2563eb;
-
-}
-
-/* ==========================================================
-   SMOOTH
-========================================================== */
-
-.bp-trust-card,
-.bp-trust-avatar,
-.bp-trust-user-details h4{
-
-    transition:all .35s ease;
-
-}
-/* ==========================================================
-   BOTTOM CTA CARD
-========================================================== */
-
-.bp-trust-bottom-card{
-
-    position:relative;
-
-    overflow:hidden;
-
-    margin-top:70px;
-
-    padding:45px;
-
-    border-radius:30px;
+    margin-top:22px;
 
     text-align:center;
 
-    background:
-    linear-gradient(
-        135deg,
-        #2563eb,
-        #3b82f6,
-        #60a5fa
-    );
+    font-size:15px;
 
-    color:#fff;
-
-    box-shadow:
-    0 35px 70px rgba(37,99,235,.25);
+    color:#64748b;
+    padding-top:18px;
 
 }
 
-.bp-trust-bottom-card h3{
+.bp-trust-footer span{
 
-    font-size:34px;
+    color:#2563eb;
 
-    font-weight:800;
+    font-weight:700;
 
-    margin-bottom:18px;
-
-}
-
-.bp-trust-bottom-card p{
-
-    max-width:760px;
-
-    margin:auto;
-
-    font-size:17px;
-
-    line-height:1.9;
-
-    opacity:.96;
+    cursor:pointer;
 
 }
 
 /* ==========================================================
-   GLASS SHINE
+   ANIMATION
 ========================================================== */
 
-.bp-trust-card::before{
+.bp-trust-slider{
 
-    content:"";
-
-    position:absolute;
-
-    top:-120px;
-
-    right:-120px;
-
-    width:230px;
-
-    height:230px;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        rgba(255,255,255,.45),
-        transparent 70%
-    );
-
-    pointer-events:none;
+    animation:bpTrustFade .5s ease;
 
 }
 
-.bp-trust-bottom-card::before{
-
-    content:"";
-
-    position:absolute;
-
-    inset:0;
-
-    background:
-
-    linear-gradient(
-        120deg,
-        transparent 20%,
-        rgba(255,255,255,.18) 50%,
-        transparent 80%
-    );
-
-    transform:translateX(-120%);
-
-    animation:bpTrustShine 6s linear infinite;
-
-}
-
-@keyframes bpTrustShine{
+@keyframes bpTrustFade{
 
 0%{
 
-transform:translateX(-120%);
+opacity:0;
+
+transform:translateY(10px);
 
 }
 
 100%{
 
-transform:translateX(120%);
-
-}
-
-}
-
-/* ==========================================================
-   PREMIUM BORDER
-========================================================== */
-
-.bp-trust-card::after{
-
-    content:"";
-
-    position:absolute;
-
-    inset:-1px;
-
-    border-radius:28px;
-
-    padding:1px;
-
-    background:
-    linear-gradient(
-        135deg,
-        rgba(37,99,235,.25),
-        rgba(96,165,250,.08),
-        rgba(255,255,255,0)
-    );
-
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-
-    -webkit-mask-composite:xor;
-
-    mask-composite:exclude;
-
-    opacity:0;
-
-    transition:.35s;
-
-}
-
-.bp-trust-card:hover::after{
-
-    opacity:1;
-
-}
-
-/* ==========================================================
-   FLOATING GLOW
-========================================================== */
-
-.bp-trust-section::before{
-
-    content:"";
-
-    position:absolute;
-
-    top:120px;
-
-    left:-140px;
-
-    width:320px;
-
-    height:320px;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        rgba(37,99,235,.10),
-        transparent 75%
-    );
-
-    filter:blur(60px);
-
-    pointer-events:none;
-
-}
-
-.bp-trust-section::after{
-
-    content:"";
-
-    position:absolute;
-
-    right:-140px;
-
-    bottom:-140px;
-
-    width:340px;
-
-    height:340px;
-
-    border-radius:50%;
-
-    background:
-    radial-gradient(
-        rgba(96,165,250,.08),
-        transparent 75%
-    );
-
-    filter:blur(65px);
-
-    pointer-events:none;
-
-}
-
-/* ==========================================================
-   ANIMATIONS
-========================================================== */
-
-.bp-trust-avatar{
-
-    animation:bpTrustAvatarFloat 3s ease-in-out infinite;
-
-}
-
-@keyframes bpTrustAvatarFloat{
-
-0%{
+opacity:1;
 
 transform:translateY(0);
 
 }
-
-50%{
-
-transform:translateY(-6px);
-
-}
-
-100%{
-
-transform:translateY(0);
-
-}
-
-}
-
-.bp-trust-rating{
-
-    transition:.35s;
-
-}
-
-.bp-trust-card:hover
-.bp-trust-rating{
-
-    transform:scale(1.05);
-
-}
-
-/* ==========================================================
-   CTA HOVER
-========================================================== */
-
-.bp-trust-bottom-card{
-
-    transition:.4s;
-
-}
-
-.bp-trust-bottom-card:hover{
-
-    transform:translateY(-6px);
-
-    box-shadow:
-    0 45px 90px rgba(37,99,235,.35);
 
 }
 
@@ -608,17 +276,13 @@ transform:translateY(0);
    RESPONSIVE
 ========================================================== */
 
-@media(max-width:1200px){
+@media(max-width:992px){
 
-.bp-trust-grid{
+.bp-trust-wrapper{
 
-grid-template-columns:repeat(2,1fr);
+grid-template-columns:1fr;
 
-}
-
-.bp-trust-heading{
-
-font-size:40px;
+gap:30px;
 
 }
 
@@ -628,57 +292,37 @@ font-size:40px;
 
 .bp-trust-section{
 
-padding:70px 20px;
+padding:55px 20px;
 
 }
 
-.bp-trust-grid{
+.bp-trust-left{
 
-grid-template-columns:1fr;
+flex-direction:column;
 
-gap:22px;
+align-items:center;
 
-}
-
-.bp-trust-heading{
-
-font-size:32px;
+text-align:center;
 
 }
 
-.bp-trust-subheading{
+.bp-trust-left h2{
 
-font-size:16px;
+font-size:30px;
 
 }
 
-.bp-trust-card{
+.bp-trust-slider{
 
 padding:28px;
 
 }
 
-.bp-trust-review{
+.bp-trust-slider p{
+
+font-size:16px;
 
 min-height:auto;
-
-}
-
-.bp-trust-bottom-card{
-
-padding:32px 24px;
-
-}
-
-.bp-trust-bottom-card h3{
-
-font-size:26px;
-
-}
-
-.bp-trust-bottom-card p{
-
-font-size:15px;
 
 }
 
@@ -686,72 +330,54 @@ font-size:15px;
 
 @media(max-width:480px){
 
-.bp-trust-heading{
+.bp-trust-left-icon{
 
-font-size:28px;
+width:62px;
 
-}
+height:62px;
 
-.bp-trust-subheading{
+min-width:62px;
 
-font-size:15px;
-
-}
-
-.bp-trust-badge{
-
-font-size:13px;
-
-padding:8px 18px;
+border-radius:18px;
 
 }
 
-.bp-trust-card{
+.bp-trust-left h2{
+
+font-size:24px;
+
+}
+
+.bp-trust-left p{
+
+font-size:14px;
+
+}
+
+.bp-trust-slider{
 
 padding:22px;
 
 }
 
-.bp-trust-avatar{
+.bp-trust-slider p{
 
-width:50px;
+font-size:15px;
 
-height:50px;
-
-font-size:18px;
+line-height:1.8;
 
 }
 
-.bp-trust-user-details h4{
+.bp-trust-slider strong{
 
 font-size:16px;
 
 }
 
-.bp-trust-user-details p{
+.bp-trust-footer{
 
 font-size:13px;
 
 }
-
-.bp-trust-bottom-card h3{
-
-font-size:22px;
-
-}
-
-}
-
-/* ==========================================================
-   SMOOTH TRANSITIONS
-========================================================== */
-
-.bp-trust-section,
-.bp-trust-card,
-.bp-trust-avatar,
-.bp-trust-rating,
-.bp-trust-bottom-card{
-
-transition:all .35s ease;
 
 }

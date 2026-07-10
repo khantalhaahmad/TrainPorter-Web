@@ -388,16 +388,6 @@ placeholder=" "
 </div>
 
 <div className="input-group">
-<input
-name="email"
-value={formData.email}
-onChange={handleChange}
-placeholder=" "
-/>
-<label>Email Address</label>
-</div>
-
-<div className="input-group">
 <select
 name="gender"
 value={formData.gender}
@@ -409,6 +399,15 @@ onChange={handleChange}
 <option>Other</option>
 </select>
 <label className="active">Gender</label>
+</div>
+<div className="input-group">
+<input
+name="email"
+value={formData.email}
+onChange={handleChange}
+placeholder=" "
+/>
+<label>Email Address (Optional)</label>
 </div>
 
 <div className="input-group">
@@ -422,7 +421,21 @@ onChange={handleChange}
 Date of Birth
 </label>
 </div>
+<div className="personal-info-note">
 
+  <div className="personal-info-icon">
+    🛡
+  </div>
+
+  <div className="personal-info-content">
+
+    <p>
+    Your personal information is safe with us and will never be shared with third parties. It is used solely for identity verification and application processing.
+    </p>
+
+  </div>
+
+</div>
 </div>
 
 <div className="button-row">
@@ -1014,17 +1027,21 @@ Next →
 )}
 
 
-     </motion.section>
+        </motion.section>
 
 </div>
+
+{/* RIGHT SIDEBAR */}
+
+<BenefitsSidebar />
+
+</div>
+
+{/* BELOW MAIN LAYOUT */}
 
 <StatsSection />
 
 <TrustSection />
-
-</div>
-
-<BenefitsSidebar />
 
 </div>
     

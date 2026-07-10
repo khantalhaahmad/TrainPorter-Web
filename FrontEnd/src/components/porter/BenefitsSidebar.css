@@ -44,7 +44,7 @@
 .bp-sidebar-top-card:hover,
 .bp-sidebar-benefit-card:hover{
 
-    transform:translateY(-6px);
+    transform:translateY(-5px);
 
     box-shadow:
     0 25px 55px rgba(37,99,235,.14);
@@ -56,9 +56,13 @@
 ========================================================== */
 .bp-sidebar-top-card{
 
-    padding:22px 24px;
+    padding:24px;
 
     text-align:left;
+
+    display:flex;
+
+    flex-direction:column;
 
 }
 .bp-sidebar-top-title{
@@ -84,7 +88,7 @@
 
     flex-direction:column;
 
-    gap:0;
+    margin-top:18px;
 
 }
 
@@ -98,19 +102,19 @@
 
     align-items:center;
 
-    gap:16px;
+    gap:14px;
 
-   padding:20px 6px;
+    padding:18px 0;
 
-    background:none;
-
-    border:none;
+    background:transparent;
 
     border-radius:0;
 
-    box-shadow:none;
+    border:none;
 
     border-bottom:1px solid #eef2f7;
+
+    box-shadow:none;
 
 }
 .bp-sidebar-benefit-card:last-child{

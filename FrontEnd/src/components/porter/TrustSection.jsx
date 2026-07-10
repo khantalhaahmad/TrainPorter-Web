@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./TrustSection.css";
 
 import {
@@ -30,125 +30,123 @@ const testimonials = [
       "Passengers trust the platform and bookings are genuine. The weekly payment system is secure and transparent.",
   },
 ];
-
 const TrustSection = () => {
+    const [current, setCurrent] = useState(0);
+
+useEffect(() => {
+
+  const timer = setInterval(() => {
+
+    setCurrent((prev) => (prev + 1) % testimonials.length);
+
+  }, 3000);
+
+  return () => clearInterval(timer);
+
+}, []);
   return (
 
     <section className="bp-trust-section">
 
-      {/* ================= HEADER ================= */}
-
-      <div className="bp-trust-header">
-
-        <span className="bp-trust-badge">
-          ⭐ Trusted Across India
-        </span>
-
-        <h2 className="bp-trust-heading">
-          Trusted by Thousands of
-          <span> TrainPorter Partners</span>
-        </h2>
-
-        <p className="bp-trust-subheading">
-          Join India's growing network of verified railway porters delivering
-          reliable luggage assistance with secure earnings and trusted support.
-        </p>
-
-      </div>
-
       {/* ================= TESTIMONIALS ================= */}
+      {/* ================= BOTTOM ================= */}
 
-      <div className="bp-trust-grid">
+      <div className="bp-trust-wrapper">
 
-        {testimonials.map((item, index) => (
+    <div className="bp-trust-left">
 
-          <div
-            key={index}
-            className="bp-trust-card"
-          >
+        <div className="bp-trust-left-icon">
 
-            <Quote
-              className="bp-trust-quote-icon"
-              size={34}
-            />
+            <BadgeCheck size={46}/>
 
-            <p className="bp-trust-review">
+        </div>
 
-              "{item.review}"
+        <div>
+
+            <h2>
+
+                Trusted by Thousands of Porters Across India
+
+            </h2>
+
+            <p>
+
+                Start your journey with TrainPorter today and become a part of India's most trusted luggage assistance network.
 
             </p>
 
-            <div className="bp-trust-rating">
+        </div>
 
-              {Array.from({ length: item.rating }).map((_, i) => (
+    </div>
 
-                <Star
-                  key={i}
-                  size={18}
-                  fill="#FBBF24"
-                  color="#FBBF24"
-                />
+    <div className="bp-trust-slider">
 
-              ))}
-
-            </div>
-
-            <div className="bp-trust-user">
-
-              <div className="bp-trust-avatar">
-
-                {item.name.charAt(0)}
-
-              </div>
-
-              <div className="bp-trust-user-details">
-
-                <h4>
-
-                  {item.name}
-
-                </h4>
-
-                <p>
-
-                  {item.role}
-
-                </p>
-
-              </div>
-
-              <BadgeCheck
-                className="bp-trust-verified"
-                size={22}
-              />
-
-            </div>
-
-          </div>
-
-        ))}
-
-      </div>
-
-      {/* ================= BOTTOM ================= */}
-
-      <div className="bp-trust-bottom-card">
-
-        <h3>
-
-          🚆 Join India's Fastest Growing Digital Porter Network
-
-        </h3>
+        <Quote
+            size={34}
+            className="bp-trust-quote"
+        />
 
         <p>
 
-          More verified passengers, secure weekly payments,
-          flexible working hours and complete transparency —
-          everything you need to grow with TrainPorter.
+            "{testimonials[current].review}"
 
         </p>
 
-      </div>
+        <strong>
+
+            - {testimonials[current].name}
+
+        </strong>
+
+        <span>
+
+            {testimonials[current].role}
+
+        </span>
+
+        <div className="bp-trust-dots">
+
+            {testimonials.map((_,index)=>(
+
+                <span
+
+                    key={index}
+
+                    className={
+
+                        current===index
+
+                        ?
+
+                        "bp-dot active"
+
+                        :
+
+                        "bp-dot"
+
+                    }
+
+                />
+
+            ))}
+
+        </div>
+
+    </div>
+
+</div>
+
+<div className="bp-trust-footer">
+
+  🔒 By continuing, you agree to our{" "}
+
+  <span>Terms & Conditions</span>
+
+  {" "}and{" "}
+
+  <span>Privacy Policy</span>
+
+</div>
 
     </section>
 

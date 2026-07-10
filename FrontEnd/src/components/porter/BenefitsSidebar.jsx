@@ -47,53 +47,40 @@ const BenefitsSidebar = () => {
 
       <div className="bp-sidebar-top-card">
 
-        <h2 className="bp-sidebar-top-title">
-          Why Join TrainPorter?
-        </h2>
+  <h2 className="bp-sidebar-top-title">
+    Why Join TrainPorter?
+  </h2>
+
+  <div className="bp-sidebar-benefit-list">
+
+    {benefits.map((item, index) => (
+
+      <div
+        key={index}
+        className="bp-sidebar-benefit-card"
+      >
+
+        <div className="bp-sidebar-benefit-icon">
+
+          {item.icon}
+
+        </div>
+
+        <div className="bp-sidebar-benefit-content">
+
+          <h4>{item.title}</h4>
+
+          <p>{item.description}</p>
+
+        </div>
 
       </div>
 
-      {/* ===========================
-          BENEFITS
-      =========================== */}
+    ))}
 
-      <div className="bp-sidebar-benefit-list">
+  </div>
 
-        {benefits.map((item, index) => (
-
-          <div
-            key={index}
-            className="bp-sidebar-benefit-card"
-          >
-
-            <div className="bp-sidebar-benefit-icon">
-
-              {item.icon}
-
-            </div>
-
-            <div className="bp-sidebar-benefit-content">
-
-              <h4>
-
-                {item.title}
-
-              </h4>
-
-              <p>
-
-                {item.description}
-
-              </p>
-
-            </div>
-
-          </div>
-
-        ))}
-
-      </div>
-
+</div>
     </aside>
   );
 };
