@@ -10,7 +10,9 @@ import ProgressSteps from "../../components/porter/ProgressSteps";
 import BenefitsSidebar from "../../components/porter/BenefitsSidebar";
 import StatsSection from "../../components/porter/StatsSection";
 import TrustSection from "../../components/porter/TrustSection";
-
+import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
+import SubmissionOverlay from "../../components/ui/SubmissionOverlay";
 const BecomePorterApplyPage = () => {
   const [formData, setFormData] = useState({
     
@@ -87,6 +89,10 @@ const [files, setFiles] = useState({
 const navigate = useNavigate();
 
 const [loading, setLoading] = useState(false);
+const [submitStatus, setSubmitStatus] = useState("idle");
+// idle | loading | success
+const [errorMessage, setErrorMessage] = useState("");
+
 
  const handleChange = (e) => {
   const { name, value } = e.target;
@@ -177,6 +183,7 @@ const isBankValid =
   const handleSubmit = async () => {
   try {
     setLoading(true);
+setSubmitStatus("loading");
 
     const form = new FormData();
 
@@ -293,26 +300,51 @@ const isBankValid =
 
     console.log("Application Submitted:", response.data);
 
-    alert(
-      response.data.message ||
-        "Application submitted successfully."
-    );
+// Show Success Overlay
+setSubmitStatus("success");
 
-    navigate("/dashboard");
+setTimeout(() => {
+  navigate("/dashboard");
+}, 5000);
+
   } catch (error) {
-    console.error("Apply Porter Error:", error);
+  console.error("Apply Porter Error:", error);
 
-    if (error.response?.data?.errors) {
-      console.log(error.response.data.errors);
-    }
+  console.log("Status:", error.response?.status);
 
-    alert(
-      error.response?.data?.message ||
-        "Application submission failed."
-    );
-  } finally {
-    setLoading(false);
+  console.log("Full Response:");
+  console.log(error.response?.data);
+
+  if (error.response?.data?.errors?.length) {
+
+    console.table(error.response.data.errors);
+
+    error.response.data.errors.forEach((err) => {
+      console.log("================================");
+      console.log("Field   :", err.path || err.param);
+      console.log("Message :", err.msg);
+      console.log("Value   :", err.value);
+    });
+
   }
+
+  toast.error(
+    error.response?.data?.errors?.[0]?.msg ||
+    error.response?.data?.message ||
+    "Application submission failed."
+  );
+
+  setErrorMessage(
+  error.response?.data?.errors?.[0]?.msg ||
+  error.response?.data?.message ||
+  "Something went wrong while submitting your application."
+);
+
+setSubmitStatus("error");
+
+} finally {
+  setLoading(false);
+}
 };
 
 const isDocumentsValid =
@@ -332,6 +364,7 @@ const isDocumentsValid =
 currentStep={step}
 totalSteps={7}
 />
+
 
       {/* Personal Details */}
 
@@ -1019,7 +1052,18 @@ Next →
     !formData.termsAccepted
   }
 >
-  {loading ? "Submitting..." : "Submit Application"}
+  {loading ? (
+    <>
+     <Loader2
+  className="spin"
+  size={20}
+  strokeWidth={2.5}
+/>
+      Submitting Application...
+    </>
+  ) : (
+    "Submit Application"
+  )}
 </button>
 
     </div>
@@ -1041,7 +1085,14 @@ Next →
 
 <StatsSection />
 
-<TrustSection />
+<SubmissionOverlay
+  status={submitStatus}
+  errorMessage={errorMessage}
+  onClose={() => {
+    setSubmitStatus("idle");
+    navigate("/dashboard");
+  }}
+/>
 
 </div>
     

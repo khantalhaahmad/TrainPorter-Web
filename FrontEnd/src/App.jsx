@@ -24,6 +24,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import './App.css';
 import BecomePorterApplyPage from './modules/porter/BecomePorterApplyPage';
 import ScrollToTop from "./components/ScrollToTop";
+import { Toaster } from "sonner";
 function App() {
   const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
 
@@ -166,7 +167,7 @@ function App() {
     </>
   }
 />
-          {/* 404 Fallback */}
+                    {/* 404 Fallback */}
           <Route
             path="*"
             element={
@@ -178,6 +179,15 @@ function App() {
           />
 
         </Routes>
+
+        {/* Global Toast Notifications */}
+        <Toaster
+          position="top-right"
+          richColors
+          closeButton
+          duration={3000}
+        />
+
       </div>
     </Router>
   );
