@@ -29,6 +29,55 @@ const testimonials = [
     review:
       "Passengers trust the platform and bookings are genuine. The weekly payment system is secure and transparent.",
   },
+  {
+    name: "Amit Sharma",
+    role: "Verified Porter • Lucknow",
+    rating: 5,
+    review:
+      "Since joining TrainPorter, my daily bookings have increased and I earn consistently while serving passengers professionally.",
+  },
+  {
+    name: "Mohammed Arif",
+    role: "Verified Porter • Howrah",
+    rating: 5,
+    review:
+      "The verification process builds passenger trust. Payments are always received on time without any hassle.",
+  },
+  {
+    name: "Rajesh Yadav",
+    role: "Verified Porter • Varanasi",
+    rating: 5,
+    review:
+      "I appreciate the easy booking system and excellent customer support. It has made my work more organized and reliable.",
+  },
+  {
+    name: "Vikram Singh",
+    role: "Verified Porter • Kanpur Central",
+    rating: 5,
+    review:
+      "TrainPorter helped me connect with more genuine passengers. The platform is secure, transparent and easy to use.",
+  },
+  {
+    name: "Ashok Das",
+    role: "Verified Porter • Bhubaneswar",
+    rating: 5,
+    review:
+      "Flexible working hours and regular bookings have significantly improved my monthly income. I highly recommend becoming a partner.",
+  },
+  {
+    name: "Sunil Kumar",
+    role: "Verified Porter • Prayagraj",
+    rating: 5,
+    review:
+      "The app is simple to use and passengers appreciate verified porters. Every booking feels safe and professional.",
+  },
+  {
+    name: "Pawan Mishra",
+    role: "Verified Porter • Mumbai CSMT",
+    rating: 5,
+    review:
+      "Excellent platform for porters. Transparent pricing, instant booking updates and dependable weekly payouts make it a great experience.",
+  },
 ];
 const TrustSection = () => {
     const [current, setCurrent] = useState(0);

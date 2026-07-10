@@ -28,22 +28,6 @@ const HeroBanner = () => {
 Fill in your details below to get started.
           </p>
 
-          <div className="bp-hero-feature-list">
-
-            <div className="bp-hero-feature-item">
-              ✅ Verified Passenger Requests
-            </div>
-
-            <div className="bp-hero-feature-item">
-              💰 Daily Earnings up to ₹1500+
-            </div>
-
-            <div className="bp-hero-feature-item">
-              🛡 Secure Weekly Payments
-            </div>
-
-          </div>
-
         </div>
 
         {/* RIGHT */}

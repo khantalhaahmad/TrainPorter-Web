@@ -16,89 +16,64 @@
 
 .bp-trust-wrapper{
     display:grid;
-    grid-template-columns:1fr 420px;
-
-    gap:32px;
-
+    grid-template-columns:1fr 360px;
+    gap:24px;
     align-items:center;
-
-    padding:18px 26px;
-
-    border-radius:22px;
-
-    background:#fff;
-
-    border:1px solid #edf2f7;
-
-    box-shadow:0 12px 30px rgba(15,23,42,.06);
 }
 
 /* ==========================================================
    LEFT SIDE
 ========================================================== */
-
 .bp-trust-left{
-
     display:flex;
+    align-items:center;
+    gap:18px;
 
-    align-items:flex-start;
+    background:#fff;
+    border:1px solid #edf2f7;
+    border-radius:18px;
 
-    gap:22px;
- padding:0;
-max-width:360px;
-align-self:center;
+    padding:22px 24px;
+    min-height:150px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
 }
 
 .bp-trust-left-icon{
 
-    width:64px;
+    width:56px;
+    height:56px;
+    min-width:56px;
 
-    height:64px;
-
-    min-width:64px;
-
-    border-radius:20px;
+    border-radius:18px;
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
 
     background:linear-gradient(135deg,#2563eb,#3b82f6);
-
     color:#fff;
 
-    box-shadow:
-    0 18px 40px rgba(37,99,235,.20);
+    box-shadow:0 10px 24px rgba(37,99,235,.22);
+}
+.bp-trust-left h2{
 
+    font-size:15px;
+    font-weight:800;
+    color:#0f172a;
+
+    line-height:1.35;
+    margin-bottom:8px;
 }
 
 .bp-trust-left h2{
 
     font-size:15px;
-
     font-weight:800;
-
     color:#0f172a;
 
-    line-height:1.2;
-
+    line-height:1.35;
     margin-bottom:8px;
-    line-height:1.25;
-
-}
-
-.bp-trust-left p{
-
-    font-size:13px;
-
-    color:#64748b;
-
-    line-height:1.55;
-
-    max-width:2700px;
-
 }
 
 /* ==========================================================
@@ -106,22 +81,22 @@ align-self:center;
 ========================================================== */
 
 .bp-trust-slider{
-  width:300px;
-    position:relative;
+
+    width:100%;
+    min-height:150px;
 
     background:#fff;
 
-    border:1px solid #e2e8f0;
+    border:1px solid #edf2f7;
+    border-radius:18px;
 
-      border-radius:20px;
+    padding:22px 22px;
 
-      padding:18px 20px;
-    min-height:170px;
-    box-shadow:
-    0 20px 45px rgba(15,23,42,.08);
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
 
-    transition:.35s;
-    border-radius:20px;
+    position:relative;
+
+    transition:.3s;
 }
 
 .bp-trust-slider:hover{
@@ -134,45 +109,42 @@ align-self:center;
 }
 
 .bp-trust-quote{
-    width:24px;
-    height:24px;
+
+    width:20px;
+    height:20px;
+
+    color:#94a3b8;
+
     margin-bottom:10px;
 }
 
 .bp-trust-slider p{
 
-    font-size:15px;
+    font-size:13px;
 
     color:#475569;
 
     line-height:1.8;
 
-     margin:8px 0 12px;
-
-  min-height:auto;
-
+    margin:0 0 12px;
 }
 
 .bp-trust-slider strong{
 
     display:block;
 
-    font-size:16px;
+    font-size:14px;
 
-    color:#0f172a;
+    color:#2563eb;
 
     margin-bottom:4px;
-
 }
 
 .bp-trust-slider span{
 
-    display:block;
-
     font-size:12px;
 
     color:#64748b;
-
 }
 
 /* ==========================================================
@@ -181,38 +153,32 @@ align-self:center;
 
 .bp-trust-dots{
 
+    margin-top:14px;
+
     display:flex;
 
     justify-content:center;
 
-    gap:10px;
-
-    margin-top:14px;
-
+    gap:8px;
 }
 
 .bp-dot{
 
-    width:10px;
-
-    height:10px;
+    width:8px;
+    height:8px;
 
     border-radius:50%;
 
-    background:#cbd5e1;
-
-    transition:.35s;
-
+    background:#d1d5db;
 }
 
 .bp-dot.active{
 
-    width:28px;
+    width:24px;
 
-    border-radius:999px;
+    border-radius:20px;
 
     background:#2563eb;
-
 }
 
 /* ==========================================================
