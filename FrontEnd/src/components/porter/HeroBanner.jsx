@@ -24,9 +24,8 @@ const HeroBanner = () => {
           </h1>
 
           <p className="bp-hero-description">
-            Join thousands of verified railway porters across India and earn
-            more with flexible working hours, secure payments, verified
-            passenger bookings and real-time job notifications.
+            Join thousands of verified porters earning with flexibility and respect.
+Fill in your details below to get started.
           </p>
 
           <div className="bp-hero-feature-list">
