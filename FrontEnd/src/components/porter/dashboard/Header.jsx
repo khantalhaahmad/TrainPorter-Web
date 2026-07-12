@@ -68,32 +68,7 @@ const Header = ({ application }) => {
 
         </button>
 
-        <div className="tpad-header-user">
-
-          <div className="tpad-header-avatar">
-
-            {getInitial(application?.fullName)}
-
-          </div>
-
-          <div>
-
-            <h4>
-              {application?.fullName || "User"}
-            </h4>
-
-            <p>
-
-              <Clock3 size={14} />
-
-              Applied on {formatDate(application?.createdAt)}
-
-            </p>
-
-          </div>
-
-        </div>
-
+        
       </div>
 
     </header>

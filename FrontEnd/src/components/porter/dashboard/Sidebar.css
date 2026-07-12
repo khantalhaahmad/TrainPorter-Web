@@ -268,3 +268,192 @@
     background: rgba(255,255,255,.18);
     border-radius: 20px;
 }
+/* ==========================================================
+   LOGOUT MODAL
+========================================================== */
+
+.tpad-logout-modal-overlay{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(15,23,42,.55);
+
+    backdrop-filter:blur(6px);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    z-index:9999;
+
+    animation:tpadFade .25s ease;
+}
+
+.tpad-logout-modal{
+
+    width:100%;
+    max-width:420px;
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:30px 28px;
+
+    box-shadow:0 30px 60px rgba(15,23,42,.25);
+
+    text-align:center;
+
+    animation:tpadScale .25s ease;
+}
+
+.tpad-logout-icon{
+
+    width:72px;
+    height:72px;
+
+    margin:0 auto 20px;
+
+    border-radius:50%;
+
+    background:#eff6ff;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:2rem;
+}
+
+.tpad-logout-modal h3{
+
+    font-size:1.45rem;
+
+    color:#0f172a;
+
+    margin-bottom:10px;
+}
+
+.tpad-logout-modal p{
+
+    color:#64748b;
+
+    line-height:1.7;
+
+    margin-bottom:26px;
+}
+
+.tpad-logout-actions{
+
+    display:flex;
+
+    gap:14px;
+}
+
+.tpad-cancel-btn,
+.tpad-confirm-btn{
+
+    flex:1;
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:14px;
+
+    font-size:.95rem;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.tpad-cancel-btn{
+
+    background:#f1f5f9;
+
+    color:#334155;
+}
+
+.tpad-cancel-btn:hover{
+
+    background:#e2e8f0;
+}
+
+.tpad-confirm-btn{
+
+    background:#ef4444;
+
+    color:#fff;
+}
+
+.tpad-confirm-btn:hover{
+
+    background:#dc2626;
+}
+
+.tpad-confirm-btn:disabled{
+
+    opacity:.75;
+
+    cursor:not-allowed;
+}
+
+.tpad-spinner{
+
+    width:18px;
+    height:18px;
+
+    border:2px solid rgba(255,255,255,.35);
+
+    border-top-color:#fff;
+
+    border-radius:50%;
+
+    display:inline-block;
+
+    animation:tpadSpin .8s linear infinite;
+
+    margin-right:8px;
+}
+
+@keyframes tpadSpin{
+
+    to{
+
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes tpadFade{
+
+    from{
+
+        opacity:0;
+    }
+
+    to{
+
+        opacity:1;
+    }
+}
+
+@keyframes tpadScale{
+
+    from{
+
+        opacity:0;
+
+        transform:scale(.92);
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:scale(1);
+    }
+}

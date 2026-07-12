@@ -1,13 +1,17 @@
 import "./OverviewCards.css";
+import verificationImage from "../../../assets/verification-card.png";
 import {
   BadgeCheck,
   CalendarClock,
   ClipboardList,
   Clock3,
+  Copy,
+  Check,
 } from "lucide-react";
+import { useState } from "react";
 
 const OverviewCards = ({ application }) => {
-
+const [copied, setCopied] = useState(false);
   const getStatusText = (status) => {
     switch (status) {
       case "approved":
@@ -24,7 +28,19 @@ const OverviewCards = ({ application }) => {
         return "Pending Review";
     }
   };
+const copyApplicationId = async () => {
 
+  const id = getApplicationId(application);
+
+  await navigator.clipboard.writeText(id);
+
+  setCopied(true);
+
+  setTimeout(() => {
+    setCopied(false);
+  }, 2000);
+
+};
   const getStatusSubText = (status) => {
     switch (status) {
       case "approved":
@@ -91,129 +107,146 @@ const OverviewCards = ({ application }) => {
   };
 
   return (
+  <section className="tpad-overview">
 
-    <section className="tpad-overview">
+    <div className="tpad-overview-card">
 
-      {/* Card 1 */}
+      {/* Column 1 */}
+      <div className="tpad-overview-section">
+        <div className="tpad-overview-section tpad-overview-id-section"></div>
+<div className="tpad-overview-icon tpad-overview-blue tpad-overview-id-icon">
+    <ClipboardList size={18} />
+</div>
 
-      <div className="tpad-overview-card">
+       <div className="tpad-overview-content">
 
-        <div className="tpad-overview-icon tpad-overview-blue">
+  <p className="tpad-overview-label tpad-overview-id-label">
+    Application ID
+  </p>
 
-          <ClipboardList size={28} />
+ <div className="tpad-overview-id-row">
 
-        </div>
+  <h2>
+    {getApplicationId(application)}
+  </h2>
 
-        <div className="tpad-overview-content">
+<button
+  className="tpad-copy-btn"
+  onClick={copyApplicationId}
+  aria-label="Copy Application ID"
+>
 
-          <p className="tpad-overview-label">
+  {copied ? (
+    <Check size={16} />
+  ) : (
+    <Copy size={16} />
+  )}
 
-            Application ID
+  <span className="tpad-copy-tooltip">
+    {copied ? "Copied!" : "Copy"}
+  </span>
 
-          </p>
+</button>
 
-          <h2>
+</div>
+  <div className="tpad-overview-date">
 
-            {getApplicationId(application)}
+    <span>Submitted On</span>
 
-          </h2>
+    <small>
+      {formatDateTime(application?.createdAt)}
+    </small>
 
-          <span>
+  </div>
 
-            Submitted On
-
-          </span>
-
-          <small
-            style={{
-              display: "block",
-              marginTop: "6px",
-              fontWeight: "600",
-              color: "#475569",
-            }}
-          >
-
-            {formatDateTime(application?.createdAt)}
-
-          </small>
-
-        </div>
-
-      </div>
-
-      {/* Card 2 */}
-
-      <div className="tpad-overview-card">
-
-        <div className="tpad-overview-icon tpad-overview-orange">
-
-          <Clock3 size={28} />
-
-        </div>
-
-        <div className="tpad-overview-content">
-
-          <p className="tpad-overview-label">
-
-            Current Status
-
-          </p>
-
-          <h2>
-
-            {getStatusText(application?.status)}
-
-          </h2>
-
-          <span className="tpad-overview-status">
-
-            <BadgeCheck size={16} />
-
-            {getStatusSubText(application?.status)}
-
-          </span>
-
-        </div>
+</div>
 
       </div>
 
-      {/* Card 3 */}
+     <div className="tpad-overview-divider tpad-overview-status-divider"></div>
 
-      <div className="tpad-overview-card">
+      {/* Column 2 */}
 
-        <div className="tpad-overview-icon tpad-overview-green">
+      <div className="tpad-overview-section tpad-overview-status-section">
 
-          <CalendarClock size={28} />
+ 
 
-        </div>
+  <div className="tpad-overview-content">
 
-        <div className="tpad-overview-content">
+ <p className="tpad-overview-label tpad-overview-status-label">
+  Current Status
+</p>
 
-          <p className="tpad-overview-label">
+<div className={`tpad-overview-status-title ${application?.status}`}>
 
-            Preferred Station
+  <Clock3 size={22} />
 
-          </p>
+  <h2>{getStatusText(application?.status)}</h2>
 
-          <h2>
+</div>
 
-            {application?.preferredStation || "--"}
+    <p className="tpad-overview-description">
 
-          </h2>
+      {application?.status === "approved"
+        ? "Your application has been approved successfully."
+        : application?.status === "rejected"
+        ? "Your application needs updates before resubmission."
+        : application?.status === "under_review"
+        ? "Your application is currently under review by our admin team."
+        : "Your application is under review by our admin team."}
 
-          <span>
+    </p>
 
-            {application?.stationCode || "Station Not Available"}
+  </div>
 
-          </span>
+</div>
 
-        </div>
+<div className="tpad-overview-divider tpad-overview-status-divider"></div>
+      {/* Column 3 */}
+
+      <div className="tpad-overview-section tpad-overview-verification-section">
+
+  
+
+  <div className="tpad-overview-content">
+
+  <p className="tpad-overview-label tpad-overview-verification-label">
+    Expected Verification
+  </p>
+
+  <div className="tpad-overview-verification-row">
+
+    <div className="tpad-overview-icon tpad-overview-green">
+      <CalendarClock size={20} />
+    </div>
+
+    <h2>
+      2 - 3 Days
+    </h2>
+
+  </div>
+
+  <p className="tpad-overview-description">
+    We will notify you once there is any update.
+  </p>
+
+</div>
+
+</div>
+      {/* Column 4 */}
+
+      <div className="tpad-overview-illustration">
+<img
+  src={verificationImage}
+  alt="Verification"
+/>
 
       </div>
 
-    </section>
+    </div>
 
-  );
+  </section>
+);
 };
 
 export default OverviewCards;
