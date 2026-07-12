@@ -149,7 +149,9 @@ h4 {
 }
 
 /* Section Spacing */
-section {
+main section,
+.landing-page section,
+.home-section {
   padding: var(--spacing-3xl) 0;
 }
 
