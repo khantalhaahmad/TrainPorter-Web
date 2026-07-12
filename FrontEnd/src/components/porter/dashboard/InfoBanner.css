@@ -1,0 +1,150 @@
+/* ==========================================================
+   TRAINPORTER APPLICATION DASHBOARD
+   INFO BANNER
+========================================================== */
+
+.tpad-info-banner{
+
+    margin-top:30px;
+
+    background:linear-gradient(135deg,#eff6ff,#ffffff);
+
+    border:1px solid #dbeafe;
+
+    border-radius:24px;
+
+    padding:32px;
+
+    box-shadow:0 18px 45px rgba(15,23,42,.06);
+
+}
+
+.tpad-info-header{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:18px;
+
+    margin-bottom:28px;
+
+}
+
+.tpad-info-header-icon{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:18px;
+
+    background:#2563eb;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+}
+
+.tpad-info-header h2{
+
+    font-size:1.6rem;
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+
+}
+
+.tpad-info-header p{
+
+    color:#64748b;
+
+    line-height:1.7;
+
+}
+
+.tpad-info-list{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+}
+
+.tpad-info-item{
+
+    display:flex;
+
+    gap:18px;
+
+    align-items:flex-start;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    border:1px solid #edf2f7;
+
+    transition:.3s;
+
+}
+
+.tpad-info-item:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 15px 35px rgba(15,23,42,.08);
+
+}
+
+.tpad-info-item svg{
+
+    color:#2563eb;
+
+    flex-shrink:0;
+
+    margin-top:3px;
+
+}
+
+.tpad-info-item h4{
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+
+    font-size:1rem;
+
+}
+
+.tpad-info-item p{
+
+    color:#64748b;
+
+    line-height:1.7;
+
+    font-size:.92rem;
+
+}
+
+@media(max-width:900px){
+
+    .tpad-info-list{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

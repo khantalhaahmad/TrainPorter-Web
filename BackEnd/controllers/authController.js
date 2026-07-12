@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const { verifyOTP } = require("../services/otpService");
+const PorterApplication = require("../models/PorterApplication");
 
 const generateJWT = require("../utils/generateJWT");
 
@@ -86,17 +87,32 @@ const verifyUserOTP = async (
         });
     }
 
-    const token =
-      generateJWT(user);
+const application =
+  await PorterApplication.findOne({
+    userId: user._id,
+  });
 
-    return successResponse(
-      res,
-      "Login successful",
-      {
-        token,
-        user,
-      }
-    );
+const token = generateJWT(user);
+
+return successResponse(
+  res,
+  "Login successful",
+  {
+    token,
+
+    user,
+
+    porterApplication: application
+      ? {
+          hasApplication: true,
+          status: application.status,
+        }
+      : {
+          hasApplication: false,
+          status: null,
+        },
+  }
+);
 
   } catch (error) {
 

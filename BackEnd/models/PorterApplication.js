@@ -14,6 +14,16 @@ const porterApplicationSchema = new mongoose.Schema(
     },
 
     // ==========================
+// Application ID
+// ==========================
+
+applicationId: {
+  type: String,
+  unique: true,
+  required: true,
+},
+
+    // ==========================
     // Personal Details
     // ==========================
 

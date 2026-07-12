@@ -1,0 +1,209 @@
+/* ==========================================================
+   TRAINPORTER APPLICATION DASHBOARD PAGE
+========================================================== */
+
+.tpad-page{
+
+    display:flex;
+
+    min-height:100vh;
+
+    background:#f8fafc;
+
+}
+
+/* ==========================================================
+   MAIN CONTENT
+========================================================== */
+
+.tpad-main{
+
+    flex:1;
+
+    padding:35px;
+
+    overflow-y:auto;
+
+}
+
+/* ==========================================================
+   CONTENT GRID
+========================================================== */
+
+.tpad-content-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:28px;
+
+    margin-top:30px;
+
+    align-items:start;
+
+}
+
+.tpad-left-column{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+}
+
+.tpad-right-column{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:28px;
+
+}
+
+/* ==========================================================
+   BOTTOM GRID
+========================================================== */
+
+.tpad-bottom-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr;
+
+    gap:28px;
+
+    margin-top:30px;
+
+}
+
+/* ==========================================================
+   CUSTOM SCROLLBAR
+========================================================== */
+
+.tpad-main::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+.tpad-main::-webkit-scrollbar-track{
+
+    background:#edf2f7;
+
+    border-radius:999px;
+
+}
+
+.tpad-main::-webkit-scrollbar-thumb{
+
+    background:#cbd5e1;
+
+    border-radius:999px;
+
+}
+
+.tpad-main::-webkit-scrollbar-thumb:hover{
+
+    background:#94a3b8;
+
+}
+
+/* ==========================================================
+   LARGE DESKTOP
+========================================================== */
+
+@media (max-width:1400px){
+
+    .tpad-content-grid{
+
+        grid-template-columns:1.7fr 1fr;
+
+    }
+
+}
+
+/* ==========================================================
+   LAPTOP
+========================================================== */
+
+@media (max-width:1200px){
+
+    .tpad-main{
+
+        padding:28px;
+
+    }
+
+    .tpad-content-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:992px){
+
+    .tpad-page{
+
+        flex-direction:column;
+
+    }
+
+    .tpad-main{
+
+        padding:24px;
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .tpad-main{
+
+        padding:18px;
+
+    }
+
+    .tpad-content-grid{
+
+        gap:20px;
+
+    }
+
+    .tpad-bottom-grid{
+
+        gap:20px;
+
+        margin-top:20px;
+
+    }
+
+}
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width:480px){
+
+    .tpad-main{
+
+        padding:15px;
+
+    }
+
+}

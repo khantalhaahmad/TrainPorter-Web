@@ -25,6 +25,7 @@ import './App.css';
 import BecomePorterApplyPage from './modules/porter/BecomePorterApplyPage';
 import ScrollToTop from "./components/ScrollToTop";
 import { Toaster } from "sonner";
+import PorterApplicationDashboardPage from "./modules/porter/PorterApplicationDashboardPage";
 function App() {
   const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
 
@@ -124,6 +125,14 @@ function App() {
   element={
     <ProtectedRoute>
       <BookingHistoryPage />
+    </ProtectedRoute>
+  }
+/>
+<Route
+  path="/porter/application-dashboard"
+  element={
+    <ProtectedRoute>
+      <PorterApplicationDashboardPage />
     </ProtectedRoute>
   }
 />

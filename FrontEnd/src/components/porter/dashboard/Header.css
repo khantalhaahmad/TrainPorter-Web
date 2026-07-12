@@ -1,0 +1,202 @@
+.tpad-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:30px;
+
+    margin-bottom:35px;
+}
+
+.tpad-header-title{
+
+    font-size:2rem;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    margin-bottom:8px;
+}
+
+.tpad-header-subtitle{
+
+    color:#64748b;
+
+    font-size:1rem;
+}
+
+.tpad-header-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+}
+
+.tpad-header-status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:#fff7ed;
+
+    color:#ea580c;
+
+    padding:10px 18px;
+
+    border-radius:999px;
+
+    font-weight:600;
+
+    border:1px solid #fed7aa;
+}
+
+.tpad-header-status-dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:#f59e0b;
+}
+
+.tpad-header-bell{
+
+    width:52px;
+
+    height:52px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:white;
+
+    cursor:pointer;
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:0 10px 30px rgba(15,23,42,.08);
+}
+
+.tpad-header-notification{
+
+    position:absolute;
+
+    top:8px;
+
+    right:8px;
+
+    width:18px;
+
+    height:18px;
+
+    border-radius:50%;
+
+    background:#ef4444;
+
+    color:white;
+
+    font-size:.7rem;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:700;
+}
+
+.tpad-header-user{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    background:white;
+
+    padding:10px 16px;
+
+    border-radius:18px;
+
+    box-shadow:0 10px 30px rgba(15,23,42,.08);
+}
+
+.tpad-header-avatar{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:700;
+
+    font-size:1.2rem;
+}
+
+.tpad-header-user h4{
+
+    margin-bottom:5px;
+
+    color:#0f172a;
+}
+
+.tpad-header-user p{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    color:#64748b;
+
+    font-size:.85rem;
+}
+
+@media(max-width:900px){
+
+    .tpad-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+    }
+
+    .tpad-header-right{
+
+        width:100%;
+
+        flex-wrap:wrap;
+    }
+}

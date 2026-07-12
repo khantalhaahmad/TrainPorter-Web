@@ -303,8 +303,9 @@ setSubmitStatus("loading");
 // Show Success Overlay
 setSubmitStatus("success");
 
+// Redirect to Porter Application Dashboard
 setTimeout(() => {
-  navigate("/dashboard");
+  navigate("/porter/application-dashboard");
 }, 5000);
 
   } catch (error) {

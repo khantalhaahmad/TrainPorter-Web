@@ -209,6 +209,38 @@ accountNumber,
     }
 
     // ==========================
+// Generate Application ID
+// ==========================
+
+const currentYear = new Date().getFullYear();
+
+const lastApplication =
+  await PorterApplication.findOne({
+    applicationId: {
+      $regex: `^TP-${currentYear}-`,
+    },
+  })
+    .sort({ applicationId: -1 })
+    .select("applicationId");
+
+let nextNumber = 1;
+
+if (lastApplication?.applicationId) {
+  const lastNumber = parseInt(
+    lastApplication.applicationId.split("-")[2],
+    10
+  );
+
+  nextNumber = lastNumber + 1;
+}
+
+const applicationId = `TP-${currentYear}-${String(
+  nextNumber
+).padStart(6, "0")}`;
+
+
+
+    // ==========================
     // Upload Documents
     // ==========================
 
@@ -343,11 +375,13 @@ accountNumber;
     // ==========================
 
     const application =
-      await PorterApplication.create({
+  await PorterApplication.create({
 
-        userId: user._id,
+    applicationId,
 
-        fullName,
+    userId: user._id,
+
+    fullName,
 
         phone: user.phone,
 
@@ -437,6 +471,7 @@ accountNumber,
   }
 
 };
+
 
 // ========================================
 // Get My Application

@@ -1,0 +1,176 @@
+.tpad-sidebar{
+
+    width:290px;
+    min-height:100vh;
+
+    background:#071a35;
+
+    color:#fff;
+
+    display:flex;
+    flex-direction:column;
+
+    padding:30px 22px;
+
+    position:sticky;
+    top:0;
+}
+
+.tpad-sidebar-logo{
+
+    display:flex;
+    align-items:center;
+    gap:14px;
+
+    margin-bottom:45px;
+}
+
+.tpad-sidebar-logo-icon{
+
+    width:58px;
+    height:58px;
+
+    border-radius:16px;
+
+    background:#0f62fe;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.tpad-sidebar-logo h2{
+
+    font-size:1.5rem;
+    font-weight:700;
+}
+
+.tpad-sidebar-logo p{
+
+    opacity:.7;
+    margin-top:3px;
+}
+
+.tpad-sidebar-nav{
+
+    display:flex;
+    flex-direction:column;
+
+    gap:10px;
+}
+
+.tpad-sidebar-link{
+
+    width:100%;
+
+    background:transparent;
+
+    border:none;
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+
+    gap:14px;
+
+    padding:15px 18px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.tpad-sidebar-link:hover{
+
+    background:rgba(255,255,255,.08);
+}
+
+.tpad-sidebar-link-active{
+
+    background:#0f62fe;
+}
+
+.tpad-sidebar-guide{
+
+    margin-top:auto;
+
+    background:linear-gradient(180deg,#0b57d0,#0b3a8c);
+
+    border-radius:22px;
+
+    padding:22px;
+
+    margin-bottom:22px;
+}
+
+.tpad-sidebar-guide h3{
+
+    font-size:1.15rem;
+
+    margin-bottom:12px;
+}
+
+.tpad-sidebar-guide p{
+
+    line-height:1.7;
+
+    opacity:.9;
+
+    margin-bottom:20px;
+}
+
+.tpad-sidebar-guide-btn{
+
+    width:100%;
+
+    border:none;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    background:white;
+
+    color:#0b57d0;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    gap:10px;
+}
+
+.tpad-sidebar-logout{
+
+    width:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:10px;
+
+    background:transparent;
+
+    border:1px solid rgba(255,255,255,.15);
+
+    color:white;
+
+    padding:14px;
+
+    border-radius:14px;
+
+    cursor:pointer;
+}
+
+.tpad-sidebar-logout:hover{
+
+    background:rgba(255,255,255,.08);
+}

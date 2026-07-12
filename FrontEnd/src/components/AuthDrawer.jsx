@@ -203,22 +203,37 @@ console.log("TOKEN AFTER LOGIN =>", localStorage.getItem("token"));
 
 setStep("success");
 
-        setTimeout(() => {
+      setTimeout(() => {
 
-            navigate("/dashboard");
+    const porterApplication =
+      response.data?.porterApplication ||
+      response.data?.data?.porterApplication;
 
-            setTimeout(() => {
+    if (
+      porterApplication?.hasApplication &&
+      porterApplication.status !== "approved"
+    ) {
 
-                onClose();
+      navigate("/porter/application-dashboard");
 
-                setStep("login");
-                setMobile("");
-                setOtp(["", "", "", "", "", ""]);
-                setOtpError(false);
+    } else {
 
-            }, 300);
+      navigate("/dashboard");
 
-        }, 2000);
+    }
+
+    setTimeout(() => {
+
+      onClose();
+
+      setStep("login");
+      setMobile("");
+      setOtp(["", "", "", "", "", ""]);
+      setOtpError(false);
+
+    },300);
+
+},2000);
 
    } catch (error) {
 
