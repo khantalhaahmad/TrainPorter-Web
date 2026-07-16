@@ -1,11 +1,5 @@
 import "./ProgressTimeline.css";
-import {
-  CheckCircle2,
-  Clock3,
-  ShieldCheck,
-  UserCheck,
-  BadgeCheck,
-} from "lucide-react";
+import { Check, Clock3 } from "lucide-react";
 
 const ProgressTimeline = ({ application }) => {
 
@@ -40,12 +34,9 @@ const ProgressTimeline = ({ application }) => {
 
         <div className="tpad-progress-item completed">
 
-          <div className="tpad-progress-icon">
-
-            <CheckCircle2 size={22} />
-
-          </div>
-
+      <div className="tpad-progress-icon completed">
+    <Check size={15} strokeWidth={3} />
+</div>
           <div className="tpad-progress-content">
 
             <div className="tpad-progress-title">
@@ -78,16 +69,19 @@ const ProgressTimeline = ({ application }) => {
               : "active"
           }`}
         >
-
-          <div className="tpad-progress-icon">
-
-            {application?.isDocumentVerified ? (
-              <CheckCircle2 size={22} />
-            ) : (
-              <Clock3 size={22} />
-            )}
-
-          </div>
+<div
+  className={`tpad-progress-icon ${
+    application?.isDocumentVerified
+      ? "completed"
+      : "active"
+  }`}
+>
+  {application?.isDocumentVerified ? (
+    <Check size={18} strokeWidth={3} />
+  ) : (
+    <Clock3 size={16} strokeWidth={2.5} />
+  )}
+</div>
 
           <div className="tpad-progress-content">
 
@@ -128,12 +122,7 @@ const ProgressTimeline = ({ application }) => {
               : ""
           }`}
         >
-
-          <div className="tpad-progress-icon">
-
-            <ShieldCheck size={22} />
-
-          </div>
+<div className="tpad-progress-icon pending"></div>
 
           <div className="tpad-progress-content">
 
@@ -149,16 +138,9 @@ const ProgressTimeline = ({ application }) => {
 
             </div>
 
-            <p>
-
-              Preferred Station :
-              {" "}
-              <strong>
-                {application?.preferredStation}
-              </strong>
-
-            </p>
-
+           <p>
+  Your details will be verified with railway records.
+</p>
           </div>
 
         </div>
@@ -175,15 +157,17 @@ const ProgressTimeline = ({ application }) => {
           }`}
         >
 
-          <div className="tpad-progress-icon">
-
-            {isApproved ? (
-              <CheckCircle2 size={22} />
-            ) : (
-              <UserCheck size={22} />
-            )}
-
-          </div>
+      <div
+  className={`tpad-progress-icon ${
+    isApproved
+      ? "completed"
+      : "pending"
+  }`}
+>
+  {isApproved && (
+    <Check size={14} strokeWidth={3} />
+  )}
+</div>
 
           <div className="tpad-progress-content">
 
@@ -211,13 +195,11 @@ const ProgressTimeline = ({ application }) => {
 
             </div>
 
-            <p>
-
-              {application?.adminRemarks
-                ? application.adminRemarks
-                : "Waiting for admin review."}
-
-            </p>
+           <p>
+  {application?.adminRemarks
+    ? application.adminRemarks
+    : "Application will be reviewed by our admin team."}
+</p>
 
           </div>
 
@@ -233,11 +215,17 @@ const ProgressTimeline = ({ application }) => {
           }`}
         >
 
-          <div className="tpad-progress-icon">
-
-            <BadgeCheck size={22} />
-
-          </div>
+  <div
+  className={`tpad-progress-icon ${
+    isApproved
+      ? "completed"
+      : "pending"
+  }`}
+>
+  {isApproved && (
+    <Check size={14} strokeWidth={3} />
+  )}
+</div>
 
           <div className="tpad-progress-content">
 
@@ -261,13 +249,11 @@ const ProgressTimeline = ({ application }) => {
 
             </div>
 
-            <p>
-
-              {isApproved
-                ? "Your Porter Dashboard is now available."
-                : "Your Porter Dashboard will unlock immediately after approval."}
-
-            </p>
+        <p>
+  {isApproved
+    ? "Your porter account has been activated."
+    : "Your porter account will be activated after approval."}
+</p>
 
           </div>
 
