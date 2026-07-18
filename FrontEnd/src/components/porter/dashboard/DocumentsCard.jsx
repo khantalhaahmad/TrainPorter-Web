@@ -56,9 +56,13 @@ const DocumentsCard = ({ application }) => {
 
         </div>
 
-        <div className="tpad-documents-count">
-          {uploadedCount} Documents
-        </div>
+       <div className="tpad-documents-count">
+
+  <strong>{uploadedCount}</strong>
+
+  <span>Documents</span>
+
+</div>
 
       </div>
 
@@ -79,23 +83,18 @@ const DocumentsCard = ({ application }) => {
 
                 <div className="tpad-documents-icon">
 
-                  <FileText size={20} />
+             <FileText size={16} strokeWidth={2.2} />
 
                 </div>
+<div className="tpad-documents-info">
 
-                <div>
+    <h4>{item.title}</h4>
 
-                  <h4>{item.title}</h4>
+    <span>
+        {uploaded ? "Uploaded" : "Not Uploaded"}
+    </span>
 
-                  <span>
-
-                    {uploaded
-                      ? "Uploaded Successfully"
-                      : "Not Uploaded"}
-
-                  </span>
-
-                </div>
+</div>
 
               </div>
 

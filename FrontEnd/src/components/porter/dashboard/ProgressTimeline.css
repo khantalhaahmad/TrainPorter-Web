@@ -37,15 +37,7 @@
     position:relative;
     padding-left:0;
 }
-.tpad-progress-timeline::before{
-    content:"";
-    position:absolute;
-    left:17px;
-    top:18px;
-    bottom:18px;
-    width:2px;
-    background:#dbe4ee;
-}
+
 
 .tpad-progress-item{
     position:relative;
@@ -108,15 +100,7 @@
     color:transparent;
 }
 
-.tpad-progress-timeline::before{
-    content:"";
-    position:absolute;
-    left:17px;
-    top:10px;
-    bottom:10px;
-    width:2px;
-    background:#d9e1ef;
-}
+
 
 /* ==========================================================
    CONTENT

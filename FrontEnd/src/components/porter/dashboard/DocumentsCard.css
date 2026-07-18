@@ -4,267 +4,251 @@
 ========================================================== */
 
 .tpad-documents-card{
-
     background:#fff;
-
-    border-radius:24px;
-
-    padding:30px;
-
     border:1px solid #edf2f7;
-
-    box-shadow:0 18px 45px rgba(15,23,42,.06);
-
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 10px 30px rgba(15,23,42,.05);
 }
 
+/* ==========================================================
+   HEADER
+========================================================== */
+
 .tpad-documents-header{
-
     display:flex;
-
     justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:28px;
-
+    align-items:flex-start;
+    margin-bottom:22px;
 }
 
 .tpad-documents-header h2{
-
-    font-size:1.4rem;
-
+    margin:0 0 4px;
+    font-size:1.18rem;
+    font-weight:700;
     color:#0f172a;
-
-    margin-bottom:6px;
-
 }
 
 .tpad-documents-header p{
-
+    margin:0;
+    font-size:.88rem;
     color:#64748b;
-
+    line-height:1.5;
 }
+
+/* ==========================================================
+   COUNT BADGE
+========================================================== */
 
 .tpad-documents-count{
-
+    width:86px;
+    height:64px;
+    border-radius:18px;
     background:#eff6ff;
-
-    color:#2563eb;
-
-    padding:8px 15px;
-
-    border-radius:999px;
-
-    font-size:.85rem;
-
-    font-weight:600;
-
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    flex-shrink:0;
 }
+
+.tpad-documents-count strong{
+    font-size:1.05rem;
+    font-weight:700;
+    color:#2563eb;
+    line-height:1;
+}
+
+.tpad-documents-count span{
+    margin-top:4px;
+    font-size:.82rem;
+    font-weight:600;
+    color:#2563eb;
+}
+
+/* ==========================================================
+   LIST
+========================================================== */
 
 .tpad-documents-list{
-
     display:flex;
-
     flex-direction:column;
-
-    gap:16px;
-
+    gap:8px;
 }
 
+/* ==========================================================
+   ITEM
+========================================================== */
+
 .tpad-documents-item{
-
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
-    padding:16px 18px;
-
-    border-radius:16px;
-
+    padding:10px 12px;
+    min-height:58px;
     border:1px solid #eef2f7;
-
+    border-radius:16px;
     transition:.25s;
-
 }
 
 .tpad-documents-item:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:0 12px 30px rgba(15,23,42,.06);
-
+    border-color:#dbeafe;
+    box-shadow:0 8px 20px rgba(37,99,235,.06);
 }
 
+/* ==========================================================
+   LEFT
+========================================================== */
+
 .tpad-documents-left{
-
     display:flex;
-
     align-items:center;
-
-    gap:16px;
-
+    gap:12px;
+    flex:1;
+    min-width:0;
 }
 
 .tpad-documents-icon{
-
-    width:50px;
-
-    height:50px;
-
-    border-radius:14px;
-
-    background:#eff6ff;
-
+    width:34px;
+    height:34px;
+    border-radius:10px;
+    background:#f1f5ff;
     color:#2563eb;
-
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
+    flex-shrink:0;
 }
 
 .tpad-documents-left h4{
-
+    margin:0 0 3px;
+    font-size:1rem;
+    font-weight:600;
     color:#0f172a;
-
-    margin-bottom:4px;
-
 }
 
 .tpad-documents-left span{
-
+    font-size:.84rem;
     color:#64748b;
-
-    font-size:.88rem;
-
 }
 
+/* ==========================================================
+   RIGHT
+========================================================== */
+
 .tpad-documents-right{
-
     display:flex;
-
     align-items:center;
-
-    gap:12px;
-
+    gap:10px;
 }
 
 .tpad-documents-status{
-
     display:flex;
-
     align-items:center;
-
-    gap:6px;
-
-    background:#dcfce7;
-
-    color:#15803d;
-
-    padding:7px 14px;
-
+    gap:5px;
+    padding:6px 12px;
     border-radius:999px;
-
-    font-size:.82rem;
-
+    background:#dcfce7;
+    color:#16a34a;
+    font-size:.78rem;
     font-weight:600;
-
 }
 
 .tpad-documents-view{
-
-    width:42px;
-
-    height:42px;
-
+    width:38px;
+    height:38px;
     border:none;
-
     border-radius:12px;
-
     background:#f8fafc;
-
-    cursor:pointer;
-
+    color:#334155;
     display:flex;
-
     align-items:center;
-
     justify-content:center;
-
+    cursor:pointer;
     transition:.25s;
-
 }
 
 .tpad-documents-view:hover{
-
-    background:#2563eb;
-
-    color:white;
-
+    background:#eef2ff;
+    color:#2563eb;
 }
 
+.tpad-documents-view:disabled{
+    opacity:.45;
+    cursor:not-allowed;
+}
+
+/* ==========================================================
+   BUTTON
+========================================================== */
+
 .tpad-documents-btn{
-
-    margin-top:28px;
-
+    margin-top:18px;
     width:100%;
-
-    padding:15px;
-
-    border:none;
-
-    border-radius:16px;
-
-    background:#2563eb;
-
-    color:white;
-
-    font-weight:700;
-
-    font-size:.95rem;
-
-    cursor:pointer;
-
+    height:48px;
+    border:1px solid #dbeafe;
+    border-radius:14px;
+    background:#fff;
+    color:#2563eb;
+    font-size:.9rem;
+    font-weight:600;
     display:flex;
-
     justify-content:center;
-
     align-items:center;
-
-    gap:10px;
-
+    gap:8px;
+    cursor:pointer;
     transition:.25s;
-
 }
 
 .tpad-documents-btn:hover{
-
-    background:#1d4ed8;
-
+    background:#eff6ff;
 }
 
-@media(max-width:768px){
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+    .tpad-documents-card{
+        padding:20px;
+    }
 
     .tpad-documents-item{
-
         flex-direction:column;
-
         align-items:flex-start;
-
-        gap:16px;
-
+        gap:12px;
     }
 
     .tpad-documents-right{
-
         width:100%;
-
         justify-content:space-between;
-
     }
 
+    .tpad-documents-count{
+        width:72px;
+        height:56px;
+    }
+
+}
+.tpad-documents-info{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:nowrap;
+}
+
+.tpad-documents-info h4{
+    margin:0;
+    font-size:.95rem;
+    font-weight:600;
+    color:#0f172a;
+    white-space:nowrap;
+}
+
+.tpad-documents-info span{
+    margin:0;
+    font-size:.80rem;
+    color:#64748b;
+    white-space:nowrap;
 }
