@@ -55,9 +55,8 @@
 .tpad-progress-item:hover{
     transform:translateX(3px);
 }
-
 .tpad-progress-item.active{
-    background:#fff;
+    background:transparent;
     padding:10px 0;
 }
 .tpad-progress-item.completed{
@@ -78,10 +77,11 @@
 
     border-radius:50%;
     position:relative;
-
     z-index:5;
 
     justify-self:center;
+
+    transition:.25s;
 }
 .tpad-progress-icon.completed{
     background:#22c55e;
@@ -95,12 +95,43 @@
 }
 
 .tpad-progress-icon.pending{
+    width:18px;
+    height:18px;
+    min-width:18px;
+
     background:#fff;
     border:3px solid #cbd5e1;
+    border-radius:50%;
+
     color:transparent;
+
+    justify-self:center;
+
+    margin-top:9px;
 }
 
+.tpad-progress-timeline::before{
+    content:"";
+    position:absolute;
+    left:17px;
+    top:18px;
+    bottom:18px;
+    width:2px;
 
+    background:linear-gradient(
+        to bottom,
+        #86efac 0%,
+        #86efac 95px,
+        #cbd5e1 95px,
+        #cbd5e1 100%
+    );
+
+    z-index:0;
+}
+.tpad-progress-item{
+    position:relative;
+    z-index:1;
+}
 
 /* ==========================================================
    CONTENT
@@ -110,7 +141,11 @@
     flex:1;
     min-width:0;
 }
-
+.tpad-progress-content{
+    position:relative;
+    z-index:2;
+    background:transparent;
+}
 .tpad-progress-title{
     display:flex;
     justify-content:space-between;
