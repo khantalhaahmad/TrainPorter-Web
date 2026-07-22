@@ -1,27 +1,27 @@
 /* ==========================================================
    TRAINPORTER APPLICATION DASHBOARD
-   SUPPORT CARD
+   SUPPORT CARD (COMPACT)
 ========================================================== */
 
 .tpad-support-card{
 
     background:#fff;
 
-    border-radius:24px;
+    border-radius:18px;
 
-    padding:32px;
+    padding:20px;
 
     border:1px solid #edf2f7;
 
-    box-shadow:0 18px 45px rgba(15,23,42,.06);
+    box-shadow:0 10px 25px rgba(15,23,42,.05);
 
-    margin-top:30px;
+    margin-top:0;
 
 }
 
 .tpad-support-header{
 
-    margin-bottom:30px;
+    margin-bottom:18px;
 
 }
 
@@ -29,15 +29,21 @@
 
     color:#0f172a;
 
-    font-size:1.5rem;
+    font-size:1.15rem;
 
-    margin-bottom:8px;
+    font-weight:700;
+
+    margin-bottom:4px;
 
 }
 
 .tpad-support-header p{
 
     color:#64748b;
+
+    font-size:.86rem;
+
+    line-height:1.45;
 
 }
 
@@ -47,7 +53,7 @@
 
     grid-template-columns:repeat(3,1fr);
 
-    gap:22px;
+    gap:14px;
 
 }
 
@@ -55,29 +61,29 @@
 
     border:1px solid #edf2f7;
 
-    border-radius:20px;
+    border-radius:14px;
 
-    padding:28px;
+    padding:16px;
 
-    transition:.3s;
+    transition:.25s;
 
 }
 
 .tpad-support-item:hover{
 
-    transform:translateY(-6px);
+    transform:translateY(-2px);
 
-    box-shadow:0 20px 45px rgba(15,23,42,.08);
+    box-shadow:0 8px 18px rgba(15,23,42,.06);
 
 }
 
 .tpad-support-icon{
 
-    width:60px;
+    width:42px;
 
-    height:60px;
+    height:42px;
 
-    border-radius:18px;
+    border-radius:12px;
 
     display:flex;
 
@@ -85,31 +91,15 @@
 
     justify-content:center;
 
-    margin-bottom:22px;
+    margin-bottom:12px;
 
 }
 
-.tpad-support-chat{
+.tpad-support-icon svg{
 
-    background:#dbeafe;
+    width:20px;
 
-    color:#2563eb;
-
-}
-
-.tpad-support-call{
-
-    background:#dcfce7;
-
-    color:#16a34a;
-
-}
-
-.tpad-support-mail{
-
-    background:#fff7ed;
-
-    color:#ea580c;
+    height:20px;
 
 }
 
@@ -117,7 +107,9 @@
 
     color:#0f172a;
 
-    margin-bottom:10px;
+    font-size:.92rem;
+
+    margin-bottom:6px;
 
 }
 
@@ -125,9 +117,11 @@
 
     color:#64748b;
 
-    line-height:1.7;
+    font-size:.8rem;
 
-    margin-bottom:22px;
+    line-height:1.45;
+
+    margin-bottom:14px;
 
 }
 
@@ -137,13 +131,15 @@
 
     border:none;
 
-    border-radius:14px;
+    border-radius:10px;
 
-    padding:14px;
+    padding:10px 12px;
 
     background:#2563eb;
 
     color:#fff;
+
+    font-size:.82rem;
 
     font-weight:600;
 
@@ -155,15 +151,23 @@
 
     justify-content:center;
 
-    gap:10px;
+    gap:6px;
 
-    transition:.3s;
+    transition:.25s;
 
 }
 
 .tpad-support-item button:hover{
 
     background:#1d4ed8;
+
+}
+
+.tpad-support-item button svg{
+
+    width:15px;
+
+    height:15px;
 
 }
 

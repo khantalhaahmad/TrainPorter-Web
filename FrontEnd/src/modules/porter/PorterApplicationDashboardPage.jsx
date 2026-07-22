@@ -70,30 +70,25 @@ if (response.success) {
 
         <OverviewCards application={application} />
 
-        <section className="tpad-content-grid">
+     <section className="tpad-content-grid">
 
-          <div className="tpad-left-column">
+  <div className="tpad-left-column">
 
-            <ProgressTimeline application={application} />
+    <ProgressTimeline application={application} />
 
-          </div>
+    <SupportCard application={application} />
 
-          <div className="tpad-right-column">
+  </div>
 
-            <DocumentsCard application={application} />
+  <div className="tpad-right-column">
 
-          </div>
+    <DocumentsCard application={application} />
 
-        </section>
+    <InfoBanner application={application} />
 
-        <section className="tpad-bottom-grid">
+  </div>
 
-          <SupportCard application={application} />
-
-          <InfoBanner application={application} />
-
-        </section>
-
+</section>
       </main>
 
     </div>
