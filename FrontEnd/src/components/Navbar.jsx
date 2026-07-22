@@ -14,13 +14,42 @@ const Navbar = ({ openAuth }) => {
 
     const isHome = location.pathname === '/';
 
-    const { isLoggedIn } = useAuth();
+   const { isLoggedIn, user } = useAuth();
+
+const handleDashboardNavigation = () => {
+
+    if (!user) {
+        navigate("/dashboard");
+        return;
+    }
+
+    if (user.role === "admin") {
+        navigate("/admin/dashboard");
+        return;
+    }
+
+    if (user.role === "porter") {
+        navigate("/porter/dashboard");
+        return;
+    }
+
+    if (
+        user.porterApplication?.hasApplication &&
+        user.porterApplication?.status !== "approved"
+    ) {
+        navigate("/porter/application-dashboard");
+        return;
+    }
+
+    navigate("/dashboard");
+};
+
 
     useEffect(() => {
         const handleScroll = () => {
             setScrolled(window.scrollY > 20);
         };
-
+    
         window.addEventListener('scroll', handleScroll);
 
         return () =>
@@ -92,9 +121,7 @@ const Navbar = ({ openAuth }) => {
                         <>
                             <button
                                 className="login-link-btn"
-                                onClick={() =>
-                                    navigate('/dashboard')
-                                }
+                               onClick={handleDashboardNavigation}
                             >
                                 Dashboard
                             </button>
@@ -102,9 +129,7 @@ const Navbar = ({ openAuth }) => {
                             <Button
                                 size="sm"
                                 className="navbar-cta"
-                                onClick={() =>
-                                    navigate('/dashboard')
-                                }
+                              onClick={handleDashboardNavigation}
                             >
                                 My Account
                             </Button>
@@ -194,20 +219,20 @@ const Navbar = ({ openAuth }) => {
                         <>
                             <button
                                 className="mobile-login-btn-link"
-                                onClick={() => {
-                                    setMobileMenuOpen(false);
-                                    navigate('/dashboard');
-                                }}
+                               onClick={() => {
+    setMobileMenuOpen(false);
+    handleDashboardNavigation();
+}}
                             >
                                 Dashboard
                             </button>
 
                             <Button
                                 className="btn-full"
-                                onClick={() => {
-                                    setMobileMenuOpen(false);
-                                    navigate('/dashboard');
-                                }}
+                              onClick={() => {
+    setMobileMenuOpen(false);
+    handleDashboardNavigation();
+}}
                             >
                                 My Account
                             </Button>

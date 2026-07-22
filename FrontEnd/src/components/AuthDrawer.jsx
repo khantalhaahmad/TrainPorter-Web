@@ -193,10 +193,19 @@ const user =
   response.data?.user ||
   response.data?.data?.user;
 
-console.log("TOKEN =>", token);
-console.log("USER =>", user);
+const porterApplication =
+  response.data?.porterApplication ||
+  response.data?.data?.porterApplication;
 
-login(token, user);
+const updatedUser = {
+  ...user,
+  porterApplication,
+};
+
+console.log("TOKEN =>", token);
+console.log("UPDATED USER =>", updatedUser);
+
+login(token, updatedUser);
 
 console.log("USER AFTER LOGIN =>", localStorage.getItem("user"));
 console.log("TOKEN AFTER LOGIN =>", localStorage.getItem("token"));
