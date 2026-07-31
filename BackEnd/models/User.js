@@ -37,6 +37,18 @@ membership: {
       default: "user",
     },
 
+    email: {
+  type: String,
+  lowercase: true,
+  trim: true,
+  default: null,
+},
+
+password: {
+  type: String,
+  default: null,
+},
+
     isVerified: {
       type: Boolean,
       default: true,

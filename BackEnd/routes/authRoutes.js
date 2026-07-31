@@ -7,9 +7,8 @@ const {
   sendOTP,
   verifyUserOTP,
   getMe,
-} = require(
-  "../controllers/authController"
-);
+  adminLogin,
+} = require("../controllers/authController");
 
 const authMiddleware =
   require(
@@ -33,6 +32,11 @@ router.get(
   "/me",
   authMiddleware,
   getMe
+);
+
+router.post(
+  "/admin/login",
+  adminLogin
 );
 
 module.exports = router;

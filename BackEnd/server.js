@@ -8,7 +8,7 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 
 const app = express();
-
+const adminRoutes = require("./routes/adminRoutes");
 // =========================
 // Database
 // =========================
@@ -59,6 +59,11 @@ app.use(
 app.use(
   "/api/porter",
   require("./routes/porterRoutes")
+);
+
+app.use(
+  "/api/admin",
+  adminRoutes
 );
 
 // =========================

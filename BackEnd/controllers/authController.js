@@ -1,7 +1,7 @@
 const User = require("../models/User");
 const { verifyOTP } = require("../services/otpService");
 const PorterApplication = require("../models/PorterApplication");
-
+const bcrypt = require("bcryptjs");
 const generateJWT = require("../utils/generateJWT");
 
 const {
@@ -78,6 +78,14 @@ const verifyUserOTP = async (
       await User.findOne({
         phone,
       });
+
+      if (user && user.isBlocked) {
+  return errorResponse(
+    res,
+    "Your account has been blocked by the administrator.",
+    403
+  );
+}
 
     if (!user) {
       user =
@@ -158,8 +166,87 @@ const getMe = async (
   }
 };
 
+// ==============================
+// Admin Login
+// ==============================
+
+const adminLogin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return errorResponse(
+        res,
+        "Email and password are required"
+      );
+    }
+
+    const admin = await User.findOne({
+      email: email.toLowerCase(),
+    });
+
+    if (!admin) {
+      return errorResponse(
+        res,
+        "Invalid email or password",
+        401
+      );
+    }
+
+    if (admin.role !== "admin") {
+      return errorResponse(
+        res,
+        "Access denied",
+        403
+      );
+    }
+
+    if (admin.isBlocked) {
+      return errorResponse(
+        res,
+        "Your account has been blocked.",
+        403
+      );
+    }
+
+    const isMatch = await bcrypt.compare(
+      password,
+      admin.password
+    );
+
+    if (!isMatch) {
+      return errorResponse(
+        res,
+        "Invalid email or password",
+        401
+      );
+    }
+
+    const token = generateJWT(admin);
+
+    return successResponse(
+      res,
+      "Admin login successful",
+      {
+        token,
+        user: admin,
+      }
+    );
+
+  } catch (error) {
+
+    return errorResponse(
+      res,
+      error.message,
+      500
+    );
+
+  }
+};
+
 module.exports = {
   sendOTP,
   verifyUserOTP,
   getMe,
+  adminLogin,
 };
