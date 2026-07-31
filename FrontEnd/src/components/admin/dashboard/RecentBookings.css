@@ -1,0 +1,347 @@
+/* ==========================================================
+   TrainPorter Recent Bookings
+========================================================== */
+
+.tp-bookings-card{
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    border:1px solid #ececec;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.05);
+
+    transition:.35s ease;
+
+}
+
+.tp-bookings-card:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(0,0,0,.08);
+
+}
+
+/* ======================================
+            Header
+====================================== */
+
+.tp-bookings-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:24px;
+
+}
+
+.tp-bookings-header h3{
+
+    margin:0;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+}
+
+.tp-bookings-header p{
+
+    margin-top:6px;
+
+    color:#8d9099;
+
+    font-size:14px;
+
+}
+
+.tp-bookings-header button{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    border:none;
+
+    cursor:pointer;
+
+    padding:12px 18px;
+
+    border-radius:12px;
+
+    background:#fff4eb;
+
+    color:#ff7a00;
+
+    font-weight:600;
+
+    transition:.30s;
+
+}
+
+.tp-bookings-header button:hover{
+
+    background:#ff7a00;
+
+    color:#ffffff;
+
+}
+
+/* ======================================
+            Table
+====================================== */
+
+.tp-bookings-table-wrapper{
+
+    width:100%;
+
+    overflow-x:auto;
+
+}
+
+.tp-bookings-table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    min-width:850px;
+
+}
+
+.tp-bookings-table thead{
+
+    background:#f8fafc;
+
+}
+
+.tp-bookings-table th{
+
+    text-align:left;
+
+    padding:16px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#6b7280;
+
+    text-transform:uppercase;
+
+    border-bottom:1px solid #ececec;
+
+}
+
+.tp-bookings-table td{
+
+    padding:18px 16px;
+
+    border-bottom:1px solid #f1f5f9;
+
+    font-size:14px;
+
+    color:#374151;
+
+}
+
+.tp-bookings-table tbody tr{
+
+    transition:.30s;
+
+}
+
+.tp-bookings-table tbody tr:hover{
+
+    background:#fafafa;
+
+}
+
+/* ======================================
+            Booking ID
+====================================== */
+
+.tp-booking-id{
+
+    font-weight:700;
+
+    color:#111827;
+
+}
+
+/* ======================================
+            Passenger
+====================================== */
+
+.tp-passenger{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.tp-avatar{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #ff7a00,
+        #ffb347
+    );
+
+    color:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:700;
+
+    flex-shrink:0;
+
+}
+
+.tp-passenger strong{
+
+    display:block;
+
+    color:#1f2937;
+
+    margin-bottom:4px;
+
+}
+
+.tp-passenger span{
+
+    color:#8d9099;
+
+    font-size:13px;
+
+}
+
+/* ======================================
+            Status
+====================================== */
+
+.tp-status-pill{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    padding:8px 14px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    text-transform:capitalize;
+
+}
+
+/* ======================================
+            View Button
+====================================== */
+
+.tp-view-btn{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#f5f7fb;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.30s;
+
+}
+
+.tp-view-btn:hover{
+
+    background:#ff7a00;
+
+    color:#ffffff;
+
+}
+
+/* ======================================
+            Empty Row
+====================================== */
+
+.tp-empty-row{
+
+    text-align:center;
+
+    padding:40px !important;
+
+    color:#9ca3af;
+
+}
+
+/* ======================================
+            Responsive
+====================================== */
+
+@media(max-width:992px){
+
+    .tp-bookings-card{
+
+        padding:22px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .tp-bookings-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+}

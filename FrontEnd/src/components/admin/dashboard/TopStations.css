@@ -1,0 +1,307 @@
+/* ==========================================================
+   TrainPorter Top Stations
+========================================================== */
+
+.tp-stations-card{
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    border:1px solid #ececec;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.05);
+
+    transition:.35s ease;
+
+}
+
+.tp-stations-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(0,0,0,.08);
+
+}
+
+/* ======================================
+            Header
+====================================== */
+
+.tp-stations-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:26px;
+
+}
+
+.tp-stations-header h3{
+
+    margin:0;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+}
+
+.tp-stations-header p{
+
+    margin-top:6px;
+
+    font-size:14px;
+
+    color:#8d9099;
+
+}
+
+.tp-stations-badge{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    padding:9px 14px;
+
+    border-radius:30px;
+
+    background:#ecfdf5;
+
+    color:#16a34a;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+/* ======================================
+            List
+====================================== */
+
+.tp-stations-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+/* ======================================
+            Item
+====================================== */
+
+.tp-station-item{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:#fafbfc;
+
+    transition:.30s ease;
+
+}
+
+.tp-station-item:hover{
+
+    background:#ffffff;
+
+    transform:translateX(5px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.05);
+
+}
+
+/* ======================================
+            Rank
+====================================== */
+
+.tp-station-rank{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:50%;
+
+    background:#ff7a00;
+
+    color:#ffffff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    flex-shrink:0;
+
+}
+
+/* ======================================
+            Icon
+====================================== */
+
+.tp-station-icon{
+
+    width:52px;
+
+    height:52px;
+
+    border-radius:16px;
+
+    background:#fff4eb;
+
+    color:#ff7a00;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+}
+
+/* ======================================
+            Content
+====================================== */
+
+.tp-station-content{
+
+    flex:1;
+
+}
+
+.tp-station-top{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:12px;
+
+}
+
+.tp-station-top h4{
+
+    margin:0;
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+}
+
+.tp-station-top span{
+
+    color:#ff7a00;
+
+    font-size:14px;
+
+    font-weight:700;
+
+}
+
+/* ======================================
+            Progress
+====================================== */
+
+.tp-progress{
+
+    width:100%;
+
+    height:8px;
+
+    background:#ececec;
+
+    border-radius:50px;
+
+    overflow:hidden;
+
+}
+
+.tp-progress-fill{
+
+    height:100%;
+
+    border-radius:50px;
+
+    background:linear-gradient(
+        90deg,
+        #ff7a00,
+        #ffb347
+    );
+
+    transition:width .6s ease;
+
+}
+
+/* ======================================
+            Responsive
+====================================== */
+
+@media(max-width:768px){
+
+    .tp-stations-card{
+
+        padding:22px;
+
+    }
+
+    .tp-station-item{
+
+        padding:15px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .tp-station-top{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:6px;
+
+    }
+
+}

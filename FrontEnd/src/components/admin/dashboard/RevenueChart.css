@@ -1,0 +1,243 @@
+/* ==========================================================
+   TrainPorter Revenue Chart
+========================================================== */
+
+.tp-revenue-card{
+
+    width:100%;
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    border:1px solid #ececec;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.05);
+
+    transition:.35s ease;
+
+}
+
+.tp-revenue-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(0,0,0,.10);
+
+}
+
+
+/* =====================================
+            Header
+===================================== */
+
+.tp-revenue-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:24px;
+
+}
+
+.tp-revenue-header h3{
+
+    margin:0;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#1d1d1f;
+
+}
+
+.tp-revenue-header p{
+
+    margin-top:6px;
+
+    color:#8d9099;
+
+    font-size:14px;
+
+}
+
+
+/* =====================================
+        Revenue Badge
+===================================== */
+
+.tp-revenue-growth{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    background:#ecfdf5;
+
+    color:#16a34a;
+
+    padding:10px 14px;
+
+    border-radius:30px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+
+/* =====================================
+        Revenue Total
+===================================== */
+
+.tp-revenue-total{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    margin-bottom:25px;
+
+}
+
+.tp-revenue-icon{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:18px;
+
+    background:#f5f3ff;
+
+    color:#8B5CF6;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.tp-revenue-total h2{
+
+    margin:0;
+
+    font-size:30px;
+
+    font-weight:700;
+
+    color:#1d1d1f;
+
+}
+
+.tp-revenue-total span{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:#8d9099;
+
+    font-size:14px;
+
+}
+
+
+/* =====================================
+            Tooltip
+===================================== */
+
+.recharts-default-tooltip{
+
+    border:none !important;
+
+    border-radius:14px !important;
+
+    box-shadow:
+        0 12px 30px
+        rgba(0,0,0,.08) !important;
+
+}
+
+
+/* =====================================
+        Axis
+===================================== */
+
+.recharts-cartesian-axis-tick-value{
+
+    fill:#8d9099;
+
+    font-size:13px;
+
+}
+
+
+/* =====================================
+        Responsive
+===================================== */
+
+@media(max-width:992px){
+
+    .tp-revenue-card{
+
+        padding:22px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .tp-revenue-header{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:15px;
+
+    }
+
+    .tp-revenue-total{
+
+        margin-bottom:20px;
+
+    }
+
+}
+
+@media(max-width:576px){
+
+    .tp-revenue-total{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+    }
+
+    .tp-revenue-total h2{
+
+        font-size:24px;
+
+    }
+
+}

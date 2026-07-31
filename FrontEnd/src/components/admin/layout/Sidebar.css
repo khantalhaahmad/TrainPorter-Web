@@ -1,0 +1,686 @@
+/* ======================================================
+   TrainPorter Admin Sidebar
+   Part - 1
+====================================================== */
+
+:root {
+  --tp-sidebar-width: 290px;
+
+  --tp-primary: #ff7a00;
+  --tp-primary-light: #ffb057;
+
+  --tp-dark: #171821;
+  --tp-dark-2: #1d1f2b;
+  --tp-dark-3: #272936;
+
+  --tp-text: #ffffff;
+  --tp-text-light: #b4b7c9;
+
+  --tp-border: rgba(255,255,255,0.08);
+
+  --tp-transition: all .30s ease;
+}
+
+*{
+    box-sizing:border-box;
+}
+
+.tp-admin-sidebar{
+
+    width:var(--tp-sidebar-width);
+
+    min-width:var(--tp-sidebar-width);
+
+    height:100vh;
+
+    position:sticky;
+
+    top:0;
+
+    left:0;
+
+    background:linear-gradient(
+        180deg,
+        #181923 0%,
+        #20222d 100%
+    );
+
+    color:var(--tp-text);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:space-between;
+
+    border-right:1px solid var(--tp-border);
+
+    overflow-y:auto;
+
+    overflow-x:hidden;
+
+    transition:var(--tp-transition);
+
+    padding:26px 20px;
+
+}
+
+.tp-admin-sidebar::-webkit-scrollbar{
+
+    width:6px;
+
+}
+
+.tp-admin-sidebar::-webkit-scrollbar-thumb{
+
+    background:#424452;
+
+    border-radius:20px;
+
+}
+
+.tp-admin-sidebar::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+
+/* ======================================
+              Logo
+====================================== */
+
+.tp-admin-logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    margin-bottom:34px;
+
+}
+
+.tp-admin-logo-icon{
+
+    width:54px;
+
+    height:54px;
+
+    border-radius:16px;
+
+    background:linear-gradient(
+        135deg,
+        var(--tp-primary),
+        #ff5c00
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    flex-shrink:0;
+
+    box-shadow:
+    0 10px 24px
+    rgba(255,122,0,.25);
+
+}
+
+.tp-admin-logo h2{
+
+    font-size:22px;
+
+    font-weight:700;
+
+    letter-spacing:.5px;
+
+    margin:0;
+
+}
+
+.tp-admin-logo span{
+
+    display:block;
+
+    margin-top:4px;
+
+    color:var(--tp-text-light);
+
+    font-size:13px;
+
+    font-weight:500;
+
+}
+
+
+/* ======================================
+            Search Box
+====================================== */
+
+.tp-admin-search{
+
+    position:relative;
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:var(--tp-dark-3);
+
+    border:1px solid transparent;
+
+    border-radius:14px;
+
+    padding:13px 16px;
+
+    transition:var(--tp-transition);
+
+    margin-bottom:34px;
+
+}
+
+.tp-admin-search svg{
+
+    color:#8e91a8;
+
+    flex-shrink:0;
+
+}
+
+.tp-admin-search input{
+
+    width:100%;
+
+    background:transparent;
+
+    border:none;
+
+    outline:none;
+
+    color:white;
+
+    font-size:14px;
+
+    font-weight:500;
+
+}
+
+.tp-admin-search input::placeholder{
+
+    color:#8f92a9;
+
+}
+
+.tp-admin-search:hover{
+
+    border-color:rgba(255,122,0,.4);
+
+}
+
+.tp-admin-search:focus-within{
+
+    border-color:var(--tp-primary);
+
+    box-shadow:
+    0 0 0 4px
+    rgba(255,122,0,.12);
+
+}
+/* ======================================
+            Navigation
+====================================== */
+
+.tp-admin-nav{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+
+    flex:1;
+
+}
+
+.tp-admin-nav-item{
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:14px;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    color:var(--tp-text-light);
+
+    font-size:15px;
+
+    font-weight:600;
+
+    transition:var(--tp-transition);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.tp-admin-nav-item svg{
+
+    width:20px;
+
+    height:20px;
+
+    flex-shrink:0;
+
+    transition:var(--tp-transition);
+
+}
+
+.tp-admin-nav-item span{
+
+    white-space:nowrap;
+
+    transition:var(--tp-transition);
+
+}
+
+/* Hover */
+
+.tp-admin-nav-item:hover{
+
+    background:rgba(255,255,255,.05);
+
+    color:#ffffff;
+
+    transform:translateX(4px);
+
+}
+
+.tp-admin-nav-item:hover svg{
+
+    color:var(--tp-primary);
+
+}
+
+/* Active */
+
+.tp-admin-nav-item.active{
+
+    background:linear-gradient(
+        135deg,
+        var(--tp-primary),
+        #ff5b00
+    );
+
+    color:#fff;
+
+    box-shadow:
+        0 12px 28px
+        rgba(255,122,0,.28);
+
+}
+
+.tp-admin-nav-item.active svg{
+
+    color:#fff;
+
+}
+
+/* Left Indicator */
+
+.tp-admin-nav-item.active::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:0;
+
+    top:12px;
+
+    width:4px;
+
+    height:32px;
+
+    border-radius:0 10px 10px 0;
+
+    background:#fff;
+
+}
+
+/* Glow */
+
+.tp-admin-nav-item.active::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        90deg,
+        rgba(255,255,255,.12),
+        transparent
+    );
+
+    pointer-events:none;
+
+}
+
+/* Ripple Hover */
+
+.tp-admin-nav-item::selection{
+
+    background:transparent;
+
+}
+
+.tp-admin-nav-item:hover::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(255,255,255,.03);
+
+    border-radius:14px;
+
+}
+
+/* Section spacing */
+
+.tp-admin-nav-item:nth-child(4){
+
+    margin-top:12px;
+
+}
+
+.tp-admin-nav-item:nth-child(8){
+
+    margin-top:12px;
+
+}
+
+/* Active Animation */
+
+.tp-admin-nav-item.active{
+
+    animation:tpSidebarActive .35s ease;
+
+}
+
+@keyframes tpSidebarActive{
+
+    from{
+
+        opacity:.5;
+
+        transform:translateX(-10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+/* ======================================
+            Sidebar Footer
+====================================== */
+
+.tp-admin-sidebar-footer{
+
+    margin-top:32px;
+
+    padding-top:24px;
+
+    border-top:1px solid var(--tp-border);
+
+}
+
+
+/* ======================================
+            Logout Button
+====================================== */
+
+.tp-admin-logout-btn{
+
+    width:100%;
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:12px;
+
+    padding:15px 18px;
+
+    border-radius:14px;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    background:#2a2d39;
+
+    color:#ffffff;
+
+    transition:var(--tp-transition);
+
+}
+
+.tp-admin-logout-btn svg{
+
+    transition:var(--tp-transition);
+
+}
+
+.tp-admin-logout-btn:hover{
+
+    background:#ef4444;
+
+    color:#ffffff;
+
+    transform:translateY(-2px);
+
+    box-shadow:
+        0 14px 28px
+        rgba(239,68,68,.30);
+
+}
+
+.tp-admin-logout-btn:hover svg{
+
+    transform:rotate(-8deg);
+
+}
+
+
+/* ======================================
+        Sidebar Divider
+====================================== */
+
+.tp-admin-sidebar hr{
+
+    border:none;
+
+    height:1px;
+
+    background:var(--tp-border);
+
+    margin:24px 0;
+
+}
+
+
+/* ======================================
+        Focus States
+====================================== */
+
+.tp-admin-nav-item:focus-visible,
+
+.tp-admin-logout-btn:focus-visible,
+
+.tp-admin-search input:focus-visible{
+
+    outline:2px solid var(--tp-primary);
+
+    outline-offset:3px;
+
+}
+
+
+/* ======================================
+        Responsive
+====================================== */
+
+@media (max-width:1200px){
+
+    .tp-admin-sidebar{
+
+        width:260px;
+
+        min-width:260px;
+
+    }
+
+}
+
+
+@media (max-width:992px){
+
+    .tp-admin-sidebar{
+
+        position:fixed;
+
+        left:0;
+
+        top:0;
+
+        z-index:1200;
+
+        transform:translateX(-100%);
+
+        transition:.35s ease;
+
+        box-shadow:
+            18px 0 45px
+            rgba(0,0,0,.35);
+
+    }
+
+    .tp-admin-sidebar.open{
+
+        transform:translateX(0);
+
+    }
+
+}
+
+
+@media (max-width:768px){
+
+    .tp-admin-sidebar{
+
+        width:290px;
+
+    }
+
+    .tp-admin-logo h2{
+
+        font-size:20px;
+
+    }
+
+    .tp-admin-logo span{
+
+        font-size:12px;
+
+    }
+
+    .tp-admin-nav-item{
+
+        padding:13px 15px;
+
+        font-size:14px;
+
+    }
+
+}
+
+
+@media (max-width:480px){
+
+    .tp-admin-sidebar{
+
+        width:100%;
+
+        min-width:100%;
+
+    }
+
+}
+
+
+/* ======================================
+        Smooth Scroll
+====================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+/* ======================================
+        Selection
+====================================== */
+
+::selection{
+
+    background:rgba(255,122,0,.25);
+
+    color:#ffffff;
+
+}
+
+
+/* ======================================
+        End of Sidebar
+====================================== */

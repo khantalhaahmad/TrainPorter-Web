@@ -102,13 +102,17 @@ const application =
 
 const token = generateJWT(user);
 
+const userData = user.toObject();
+
+delete userData.password;
+
 return successResponse(
   res,
   "Login successful",
   {
     token,
 
-    user,
+    user: userData,
 
     porterApplication: application
       ? {
@@ -142,10 +146,10 @@ const getMe = async (
 ) => {
   try {
 
-    const user =
-      await User.findById(
-        req.user.id
-      );
+  const user =
+  await User.findById(
+    req.user.id
+  ).select("-password");
 
     return successResponse(
       res,
@@ -222,16 +226,20 @@ const adminLogin = async (req, res) => {
       );
     }
 
-    const token = generateJWT(admin);
+   const token = generateJWT(admin);
 
-    return successResponse(
-      res,
-      "Admin login successful",
-      {
-        token,
-        user: admin,
-      }
-    );
+const adminData = admin.toObject();
+
+delete adminData.password;
+
+return successResponse(
+  res,
+  "Admin login successful",
+  {
+    token,
+    user: adminData,
+  }
+);
 
   } catch (error) {
 

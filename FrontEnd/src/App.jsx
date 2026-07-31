@@ -26,6 +26,10 @@ import BecomePorterApplyPage from './modules/porter/BecomePorterApplyPage';
 import ScrollToTop from "./components/ScrollToTop";
 import { Toaster } from "sonner";
 import PorterApplicationDashboardPage from "./modules/porter/PorterApplicationDashboardPage";
+import AdminLoginPage from "./pages/admin/AdminLoginPage";
+import AdminRoutes from "./routes/AdminRoutes";
+import ProtectedAdminRoute from "./routes/ProtectedAdminRoute";
+
 function App() {
   const [isAuthDrawerOpen, setIsAuthDrawerOpen] = useState(false);
 
@@ -45,6 +49,24 @@ function App() {
     />
 
     <Routes>
+
+{/* =========================
+      Admin
+========================= */}
+
+<Route
+  path="/admin/login"
+  element={<AdminLoginPage />}
+/>
+
+<Route
+  path="/admin/*"
+  element={
+    <ProtectedAdminRoute>
+      <AdminRoutes />
+    </ProtectedAdminRoute>
+  }
+/>
 
           {/* Home */}
           <Route

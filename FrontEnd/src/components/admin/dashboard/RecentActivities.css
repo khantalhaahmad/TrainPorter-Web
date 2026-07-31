@@ -1,0 +1,249 @@
+/* ==========================================================
+   TrainPorter Recent Activities
+========================================================== */
+
+.tp-activities-card{
+
+    background:#ffffff;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    border:1px solid #ececec;
+
+    box-shadow:
+        0 12px 35px
+        rgba(0,0,0,.05);
+
+    transition:.35s ease;
+
+}
+
+.tp-activities-card:hover{
+
+    transform:translateY(-5px);
+
+    box-shadow:
+        0 18px 40px
+        rgba(0,0,0,.08);
+
+}
+
+/* ======================================
+            Header
+====================================== */
+
+.tp-activities-header{
+
+    margin-bottom:28px;
+
+}
+
+.tp-activities-header h3{
+
+    margin:0;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#1f2937;
+
+}
+
+.tp-activities-header p{
+
+    margin-top:6px;
+
+    color:#8d9099;
+
+    font-size:14px;
+
+}
+
+/* ======================================
+            List
+====================================== */
+
+.tp-activities-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:20px;
+
+}
+
+/* ======================================
+            Item
+====================================== */
+
+.tp-activity-item{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:18px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    transition:.30s ease;
+
+    position:relative;
+
+}
+
+.tp-activity-item:hover{
+
+    background:#fafafa;
+
+}
+
+/* Timeline */
+
+.tp-activity-item::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:29px;
+
+    top:65px;
+
+    width:2px;
+
+    height:calc(100% + 15px);
+
+    background:#ececec;
+
+}
+
+.tp-activity-item:last-child::before{
+
+    display:none;
+
+}
+
+/* ======================================
+            Icon
+====================================== */
+
+.tp-activity-icon{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:16px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+}
+
+/* ======================================
+            Content
+====================================== */
+
+.tp-activity-content{
+
+    flex:1;
+
+}
+
+.tp-activity-content h4{
+
+    margin:0;
+
+    color:#1f2937;
+
+    font-size:16px;
+
+    font-weight:700;
+
+}
+
+.tp-activity-content p{
+
+    margin-top:8px;
+
+    color:#6b7280;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+}
+
+/* ======================================
+            Time
+====================================== */
+
+.tp-activity-item span{
+
+    font-size:13px;
+
+    color:#9ca3af;
+
+    white-space:nowrap;
+
+}
+
+/* ======================================
+            Empty
+====================================== */
+
+.tp-activities-empty{
+
+    padding:50px;
+
+    text-align:center;
+
+    color:#9ca3af;
+
+    font-size:15px;
+
+}
+
+/* ======================================
+            Responsive
+====================================== */
+
+@media(max-width:768px){
+
+    .tp-activities-card{
+
+        padding:22px;
+
+    }
+
+    .tp-activity-item{
+
+        flex-direction:column;
+
+    }
+
+    .tp-activity-item::before{
+
+        display:none;
+
+    }
+
+    .tp-activity-item span{
+
+        margin-left:75px;
+
+    }
+
+}
