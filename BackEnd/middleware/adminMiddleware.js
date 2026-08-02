@@ -1,6 +1,7 @@
 const { errorResponse } = require("../utils/responseHandler");
 
 const adminMiddleware = (req, res, next) => {
+    console.log("ADMIN MIDDLEWARE USER:", req.user);
   try {
     if (!req.user) {
       return errorResponse(res, "Unauthorized", 401);

@@ -11,16 +11,21 @@ const api = axios.create({
 // ======================================
 // Attach JWT Token Automatically
 // ======================================
-
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("token");
+
+    const isAdminRoute = config.url.startsWith("/admin");
+
+    const token = isAdminRoute
+      ? localStorage.getItem("adminToken")
+      : localStorage.getItem("token");
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
 
     return config;
+
   },
   (error) => Promise.reject(error)
 );

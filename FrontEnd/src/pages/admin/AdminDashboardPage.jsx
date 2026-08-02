@@ -25,7 +25,7 @@ const AdminDashboardPage = () => {
 
       const response = await getDashboard();
 
-      setDashboardData(response.data.data);
+      setDashboardData(response.data);
 
     } catch (error) {
 

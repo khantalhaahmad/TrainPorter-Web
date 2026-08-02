@@ -46,6 +46,7 @@ const authMiddleware = (
       );
 
     req.user = decoded;
+    console.log("AUTH USER:", req.user);
 
     next();
 

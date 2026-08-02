@@ -2,6 +2,7 @@ const User = require("../models/User");
 const Booking = require("../models/Booking");
 const PorterApplication = require("../models/PorterApplication");
 const Activity = require("../models/Activity");
+const Porter = require("../models/Porter");
 
 const getDashboardData = async () => {
   // ==========================
@@ -313,6 +314,160 @@ const getDashboardData = async () => {
   };
 };
 
+// ==========================================
+// Get All Porter Applications
+// ==========================================
+
+const getPorterApplications = async () => {
+
+  const applications = await PorterApplication.find()
+    .populate("userId", "name phone email role")
+    .sort({
+      createdAt: -1,
+    });
+
+  return applications;
+
+};
+// ==========================================
+// Get Single Porter Application
+// ==========================================
+
+const getPorterApplication = async (id) => {
+
+  const application = await PorterApplication.findById(id)
+    .populate("userId", "name phone email role");
+
+  if (!application) {
+    throw new Error("Porter application not found.");
+  }
+
+  return application;
+
+};
+
+// ==========================================
+// Approve Porter
+// ==========================================
+
+// ==========================================
+// Approve Porter
+// ==========================================
+
+const approvePorter = async (applicationId, adminId) => {
+
+  console.log("========== SERVICE START ==========");
+  console.log("Application ID:", applicationId);
+  console.log("Admin ID:", adminId);
+
+  // ==========================
+  // Find Application
+  // ==========================
+
+  const application = await PorterApplication.findById(applicationId);
+
+  console.log("STEP 1 - Application Found");
+
+  if (!application) {
+    throw new Error("Porter application not found.");
+  }
+
+  if (application.status === "approved") {
+    throw new Error("Application already approved.");
+  }
+
+  // ==========================
+  // Find User
+  // ==========================
+
+  const user = await User.findById(application.userId);
+
+  console.log("STEP 2 - User Found");
+
+  if (!user) {
+    throw new Error("User not found.");
+  }
+
+  // ==========================
+  // Update User Role
+  // ==========================
+
+  user.role = "porter";
+
+  await user.save();
+
+  console.log("STEP 3 - User Updated");
+
+  // ==========================
+  // Update Application
+  // ==========================
+
+  application.status = "approved";
+  application.approvedBy = adminId;
+  application.approvedAt = new Date();
+
+  await application.save();
+
+  console.log("STEP 4 - Application Updated");
+
+  // ==========================
+  // Existing Porter
+  // ==========================
+
+  const existingPorter = await Porter.findOne({
+    userId: application.userId,
+  });
+
+  console.log("STEP 5 - Existing Porter Checked");
+
+  if (!existingPorter) {
+
+    console.log("========== BEFORE PORTER CREATE ==========");
+    console.log("Porter Model:", Porter.modelName);
+    console.log("Application:", application);
+    console.log("=========================================");
+
+    const porter = await Porter.create({
+
+      userId: application.userId,
+
+      applicationId: application._id,
+
+      fullName: application.fullName,
+
+      phone: application.phone,
+
+      email: application.email,
+
+      profilePhoto: application.profilePhoto,
+
+      preferredStation: application.preferredStation,
+
+      stationCode: application.stationCode,
+
+    });
+
+    console.log("STEP 6 - Porter Created");
+    console.log(porter);
+
+  } else {
+
+    console.log("STEP 6 - Porter Already Exists");
+
+  }
+
+  console.log("========== SERVICE END ==========");
+
+  return {
+    message: "Porter approved successfully.",
+    application,
+  };
+
+};
+
 module.exports = {
   getDashboardData,
+  getPorterApplications,
+  getPorterApplication,
+  approvePorter,
 };
