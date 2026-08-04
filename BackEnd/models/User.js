@@ -43,7 +43,7 @@ email: {
   sparse: true,
   lowercase: true,
   trim: true,
-  default: null,
+  default: undefined,
 },
 
 password: {

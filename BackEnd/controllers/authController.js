@@ -57,6 +57,12 @@ const verifyUserOTP = async (
       otp,
     } = req.body;
 
+    console.log("========== VERIFY OTP ==========");
+console.log("Phone:", phone);
+console.log("OTP:", otp);
+console.log("OTP Type:", typeof otp);
+console.log("================================");
+
     if (!phone || !otp) {
       return errorResponse(
         res,
@@ -87,13 +93,40 @@ const verifyUserOTP = async (
   );
 }
 
-    if (!user) {
-      user =
-        await User.create({
-          phone,
-          isVerified: true,
-        });
-    }
+  if (!user) {
+
+  console.log("========== CREATING USER ==========");
+  console.log("Phone:", phone);
+
+  try {
+
+  const newUser = await User.create({
+    phone,
+    isVerified: true,
+  });
+
+  console.log("========== USER CREATED ==========");
+  console.log(newUser);
+
+  user = newUser;
+
+} catch (err) {
+
+  console.log("========== USER CREATE ERROR ==========");
+  console.log(err);
+  console.log(err.message);
+  console.log(err.code);
+  console.log(err.keyPattern);
+  console.log(err.keyValue);
+  console.log("======================================");
+
+  throw err;
+
+}
+  console.log("===================================");
+
+  user = newUser;
+}
 
 const application =
   await PorterApplication.findOne({
