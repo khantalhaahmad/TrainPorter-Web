@@ -1,70 +1,119 @@
 import React from "react";
 
-const PorterFilters = () => {
+const PorterFilters = ({
+  applications = [],
+  statusFilter = "all",
+  setStatusFilter = () => {},
+  sortBy = "newest",
+  setSortBy = () => {},
+}) => {
+
+  const totalCount = applications.length;
+
+  const pendingCount = applications.filter(
+    (item) => item.status === "pending"
+  ).length;
+
+  const approvedCount = applications.filter(
+    (item) => item.status === "approved"
+  ).length;
+
+  const rejectedCount = applications.filter(
+    (item) => item.status === "rejected"
+  ).length;
+
   return (
 
-    <section className="tp-porter-filter-wrapper">
+    <section className="tp-porter-filter-section">
 
       <div className="tp-porter-filter-card">
 
         <div className="tp-porter-filter-bar">
 
           {/* =========================
-              Left
+                Left
           ========================= */}
 
           <div className="tp-porter-filter-left">
 
             <button
-              className="tp-porter-filter-chip tp-porter-filter-chip-active"
+              type="button"
+              onClick={() => setStatusFilter("all")}
+              className={`tp-porter-filter-chip ${
+                statusFilter === "all"
+                  ? "tp-porter-filter-chip-active"
+                  : ""
+              }`}
             >
-              All (9)
+              All ({totalCount})
             </button>
 
             <button
-              className="tp-porter-filter-chip"
+              type="button"
+              onClick={() => setStatusFilter("pending")}
+              className={`tp-porter-filter-chip ${
+                statusFilter === "pending"
+                  ? "tp-porter-filter-chip-active"
+                  : ""
+              }`}
             >
-              Pending (7)
+              Pending ({pendingCount})
             </button>
 
             <button
-              className="tp-porter-filter-chip"
+              type="button"
+              onClick={() => setStatusFilter("approved")}
+              className={`tp-porter-filter-chip ${
+                statusFilter === "approved"
+                  ? "tp-porter-filter-chip-active"
+                  : ""
+              }`}
             >
-              Approved (2)
+              Approved ({approvedCount})
             </button>
 
             <button
-              className="tp-porter-filter-chip"
+              type="button"
+              onClick={() => setStatusFilter("rejected")}
+              className={`tp-porter-filter-chip ${
+                statusFilter === "rejected"
+                  ? "tp-porter-filter-chip-active"
+                  : ""
+              }`}
             >
-              Rejected (0)
+              Rejected ({rejectedCount})
             </button>
 
           </div>
 
           {/* =========================
-              Right
+                Right
           ========================= */}
 
           <div className="tp-porter-filter-right">
 
             <select
               className="tp-porter-sort"
+              value={sortBy}
+              onChange={(e) =>
+                setSortBy(e.target.value)
+              }
             >
 
-              <option>
+              <option value="newest">
                 Sort By: Newest First
               </option>
 
-              <option>
-                Oldest First
+              <option value="oldest">
+                Sort By: Oldest First
               </option>
 
-              <option>
-                Name (A-Z)
+              <option value="name">
+                Sort By: Name (A-Z)
               </option>
 
-              <option>
-                Experience
+              <option value="experience">
+                Sort By: Experience
               </option>
 
             </select>

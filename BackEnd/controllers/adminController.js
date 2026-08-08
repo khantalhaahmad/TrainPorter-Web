@@ -170,10 +170,116 @@ const rejectPorter = async (req, res) => {
   }
 
 };
+/* ==========================================================
+   BOOKINGS
+========================================================== */
+
+const getBookings = async (req, res) => {
+
+  try {
+
+    const bookings =
+      await adminService.getBookings();
+
+    return successResponse(
+      res,
+      "Bookings fetched successfully",
+      {
+        bookings,
+      }
+    );
+
+  } catch (error) {
+
+    console.error("GET BOOKINGS ERROR:");
+    console.error(error);
+
+    return errorResponse(
+      res,
+      error.message,
+      500
+    );
+
+  }
+
+};
+
+const getBooking = async (req, res) => {
+
+  try {
+
+    const booking =
+      await adminService.getBooking(
+        req.params.id
+      );
+
+    return successResponse(
+      res,
+      "Booking fetched successfully",
+      {
+        booking,
+      }
+    );
+
+  } catch (error) {
+
+    console.error("GET BOOKING ERROR:");
+    console.error(error);
+
+    return errorResponse(
+      res,
+      error.message,
+      500
+    );
+
+  }
+
+};
+
+const updateBookingStatus = async (req, res) => {
+
+  try {
+
+    const booking =
+      await adminService.updateBookingStatus(
+        req.params.id,
+        req.body.status
+      );
+
+    return successResponse(
+      res,
+      "Booking status updated successfully",
+      {
+        booking,
+      }
+    );
+
+  } catch (error) {
+
+    console.error("UPDATE BOOKING STATUS ERROR:");
+    console.error(error);
+
+    return errorResponse(
+      res,
+      error.message,
+      500
+    );
+
+  }
+
+};
+
 module.exports = {
   getDashboard,
+
+  // Porter
   getPorterApplications,
   getPorterApplication,
   approvePorter,
   rejectPorter,
+
+  // Booking
+  getBookings,
+  getBooking,
+  updateBookingStatus,
 };

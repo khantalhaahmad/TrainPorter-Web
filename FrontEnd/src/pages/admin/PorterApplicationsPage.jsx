@@ -39,6 +39,9 @@ const PorterApplicationsPage = () => {
   const [rejecting, setRejecting] =
     useState(false);
 
+    const [statusFilter, setStatusFilter] =
+  useState("all");
+
   // ==========================
   // Fetch Applications
   // ==========================
@@ -76,6 +79,19 @@ const PorterApplicationsPage = () => {
     fetchApplications();
 
   }, []);
+
+  const filteredApplications =
+  applications.filter((item) => {
+
+    if (statusFilter === "all") {
+
+      return true;
+
+    }
+
+    return item.status === statusFilter;
+
+  });
 
   // ==========================
   // Drawer
@@ -240,43 +256,7 @@ const PorterApplicationsPage = () => {
 
       </div>
 
-      <div className="tp-porter-header-right">
-
-        <div className="tp-porter-header-count">
-
-          <div className="tp-porter-header-count-icon">
-
-            👥
-
-          </div>
-
-          <div>
-
-            <h3>
-
-              {applications.length}
-
-            </h3>
-
-            <span>
-
-              Total Applications
-
-            </span>
-
-          </div>
-
-        </div>
-
-        <button className="tp-porter-export-btn">
-
-          Export
-
-        </button>
-
       </div>
-
-    </div>
 
     {/* ======================================
         STATS
@@ -296,7 +276,11 @@ const PorterApplicationsPage = () => {
 
     <div className="tp-porter-filter-wrapper">
 
-      <PorterFilters />
+<PorterFilters
+    applications={applications}
+    statusFilter={statusFilter}
+    setStatusFilter={setStatusFilter}
+/>
 
     </div>
 
@@ -306,10 +290,10 @@ const PorterApplicationsPage = () => {
 
     <div className="tp-porter-table-card">
 
-      <PorterApplicationsTable
-        applications={applications}
-        onView={handleViewApplication}
-      />
+   <PorterApplicationsTable
+    applications={filteredApplications}
+    onView={handleViewApplication}
+/>
 
     </div>
 

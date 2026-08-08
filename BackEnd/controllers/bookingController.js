@@ -1,5 +1,7 @@
 const Booking = require("../models/Booking");
 const Activity = require("../models/Activity");
+const Porter = require("../models/Porter");   // NEW
+
 const calculateFare = require(
   "../utils/fareCalculator"
 );
@@ -15,28 +17,115 @@ const createBooking = async (
     req.body.luggageCount || 1
   );
 
-    const booking =
-  await Booking.create({
-    ...req.body,
+  // ==========================
+// Find Available Porter
+// ==========================
 
-    userId: req.user.id,
+const porter = await Porter.findOne({
 
-    amount: fareData.amount,
+  preferredStation: req.body.station,
 
-    fareBreakdown:
-      fareData.breakdown,
+  availabilityStatus: "online",
 
-    status: "assigned",
+  isAvailable: true,
 
-    assignedPorter: {
-      porterId:
-        "DUMMY_PORTER_001",
-      name:
-        "Dummy Porter",
-      phone:
-        "9999999999",
-    },
+  accountStatus: "active",
+
+})
+.sort({
+  averageRating: -1,
+});
+
+if (!porter) {
+
+  return res.status(404).json({
+
+    success: false,
+
+    message:
+      "No porter available at this station.",
+
   });
+
+}
+
+    const booking = await Booking.create({
+
+  ...req.body,
+
+  // ==========================
+  // User
+  // ==========================
+
+  userId: req.user.id,
+
+  // ==========================
+  // Assigned Porter
+  // ==========================
+
+  porterId: porter._id,
+
+  assignedPorter: {
+
+    porterId: porter._id,
+
+    name: porter.fullName,
+
+    phone: porter.phone,
+
+    profilePhoto:
+      porter.profilePhoto?.url || "",
+
+    station:
+      porter.preferredStation,
+
+    rating:
+      porter.averageRating,
+
+  },
+
+  // ==========================
+  // Fare
+  // ==========================
+
+  amount: fareData.amount,
+
+  fareBreakdown:
+    fareData.breakdown,
+
+  // ==========================
+  // Payment
+  // ==========================
+
+  paymentStatus: "paid",
+
+  paymentMethod: "UPI",
+
+  transactionId:
+    `TXN-${Date.now()}`,
+
+  paidAt: new Date(),
+
+  // ==========================
+  // Booking Status
+  // ==========================
+
+  status: "assigned",
+
+});
+
+// ==========================
+// Make Porter Busy
+// ==========================
+
+await Porter.findByIdAndUpdate(
+  porter._id,
+  {
+    isAvailable: false,
+    availabilityStatus: "busy",
+  }
+);
+
 
     await Activity.create({
       userId: req.user.id,
@@ -49,8 +138,13 @@ const createBooking = async (
       success: true,
       data: booking,
     });
-
   } catch (error) {
+
+    console.log("========== CREATE BOOKING ERROR ==========");
+    console.log(error);
+    console.log("Message:", error.message);
+    console.log("Stack:", error.stack);
+    console.log("==========================================");
 
     res.status(500).json({
       success: false,
@@ -85,10 +179,17 @@ if (req.query.status === "active") {
 
 }
 
-const bookings = await Booking.find(filter)
-.sort({
-    createdAt: -1,
-});
+const bookings =
+  await Booking.find(filter)
+
+    .populate(
+      "porterId",
+      "fullName phone averageRating preferredStation profilePhoto"
+    )
+
+    .sort({
+      createdAt: -1,
+    });
 
     res.status(200).json({
       success: true,
@@ -108,10 +209,14 @@ const getBookingById = async (
   res
 ) => {
   try {
-    const booking =
-      await Booking.findById(
-        req.params.id
-      );
+const booking =
+  await Booking.findById(
+    req.params.id
+  )
+  .populate(
+    "porterId",
+    "fullName phone averageRating preferredStation profilePhoto"
+  );
 
     if (!booking) {
       return res.status(404).json({
@@ -133,77 +238,100 @@ const getBookingById = async (
   }
 };
 
-const updateBookingStatus =
-  async (req, res) => {
-    try {
-      const { status } = req.body;
-const validStatuses = [
-  "assigned",
-  "accepted",
-  "arrived",
-  "in_progress",
-  "completed",
-  "cancelled",
-];
+const updateBookingStatus = async (req, res) => {
 
-if (!validStatuses.includes(status)) {
-  return res.status(400).json({
-    success: false,
-    message: "Invalid status",
-  });
-}
-      const booking =
-        await Booking.findByIdAndUpdate(
-          req.params.id,
+  try {
+
+    const { status } = req.body;
+
+    const validStatuses = [
+      "assigned",
+      "accepted",
+      "arrived",
+      "in_progress",
+      "completed",
+      "cancelled",
+    ];
+
+    if (!validStatuses.includes(status)) {
+
+      return res.status(400).json({
+        success: false,
+        message: "Invalid status",
+      });
+
+    }
+
+    const booking =
+      await Booking.findById(
+        req.params.id
+      );
+
+    if (!booking) {
+
+      return res.status(404).json({
+        success: false,
+        message: "Booking not found",
+      });
+
+    }
+
+    booking.status = status;
+
+    if (status === "completed") {
+
+      booking.completedAt = new Date();
+
+      if (booking.porterId) {
+
+        await Porter.findByIdAndUpdate(
+          booking.porterId,
           {
-            status,
-          },
-          {
-            new: true,
+            isAvailable: true,
+            availabilityStatus: "online",
           }
         );
 
-      if (!booking) {
-        return res
-          .status(404)
-          .json({
-            success: false,
-            message:
-              "Booking not found",
-          });
       }
 
-      if (
-        status === "completed"
-      ) {
-        booking.completedAt =
-          new Date();
-
-        await booking.save();
-      }
-
-      await Activity.create({
-        userId:
-          booking.userId,
-        title:
-          "Booking Updated",
-        description: `Booking status changed to ${status}`,
-        type: "booking",
-      });
-
-      res.status(200).json({
-        success: true,
-        data: booking,
-      });
-    } catch (error) {
-      res.status(500).json({
-        success: false,
-        message:
-          error.message,
-      });
     }
-  };
 
+    await booking.save();
+
+    await Activity.create({
+
+      userId: booking.userId,
+
+      title: "Booking Updated",
+
+      description:
+        `Booking status changed to ${status}`,
+
+      type: "booking",
+
+    });
+
+    res.status(200).json({
+
+      success: true,
+
+      data: booking,
+
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+
+      success: false,
+
+      message: error.message,
+
+    });
+
+  }
+
+};
 const cancelBooking = async (
   req,
   res
@@ -238,6 +366,24 @@ const cancelBooking = async (
 booking.status = "cancelled";
 
 await booking.save();
+
+if (booking.porterId) {
+
+  await Porter.findByIdAndUpdate(
+
+    booking.porterId,
+
+    {
+
+      isAvailable: true,
+
+      availabilityStatus: "online",
+
+    }
+
+  );
+
+}
 
 await Activity.create({
   userId: booking.userId,

@@ -426,26 +426,77 @@ const approvePorter = async (applicationId, adminId) => {
     console.log("Porter Model:", Porter.modelName);
     console.log("Application:", application);
     console.log("=========================================");
+const porter = await Porter.create({
 
-    const porter = await Porter.create({
+  // ==========================
+  // References
+  // ==========================
 
-      userId: application.userId,
+  userId: application.userId,
 
-      applicationId: application._id,
+  applicationId: application._id,
 
-      fullName: application.fullName,
+  // ==========================
+  // Basic Details
+  // ==========================
 
-      phone: application.phone,
+  fullName: application.fullName,
 
-      email: application.email,
+  phone: application.phone,
 
-      profilePhoto: application.profilePhoto,
+  email: application.email,
 
-      preferredStation: application.preferredStation,
+  profilePhoto: application.profilePhoto,
 
-      stationCode: application.stationCode,
+  // ==========================
+  // Station
+  // ==========================
 
-    });
+  preferredStation: application.preferredStation,
+
+  stationCode: application.stationCode,
+
+  // ==========================
+  // Working Status
+  // ==========================
+
+  availabilityStatus: "online",
+
+  isAvailable: true,
+
+  accountStatus: "active",
+
+  // ==========================
+  // Performance
+  // ==========================
+
+  totalBookings: 0,
+
+  completedBookings: 0,
+
+  cancelledBookings: 0,
+
+  averageRating: 0,
+
+  totalReviews: 0,
+
+  // ==========================
+  // Earnings
+  // ==========================
+
+  walletBalance: 0,
+
+  lifetimeEarnings: 0,
+
+  todayEarnings: 0,
+
+  // ==========================
+  // Current Booking
+  // ==========================
+
+  currentBooking: null,
+
+});
 
     console.log("STEP 6 - Porter Created");
     console.log(porter);
@@ -508,11 +559,97 @@ const rejectPorter = async (
   };
 
 };
+// ==========================================
+// Get All Bookings
+// ==========================================
+
+const getBookings = async () => {
+
+  const bookings = await Booking.find()
+    .populate("userId", "name phone")
+  .populate(
+  "porterId",
+  "fullName phone preferredStation averageRating profilePhoto availabilityStatus"
+)
+    .sort({
+      createdAt: -1,
+    });
+
+  return bookings;
+
+};
+
+// ==========================================
+// Get Single Booking
+// ==========================================
+
+const getBooking = async (id) => {
+
+  const booking = await Booking.findById(id)
+    .populate("userId", "name phone")
+    .populate(
+  "porterId",
+  "fullName phone preferredStation averageRating profilePhoto availabilityStatus"
+)
+
+  if (!booking) {
+
+    throw new Error(
+      "Booking not found."
+    );
+
+  }
+
+  return booking;
+
+};
+
+// ==========================================
+// Update Booking Status
+// ==========================================
+
+const updateBookingStatus = async (
+  id,
+  status
+) => {
+
+  const booking =
+    await Booking.findById(id);
+
+  if (!booking) {
+
+    throw new Error(
+      "Booking not found."
+    );
+
+  }
+
+  booking.status = status;
+
+  if (status === "completed") {
+
+    booking.completedAt =
+      new Date();
+
+  }
+
+  await booking.save();
+
+  return booking;
+
+};
 
 module.exports = {
   getDashboardData,
+
+  // Porter
   getPorterApplications,
   getPorterApplication,
   approvePorter,
   rejectPorter,
+
+  // Booking
+  getBookings,
+  getBooking,
+  updateBookingStatus,
 };

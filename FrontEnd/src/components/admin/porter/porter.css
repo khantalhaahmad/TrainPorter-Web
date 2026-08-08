@@ -243,7 +243,12 @@
 
 .tp-porter-stats-wrapper{
 
-    margin-bottom:30px;
+    margin-bottom:12px;
+
+}
+.tp-porter-stats-section{
+
+    margin-bottom:0px;
 
 }
 
@@ -259,21 +264,21 @@
 
 .tp-porter-stat-card{
 
-    background:#fff;
+    position:relative;
+
+    overflow:hidden;
+
+    background:#ffffff;
+
+    border:1px solid #edf2f7;
 
     border-radius:22px;
 
     padding:24px;
 
-    border:1px solid #edf2f7;
-
     box-shadow:var(--tp-shadow);
 
-    position:relative;
-
-    overflow:hidden;
-
-    transition:.3s;
+    transition:.30s ease;
 
 }
 
@@ -286,45 +291,39 @@
 
 }
 
+/* Remove Blue Top Line */
+
 .tp-porter-stat-card::after{
 
-    content:"";
-
-    position:absolute;
-
-    top:0;
-
-    left:0;
-
-    width:100%;
-
-    height:5px;
-
-    background:linear-gradient(
-        90deg,
-        #2563eb,
-        #60a5fa
-    );
+    display:none;
 
 }
 
+/* ==========================================================
+   CONTENT
+========================================================== */
+
 .tp-porter-stat-title{
+
+    display:block;
 
     font-size:14px;
 
-    color:#64748b;
-
     font-weight:600;
+
+    color:#64748b;
 
 }
 
 .tp-porter-stat-value{
 
-    font-size:38px;
-
     margin-top:10px;
 
+    font-size:38px;
+
     font-weight:800;
+
+    line-height:1;
 
     color:#111827;
 
@@ -340,19 +339,23 @@
 
 }
 
+/* ==========================================================
+   ICON
+========================================================== */
+
 .tp-porter-stat-icon{
 
     position:absolute;
 
-    right:24px;
-
     top:24px;
 
-    width:60px;
+    right:24px;
 
-    height:60px;
+    width:58px;
 
-    border-radius:18px;
+    height:58px;
+
+    border-radius:16px;
 
     display:flex;
 
@@ -360,21 +363,64 @@
 
     justify-content:center;
 
-    background:#eff6ff;
-
-    color:#2563eb;
-
     font-size:24px;
 
 }
 
+/* ==========================================================
+   TOTAL APPLICATIONS
+========================================================== */
+
+.tp-porter-card-blue .tp-porter-stat-icon{
+
+    background:#eef4ff;
+
+    color:#2563eb;
+
+}
+
+/* ==========================================================
+   PENDING
+========================================================== */
+
+.tp-porter-card-orange .tp-porter-stat-icon{
+
+    background:#fff7ed;
+
+    color:#f97316;
+
+}
+
+/* ==========================================================
+   APPROVED
+========================================================== */
+
+.tp-porter-card-green .tp-porter-stat-icon{
+
+    background:#ecfdf3;
+
+    color:#16a34a;
+
+}
+
+/* ==========================================================
+   REJECTED
+========================================================== */
+
+.tp-porter-card-red .tp-porter-stat-icon{
+
+    background:#fef2f2;
+
+    color:#dc2626;
+
+}
 /* ==========================================================
    FILTER SECTION
 ========================================================== */
 
 .tp-porter-filter-wrapper{
 
-    margin-bottom:28px;
+    margin-bottom:-25px;
 
 }
 
@@ -443,6 +489,8 @@
 .tp-porter-filter-chip:hover{
 
     background:#eef2ff;
+
+    color:#2563eb;
 
 }
 
@@ -2678,7 +2726,7 @@ border-radius:20px;
 
     flex-direction:column;
 
-    gap:26px;
+    gap:-5px;
 
 }
 
@@ -3103,5 +3151,247 @@ border-radius:20px;
         font-size:14px;
 
     }
+
+}
+/* ==========================================
+   PAGE HEADER
+========================================== */
+
+.tp-porter-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:18px;   /* 28px tha -> 18px */
+
+    padding-top:0;
+
+}
+
+.tp-porter-title{
+
+    margin:0;
+
+    font-size:28px;       /* 38px tha */
+
+    font-weight:700;
+
+    line-height:1.2;
+
+    color:#101828;
+
+    letter-spacing:-0.4px;
+
+}
+
+.tp-porter-subtitle{
+
+    margin-top:4px;        /* 10px tha */
+
+    font-size:14px;        /* 16px tha */
+
+    color:#667085;
+
+    line-height:1.5;
+
+}
+.tp-porter-page{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;      /* 26px ki jagah */
+
+}
+.tp-porter-header{
+
+    margin-top:-38px;
+
+}
+/* ==========================================
+   PAGE
+========================================== */
+
+.tp-porter-page{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:0px;      /* agar 18 ya 26 hai to 14 kar do */
+
+}
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.tp-porter-header{
+
+    margin-bottom:8px;    /* pehle 20-30px tha */
+
+}
+
+.tp-porter-subtitle{
+
+    margin-top:2px;
+
+    margin-bottom:0;
+
+}
+/* ==========================================
+   PORTER HEADER -> STATS GAP FIX
+========================================== */
+
+.tp-porter-header{
+
+    margin-bottom: 6px !important;
+
+    padding-bottom: 0 !important;
+
+}
+
+.tp-porter-stats-section{
+
+    margin-top: 0 !important;
+
+    padding-top: 0 !important;
+
+}
+
+.tp-porter-stats-wrapper{
+
+    margin-top: 0 !important;
+
+    margin-bottom: 0 !important;
+
+}
+
+.tp-porter-page{
+
+    gap: 6px !important;
+
+}
+.tp-porter-header{
+
+    margin-bottom: 12px !important;
+
+}
+
+.tp-porter-page{
+
+    gap: 12px !important;
+
+}
+.tp-porter-stats-section{
+
+    margin:0 !important;
+
+    padding:0 !important;
+
+}
+
+.tp-porter-filter-wrapper{
+
+    margin-top:8px !important;
+
+}
+
+.tp-porter-stats-wrapper{
+
+    margin-bottom:0 !important;
+
+}
+.tp-porter-stats-section{
+
+    margin:0 !important;
+
+    padding:0 !important;
+
+}
+
+.tp-porter-stats-grid{
+
+    margin-bottom:0 !important;
+
+}
+
+.tp-porter-filter-wrapper{
+
+    margin-top:0 !important;
+
+}
+/* ==========================
+   Stats Section
+========================== */
+
+.tp-porter-stats-section{
+
+    margin:0 !important;
+
+    padding:0 !important;
+
+}
+
+/* Grid */
+
+.tp-porter-stats-grid{
+
+    margin:0 !important;
+
+    padding:0 !important;
+
+    row-gap:14px;      /* pehle 22px tha */
+}
+
+/* Wrapper */
+
+.tp-porter-stats-wrapper{
+
+    margin:0 !important;
+
+    padding:0 !important;
+
+}
+
+/* Filter */
+
+.tp-porter-filter-wrapper{
+
+    margin-top:-8px !important;
+
+}
+/* Outer Wrapper (Page se control hoga) */
+
+.tp-porter-filter-wrapper{
+
+    margin-top:8px;
+
+    margin-bottom:24px;
+
+}
+
+/* Inner Section */
+
+.tp-porter-filter-section{
+
+    margin:0;
+
+    padding:0;
+
+}
+.tp-porter-stats-wrapper{
+
+    margin-bottom:10px !important;
+
+}
+
+.tp-porter-filter-wrapper{
+
+    margin-top:4px !important;
 
 }

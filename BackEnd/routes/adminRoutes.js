@@ -11,6 +11,14 @@ const {
   getPorterApplication,
   approvePorter,
   rejectPorter,
+
+  // ==========================
+  // Bookings
+  // ==========================
+  getBookings,
+  getBooking,
+  updateBookingStatus,
+
 } = require("../controllers/adminController");
 
 router.get(
@@ -45,6 +53,31 @@ router.put(
   authMiddleware,
   adminMiddleware,
   rejectPorter
+);
+
+/* ==========================================================
+   BOOKINGS
+========================================================== */
+
+router.get(
+  "/bookings",
+  authMiddleware,
+  adminMiddleware,
+  getBookings
+);
+
+router.get(
+  "/bookings/:id",
+  authMiddleware,
+  adminMiddleware,
+  getBooking
+);
+
+router.put(
+  "/bookings/:id/status",
+  authMiddleware,
+  adminMiddleware,
+  updateBookingStatus
 );
 
 module.exports = router;

@@ -8,11 +8,17 @@ const bookingSchema = new mongoose.Schema(
       required: true,
     },
 
-    porterId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      default: null,
-    },
+   porterId: {
+  type: mongoose.Schema.Types.ObjectId,
+  ref: "Porter",
+  default: null,
+},
+
+bookingId: {
+  type: String,
+  unique: true,
+},
+
 
     trainNumber: {
       type: String,
@@ -83,43 +89,130 @@ const bookingSchema = new mongoose.Schema(
     default: 0,
   },
 },
+paymentStatus: {
+  type: String,
+  enum: [
+    "pending",
+    "paid",
+    "failed",
+    "refunded",
+  ],
+  default: "paid",
+},
+
+paymentMethod: {
+  type: String,
+  enum: [
+    "UPI",
+    "CARD",
+    "NET_BANKING",
+    "WALLET",
+    "COD",
+  ],
+  default: "UPI",
+},
+
+transactionId: {
+  type: String,
+  default: "",
+},
+
+paidAt: {
+  type: Date,
+  default: Date.now,
+},
+
 assignedPorter: {
+
   porterId: {
-    type: String,
-    default: "DUMMY_PORTER_001",
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Porter",
+    default: null,
   },
+
   name: {
     type: String,
-    default: "Dummy Porter",
+    default: "",
+    trim: true,
   },
+
   phone: {
     type: String,
-    default: "9999999999",
+    default: "",
+    trim: true,
   },
-},
-    status: {
-      type: String,
-      enum: [
-  "pending",
-  "assigned",
-  "accepted",
-  "arrived",
-  "in_progress",
-  "completed",
-  "cancelled",
-],
-      default: "pending",
-    },
 
-    completedAt: {
-      type: Date,
-      default: null,
-    },
+  profilePhoto: {
+    type: String,
+    default: "",
   },
-  {
-    timestamps: true,
-  }
+
+  station: {
+    type: String,
+    default: "",
+    trim: true,
+  },
+
+  rating: {
+    type: Number,
+    default: 0,
+    min: 0,
+    max: 5,
+  },
+
+},
+
+// ==========================
+// Booking Status
+// ==========================
+
+status: {
+  type: String,
+  enum: [
+    "pending",
+    "assigned",
+    "accepted",
+    "arrived",
+    "in_progress",
+    "completed",
+    "cancelled",
+  ],
+  default: "pending",
+},
+
+// ==========================
+// Completion
+// ==========================
+
+completedAt: {
+  type: Date,
+  default: null,
+},
+
+},
+{
+  timestamps: true,
+}
 );
+
+// ==========================
+// Auto Generate Booking ID
+// ==========================
+
+bookingSchema.pre("save", async function () {
+
+  if (this.bookingId) {
+    return;
+  }
+
+  const Booking = mongoose.model("Booking");
+
+  const count = await Booking.countDocuments();
+
+  this.bookingId =
+    `BK-${new Date().getFullYear()}-${String(count + 1).padStart(6, "0")}`;
+
+});
 
 module.exports = mongoose.model(
   "Booking",
