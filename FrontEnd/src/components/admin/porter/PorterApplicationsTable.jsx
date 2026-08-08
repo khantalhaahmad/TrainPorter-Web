@@ -1,4 +1,7 @@
-import React from "react";
+import React, {
+  useMemo,
+  useState,
+} from "react";
 
 import PorterActionMenu from "./PorterActionMenu";
 
@@ -8,6 +11,7 @@ const PorterApplicationsTable = ({
 }) => {
 
   const getReviewData = (status) => {
+    
 
     switch ((status || "").toLowerCase()) {
 
@@ -41,6 +45,29 @@ const PorterApplicationsTable = ({
     }
 
   };
+
+  const ITEMS_PER_PAGE = 7;
+
+const [currentPage, setCurrentPage] =
+  useState(1);
+
+const totalPages = Math.ceil(
+  applications.length / ITEMS_PER_PAGE
+);
+
+const paginatedApplications =
+  useMemo(() => {
+
+    const start =
+      (currentPage - 1) *
+      ITEMS_PER_PAGE;
+
+    return applications.slice(
+      start,
+      start + ITEMS_PER_PAGE
+    );
+
+  }, [applications, currentPage]);
 
   return (
 
@@ -103,7 +130,7 @@ const PorterApplicationsTable = ({
 
           <tbody>
 
-            {applications.length === 0 ? (
+            {paginatedApplications.length === 0 ? (
 
               <tr>
 
@@ -125,7 +152,7 @@ const PorterApplicationsTable = ({
 
             ) : (
 
-              applications.map((item) => {
+              paginatedApplications.map((item) => {
 
                 const review = getReviewData(
                   item.status
@@ -239,11 +266,19 @@ const PorterApplicationsTable = ({
 
                       <div className="tp-porter-review">
 
-                        <div className="tp-porter-review-progress">
+                     <div
+  className={`tp-porter-review-progress ${
+    review.progress === "100%"
+      ? "tp-porter-review-complete"
+      : review.progress === "--"
+      ? "tp-porter-review-rejected"
+      : "tp-porter-review-pending"
+  }`}
+>
 
-                          {review.progress}
+  <span>{review.progress}</span>
 
-                        </div>
+</div>
 
                         <div>
 
@@ -294,15 +329,96 @@ const PorterApplicationsTable = ({
 
       </div>
 
-      <div className="tp-porter-pagination">
+     <div className="tp-porter-pagination">
 
-        <span>
+  <div className="tp-porter-pagination-info">
 
-          Showing {applications.length} applications
+    Showing
 
-        </span>
+    {" "}
 
-      </div>
+    <strong>
+      {applications.length === 0
+        ? 0
+        : (currentPage - 1) *
+            ITEMS_PER_PAGE +
+          1}
+    </strong>
+
+    -
+
+    <strong>
+      {Math.min(
+        currentPage *
+          ITEMS_PER_PAGE,
+        applications.length
+      )}
+    </strong>
+
+    {" "}of{" "}
+
+    <strong>
+      {applications.length}
+    </strong>
+
+    {" "}applications
+
+  </div>
+
+  <div className="tp-porter-pagination-buttons">
+
+    <button
+      className="tp-porter-page-btn"
+      disabled={currentPage === 1}
+      onClick={() =>
+        setCurrentPage((prev) =>
+          prev - 1
+        )
+      }
+    >
+      Previous
+    </button>
+
+    {Array.from(
+      { length: totalPages },
+      (_, index) => (
+
+        <button
+          key={index}
+          className={`tp-porter-page-btn ${
+            currentPage ===
+            index + 1
+              ? "tp-porter-page-btn-active"
+              : ""
+          }`}
+          onClick={() =>
+            setCurrentPage(index + 1)
+          }
+        >
+          {index + 1}
+        </button>
+
+      )
+    )}
+
+    <button
+      className="tp-porter-page-btn"
+      disabled={
+        currentPage === totalPages ||
+        totalPages === 0
+      }
+      onClick={() =>
+        setCurrentPage((prev) =>
+          prev + 1
+        )
+      }
+    >
+      Next
+    </button>
+
+  </div>
+
+</div>
 
     </div>
 

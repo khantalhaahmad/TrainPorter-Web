@@ -106,10 +106,11 @@
 
     align-items:center;
 
-    gap:18px;
+    flex:1;
+
+    gap:16px;
 
 }
-
 
 /* ===============================
         Search
@@ -117,15 +118,21 @@
 
 .tp-admin-header-search{
 
-    width:340px;
-
     display:flex;
 
     align-items:center;
 
     gap:12px;
 
+    width:100%;
+
+    max-width:520px;
+
+    margin-right:auto;
+
     background:#f5f6fa;
+
+    border:1px solid transparent;
 
     border-radius:14px;
 
@@ -133,10 +140,7 @@
 
     transition:.30s;
 
-    border:1px solid transparent;
-
 }
-
 .tp-admin-header-search:hover{
 
     border-color:#ffb15c;

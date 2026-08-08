@@ -464,10 +464,55 @@ const approvePorter = async (applicationId, adminId) => {
   };
 
 };
+// ==========================================
+// Reject Porter
+// ==========================================
+
+const rejectPorter = async (
+  applicationId,
+  adminId,
+  reason = ""
+) => {
+
+  console.log("========== REJECT SERVICE START ==========");
+
+  const application =
+    await PorterApplication.findById(applicationId);
+
+  if (!application) {
+    throw new Error("Porter application not found.");
+  }
+
+  if (application.status === "rejected") {
+    throw new Error("Application already rejected.");
+  }
+
+  application.status = "rejected";
+
+  application.rejectedBy = adminId;
+
+  application.rejectedAt = new Date();
+
+  application.rejectionReason = reason;
+
+  await application.save();
+
+  console.log("========== REJECT SERVICE END ==========");
+
+  return {
+
+    message: "Application rejected successfully.",
+
+    application,
+
+  };
+
+};
 
 module.exports = {
   getDashboardData,
   getPorterApplications,
   getPorterApplication,
   approvePorter,
+  rejectPorter,
 };

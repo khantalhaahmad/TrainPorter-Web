@@ -216,51 +216,7 @@ const PorterApplicationsPage = () => {
 
   return (
 
-<div className="tp-porter-page tp-porter-page-wide">
-
-    {/* ======================================
-        TOP TOOLBAR
-    ====================================== */}
-
-    <div className="tp-porter-toolbar">
-
-      <div className="tp-porter-toolbar-left">
-
-        <button className="tp-porter-menu-btn">
-
-          ☰
-
-        </button>
-
-        <div className="tp-porter-search-wrapper">
-
-          <input
-            type="text"
-            placeholder="Search porter..."
-            className="tp-porter-search-input"
-          />
-
-        </div>
-
-      </div>
-
-      <div className="tp-porter-toolbar-right">
-
-        <button className="tp-porter-filter-btn">
-
-          Filter
-
-        </button>
-
-        <button className="tp-porter-export-btn">
-
-          Export
-
-        </button>
-
-      </div>
-
-    </div>
+  <div className="tp-porter-page tp-porter-page-wide">
 
     {/* ======================================
         PAGE HEADER
@@ -268,7 +224,7 @@ const PorterApplicationsPage = () => {
 
     <div className="tp-porter-header">
 
-      <div>
+      <div className="tp-porter-header-left">
 
         <h1 className="tp-porter-title">
 
@@ -281,6 +237,42 @@ const PorterApplicationsPage = () => {
           Review and manage porter verification requests.
 
         </p>
+
+      </div>
+
+      <div className="tp-porter-header-right">
+
+        <div className="tp-porter-header-count">
+
+          <div className="tp-porter-header-count-icon">
+
+            👥
+
+          </div>
+
+          <div>
+
+            <h3>
+
+              {applications.length}
+
+            </h3>
+
+            <span>
+
+              Total Applications
+
+            </span>
+
+          </div>
+
+        </div>
+
+        <button className="tp-porter-export-btn">
+
+          Export
+
+        </button>
 
       </div>
 
@@ -346,7 +338,6 @@ const PorterApplicationsPage = () => {
   </div>
 
 );
-
 };
 
 export default PorterApplicationsPage;

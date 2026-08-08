@@ -11,6 +11,13 @@ import "./Header.css";
 
 const Header = ({
   onMenuToggle,
+
+  title = "",
+
+  breadcrumb = "",
+
+  searchPlaceholder = "Search...",
+
   admin = {
     name: "Super Admin",
     role: "Administrator",
@@ -18,10 +25,14 @@ const Header = ({
       "https://ui-avatars.com/api/?name=Admin&background=ff7a00&color=fff",
   },
 }) => {
+
   return (
+
     <header className="tp-admin-header">
 
-      {/* Left */}
+      {/* ==========================
+            Left
+      ========================== */}
 
       <div className="tp-admin-header-left">
 
@@ -32,21 +43,35 @@ const Header = ({
           <Menu size={22} />
         </button>
 
-        <div>
+        {title && (
 
-          <h1 className="tp-admin-page-title">
-            Dashboard
-          </h1>
+          <div>
 
-          <p className="tp-admin-breadcrumb">
-            Home / Dashboard
-          </p>
+            <h1 className="tp-admin-page-title">
 
-        </div>
+              {title}
+
+            </h1>
+
+            {breadcrumb && (
+
+              <p className="tp-admin-breadcrumb">
+
+                {breadcrumb}
+
+              </p>
+
+            )}
+
+          </div>
+
+        )}
 
       </div>
 
-      {/* Right */}
+      {/* ==========================
+            Right
+      ========================== */}
 
       <div className="tp-admin-header-right">
 
@@ -58,7 +83,7 @@ const Header = ({
 
           <input
             type="text"
-            placeholder="Search users, bookings..."
+            placeholder={searchPlaceholder}
           />
 
         </div>
@@ -70,7 +95,9 @@ const Header = ({
           <Bell size={20} />
 
           <span className="tp-admin-badge">
+
             4
+
           </span>
 
         </button>
@@ -82,7 +109,9 @@ const Header = ({
           <MessageCircle size={20} />
 
           <span className="tp-admin-badge">
+
             2
+
           </span>
 
         </button>
@@ -98,9 +127,17 @@ const Header = ({
 
           <div className="tp-admin-profile-info">
 
-            <h4>{admin.name}</h4>
+            <h4>
 
-            <span>{admin.role}</span>
+              {admin.name}
+
+            </h4>
+
+            <span>
+
+              {admin.role}
+
+            </span>
 
           </div>
 
@@ -111,7 +148,9 @@ const Header = ({
       </div>
 
     </header>
+
   );
+
 };
 
 export default Header;

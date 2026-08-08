@@ -126,9 +126,40 @@ const approvePorter = async (req, res) => {
 
 };
 const rejectPorter = async (req, res) => {
+
+  console.log("========== REJECT API HIT ==========");
+  console.log("Application ID:", req.params.id);
+  console.log("Admin ID:", req.user.id);
+  console.log("Reason:", req.body.reason);
+  console.log("====================================");
+
   try {
 
+    const result =
+      await adminService.rejectPorter(
+        req.params.id,
+        req.user.id,
+        req.body.reason
+      );
+
+    console.log("========== REJECT SUCCESS ==========");
+    console.log(result);
+    console.log("===================================");
+
+    return successResponse(
+      res,
+      result.message,
+      {
+        application: result.application,
+      }
+    );
+
   } catch (error) {
+
+    console.error("========== REJECT ERROR ==========");
+    console.error(error);
+    console.error(error.stack);
+    console.error("==================================");
 
     return errorResponse(
       res,
@@ -137,6 +168,7 @@ const rejectPorter = async (req, res) => {
     );
 
   }
+
 };
 module.exports = {
   getDashboard,
