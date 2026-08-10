@@ -1,7 +1,7 @@
 import React from "react";
 
 import {
-  Search,
+  ArrowUpDown,
 } from "lucide-react";
 
 const BookingFilters = ({
@@ -67,248 +67,98 @@ const BookingFilters = ({
 
   return (
 
-    <section className="tp-booking-filter-section">
+  <section className="tp-booking-filter-section">
 
-      <div className="tp-booking-filter-card">
+    <div className="tp-booking-filter-card">
 
-        <div className="tp-booking-filter-bar">
+      <div className="tp-booking-filter-bar">
 
-          {/* ======================================================
-              LEFT
-          ====================================================== */}
+        {/* ================= LEFT ================= */}
 
-          <div className="tp-booking-filter-left">
+        <div className="tp-booking-filter-left">
+
+          {[
+            {
+              label: "All",
+              value: "all",
+              count: bookings.length,
+            },
+            {
+              label: "Assigned",
+              value: "assigned",
+              count: assignedCount,
+            },
+            {
+              label: "Accepted",
+              value: "accepted",
+              count: acceptedCount,
+            },
+            {
+              label: "In Progress",
+              value: "in_progress",
+              count: progressCount,
+            },
+            {
+              label: "Completed",
+              value: "completed",
+              count: completedCount,
+            },
+            {
+              label: "Cancelled",
+              value: "cancelled",
+              count: cancelledCount,
+            },
+          ].map((item) => (
 
             <button
-
+              key={item.value}
               type="button"
-
-              onClick={() =>
-                setStatusFilter("all")
-              }
-
+              onClick={() => setStatusFilter(item.value)}
               className={`tp-booking-filter-chip ${
-                statusFilter === "all"
+                statusFilter === item.value
                   ? "tp-booking-filter-chip-active"
                   : ""
               }`}
-
             >
+              <span>{item.label}</span>
 
-              All ({bookings.length})
+              <strong>{item.count}</strong>
 
             </button>
 
-            <button
+          ))}
 
-              type="button"
+        </div>
 
-              onClick={() =>
-                setStatusFilter(
-                  "assigned"
-                )
-              }
+        {/* ================= RIGHT ================= */}
 
-              className={`tp-booking-filter-chip ${
-                statusFilter ===
-                "assigned"
-                  ? "tp-booking-filter-chip-active"
-                  : ""
-              }`}
+        <div className="tp-booking-filter-right">
 
-            >
+          <div className="tp-booking-sort-wrapper">
 
-              Assigned ({assignedCount})
-
-            </button>
-
-            <button
-
-              type="button"
-
-              onClick={() =>
-                setStatusFilter(
-                  "accepted"
-                )
-              }
-
-              className={`tp-booking-filter-chip ${
-                statusFilter ===
-                "accepted"
-                  ? "tp-booking-filter-chip-active"
-                  : ""
-              }`}
-
-            >
-
-              Accepted ({acceptedCount})
-
-            </button>
-
-            <button
-
-              type="button"
-
-              onClick={() =>
-                setStatusFilter(
-                  "arrived"
-                )
-              }
-
-              className={`tp-booking-filter-chip ${
-                statusFilter ===
-                "arrived"
-                  ? "tp-booking-filter-chip-active"
-                  : ""
-              }`}
-
-            >
-
-              Arrived ({arrivedCount})
-
-            </button>
-
-            <button
-
-              type="button"
-
-              onClick={() =>
-                setStatusFilter(
-                  "in_progress"
-                )
-              }
-
-              className={`tp-booking-filter-chip ${
-                statusFilter ===
-                "in_progress"
-                  ? "tp-booking-filter-chip-active"
-                  : ""
-              }`}
-
-            >
-
-              In Progress ({progressCount})
-
-            </button>
-
-            <button
-
-              type="button"
-
-              onClick={() =>
-                setStatusFilter(
-                  "completed"
-                )
-              }
-
-              className={`tp-booking-filter-chip ${
-                statusFilter ===
-                "completed"
-                  ? "tp-booking-filter-chip-active"
-                  : ""
-              }`}
-
-            >
-
-              Completed ({completedCount})
-
-            </button>
-
-            <button
-
-              type="button"
-
-              onClick={() =>
-                setStatusFilter(
-                  "cancelled"
-                )
-              }
-
-              className={`tp-booking-filter-chip ${
-                statusFilter ===
-                "cancelled"
-                  ? "tp-booking-filter-chip-active"
-                  : ""
-              }`}
-
-            >
-
-              Cancelled ({cancelledCount})
-
-            </button>
-
-          </div>
-
-          {/* ======================================================
-              RIGHT
-          ====================================================== */}
-
-          <div className="tp-booking-filter-right">
-
-            {/* SEARCH */}
-
-            <div className="tp-booking-search">
-
-              <Search
-                size={18}
-              />
-
-              <input
-
-                type="text"
-
-                placeholder="Search booking..."
-
-                value={search}
-
-                onChange={(e) =>
-                  setSearch(
-                    e.target.value
-                  )
-                }
-
-              />
-
-            </div>
-
-            {/* SORT */}
+            <ArrowUpDown size={16} />
 
             <select
-
               className="tp-booking-sort"
-
               value={sortBy}
-
               onChange={(e) =>
-                setSortBy(
-                  e.target.value
-                )
+                setSortBy(e.target.value)
               }
-
             >
-
               <option value="newest">
-
                 Newest First
-
               </option>
 
               <option value="oldest">
-
                 Oldest First
-
               </option>
 
               <option value="highest">
-
                 Highest Fare
-
               </option>
 
               <option value="lowest">
-
                 Lowest Fare
-
               </option>
 
             </select>
@@ -319,9 +169,11 @@ const BookingFilters = ({
 
       </div>
 
-    </section>
+    </div>
 
-  );
+  </section>
+
+);
 
 };
 

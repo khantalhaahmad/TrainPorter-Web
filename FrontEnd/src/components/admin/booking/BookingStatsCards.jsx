@@ -1,8 +1,9 @@
 import React from "react";
-
 import {
   ClipboardList,
   Clock3,
+  UserCheck,
+  Truck,
   BadgeCheck,
   XCircle,
 } from "lucide-react";
@@ -12,159 +13,141 @@ const BookingStatsCards = ({
 }) => {
 
   // ==========================================================
-  // COUNTS
-  // ==========================================================
+// COUNTS
+// ==========================================================
 
-  const totalBookings =
-    bookings.length;
+const totalBookings = bookings.length;
 
-  const activeBookings =
-    bookings.filter((booking) =>
-      [
-        "assigned",
-        "accepted",
-        "arrived",
-        "in_progress",
-      ].includes(booking.status)
-    ).length;
+const pendingBookings = bookings.filter(
+  (booking) => booking.status === "pending"
+).length;
 
-  const completedBookings =
-    bookings.filter(
-      (booking) =>
-        booking.status ===
-        "completed"
-    ).length;
+const assignedBookings = bookings.filter(
+  (booking) => booking.status === "assigned"
+).length;
 
-  const cancelledBookings =
-    bookings.filter(
-      (booking) =>
-        booking.status ===
-        "cancelled"
-    ).length;
+const inProgressBookings = bookings.filter((booking) =>
+  ["accepted", "arrived", "in_progress"].includes(booking.status)
+).length;
+
+const completedBookings = bookings.filter(
+  (booking) => booking.status === "completed"
+).length;
+
+const cancelledBookings = bookings.filter(
+  (booking) => booking.status === "cancelled"
+).length;
 
   // ==========================================================
   // CARD DATA
   // ==========================================================
 
   const stats = [
+  {
+    title: "Total Bookings",
+    value: totalBookings,
+    icon: ClipboardList,
+    className: "tp-booking-card-blue",
+    trend: "+12%",
+    trendLabel: "All bookings",
+  },
 
-    {
-      title:
-        "Total Bookings",
+  {
+    title: "Pending",
+    value: pendingBookings,
+    icon: Clock3,
+    className: "tp-booking-card-orange",
+    trend: "+5%",
+    trendLabel: "Waiting for assignment",
+  },
 
-      value:
-        totalBookings,
+  {
+    title: "Assigned",
+    value: assignedBookings,
+    icon: UserCheck,
+    className: "tp-booking-card-purple",
+    trend: "+8%",
+    trendLabel: "Porter assigned",
+  },
 
-      icon:
-        ClipboardList,
+  {
+    title: "In Progress",
+    value: inProgressBookings,
+    icon: Truck,
+    className: "tp-booking-card-yellow",
+    trend: "+10%",
+    trendLabel: "Ongoing bookings",
+  },
 
-      className:
-        "tp-booking-card-blue",
-    },
+  {
+    title: "Completed",
+    value: completedBookings,
+    icon: BadgeCheck,
+    className: "tp-booking-card-green",
+    trend: "+18%",
+    trendLabel: "Successfully completed",
+  },
 
-    {
-      title:
-        "Active",
-
-      value:
-        activeBookings,
-
-      icon:
-        Clock3,
-
-      className:
-        "tp-booking-card-orange",
-    },
-
-    {
-      title:
-        "Completed",
-
-      value:
-        completedBookings,
-
-      icon:
-        BadgeCheck,
-
-      className:
-        "tp-booking-card-green",
-    },
-
-    {
-      title:
-        "Cancelled",
-
-      value:
-        cancelledBookings,
-
-      icon:
-        XCircle,
-
-      className:
-        "tp-booking-card-red",
-    },
-
-  ];
+  {
+    title: "Cancelled",
+    value: cancelledBookings,
+    icon: XCircle,
+    className: "tp-booking-card-red",
+    trend: "-2%",
+    trendLabel: "Cancelled bookings",
+  },
+];
 
   // ==========================================================
   // UI
   // ==========================================================
 
   return (
+  <section className="tp-booking-stats-section">
+    <div className="tp-booking-stats-grid">
+      {stats.map((card) => {
+        const Icon = card.icon;
 
-    <section className="tp-booking-stats-section">
-
-      <div className="tp-booking-stats-grid">
-
-        {stats.map((card) => {
-
-          const Icon =
-            card.icon;
-
-          return (
-
-            <div
-              key={card.title}
-              className={`tp-booking-stat-card ${card.className}`}
-            >
-
-              <div className="tp-booking-stat-top">
-
-                <div className="tp-booking-stat-icon">
-
-                  <Icon size={26} />
-
-                </div>
-
+        return (
+          <div
+            key={card.title}
+            className={`tp-booking-stat-card ${card.className}`}
+          >
+            <div className="tp-booking-stat-top">
+              <div className="tp-booking-stat-icon">
+                <Icon size={22} strokeWidth={2.3} />
               </div>
 
-              <div className="tp-booking-stat-content">
-
-                <span className="tp-booking-stat-title">
-
-                  {card.title}
-
-                </span>
-
-                <h2 className="tp-booking-stat-value">
-
-                  {card.value}
-
-                </h2>
-
+              <div className="tp-booking-stat-change">
+                {card.trend}
               </div>
-
             </div>
 
-          );
+            <div className="tp-booking-stat-content">
+              <span className="tp-booking-stat-title">
+                {card.title}
+              </span>
 
-        })}
+              <h2 className="tp-booking-stat-value">
+                {card.value}
+              </h2>
+            </div>
 
-      </div>
+            <div className="tp-booking-stat-footer">
+              <span className="tp-booking-stat-label">
+                {card.trendLabel}
+              </span>
 
-    </section>
-
-  );
+              <span className="tp-booking-stat-label">
+                Live
+              </span>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+);
 
 };
 

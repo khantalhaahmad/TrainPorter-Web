@@ -48,6 +48,9 @@ const BookingPage = () => {
   const [statusUpdating, setStatusUpdating] =
     useState(false);
 
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const [pageLoading, setPageLoading] = useState(false);
   // ==========================================================
   // FETCH BOOKINGS
   // ==========================================================
@@ -245,7 +248,6 @@ const BookingPage = () => {
               booking
             )
         );
-
       return sortBookings(
         filtered
       );
@@ -256,6 +258,24 @@ const BookingPage = () => {
       statusFilter,
       sortBy,
     ]);
+
+    // ==========================================================
+// RESET PAGE
+// ==========================================================
+
+useEffect(() => {
+
+  setCurrentPage(1);
+
+}, [
+
+  search,
+
+  statusFilter,
+
+  sortBy,
+
+]);
 
   // ==========================================================
   // DRAWER
@@ -348,6 +368,50 @@ const BookingPage = () => {
       }
 
     };
+
+const bookingsPerPage = 10;
+
+const indexOfLastBooking =
+  currentPage * bookingsPerPage;
+
+const indexOfFirstBooking =
+  indexOfLastBooking - bookingsPerPage;
+
+const currentBookings =
+  filteredBookings.slice(
+    indexOfFirstBooking,
+    indexOfLastBooking
+  );
+
+const totalPages = Math.ceil(
+  filteredBookings.length / bookingsPerPage
+);
+
+// ==========================================================
+// PAGINATION LOADER
+// ==========================================================
+
+const handlePageChange = (page) => {
+
+  if (
+    page === currentPage ||
+    page < 1 ||
+    page > totalPages
+  ) {
+    return;
+  }
+
+  setPageLoading(true);
+
+  setTimeout(() => {
+
+    setCurrentPage(page);
+
+    setPageLoading(false);
+
+  }, 600);
+
+};
 
   // ==========================================================
   // LOADING
@@ -445,19 +509,144 @@ const BookingPage = () => {
 
     <div className="tp-booking-table-wrapper">
 
-      <BookingTable
+ {pageLoading ? (
 
-        bookings={
-          filteredBookings
-        }
+  <div className="tp-booking-page-loader">
 
-        onView={
-          handleViewBooking
-        }
+    <div className="tp-booking-loader-spinner"></div>
 
-      />
+    <p>
+
+      Loading bookings...
+
+    </p>
+
+  </div>
+
+) : (
+
+  <BookingTable
+
+    bookings={currentBookings}
+
+    onView={handleViewBooking}
+
+  />
+
+)}
 
     </div>
+
+
+{/* ==========================================================
+    PAGINATION
+========================================================== */}
+
+{totalPages > 1 && (
+
+  <div className="tp-booking-pagination">
+
+    <div className="tp-booking-pagination-info">
+
+      Showing{" "}
+
+      <strong>
+
+        {indexOfFirstBooking + 1}
+
+      </strong>
+
+      -
+
+      <strong>
+
+        {Math.min(
+          indexOfLastBooking,
+          filteredBookings.length
+        )}
+
+      </strong>
+
+      {" "}of{" "}
+
+      <strong>
+
+        {filteredBookings.length}
+
+      </strong>
+
+      {" "}bookings
+
+    </div>
+
+    <div className="tp-booking-pagination-actions">
+
+      <button
+
+        className="tp-booking-page-btn"
+
+        disabled={currentPage === 1}
+
+        onClick={() =>
+         handlePageChange(currentPage - 1)
+        }
+
+      >
+
+        Previous
+
+      </button>
+
+      {Array.from(
+        { length: totalPages },
+        (_, index) => (
+
+          <button
+
+            key={index}
+
+            className={`tp-booking-page-number ${
+              currentPage === index + 1
+                ? "tp-booking-page-active"
+                : ""
+            }`}
+
+            onClick={() =>
+              handlePageChange(index + 1)
+            }
+
+          >
+
+            {index + 1}
+
+          </button>
+
+        )
+      )}
+
+      <button
+
+        className="tp-booking-page-btn"
+
+        disabled={
+          currentPage === totalPages
+        }
+
+        onClick={() =>
+        handlePageChange(currentPage + 1)
+        }
+
+      >
+
+        Next
+
+      </button>
+
+    </div>
+
+  </div>
+
+)}
 
     {/* ==========================================================
         DRAWER
@@ -486,6 +675,8 @@ const BookingPage = () => {
     />
 
   </div>
+
+  
 
 );
 

@@ -52,34 +52,17 @@ const BookingTable = ({
               </th>
 
               <th>
+  Porter
+</th>
 
-                Porter
+<th>
+  Train
+</th>
 
-              </th>
+<th>
+  Fare
+</th>
 
-              <th>
-
-                Train
-
-              </th>
-
-              <th>
-
-                Station
-
-              </th>
-
-              <th>
-
-                Amount
-
-              </th>
-
-              <th>
-
-                Payment
-
-              </th>
 
               <th>
 
@@ -89,7 +72,7 @@ const BookingTable = ({
 
               <th>
 
-                Created
+                Date & Time
 
               </th>
 
@@ -134,138 +117,108 @@ const BookingTable = ({
 
                   <td>
 
-                    <span className="tp-booking-id">
+  <div className="tp-booking-bookingid">
 
-                      {booking.bookingId}
+    <span className="tp-booking-id">
 
-                    </span>
+      {booking.bookingId}
 
-                  </td>
+    </span>
 
+  </div>
+
+</td>
                   {/* ======================
                       PASSENGER
                   ====================== */}
 
-                  <td>
+                 <td>
 
-                    <div className="tp-booking-user">
+  <div className="tp-booking-user">
 
-                      <strong>
+    <strong>Passenger</strong>
 
-                        {booking.userId?.fullName ||
-                          "Passenger"}
+    <small>
+      {typeof booking.userId === "string"
+        ? booking.userId
+        : booking.userId?._id || "--"}
+    </small>
 
-                      </strong>
+  </div>
 
-                    </div>
-
-                  </td>
+</td>
 
                   {/* ======================
                       PORTER
                   ====================== */}
 
-                  <td>
+                 <td>
 
-                    <div className="tp-booking-user">
+  <div className="tp-booking-user">
 
-                      <strong>
+    <strong>
+      {booking.assignedPorter?.name || "--"}
+    </strong>
 
-                        {booking.assignedPorter?.name ||
-                          "--"}
+    <small>
+      {booking.assignedPorter?.phone || "--"}
+    </small>
 
-                      </strong>
+  </div>
 
-                    </div>
-
-                  </td>
-
+</td>
                   {/* ======================
                       TRAIN
                   ====================== */}
 
-                  <td>
+                 <td>
 
-                    <div className="tp-booking-train">
+  <div className="tp-booking-train">
 
-                      <strong>
+    <strong>
+      {booking.trainNumber}
+    </strong>
 
-                        {booking.trainNumber}
+    <small>
+      {booking.trainName}
+    </small>
+  </div>
 
-                      </strong>
-
-                      <small>
-
-                        {booking.trainName}
-
-                      </small>
-
-                    </div>
-
-                  </td>
-
-                  {/* ======================
-                      STATION
-                  ====================== */}
-
-                  <td>
-
-                    <div>
-
-                      {booking.station}
-
-                      <br />
-
-                      <small>
-
-                        {booking.coach} • Seat{" "}
-
-                        {booking.seatNumber}
-
-                      </small>
-
-                    </div>
-
-                  </td>
-
+</td>
                   {/* ======================
                       AMOUNT
                   ====================== */}
 
-                  <td>
+                 <td>
 
-                    ₹
-                    {booking.amount}
+  <div className="tp-booking-payment">
 
-                  </td>
+    <strong>
 
+      ₹{booking.amount}
+
+    </strong>
+
+    <small>
+
+      {booking.paymentStatus === "paid"
+        ? "Paid"
+        : booking.paymentStatus === "pending"
+        ? "Pending"
+        : booking.paymentStatus === "failed"
+        ? "Failed"
+        : "Refunded"}
+
+    </small>
+
+  </div>
+
+</td>
                   {/* ======================
                       PAYMENT
                   ====================== */}
 
-                  <td>
-
-                    <div className="tp-booking-payment">
-
-                      <strong>
-
-                        {
-                          booking.paymentMethod
-                        }
-
-                      </strong>
-
-                      <small>
-
-                        {
-                          booking.paymentStatus
-                        }
-
-                      </small>
-
-                    </div>
-
-                  </td>
+                  
 
                   {/* ======================
                       STATUS
@@ -285,13 +238,32 @@ const BookingTable = ({
                       CREATED
                   ====================== */}
 
-                  <td>
+                <td>
 
-                    {new Date(
-                      booking.createdAt
-                    ).toLocaleDateString()}
+  <div className="tp-booking-payment">
 
-                  </td>
+    <strong>
+
+      {new Date(
+        booking.createdAt
+      ).toLocaleDateString()}
+
+    </strong>
+
+    <small>
+
+      {new Date(
+        booking.createdAt
+      ).toLocaleTimeString([],{
+        hour:"2-digit",
+        minute:"2-digit"
+      })}
+
+    </small>
+
+  </div>
+
+</td>
 
                   {/* ======================
                       ACTION
@@ -311,11 +283,7 @@ const BookingTable = ({
 
                     >
 
-                      <Eye
-                        size={18}
-                      />
-
-                      View
+                     <Eye size={18}/>
 
                     </button>
 
