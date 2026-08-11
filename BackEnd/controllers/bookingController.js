@@ -94,17 +94,26 @@ if (!porter) {
     fareData.breakdown,
 
   // ==========================
-  // Payment
-  // ==========================
+// Payment
+// ==========================
 
-  paymentStatus: "paid",
+paymentStatus:
+  req.body.paymentMethod === "COD"
+    ? "pending"
+    : "paid",
 
-  paymentMethod: "UPI",
+paymentMethod:
+  req.body.paymentMethod || "UPI",
 
-  transactionId:
-    `TXN-${Date.now()}`,
+transactionId:
+  req.body.paymentMethod === "COD"
+    ? ""
+    : `TXN-${Date.now()}`,
 
-  paidAt: new Date(),
+paidAt:
+  req.body.paymentMethod === "COD"
+    ? null
+    : new Date(),
 
   // ==========================
   // Booking Status

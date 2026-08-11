@@ -95,20 +95,23 @@ const FareBreakdownPage = () => {
                                 'application/json',
                             Authorization: `Bearer ${token}`,
                         },
-                        body: JSON.stringify({
-                            trainNumber:
-                                bookingData.trainNumber,
-                            trainName:
-                                bookingData.trainName,
-                            station:
-                                bookingData.station,
-                            coach:
-                                bookingData.coach,
-                            seatNumber:
-                                bookingData.seatNumber,
-                            luggageCount:
-                                bookingData.luggageCount,
-                        }),
+                       body: JSON.stringify({
+
+    trainNumber: bookingData.trainNumber,
+
+    trainName: bookingData.trainName,
+
+    station: bookingData.station,
+
+    coach: bookingData.coach,
+
+    seatNumber: bookingData.seatNumber,
+
+    luggageCount: bookingData.luggageCount,
+
+    paymentMethod: bookingData.paymentMethod,
+
+}),
                     }
                 );
 

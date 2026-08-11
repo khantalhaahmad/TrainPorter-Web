@@ -49,7 +49,7 @@ const cancelledBookings = bookings.filter(
     icon: ClipboardList,
     className: "tp-booking-card-blue",
     trend: "+12%",
-    trendLabel: "All bookings",
+    trendLabel: "",
   },
 
   {
@@ -58,7 +58,7 @@ const cancelledBookings = bookings.filter(
     icon: Clock3,
     className: "tp-booking-card-orange",
     trend: "+5%",
-    trendLabel: "Waiting for assignment",
+    trendLabel: "",
   },
 
   {
@@ -67,7 +67,7 @@ const cancelledBookings = bookings.filter(
     icon: UserCheck,
     className: "tp-booking-card-purple",
     trend: "+8%",
-    trendLabel: "Porter assigned",
+    trendLabel: "",
   },
 
   {
@@ -76,7 +76,7 @@ const cancelledBookings = bookings.filter(
     icon: Truck,
     className: "tp-booking-card-yellow",
     trend: "+10%",
-    trendLabel: "Ongoing bookings",
+    trendLabel: "",
   },
 
   {
@@ -85,7 +85,7 @@ const cancelledBookings = bookings.filter(
     icon: BadgeCheck,
     className: "tp-booking-card-green",
     trend: "+18%",
-    trendLabel: "Successfully completed",
+    trendLabel: "",
   },
 
   {
@@ -94,7 +94,7 @@ const cancelledBookings = bookings.filter(
     icon: XCircle,
     className: "tp-booking-card-red",
     trend: "-2%",
-    trendLabel: "Cancelled bookings",
+    trendLabel: "",
   },
 ];
 
@@ -139,7 +139,7 @@ const cancelledBookings = bookings.filter(
               </span>
 
               <span className="tp-booking-stat-label">
-                Live
+                
               </span>
             </div>
           </div>

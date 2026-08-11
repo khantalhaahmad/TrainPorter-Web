@@ -1916,3 +1916,1109 @@
     }
 
 }
+/* ==========================================================
+   BOOKING DRAWER
+========================================================== */
+
+.tp-booking-drawer-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(15,23,42,.45);
+
+    backdrop-filter:blur(3px);
+
+    z-index:9998;
+
+}
+
+.tp-booking-drawer{
+
+    position:fixed;
+
+    top:0;
+
+    right:0;
+
+    width:760px;
+
+    max-width:100%;
+
+    height:100vh;
+
+    background:#f8fafc;
+
+    overflow-y:auto;
+
+    z-index:9999;
+
+    box-shadow:-12px 0 40px rgba(15,23,42,.15);
+
+    animation:tpDrawerSlide .28s ease;
+
+}
+
+@keyframes tpDrawerSlide{
+
+    from{
+
+        transform:translateX(100%);
+
+    }
+
+    to{
+
+        transform:translateX(0);
+
+    }
+
+}
+
+/* ==========================================================
+   DRAWER HEADER
+========================================================== */
+
+.tp-booking-drawer-header{
+
+    position:sticky;
+
+    top:0;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:22px 28px;
+
+    background:#ffffff;
+
+    border-bottom:1px solid #e2e8f0;
+
+    z-index:10;
+
+}
+
+.tp-booking-drawer-header h2{
+
+    margin:0;
+
+    font-size:22px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+}
+
+.tp-booking-drawer-header p{
+
+    margin-top:6px;
+
+    font-size:13px;
+
+    color:#64748b;
+
+}
+
+.tp-booking-drawer-close{
+
+    width:42px;
+
+    height:42px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#f1f5f9;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.tp-booking-drawer-close:hover{
+
+    background:#e2e8f0;
+
+}
+
+/* ==========================================================
+   SECTION SPACING
+========================================================== */
+
+.tp-booking-detail-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:20px;
+
+    padding:22px 28px;
+
+}
+/* ==========================================================
+   OVERVIEW CARD
+========================================================== */
+
+.tp-booking-overview-card{
+
+    margin:24px 28px 0;
+
+    padding:24px;
+
+    background:#ffffff;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:18px;
+
+    box-shadow:0 6px 18px rgba(15,23,42,.04);
+
+}
+
+.tp-booking-overview-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+
+}
+
+.tp-booking-overview-item{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:14px;
+
+    padding:18px;
+
+    border:1px solid #edf2f7;
+
+    border-radius:14px;
+
+    background:#f8fafc;
+
+    transition:.25s;
+
+}
+
+.tp-booking-overview-item:hover{
+
+    border-color:#bfdbfe;
+
+    background:#ffffff;
+
+    transform:translateY(-2px);
+
+}
+
+.tp-booking-overview-icon{
+
+    width:44px;
+
+    height:44px;
+
+    border-radius:12px;
+
+    background:#eff6ff;
+
+    color:#2563eb;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    flex-shrink:0;
+
+}
+
+.tp-booking-overview-content{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+    min-width:0;
+
+}
+
+.tp-booking-overview-content span{
+
+    font-size:11px;
+
+    font-weight:600;
+
+    text-transform:uppercase;
+
+    letter-spacing:.4px;
+
+    color:#94a3b8;
+
+}
+
+.tp-booking-overview-content strong{
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    word-break:break-word;
+
+}
+
+.tp-booking-overview-content small{
+
+    font-size:12px;
+
+    color:#64748b;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
+
+    white-space:nowrap;
+
+}
+@media (max-width:900px){
+
+    .tp-booking-overview-grid{
+
+        grid-template-columns:repeat(2,1fr);
+
+    }
+
+}
+
+@media (max-width:640px){
+
+    .tp-booking-overview-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+/* ==========================================================
+   DETAIL CARD
+========================================================== */
+
+.tp-booking-detail-card{
+
+    background:#ffffff;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:0 6px 18px rgba(15,23,42,.04);
+
+    transition:.25s;
+
+}
+
+.tp-booking-detail-card:hover{
+
+    border-color:#bfdbfe;
+
+    box-shadow:0 10px 30px rgba(37,99,235,.08);
+
+}
+
+/* ==========================================================
+   CARD HEADER
+========================================================== */
+
+.tp-booking-card-header{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    margin-bottom:22px;
+
+}
+
+.tp-booking-card-header h3{
+
+    margin:0;
+
+    font-size:17px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+}
+
+/* ==========================================================
+   PROFILE
+========================================================== */
+
+.tp-booking-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    margin-bottom:24px;
+
+}
+
+.tp-booking-profile-image{
+
+    width:62px;
+
+    height:62px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:3px solid #dbeafe;
+
+}
+
+.tp-booking-avatar{
+
+    width:62px;
+
+    height:62px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #3b82f6
+    );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:#ffffff;
+
+    font-size:22px;
+
+    font-weight:700;
+
+}
+
+.tp-booking-profile h4{
+
+    margin:0;
+
+    font-size:16px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+}
+
+.tp-booking-profile p{
+
+    margin-top:5px;
+
+    font-size:13px;
+
+    color:#64748b;
+
+}
+
+/* ==========================================================
+   INFO LIST
+========================================================== */
+
+.tp-booking-info-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.tp-booking-info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:20px;
+
+    padding:12px 0;
+
+    border-bottom:1px dashed #e2e8f0;
+
+}
+
+.tp-booking-info-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.tp-booking-info-row span{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    font-size:13px;
+
+    font-weight:500;
+
+    color:#64748b;
+
+}
+
+.tp-booking-info-row strong{
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+    text-align:right;
+
+    word-break:break-word;
+
+}
+/* ==========================================================
+   PAYMENT CARD
+========================================================== */
+
+.tp-booking-total-row{
+
+    margin-top:8px;
+
+    padding-top:16px;
+
+    border-top:2px dashed #dbe4ee;
+
+}
+
+.tp-booking-total-row span{
+
+    font-size:14px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+}
+
+.tp-booking-total-row strong{
+
+    font-size:18px;
+
+    font-weight:800;
+
+    color:#2563eb;
+
+}
+
+/* ==========================================================
+   PAYMENT STATUS
+========================================================== */
+
+.tp-payment-status{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    min-width:90px;
+
+    height:30px;
+
+    padding:0 12px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    text-transform:capitalize;
+
+}
+
+.tp-payment-paid{
+
+    background:#ecfdf5;
+
+    color:#16a34a;
+
+}
+
+.tp-payment-pending{
+
+    background:#fef9c3;
+
+    color:#ca8a04;
+
+}
+
+.tp-payment-failed{
+
+    background:#fef2f2;
+
+    color:#dc2626;
+
+}
+
+.tp-payment-refunded{
+
+    background:#ede9fe;
+
+    color:#7c3aed;
+
+}
+
+/* ==========================================================
+   PAYMENT ROW HOVER
+========================================================== */
+
+.tp-booking-info-row{
+
+    transition:.25s;
+
+}
+
+.tp-booking-info-row:hover{
+
+    background:#f8fafc;
+
+    padding-left:8px;
+
+    padding-right:8px;
+
+    border-radius:10px;
+
+}
+/* ==========================================================
+   BOOKING TIMELINE
+========================================================== */
+
+.tp-booking-timeline{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin:28px;
+
+    padding:26px;
+
+    background:#ffffff;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.05);
+
+}
+
+.tp-booking-step{
+
+    flex:1;
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    text-align:center;
+
+}
+
+.tp-booking-step:not(:last-child)::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:18px;
+
+    left:55%;
+
+    width:90%;
+
+    height:2px;
+
+    background:#e2e8f0;
+
+}
+
+.tp-booking-step-circle{
+
+    width:38px;
+
+    height:38px;
+
+    border-radius:50%;
+
+    background:#f1f5f9;
+
+    border:2px solid #cbd5e1;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#64748b;
+
+    z-index:2;
+
+    transition:.25s;
+
+}
+
+.tp-booking-step-circle.active{
+
+    background:#2563eb;
+
+    border-color:#2563eb;
+
+    color:#ffffff;
+
+    box-shadow:0 0 0 6px rgba(37,99,235,.12);
+
+}
+
+.tp-booking-step span{
+
+    margin-top:12px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    color:#475569;
+
+}
+/* ==========================================================
+   ACTION CARD
+========================================================== */
+
+.tp-booking-action-card{
+
+    margin:28px;
+
+    padding:24px;
+
+    background:#ffffff;
+
+    border:1px solid #e2e8f0;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.05);
+
+}
+
+/* ==========================================================
+   BUTTON GRID
+========================================================== */
+
+.tp-booking-action-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:14px;
+
+    margin-top:22px;
+
+}
+
+/* ==========================================================
+   COMMON BUTTON
+========================================================== */
+
+.tp-booking-btn{
+
+    height:46px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+.tp-booking-btn:hover:not(:disabled){
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 18px rgba(15,23,42,.12);
+
+}
+
+.tp-booking-btn:disabled{
+
+    opacity:.45;
+
+    cursor:not-allowed;
+
+    transform:none;
+
+    box-shadow:none;
+
+}
+
+/* ==========================================================
+   BUTTON COLORS
+========================================================== */
+
+.tp-booking-btn-blue{
+
+    background:#dbeafe;
+
+    color:#1d4ed8;
+
+}
+
+.tp-booking-btn-blue:hover:not(:disabled){
+
+    background:#2563eb;
+
+    color:#ffffff;
+
+}
+
+.tp-booking-btn-purple{
+
+    background:#ede9fe;
+
+    color:#7c3aed;
+
+}
+
+.tp-booking-btn-purple:hover:not(:disabled){
+
+    background:#7c3aed;
+
+    color:#ffffff;
+
+}
+
+.tp-booking-btn-orange{
+
+    background:#ffedd5;
+
+    color:#ea580c;
+
+}
+
+.tp-booking-btn-orange:hover:not(:disabled){
+
+    background:#ea580c;
+
+    color:#ffffff;
+
+}
+
+.tp-booking-btn-yellow{
+
+    background:#fef3c7;
+
+    color:#ca8a04;
+
+}
+
+.tp-booking-btn-yellow:hover:not(:disabled){
+
+    background:#ca8a04;
+
+    color:#ffffff;
+
+}
+
+.tp-booking-btn-green{
+
+    background:#dcfce7;
+
+    color:#16a34a;
+
+}
+
+.tp-booking-btn-green:hover:not(:disabled){
+
+    background:#16a34a;
+
+    color:#ffffff;
+
+}
+
+.tp-booking-btn-red{
+
+    background:#fee2e2;
+
+    color:#dc2626;
+
+}
+
+.tp-booking-btn-red:hover:not(:disabled){
+
+    background:#dc2626;
+
+    color:#ffffff;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:768px){
+
+    .tp-booking-action-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}
+/* ==========================================================
+   DRAWER SPACING PATCH
+   (Paste at the END of booking.css)
+========================================================== */
+
+/* ==========================================
+   Drawer Body
+========================================== */
+
+.tp-booking-drawer-body{
+
+    padding:20px 0 30px;
+
+}
+
+/* ==========================================
+   Common Card Size
+========================================== */
+
+.tp-booking-detail-card,
+.tp-booking-payment-card,
+.tp-booking-fare-card,
+.tp-booking-timeline-card,
+.tp-booking-action-card{
+
+    margin:18px 28px;
+
+    border-radius:18px;
+
+    padding:22px;
+
+}
+
+/* ==========================================
+   Passenger + Porter
+========================================== */
+
+.tp-booking-detail-grid{
+
+    display:grid;
+
+    grid-template-columns:1fr 1fr;
+
+    gap:22px;
+
+    margin:18px 28px;
+
+}
+
+.tp-booking-detail-grid
+.tp-booking-detail-card{
+
+    margin:0;
+
+}
+
+/* ==========================================
+   Payment Card
+========================================== */
+
+.tp-booking-payment-card{
+
+    margin-top:10px;
+
+}
+
+/* ==========================================
+   Fare Breakdown
+========================================== */
+
+.tp-booking-fare-card{
+
+    margin-top:10px;
+
+}
+
+/* ==========================================
+   Timeline Card
+========================================== */
+
+.tp-booking-timeline-card{
+
+    margin-top:10px;
+
+}
+
+.tp-booking-timeline{
+
+    margin-top:18px;
+
+    padding:20px;
+
+    border-radius:16px;
+
+}
+
+/* ==========================================
+   Booking Status
+========================================== */
+
+.tp-booking-action-card{
+
+    margin-top:10px;
+
+    margin-bottom:26px;
+
+}
+
+/* ==========================================
+   Card Header
+========================================== */
+
+.tp-booking-card-header{
+
+    margin-bottom:18px;
+
+}
+
+.tp-booking-card-header h3{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#0f172a;
+
+}
+
+/* ==========================================
+   Rows
+========================================== */
+
+.tp-booking-info-row{
+
+    min-height:46px;
+
+    padding:10px 0;
+
+}
+
+/* ==========================================
+   Payment Rows
+========================================== */
+
+.tp-booking-payment-card
+.tp-booking-info-row{
+
+    min-height:52px;
+
+}
+
+/* ==========================================
+   Fare Rows
+========================================== */
+
+.tp-booking-fare-card
+.tp-booking-info-row{
+
+    min-height:52px;
+
+}
+
+/* ==========================================
+   Responsive
+========================================== */
+
+@media (max-width:900px){
+
+    .tp-booking-detail-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+}

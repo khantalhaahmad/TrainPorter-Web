@@ -41,19 +41,41 @@ useEffect(() => {
 
     setMethod(selectedMethod);
 
+    // ==========================
+    // Save Payment Method
+    // ==========================
+
+    const bookingData = JSON.parse(
+        localStorage.getItem("bookingData")
+    );
+
+    if (bookingData) {
+
+        bookingData.paymentMethod =
+            selectedMethod === "cash"
+                ? "COD"
+                : "UPI";
+
+        localStorage.setItem(
+            "bookingData",
+            JSON.stringify(bookingData)
+        );
+
+    }
+
     setIsProcessing(true);
 
     setTimeout(() => {
 
         const now = new Date();
 
-        const formatted = now.toLocaleString("en-IN",{
-            day:"2-digit",
-            month:"long",
-            year:"numeric",
-            hour:"2-digit",
-            minute:"2-digit",
-            hour12:true
+        const formatted = now.toLocaleString("en-IN", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            hour12: true,
         });
 
         setPaymentTime(formatted);
@@ -62,7 +84,7 @@ useEffect(() => {
 
         setIsSuccess(true);
 
-    },10000);
+    }, 10000);
 
 };
 const handleSubmitRating = () => {

@@ -33,6 +33,7 @@ const [bookingData, setBookingData] = useState({
     coach: '',
     seatNumber: '',
     phone: '',
+    paymentMethod: "COD",
 });
 
     const updateLuggage = (type, val) => {
