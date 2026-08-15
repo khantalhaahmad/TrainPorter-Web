@@ -5,7 +5,9 @@
 .tp-booking-page{
     width:100%;
     min-height:100vh;
-    padding:24px;
+
+    padding:0px 2px 2px;   /* top right bottom left */
+
     background:#f8fafc;
 }
 
@@ -234,24 +236,25 @@
 }
 
 .tp-booking-stat-change{
-
-    display:inline-flex;
-
+    display:flex;
     align-items:center;
-
-    gap:6px;
-
-    padding:6px 10px;
-
-    border-radius:999px;
+    gap:4px;
 
     font-size:12px;
-
     font-weight:700;
+}
 
-    background:#f8fafc;
+.tp-booking-stat-change svg{
+    width:12px;
+    height:12px;
+}
 
-    color:#2563eb;
+.tp-booking-stat-positive{
+    color:#16a34a;
+}
+
+.tp-booking-stat-negative{
+    color:#ef4444;
 }
 
 .tp-booking-stat-label{
@@ -3021,4 +3024,184 @@
 
     }
 
+}
+/* ===========================
+   TOP SECTION
+=========================== */
+
+.tp-booking-stat-top{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+
+.tp-booking-stat-icon{
+    width:38px;
+    height:38px;
+    min-width:42px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+}
+
+/* ===========================
+   TITLE + NUMBER
+=========================== */
+
+.tp-booking-stat-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.tp-booking-stat-title{
+    font-size:11px;
+    font-weight:600;
+    color:#6b7280;
+    margin-bottom:6px;
+    line-height:1.2;
+}
+
+.tp-booking-stat-value{
+    margin:0;
+    font-size:22px;
+    font-weight:700;
+    color:#111827;
+    line-height:1;
+}
+
+/* ===========================
+   FOOTER
+=========================== */
+
+.tp-booking-stat-footer{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:18px;
+}
+
+.tp-booking-stat-change{
+    font-size:14px;
+    font-weight:700;
+}
+
+.tp-booking-stat-positive{
+    color:#16a34a;
+}
+
+.tp-booking-stat-negative{
+    color:#ef4444;
+}
+
+.tp-booking-stat-period{
+    font-size:13px;
+    color:#6b7280;
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media (max-width:768px){
+
+    .tp-booking-stat-top{
+        gap:12px;
+    }
+
+    .tp-booking-stat-icon{
+        width:48px;
+        height:48px;
+    }
+
+    .tp-booking-stat-value{
+        font-size:22px;
+    }
+
+}
+.tp-booking-stat-top{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.tp-booking-stat-icon{
+    width:36px;
+    height:36px;
+    min-width:36px;
+    border-radius:10px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:0;
+}
+
+.tp-booking-stat-icon svg{
+    width:20px;
+    height:20px;
+}
+
+.tp-booking-stat-info{
+    flex:1;
+    min-width:0;
+}
+
+.tp-booking-stat-title{
+    font-size:10px;
+    font-weight:600;
+    color:#6b7280;
+    line-height:1.2;
+    text-transform:uppercase;
+
+    white-space:normal;
+    word-break:break-word;
+}
+
+.tp-booking-stat-value{
+    margin-top:4px;
+    font-size:22px;
+    font-weight:700;
+    line-height:1;
+}
+
+.tp-booking-stat-footer{
+    margin-top:14px;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex-wrap:wrap;
+}
+
+.tp-booking-stat-change{
+    font-size:9px;
+    font-weight:700;
+}
+
+.tp-booking-stat-period{
+    font-size:10px;
+    color:#6b7280;
+}
+.tp-booking-stats-section{
+    margin-top:30px;
+    padding-top:0;
+}
+.tp-booking-filter-section{
+    margin-top:-30px;      /* 0px bhi kar sakte ho */
+    padding-top:0;
+}
+
+.tp-booking-filter-card{
+    margin:0;
+    padding:0;
+}
+
+.tp-booking-filter-bar{
+    margin-top:0;
+}
+.tp-booking-table-card{
+    margin-top: -26px;   /* -8px ya -16px bhi adjust kar sakte ho */
 }

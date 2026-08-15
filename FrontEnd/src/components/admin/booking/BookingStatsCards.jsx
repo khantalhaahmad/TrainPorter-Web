@@ -6,6 +6,8 @@ import {
   Truck,
   BadgeCheck,
   XCircle,
+  ArrowUpRight,
+  ArrowDownRight,
 } from "lucide-react";
 
 const BookingStatsCards = ({
@@ -113,35 +115,43 @@ const cancelledBookings = bookings.filter(
             key={card.title}
             className={`tp-booking-stat-card ${card.className}`}
           >
-            <div className="tp-booking-stat-top">
-              <div className="tp-booking-stat-icon">
-                <Icon size={22} strokeWidth={2.3} />
-              </div>
+           <div className="tp-booking-stat-top">
+  <div className="tp-booking-stat-icon">
+    <Icon size={6} strokeWidth={1} />
+  </div>
 
-              <div className="tp-booking-stat-change">
-                {card.trend}
-              </div>
-            </div>
+  <div className="tp-booking-stat-info">
+    <span className="tp-booking-stat-title">
+      {card.title}
+    </span>
 
-            <div className="tp-booking-stat-content">
-              <span className="tp-booking-stat-title">
-                {card.title}
-              </span>
+    <h2 className="tp-booking-stat-value">
+      {card.value}
+    </h2>
+  </div>
+</div>
 
-              <h2 className="tp-booking-stat-value">
-                {card.value}
-              </h2>
-            </div>
+<div className="tp-booking-stat-footer">
+  <div
+  className={`tp-booking-stat-change ${
+    card.trend.startsWith("-")
+      ? "tp-booking-stat-negative"
+      : "tp-booking-stat-positive"
+  }`}
+>
+  {card.trend.startsWith("-") ? (
+    <ArrowDownRight size={12} strokeWidth={2.5} />
+  ) : (
+    <ArrowUpRight size={12} strokeWidth={2.5} />
+  )}
 
-            <div className="tp-booking-stat-footer">
-              <span className="tp-booking-stat-label">
-                {card.trendLabel}
-              </span>
+  <span>{card.trend}</span>
+</div>
 
-              <span className="tp-booking-stat-label">
-                
-              </span>
-            </div>
+  <span className="tp-booking-stat-period">
+    from last month
+  </span>
+</div>
           </div>
         );
       })}
