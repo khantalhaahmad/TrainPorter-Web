@@ -383,3 +383,392 @@
   }
 
 }
+/* ==========================================================
+   KPI CARD - REFERENCE STYLE
+========================================================== */
+
+.tp-payment-stat-card {
+  position: relative;
+
+  min-height: 148px;
+
+  padding: 20px;
+
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  isolation: isolate;
+}
+
+
+/* ==========================================================
+   MAIN CONTENT
+========================================================== */
+
+.tp-payment-stat-card__main {
+  position: relative;
+
+  z-index: 3;
+
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+
+.tp-payment-stat-card__top {
+  margin-bottom: 10px;
+}
+
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.tp-payment-stat-card__icon {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+}
+
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.tp-payment-stat-card__title {
+  margin: 0 0 5px;
+
+  font-size: 13px;
+  line-height: 1.25;
+
+  font-weight: 600;
+
+  color: #64748b;
+}
+
+
+/* ==========================================================
+   VALUE
+========================================================== */
+
+.tp-payment-stat-card__value {
+  margin: 0;
+
+  font-size: 27px;
+  line-height: 1.1;
+
+  font-weight: 800;
+
+  letter-spacing: -0.7px;
+
+  color: #0f172a;
+}
+
+
+/* ==========================================================
+   CHANGE
+========================================================== */
+
+.tp-payment-stat-card__change {
+  margin-top: 12px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 6px;
+}
+
+
+.tp-payment-stat-card__change span {
+  font-size: 12px;
+  font-weight: 800;
+}
+
+
+.tp-payment-stat-card__change small {
+  font-size: 11px;
+  font-weight: 500;
+
+  color: #64748b;
+}
+
+
+.tp-payment-stat-card__change--up span {
+  color: #16a34a;
+}
+
+
+.tp-payment-stat-card__change--down span {
+  color: #dc2626;
+}
+
+
+/* ==========================================================
+   MINI CHART
+========================================================== */
+
+.tp-payment-stat-card__chart {
+  position: absolute;
+
+  right: 10px;
+  bottom: 8px;
+
+  width: 145px;
+  height: 76px;
+
+  z-index: 1;
+
+  pointer-events: none;
+
+  opacity: 0.95;
+
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.35) 18%,
+    #000 48%
+  );
+}
+
+
+.tp-payment-stat-card__chart svg {
+  width: 100%;
+  height: 100%;
+
+  overflow: visible;
+}
+
+
+/* ==========================================================
+   CHART LINE
+========================================================== */
+
+.tp-payment-stat-card__chart-line {
+  fill: none;
+
+  stroke-width: 3;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  vector-effect: non-scaling-stroke;
+
+  filter:
+    drop-shadow(
+      0 3px 5px rgba(79, 70, 229, 0.22)
+    );
+
+  animation:
+    tpPaymentSparklineDraw
+    1.1s
+    ease-out
+    both;
+}
+
+
+/* ==========================================================
+   CHART AREA
+========================================================== */
+
+.tp-payment-stat-card__chart-area {
+  opacity: 0.22;
+
+  animation:
+    tpPaymentSparklineFade
+    0.9s
+    ease-out
+    both;
+}
+
+
+/* ==========================================================
+   CARD GRAPH COLORS
+========================================================== */
+
+.tp-payment-stat-card--revenue
+.tp-payment-stat-card__chart-line {
+  stroke: #16a34a;
+}
+
+.tp-payment-stat-card--revenue
+.tp-payment-stat-card__chart-area {
+  fill: #16a34a;
+}
+
+
+.tp-payment-stat-card--today
+.tp-payment-stat-card__chart-line {
+  stroke: #2563eb;
+}
+
+.tp-payment-stat-card--today
+.tp-payment-stat-card__chart-area {
+  fill: #2563eb;
+}
+
+
+.tp-payment-stat-card--success
+.tp-payment-stat-card__chart-line {
+  stroke: #16a34a;
+}
+
+.tp-payment-stat-card--success
+.tp-payment-stat-card__chart-area {
+  fill: #16a34a;
+}
+
+
+.tp-payment-stat-card--pending
+.tp-payment-stat-card__chart-line {
+  stroke: #d97706;
+}
+
+.tp-payment-stat-card--pending
+.tp-payment-stat-card__chart-area {
+  fill: #d97706;
+}
+
+
+.tp-payment-stat-card--refunded
+.tp-payment-stat-card__chart-line {
+  stroke: #7c3aed;
+}
+
+.tp-payment-stat-card--refunded
+.tp-payment-stat-card__chart-area {
+  fill: #7c3aed;
+}
+
+
+.tp-payment-stat-card--failed
+.tp-payment-stat-card__chart-line {
+  stroke: #dc2626;
+}
+
+.tp-payment-stat-card--failed
+.tp-payment-stat-card__chart-area {
+  fill: #dc2626;
+}
+
+
+/* ==========================================================
+   GRAPH ANIMATION
+========================================================== */
+
+@keyframes tpPaymentSparklineDraw {
+
+  from {
+    opacity: 0;
+
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+  }
+
+  to {
+    opacity: 1;
+
+    stroke-dashoffset: 0;
+  }
+
+}
+
+
+@keyframes tpPaymentSparklineFade {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.22;
+  }
+
+}
+
+
+/* ==========================================================
+   HOVER
+========================================================== */
+
+.tp-payment-stat-card:hover
+.tp-payment-stat-card__chart {
+  transform: translateY(-2px) scale(1.02);
+
+  transition:
+    transform 0.3s ease;
+}
+
+
+.tp-payment-stat-card__chart {
+  transition:
+    transform 0.3s ease;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1100px) {
+
+  .tp-payment-stat-card {
+    min-height: 140px;
+
+    padding: 18px;
+  }
+
+  .tp-payment-stat-card__value {
+    font-size: 24px;
+  }
+
+  .tp-payment-stat-card__chart {
+    width: 125px;
+    height: 68px;
+  }
+
+}
+
+
+@media (max-width: 640px) {
+
+  .tp-payment-stat-card {
+    min-height: 135px;
+
+    padding: 17px;
+  }
+
+  .tp-payment-stat-card__value {
+    font-size: 23px;
+  }
+
+  .tp-payment-stat-card__chart {
+    width: 115px;
+    height: 64px;
+
+    right: 4px;
+  }
+
+  .tp-payment-stat-card__change {
+    margin-top: 9px;
+  }
+
+}
+/* ==========================================================
+   STATS CARD ICON - MOVE LEFT
+========================================================== */
+
+.tp-payment-stat-card__icon {
+  transform: translateX(-48px);
+}

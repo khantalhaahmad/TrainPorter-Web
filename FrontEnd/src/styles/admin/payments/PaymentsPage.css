@@ -881,3 +881,14 @@ body:has(.tp-payment-page) .admin-main {
   }
 
 }
+/* ==========================================================
+   PAYMENT HEADER - MOVE DOWN
+========================================================== */
+
+.tp-payment-page__header {
+  position: relative;
+
+  top: 35px;
+
+  margin-bottom: 20px;
+}
