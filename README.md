@@ -1,56 +1,114 @@
 # 🚂 TrainPorter
 
-A modern platform for booking verified railway porters in real time.
+### Smart Railway Porter Booking & Luggage Assistance Platform
 
-## Overview
+> **TrainPorter is a full-stack railway luggage assistance platform that connects passengers with verified porters in real time, making railway porter services faster, safer, and more transparent.**
 
-TrainPorter connects railway passengers with verified porters, enabling fast, secure, and transparent porter booking directly from web and mobile applications.
+TrainPorter is designed to digitize the traditional railway porter-booking experience by allowing passengers to book luggage assistance directly from a web application while providing dedicated workflows for **Passengers, Porters, and Administrators**.
 
-## Key Features
+---
 
-* 📱 Mobile OTP Authentication
-* 🎒 Instant Porter Booking
-* 📍 Real-Time Porter Assignment
-* 💳 Secure Digital Payments
-* ⭐ Ratings & Reviews
-* 📜 Booking History
-* 🔔 Live Booking Updates
-* 🛡️ Verified Porter Network
+## 🌟 Why TrainPorter?
 
-## Project Structure
+Finding a porter at a busy railway station can be difficult, especially during peak hours.
 
-```text
-TrainPorter/
-├── FrontEnd/      # React + Vite Web Application
-├── BackEnd/       # Node.js + Express API
-└── README.md
-```
+TrainPorter solves this problem by creating a centralized digital platform where:
 
-## Tech Stack
+- 👤 Passengers can request porter assistance
+- 🎒 Porters can receive and manage bookings
+- 📍 Nearby porter assignment can be managed
+- 💳 Payments can be tracked digitally
+- ⭐ Passengers can rate completed services
+- 🛡️ Admins can verify and manage porters
+- 📊 Administrators can monitor bookings, payments, users and platform activity
 
-### Frontend
+The goal is to provide a **modern, reliable and scalable digital experience for railway luggage assistance.**
 
-* React.js
-* Vite
-* CSS3
+---
 
-### Backend
+# ✨ Key Features
 
-* Node.js
-* Express.js
-* MongoDB
+## 👤 Passenger Features
 
-### Integrations
+### 🔐 Secure Authentication
 
-* JWT Authentication
-* OTP Verification
-* Payment Gateway
-* Real-Time Notifications
+- Mobile number based authentication
+- OTP verification
+- JWT based authentication
+- Persistent login sessions
+- Role-based access control
 
-## Vision
+### 🎒 Porter Booking
 
-To modernize railway porter services across India by providing a trusted digital platform for passengers and porters.
+Passengers can create porter bookings by providing:
 
-## Status
+- Train Number
+- Train Name
+- Railway Station
+- Coach Number
+- Seat Number
+- Luggage Count
+- Required porter assistance
 
-🚧 Currently in active development.
+### 📍 Porter Assignment
+
+The system supports porter assignment workflows for connecting passengers with available porters.
+
+### 💳 Payment Management
+
+Supports payment-related booking workflows including:
+
+- UPI
+- Cash on Delivery
+- Payment status tracking
+- Transaction ID tracking
+- Payment history
+- Refund tracking
+- Failed payment tracking
+
+### 📜 Booking History
+
+Passengers can view their previous bookings and their current status.
+
+### ⭐ Ratings & Reviews
+
+Passengers can submit ratings and reviews after completing a porter service.
+
+### 🔔 Booking Activity
+
+Passengers can view booking-related activity and updates.
+
+---
+
+# 🧳 Porter Features
+
+TrainPorter provides a dedicated workflow for porter onboarding and application management.
+
+### 📝 Porter Application
+
+Porters can submit applications containing:
+
+- Personal information
+- Aadhaar documents
+- Railway license
+- Profile photograph
+- PAN information
+- Required verification details
+
+### 📄 Document Management
+
+The platform supports uploading and managing porter verification documents.
+
+### 🔍 Application Verification
+
+Porter applications can move through different verification stages including:
+
+Application Submitted
+        ↓
+Document Verification
+        ↓
+Admin Review
+        ↓
+Approval
+        ↓
+Porter Activated
