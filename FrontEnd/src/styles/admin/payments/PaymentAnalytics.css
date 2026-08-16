@@ -7,10 +7,15 @@
 
   padding: 20px;
 
-  border: 1px solid #e8ebf0;
+  background: #ffffff;
+
+  border: 1px solid #e5e9f0;
   border-radius: 16px;
 
-  background: #ffffff;
+  box-shadow:
+    0 2px 8px rgba(15, 23, 42, 0.03);
+
+  box-sizing: border-box;
 }
 
 
@@ -23,29 +28,39 @@
   align-items: center;
   justify-content: space-between;
 
+  gap: 16px;
+
   margin-bottom: 18px;
 }
+
 
 .tp-payment-analytics__title {
   display: flex;
   align-items: center;
 
   gap: 11px;
+
+  min-width: 0;
 }
+
 
 .tp-payment-analytics__title-icon {
   width: 36px;
   height: 36px;
 
+  flex-shrink: 0;
+
   display: flex;
   align-items: center;
   justify-content: center;
 
+  border: 1px solid #e5eaf1;
   border-radius: 10px;
 
-  background: #f1f5f9;
+  background: #f8fafc;
   color: #475569;
 }
+
 
 .tp-payment-analytics__title h3 {
   margin: 0;
@@ -53,20 +68,26 @@
   color: #0f172a;
 
   font-size: 15px;
+  line-height: 1.25;
   font-weight: 700;
+
+  letter-spacing: -0.15px;
 }
+
 
 .tp-payment-analytics__title p {
   margin: 4px 0 0;
 
-  color: #64748b;
+  color: #94a3b8;
 
   font-size: 11px;
+  line-height: 1.4;
+  font-weight: 500;
 }
 
 
 /* ==========================================================
-   GRID
+   ANALYTICS GRID
 ========================================================== */
 
 .tp-payment-analytics__grid {
@@ -76,23 +97,43 @@
     repeat(2, minmax(0, 1fr));
 
   gap: 14px;
+
+  min-width: 0;
 }
 
 
 /* ==========================================================
-   CARD
+   ANALYTICS CARD
 ========================================================== */
 
 .tp-payment-analytics__card {
   min-width: 0;
 
-  padding: 17px;
+  padding: 16px;
 
-  border: 1px solid #eef1f5;
+  border: 1px solid #edf0f4;
   border-radius: 13px;
 
-  background: #fafbfc;
+  background: #fbfcfd;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
 }
+
+
+.tp-payment-analytics__card:hover {
+  border-color: #e1e6ed;
+
+  box-shadow:
+    0 5px 16px rgba(15, 23, 42, 0.04);
+
+  transform: translateY(-1px);
+}
+
 
 .tp-payment-analytics__card--wide {
   grid-column: 1 / -1;
@@ -110,10 +151,11 @@
 
   gap: 12px;
 
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 
   color: #64748b;
 }
+
 
 .tp-payment-analytics__card-header h4 {
   margin: 0;
@@ -121,8 +163,10 @@
   color: #334155;
 
   font-size: 12px;
+  line-height: 1.3;
   font-weight: 700;
 }
+
 
 .tp-payment-analytics__card-header p {
   margin: 4px 0 0;
@@ -130,6 +174,8 @@
   color: #94a3b8;
 
   font-size: 10px;
+  line-height: 1.35;
+  font-weight: 500;
 }
 
 
@@ -141,11 +187,12 @@
   display: flex;
   flex-direction: column;
 
-  gap: 9px;
+  gap: 8px;
 }
 
+
 .tp-payment-method-item {
-  min-height: 48px;
+  min-height: 46px;
 
   display: flex;
   align-items: center;
@@ -155,11 +202,28 @@
 
   padding: 8px 10px;
 
-  border: 1px solid #eef1f5;
+  border: 1px solid #edf0f4;
   border-radius: 10px;
 
   background: #ffffff;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
 }
+
+
+.tp-payment-method-item:hover {
+  border-color: #e1e6ed;
+
+  background: #fcfdff;
+
+  transform: translateX(1px);
+}
+
 
 .tp-payment-method-item__left {
   display: flex;
@@ -169,6 +233,7 @@
 
   min-width: 0;
 }
+
 
 .tp-payment-method-item__icon {
   width: 30px;
@@ -180,33 +245,51 @@
   align-items: center;
   justify-content: center;
 
+  border: 1px solid #e9edf2;
   border-radius: 8px;
 
-  background: #f1f5f9;
+  background: #f8fafc;
   color: #475569;
 }
 
+
 .tp-payment-method-item__left > div:last-child {
+  min-width: 0;
+
   display: flex;
   flex-direction: column;
 
   gap: 2px;
-
-  min-width: 0;
 }
 
+
 .tp-payment-method-item__left strong {
+  overflow: hidden;
+
   color: #334155;
 
   font-size: 11px;
+  line-height: 1.3;
   font-weight: 700;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
+
 .tp-payment-method-item__left span {
+  overflow: hidden;
+
   color: #94a3b8;
 
   font-size: 9px;
+  line-height: 1.3;
+  font-weight: 500;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
+
 
 .tp-payment-method-item__amount {
   flex-shrink: 0;
@@ -214,7 +297,10 @@
   color: #0f172a;
 
   font-size: 11px;
+  line-height: 1.3;
   font-weight: 800;
+
+  white-space: nowrap;
 }
 
 
@@ -226,11 +312,12 @@
   display: flex;
   flex-direction: column;
 
-  gap: 9px;
+  gap: 8px;
 }
 
+
 .tp-payment-status-item {
-  min-height: 48px;
+  min-height: 46px;
 
   display: flex;
   align-items: center;
@@ -240,36 +327,64 @@
 
   padding: 8px 10px;
 
-  border: 1px solid #eef1f5;
+  border: 1px solid #edf0f4;
   border-radius: 10px;
 
   background: #ffffff;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
 }
+
+
+.tp-payment-status-item:hover {
+  border-color: #e1e6ed;
+
+  background: #fcfdff;
+
+  transform: translateX(1px);
+}
+
 
 .tp-payment-status-item__left {
   display: flex;
   align-items: center;
 
   gap: 9px;
+
+  min-width: 0;
 }
+
 
 .tp-payment-status-item__left > span {
   color: #334155;
 
   font-size: 11px;
+  line-height: 1.3;
   font-weight: 600;
 }
 
+
 .tp-payment-status-item > strong {
+  flex-shrink: 0;
+
   color: #0f172a;
 
   font-size: 12px;
+  line-height: 1.3;
   font-weight: 800;
 }
+
 
 .tp-payment-status-item__icon {
   width: 30px;
   height: 30px;
+
+  flex-shrink: 0;
 
   display: flex;
   align-items: center;
@@ -278,24 +393,44 @@
   border-radius: 8px;
 }
 
+
+/* ==========================================================
+   STATUS COLORS
+========================================================== */
+
 .tp-payment-status-item__icon--paid {
   color: #15803d;
+
   background: #f0fdf4;
+
+  border: 1px solid #dcfce7;
 }
+
 
 .tp-payment-status-item__icon--pending {
   color: #b45309;
+
   background: #fffbeb;
+
+  border: 1px solid #fef3c7;
 }
+
 
 .tp-payment-status-item__icon--failed {
   color: #b91c1c;
+
   background: #fef2f2;
+
+  border: 1px solid #fee2e2;
 }
+
 
 .tp-payment-status-item__icon--refunded {
   color: #6d28d9;
+
   background: #f5f3ff;
+
+  border: 1px solid #ede9fe;
 }
 
 
@@ -304,6 +439,7 @@
 ========================================================== */
 
 .tp-payment-revenue-chart {
+  width: 100%;
   height: 220px;
 
   display: flex;
@@ -314,10 +450,39 @@
   padding: 10px 4px 0;
 
   overflow-x: auto;
+  overflow-y: hidden;
+
+  box-sizing: border-box;
+
+  scrollbar-width: thin;
+  scrollbar-color: #d7dde6 transparent;
 }
+
+
+.tp-payment-revenue-chart::-webkit-scrollbar {
+  height: 5px;
+}
+
+
+.tp-payment-revenue-chart::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.tp-payment-revenue-chart::-webkit-scrollbar-thumb {
+  background: #d7dde6;
+
+  border-radius: 999px;
+}
+
+
+/* ==========================================================
+   REVENUE BAR WRAPPER
+========================================================== */
 
 .tp-payment-revenue-bar-wrapper {
   min-width: 55px;
+
   flex: 1;
 
   display: flex;
@@ -327,7 +492,14 @@
   justify-content: flex-end;
 
   gap: 7px;
+
+  box-sizing: border-box;
 }
+
+
+/* ==========================================================
+   REVENUE VALUE
+========================================================== */
 
 .tp-payment-revenue-value {
   min-height: 14px;
@@ -335,10 +507,16 @@
   color: #64748b;
 
   font-size: 8px;
-  font-weight: 600;
+  line-height: 1.3;
+  font-weight: 700;
 
   white-space: nowrap;
 }
+
+
+/* ==========================================================
+   REVENUE BAR CONTAINER
+========================================================== */
 
 .tp-payment-revenue-bar-container {
   width: 30px;
@@ -347,12 +525,20 @@
   display: flex;
   align-items: flex-end;
 
+  border: 1px solid #edf0f4;
   border-radius: 7px 7px 4px 4px;
 
-  background: #f1f5f9;
+  background: #f5f7fa;
 
   overflow: hidden;
+
+  box-sizing: border-box;
 }
+
+
+/* ==========================================================
+   REVENUE BAR
+========================================================== */
 
 .tp-payment-revenue-bar {
   width: 100%;
@@ -364,25 +550,40 @@
   background: #64748b;
 
   transition:
-    height 0.35s ease;
+    height 0.35s ease,
+    opacity 0.2s ease;
 }
+
+
+.tp-payment-revenue-bar:hover {
+  opacity: 0.85;
+}
+
+
+/* ==========================================================
+   REVENUE LABEL
+========================================================== */
 
 .tp-payment-revenue-label {
   max-width: 65px;
 
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 
   color: #94a3b8;
 
   font-size: 9px;
+  line-height: 1.3;
   font-weight: 600;
+
+  text-align: center;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 
 /* ==========================================================
-   EMPTY
+   EMPTY STATE
 ========================================================== */
 
 .tp-payment-analytics__empty {
@@ -392,12 +593,19 @@
   align-items: center;
   justify-content: center;
 
+  padding: 20px;
+
   color: #94a3b8;
 
   font-size: 11px;
+  line-height: 1.5;
+  font-weight: 500;
 
   text-align: center;
+
+  box-sizing: border-box;
 }
+
 
 .tp-payment-analytics__empty--chart {
   min-height: 180px;
@@ -422,7 +630,11 @@
   color: #64748b;
 
   font-size: 12px;
+  font-weight: 600;
+
+  text-align: center;
 }
+
 
 .tp-payment-analytics__spinner {
   width: 30px;
@@ -433,21 +645,683 @@
 
   border-radius: 50%;
 
-  animation: tpPaymentAnalyticsSpin 0.8s linear infinite;
+  animation:
+    tpPaymentAnalyticsSpin 0.8s linear infinite;
 }
 
+
 @keyframes tpPaymentAnalyticsSpin {
+
   to {
     transform: rotate(360deg);
   }
+
 }
 
 
 /* ==========================================================
-   RESPONSIVE
+   FOCUS ACCESSIBILITY
+========================================================== */
+
+.tp-payment-analytics button:focus-visible,
+.tp-payment-analytics input:focus-visible,
+.tp-payment-analytics select:focus-visible {
+  outline: 2px solid #94a3b8;
+
+  outline-offset: 2px;
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 1000px) {
+
+  .tp-payment-analytics {
+    padding: 18px;
+  }
+
+
+  .tp-payment-analytics__grid {
+    gap: 12px;
+  }
+
+
+  .tp-payment-analytics__card {
+    padding: 14px;
+  }
+
+}
+
+
+/* ==========================================================
+   MOBILE GRID
 ========================================================== */
 
 @media (max-width: 800px) {
+
+  .tp-payment-analytics {
+    padding: 16px;
+
+    border-radius: 14px;
+  }
+
+
+  .tp-payment-analytics__header {
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    margin-bottom: 16px;
+  }
+
+
+  .tp-payment-analytics__grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .tp-payment-analytics__card--wide {
+    grid-column: auto;
+  }
+
+
+  .tp-payment-revenue-chart {
+    height: 205px;
+
+    gap: 10px;
+  }
+
+
+  .tp-payment-revenue-bar-container {
+    height: 135px;
+  }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width: 520px) {
+
+  .tp-payment-analytics {
+    padding: 14px;
+
+    border-radius: 12px;
+  }
+
+
+  .tp-payment-analytics__title {
+    gap: 9px;
+  }
+
+
+  .tp-payment-analytics__title-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+
+  .tp-payment-analytics__title h3 {
+    font-size: 14px;
+  }
+
+
+  .tp-payment-analytics__title p {
+    font-size: 10px;
+  }
+
+
+  .tp-payment-analytics__card {
+    padding: 13px;
+  }
+
+
+  .tp-payment-method-item,
+  .tp-payment-status-item {
+    min-height: 44px;
+
+    padding: 7px 9px;
+  }
+
+
+  .tp-payment-method-item__icon,
+  .tp-payment-status-item__icon {
+    width: 28px;
+    height: 28px;
+  }
+
+
+  .tp-payment-revenue-chart {
+    height: 195px;
+
+    gap: 8px;
+
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+
+  .tp-payment-revenue-bar-wrapper {
+    min-width: 48px;
+  }
+
+
+  .tp-payment-revenue-bar-container {
+    width: 26px;
+    height: 125px;
+  }
+
+
+  .tp-payment-revenue-label {
+    max-width: 55px;
+
+    font-size: 8px;
+  }
+
+}
+
+
+/* ==========================================================
+   EXTRA SMALL DEVICES
+========================================================== */
+
+@media (max-width: 380px) {
+
+  .tp-payment-analytics {
+    padding: 12px;
+  }
+
+
+  .tp-payment-analytics__card {
+    padding: 11px;
+  }
+
+
+  .tp-payment-revenue-chart {
+    gap: 6px;
+  }
+
+
+  .tp-payment-revenue-bar-wrapper {
+    min-width: 44px;
+  }
+
+
+  .tp-payment-revenue-bar-container {
+    width: 24px;
+  }
+
+}
+/* ==========================================================
+   PAYMENT ANALYTICS - 3 CARD ROW
+   Add this at the END of PaymentAnalytics.css
+========================================================== */
+
+.tp-payment-analytics__grid {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 14px;
+
+  align-items: stretch;
+}
+
+
+/* ==========================================================
+   ALL ANALYTICS CARDS
+========================================================== */
+
+.tp-payment-analytics__card {
+  min-width: 0;
+  width: 100%;
+
+  padding: 16px;
+
+  border: 1px solid #e7ebf1;
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 2px 8px rgba(15, 23, 42, 0.03);
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.tp-payment-analytics__card:hover {
+  border-color: #dce2ea;
+
+  box-shadow:
+    0 7px 20px rgba(15, 23, 42, 0.06);
+
+  transform: translateY(-1px);
+}
+
+
+/* ==========================================================
+   IMPORTANT
+   Revenue Trend was previously wide.
+   Make it normal 3-column card.
+========================================================== */
+
+.tp-payment-analytics__card--wide {
+  grid-column: auto;
+}
+
+
+/* ==========================================================
+   CARD HEADER
+========================================================== */
+
+.tp-payment-analytics__card-header {
+  min-height: 38px;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-bottom: 14px;
+}
+
+
+.tp-payment-analytics__card-header h4 {
+  margin: 0;
+
+  color: #172033;
+
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+
+.tp-payment-analytics__card-header p {
+  margin: 4px 0 0;
+
+  color: #8a96a8;
+
+  font-size: 10px;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+
+/* ==========================================================
+   PAYMENT METHODS
+========================================================== */
+
+.tp-payment-method-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+.tp-payment-method-item {
+  min-height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding: 8px 10px;
+
+  border: 1px solid #edf0f4;
+  border-radius: 10px;
+
+  background: #fafbfc;
+
+  box-sizing: border-box;
+}
+
+
+.tp-payment-method-item__left {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+
+.tp-payment-method-item__icon {
+  width: 30px;
+  height: 30px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #f1f5f9;
+  color: #475569;
+}
+
+
+.tp-payment-method-item__left > div:last-child {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2px;
+}
+
+
+.tp-payment-method-item__left strong {
+  color: #334155;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.tp-payment-method-item__left span {
+  color: #94a3b8;
+
+  font-size: 9px;
+  font-weight: 500;
+}
+
+
+.tp-payment-method-item__amount {
+  flex-shrink: 0;
+
+  color: #0f172a;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+
+/* ==========================================================
+   PAYMENT STATUS
+========================================================== */
+
+.tp-payment-status-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+
+.tp-payment-status-item {
+  min-height: 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  padding: 8px 10px;
+
+  border: 1px solid #edf0f4;
+  border-radius: 10px;
+
+  background: #fafbfc;
+
+  box-sizing: border-box;
+}
+
+
+.tp-payment-status-item__left {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+
+.tp-payment-status-item__left > span {
+  color: #334155;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+
+.tp-payment-status-item > strong {
+  flex-shrink: 0;
+
+  color: #0f172a;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+
+.tp-payment-status-item__icon {
+  width: 30px;
+  height: 30px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+}
+
+
+.tp-payment-status-item__icon--paid {
+  color: #15803d;
+  background: #f0fdf4;
+}
+
+
+.tp-payment-status-item__icon--pending {
+  color: #b45309;
+  background: #fffbeb;
+}
+
+
+.tp-payment-status-item__icon--failed {
+  color: #b91c1c;
+  background: #fef2f2;
+}
+
+
+.tp-payment-status-item__icon--refunded {
+  color: #6d28d9;
+  background: #f5f3ff;
+}
+
+
+/* ==========================================================
+   REVENUE TREND
+========================================================== */
+
+.tp-payment-revenue-chart {
+  width: 100%;
+  height: 190px;
+
+  display: flex;
+  align-items: stretch;
+
+  gap: 8px;
+
+  padding:
+    8px 2px 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  box-sizing: border-box;
+}
+
+
+.tp-payment-revenue-bar-wrapper {
+  min-width: 38px;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 5px;
+}
+
+
+.tp-payment-revenue-value {
+  min-height: 13px;
+
+  color: #64748b;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+.tp-payment-revenue-bar-container {
+  width: 24px;
+  height: 125px;
+
+  display: flex;
+  align-items: flex-end;
+
+  border-radius: 6px 6px 3px 3px;
+
+  background: #f1f5f9;
+
+  overflow: hidden;
+}
+
+
+.tp-payment-revenue-bar {
+  width: 100%;
+
+  min-height: 4px;
+
+  border-radius: 6px 6px 3px 3px;
+
+  background: #64748b;
+
+  transition:
+    height 0.35s ease;
+}
+
+
+.tp-payment-revenue-label {
+  max-width: 48px;
+
+  color: #94a3b8;
+
+  font-size: 8px;
+  font-weight: 600;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* ==========================================================
+   EMPTY STATE
+========================================================== */
+
+.tp-payment-analytics__empty {
+  min-height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px;
+
+  color: #94a3b8;
+
+  font-size: 11px;
+
+  text-align: center;
+}
+
+
+.tp-payment-analytics__empty--chart {
+  min-height: 170px;
+}
+
+
+/* ==========================================================
+   DESKTOP - KEEP ALL 3 IN ONE ROW
+========================================================== */
+
+@media (min-width: 1101px) {
+
+  .tp-payment-analytics__grid {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+  }
+
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 1100px) {
+
+  .tp-payment-analytics__grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .tp-payment-analytics__card--wide {
+    grid-column: 1 / -1;
+  }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 700px) {
 
   .tp-payment-analytics__grid {
     grid-template-columns: 1fr;
@@ -457,17 +1331,2284 @@
     grid-column: auto;
   }
 
+  .tp-payment-analytics {
+    padding: 16px;
+  }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width: 480px) {
+
+  .tp-payment-analytics {
+    padding: 14px;
+  }
+
+  .tp-payment-analytics__card {
+    padding: 13px;
+  }
+
+  .tp-payment-revenue-chart {
+    height: 180px;
+  }
+
+  .tp-payment-revenue-bar-container {
+    height: 115px;
+  }
+
+}
+/* ==========================================================
+   PAYMENT METHOD DONUT DISTRIBUTION
+========================================================== */
+
+.tp-payment-method-distribution {
+  width: 100%;
+
+  min-height: 190px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   DONUT WRAPPER
+========================================================== */
+
+.tp-payment-method-donut-wrapper {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ==========================================================
+   DONUT
+========================================================== */
+
+.tp-payment-method-donut {
+  width: 138px;
+  height: 138px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   DONUT CENTER
+========================================================== */
+
+.tp-payment-method-donut::before {
+  content: "";
+
+  position: absolute;
+
+  width: 88px;
+  height: 88px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+}
+
+
+.tp-payment-method-donut__center {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+
+.tp-payment-method-donut__center strong {
+  color: #0f172a;
+
+  font-size: 15px;
+  line-height: 1.2;
+
+  font-weight: 800;
+
+  letter-spacing: -0.3px;
+}
+
+
+.tp-payment-method-donut__center span {
+  margin-top: 4px;
+
+  color: #94a3b8;
+
+  font-size: 8px;
+  line-height: 1.2;
+
+  font-weight: 600;
+}
+
+
+/* ==========================================================
+   LEGEND
+========================================================== */
+
+.tp-payment-method-legend {
+  min-width: 0;
+
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+
+.tp-payment-method-legend__item {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+}
+
+
+.tp-payment-method-legend__left {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+
+.tp-payment-method-legend__dot {
+  width: 8px;
+  height: 8px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+}
+
+
+.tp-payment-method-legend__name {
+  max-width: 90px;
+
+  overflow: hidden;
+
+  color: #475569;
+
+  font-size: 10px;
+  line-height: 1.2;
+
+  font-weight: 600;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+.tp-payment-method-legend__right {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  gap: 2px;
+
+  flex-shrink: 0;
+}
+
+
+.tp-payment-method-legend__right strong {
+  color: #334155;
+
+  font-size: 10px;
+  line-height: 1.2;
+
+  font-weight: 800;
+}
+
+
+.tp-payment-method-legend__right span {
+  color: #94a3b8;
+
+  font-size: 8px;
+  line-height: 1.2;
+
+  font-weight: 500;
+}
+
+
+/* ==========================================================
+   HOVER
+========================================================== */
+
+.tp-payment-method-legend__item {
+  padding: 5px 6px;
+
+  border-radius: 7px;
+
+  transition:
+    background 0.2s ease;
+}
+
+
+.tp-payment-method-legend__item:hover {
+  background: #f8fafc;
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 1100px) {
+
+  .tp-payment-method-distribution {
+    gap: 14px;
+  }
+
+  .tp-payment-method-donut {
+    width: 125px;
+    height: 125px;
+  }
+
+  .tp-payment-method-donut::before {
+    width: 80px;
+    height: 80px;
+  }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 700px) {
+
+  .tp-payment-method-distribution {
+    justify-content: center;
+
+    gap: 20px;
+  }
+
+  .tp-payment-method-donut {
+    width: 130px;
+    height: 130px;
+  }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width: 480px) {
+
+  .tp-payment-method-distribution {
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+  .tp-payment-method-legend {
+    width: 100%;
+  }
+
+}
+/* ==========================================================
+   PAYMENT METHOD DONUT — PREMIUM ANIMATION
+========================================================== */
+
+.tp-payment-method-donut {
+  width: 138px;
+  height: 138px;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  box-sizing: border-box;
+
+  /* Animation */
+  transform: rotate(-90deg);
+
+  animation:
+    tpPaymentDonutReveal 1.1s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+
+  transition:
+    transform 0.35s ease,
+    filter 0.35s ease;
+
+  filter:
+    drop-shadow(
+      0 6px 14px rgba(79, 70, 229, 0.12)
+    );
+}
+
+
+/* ==========================================================
+   DONUT INNER CIRCLE
+========================================================== */
+
+.tp-payment-method-donut::before {
+  content: "";
+
+  position: absolute;
+
+  width: 88px;
+  height: 88px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow:
+    inset 0 0 0 1px #f1f5f9;
+
+  transform: rotate(90deg);
+
+  z-index: 1;
+}
+
+
+/* ==========================================================
+   CENTER CONTENT
+========================================================== */
+
+.tp-payment-method-donut__center {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  transform: rotate(90deg);
+
+  animation:
+    tpPaymentDonutCenterIn 0.8s
+    0.35s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+
+.tp-payment-method-donut__center strong {
+  color: #0f172a;
+
+  font-size: 15px;
+  line-height: 1.2;
+
+  font-weight: 800;
+
+  letter-spacing: -0.35px;
+}
+
+
+.tp-payment-method-donut__center span {
+  margin-top: 4px;
+
+  color: #94a3b8;
+
+  font-size: 8px;
+  line-height: 1.2;
+
+  font-weight: 600;
+}
+
+
+/* ==========================================================
+   DONUT HOVER
+========================================================== */
+
+.tp-payment-method-donut-wrapper:hover
+  .tp-payment-method-donut {
+
+  transform:
+    rotate(-90deg)
+    scale(1.045);
+
+  filter:
+    drop-shadow(
+      0 9px 20px rgba(79, 70, 229, 0.20)
+    );
+}
+
+
+/* ==========================================================
+   DONUT ANIMATION
+========================================================== */
+
+@keyframes tpPaymentDonutReveal {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      rotate(-90deg)
+      scale(0.72);
+
+    filter:
+      drop-shadow(
+        0 0 0 rgba(79, 70, 229, 0)
+      );
+  }
+
+  60% {
+    opacity: 1;
+
+    transform:
+      rotate(-90deg)
+      scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      rotate(-90deg)
+      scale(1);
+
+    filter:
+      drop-shadow(
+        0 6px 14px rgba(79, 70, 229, 0.12)
+      );
+  }
+
+}
+
+
+@keyframes tpPaymentDonutCenterIn {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      rotate(90deg)
+      scale(0.65);
+  }
+
+  70% {
+    opacity: 1;
+
+    transform:
+      rotate(90deg)
+      scale(1.06);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      rotate(90deg)
+      scale(1);
+  }
+
+}
+
+
+/* ==========================================================
+   LEGEND ANIMATION
+========================================================== */
+
+.tp-payment-method-legend__item {
+  padding: 5px 6px;
+
+  border-radius: 7px;
+
+  opacity: 0;
+
+  animation:
+    tpPaymentLegendIn 0.45s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.tp-payment-method-legend__item:nth-child(1) {
+  animation-delay: 0.20s;
+}
+
+.tp-payment-method-legend__item:nth-child(2) {
+  animation-delay: 0.30s;
+}
+
+.tp-payment-method-legend__item:nth-child(3) {
+  animation-delay: 0.40s;
+}
+
+.tp-payment-method-legend__item:nth-child(4) {
+  animation-delay: 0.50s;
+}
+
+.tp-payment-method-legend__item:nth-child(5) {
+  animation-delay: 0.60s;
+}
+
+.tp-payment-method-legend__item:nth-child(6) {
+  animation-delay: 0.70s;
+}
+
+
+.tp-payment-method-legend__item:hover {
+  background: #f8fafc;
+
+  transform: translateX(3px);
+}
+
+
+@keyframes tpPaymentLegendIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateX(12px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateX(0);
+  }
+
+}
+
+
+/* ==========================================================
+   DONUT SEGMENT GLOW
+========================================================== */
+
+.tp-payment-method-donut-wrapper::after {
+  content: "";
+
+  position: absolute;
+
+  width: 155px;
+  height: 155px;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(79, 70, 229, 0.08) 0%,
+      rgba(79, 70, 229, 0) 68%
+    );
+
+  animation:
+    tpPaymentDonutGlow 1.4s
+    0.25s
+    ease-out
+    forwards;
+}
+
+
+@keyframes tpPaymentDonutGlow {
+
+  0% {
+    opacity: 0;
+
+    transform: scale(0.65);
+  }
+
+  50% {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0;
+
+    transform: scale(1.15);
+  }
+
+}
+
+
+/* ==========================================================
+   ACCESSIBILITY
+========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .tp-payment-method-donut,
+  .tp-payment-method-donut__center,
+  .tp-payment-method-legend__item,
+  .tp-payment-method-donut-wrapper::after {
+
+    animation: none !important;
+
+    transition: none !important;
+
+    opacity: 1;
+  }
+
+}
+.tp-payment-method-donut-wrapper {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* ==========================================================
+   REVENUE TREND — PREMIUM LINE CHART
+========================================================== */
+
+.tp-payment-revenue-chart {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   CHART CANVAS
+========================================================== */
+
+.tp-payment-revenue-chart__canvas {
+  position: relative;
+
+  width: 100%;
+  height: 190px;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+
+.tp-payment-revenue-svg {
+  width: 100%;
+  height: 158px;
+
+  display: block;
+
+  overflow: visible;
+}
+
+
+/* ==========================================================
+   GRID LINES
+========================================================== */
+
+.tp-payment-revenue-grid line {
+  stroke: #edf1f5;
+  stroke-width: 1;
+
+  stroke-dasharray: 4 5;
+
+  vector-effect: non-scaling-stroke;
+}
+
+
+/* ==========================================================
+   REVENUE AREA
+========================================================== */
+
+.tp-payment-revenue-area {
+  fill: url("#tpPaymentRevenueGradient");
+
+  opacity: 0.12;
+
+  transform-origin: center;
+
+  animation:
+    tpPaymentRevenueAreaIn
+    0.9s
+    ease-out
+    forwards;
+}
+
+
+/* ==========================================================
+   REVENUE LINE
+========================================================== */
+
+.tp-payment-revenue-line {
+  stroke: #4f46e5;
+
+  stroke-width: 3;
+
+  stroke-linecap: round;
+  stroke-linejoin: round;
+
+  vector-effect: non-scaling-stroke;
+
+  filter:
+    drop-shadow(
+      0 3px 5px
+      rgba(79, 70, 229, 0.16)
+    );
+
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+
+  animation:
+    tpPaymentRevenueLineDraw
+    1.2s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+}
+
+
+/* ==========================================================
+   POINTS
+========================================================== */
+
+.tp-payment-revenue-point {
+  cursor: pointer;
+
+  opacity: 0;
+
+  animation:
+    tpPaymentRevenuePointIn
+    0.45s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    forwards;
+}
+
+
+.tp-payment-revenue-point:nth-of-type(1) {
+  animation-delay: 0.25s;
+}
+
+.tp-payment-revenue-point:nth-of-type(2) {
+  animation-delay: 0.32s;
+}
+
+.tp-payment-revenue-point:nth-of-type(3) {
+  animation-delay: 0.39s;
+}
+
+.tp-payment-revenue-point:nth-of-type(4) {
+  animation-delay: 0.46s;
+}
+
+.tp-payment-revenue-point:nth-of-type(5) {
+  animation-delay: 0.53s;
+}
+
+.tp-payment-revenue-point:nth-of-type(6) {
+  animation-delay: 0.60s;
+}
+
+.tp-payment-revenue-point:nth-of-type(7) {
+  animation-delay: 0.67s;
+}
+
+.tp-payment-revenue-point:nth-of-type(8) {
+  animation-delay: 0.74s;
+}
+
+
+.tp-payment-revenue-point__outer {
+  fill: #ffffff;
+
+  stroke: #4f46e5;
+
+  stroke-width: 2;
+
+  vector-effect: non-scaling-stroke;
+
+  transition:
+    r 0.2s ease,
+    stroke-width 0.2s ease;
+}
+
+
+.tp-payment-revenue-point__inner {
+  fill: #4f46e5;
+
+  transition:
+    r 0.2s ease;
+}
+
+
+.tp-payment-revenue-point:hover
+.tp-payment-revenue-point__outer {
+  r: 6;
+
+  stroke-width: 2.5;
+}
+
+
+.tp-payment-revenue-point:hover
+.tp-payment-revenue-point__inner {
+  r: 3;
+}
+
+
+/* ==========================================================
+   X AXIS LABELS
+========================================================== */
+
+.tp-payment-revenue-labels {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 6px;
+
+  padding:
+    0 10px;
+
+  box-sizing: border-box;
+}
+
+
+.tp-payment-revenue-label {
+  flex: 1;
+
+  min-width: 0;
+
+  overflow: hidden;
+
+  color: #94a3b8;
+
+  font-size: 9px;
+  line-height: 1.3;
+
+  font-weight: 600;
+
+  text-align: center;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  cursor: default;
+}
+
+
+/* ==========================================================
+   REVENUE SUMMARY
+========================================================== */
+
+.tp-payment-revenue-summary {
+  min-height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: 2px;
+
+  padding:
+    8px 10px;
+
+  border:
+    1px solid #edf0f4;
+
+  border-radius: 9px;
+
+  background: #fafbfc;
+
+  box-sizing: border-box;
+}
+
+
+.tp-payment-revenue-summary span {
+  color: #94a3b8;
+
+  font-size: 9px;
+  line-height: 1.3;
+
+  font-weight: 600;
+}
+
+
+.tp-payment-revenue-summary strong {
+  color: #172033;
+
+  font-size: 12px;
+  line-height: 1.3;
+
+  font-weight: 800;
+}
+
+
+/* ==========================================================
+   ANIMATIONS
+========================================================== */
+
+@keyframes tpPaymentRevenueLineDraw {
+
+  0% {
+    stroke-dashoffset: 1000;
+
+    opacity: 0.3;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+
+    opacity: 1;
+  }
+
+}
+
+
+@keyframes tpPaymentRevenueAreaIn {
+
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.12;
+  }
+
+}
+
+
+@keyframes tpPaymentRevenuePointIn {
+
+  0% {
+    opacity: 0;
+
+    transform:
+      scale(0.5);
+  }
+
+  70% {
+    opacity: 1;
+
+    transform:
+      scale(1.15);
+  }
+
+  100% {
+    opacity: 1;
+
+    transform:
+      scale(1);
+  }
+
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1100px) {
+
+  .tp-payment-revenue-chart__canvas {
+    height: 185px;
+  }
+
+  .tp-payment-revenue-svg {
+    height: 153px;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .tp-payment-revenue-chart__canvas {
+    height: 180px;
+  }
+
+  .tp-payment-revenue-svg {
+    height: 148px;
+  }
+
+  .tp-payment-revenue-label {
+    font-size: 8px;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .tp-payment-revenue-chart__canvas {
+    height: 170px;
+  }
+
+  .tp-payment-revenue-svg {
+    height: 138px;
+  }
+
+  .tp-payment-revenue-labels {
+    padding:
+      0 6px;
+  }
+
+  .tp-payment-revenue-summary {
+    padding:
+      7px 9px;
+  }
+
+}
+
+
+/* ==========================================================
+   ACCESSIBILITY
+========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .tp-payment-revenue-line,
+  .tp-payment-revenue-area,
+  .tp-payment-revenue-point {
+    animation: none !important;
+  }
+
+  .tp-payment-revenue-line {
+    stroke-dashoffset: 0;
+  }
+
+  .tp-payment-revenue-area {
+    opacity: 0.12;
+  }
+
+  .tp-payment-revenue-point {
+    opacity: 1;
+  }
+
+}
+/* ==========================================================
+   FINAL REVENUE TREND CHART
+   Add this at the END of PaymentAnalytics.css
+========================================================== */
+
+
+/* ==========================================================
+   REVENUE CHART WRAPPER
+========================================================== */
+
+.tp-payment-revenue-chart {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+
+  padding: 4px 0 0;
+
+  overflow: hidden;
+}
+
+
+/* ==========================================================
+   CHART CANVAS
+========================================================== */
+
+.tp-payment-revenue-chart__canvas {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  height: 245px;
+
+  overflow: visible;
+}
+
+
+/* ==========================================================
+   SVG
+========================================================== */
+
+.tp-payment-revenue-svg {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  overflow: visible;
+}
+
+
+/* ==========================================================
+   GRID
+========================================================== */
+
+.tp-payment-revenue-grid line {
+  stroke: #e8edf5;
+
+  stroke-width: 1;
+
+  stroke-dasharray: 2 5;
+
+  vector-effect: non-scaling-stroke;
+}
+
+
+/* ==========================================================
+   Y AXIS LABEL
+========================================================== */
+
+.tp-payment-revenue-y-label {
+  fill: #94a3b8;
+
+  font-size: 10px;
+
+  font-weight: 500;
+
+  letter-spacing: 0;
+
+  pointer-events: none;
+}
+
+
+/* ==========================================================
+   REVENUE AREA
+========================================================== */
+
+.tp-payment-revenue-area {
+  fill: url(#tpPaymentRevenueAreaGradient);
+
+  stroke: none;
+
+  opacity: 1;
+
+  pointer-events: none;
+}
+
+
+/* ==========================================================
+   REVENUE LINE
+========================================================== */
+
+.tp-payment-revenue-line {
+  fill: none;
+
+  stroke: #5b4cf6;
+
+  stroke-width: 2.5;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+
+  vector-effect: non-scaling-stroke;
+
+  filter:
+    drop-shadow(
+      0 3px 6px rgba(91, 76, 246, 0.18)
+    );
+
+  animation:
+    tpPaymentRevenueLineDraw
+    1s
+    ease-out
+    both;
+}
+
+
+/* ==========================================================
+   LINE DRAW ANIMATION
+========================================================== */
+
+@keyframes tpPaymentRevenueLineDraw {
+
+  from {
+    opacity: 0;
+
+    stroke-dasharray: 1200;
+
+    stroke-dashoffset: 1200;
+  }
+
+  to {
+    opacity: 1;
+
+    stroke-dasharray: 1200;
+
+    stroke-dashoffset: 0;
+  }
+
+}
+
+
+/* ==========================================================
+   REVENUE POINT
+========================================================== */
+
+.tp-payment-revenue-point {
+  cursor: pointer;
+}
+
+
+/* Invisible hover area */
+
+.tp-payment-revenue-point__hit {
+  fill: transparent;
+
+  stroke: transparent;
+
+  cursor: pointer;
+}
+
+
+/* Outer point */
+
+.tp-payment-revenue-point__outer {
+  fill: #ffffff;
+
+  stroke: #5b4cf6;
+
+  stroke-width: 2;
+
+  vector-effect: non-scaling-stroke;
+
+  opacity: 0;
+
+  transform-box: fill-box;
+
+  transform-origin: center;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* Inner point */
+
+.tp-payment-revenue-point__inner {
+  fill: #5b4cf6;
+
+  opacity: 0;
+
+  transform-box: fill-box;
+
+  transform-origin: center;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* Show point on hover */
+
+.tp-payment-revenue-point:hover
+.tp-payment-revenue-point__outer {
+
+  opacity: 1;
+
+  transform: scale(1.25);
+}
+
+
+.tp-payment-revenue-point:hover
+.tp-payment-revenue-point__inner {
+
+  opacity: 1;
+
+  transform: scale(1.2);
+}
+
+
+/* ==========================================================
+   POINT PULSE
+========================================================== */
+
+.tp-payment-revenue-point:hover
+.tp-payment-revenue-point__outer {
+
+  animation:
+    tpPaymentRevenuePointPulse
+    1.2s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes tpPaymentRevenuePointPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.65;
+
+    transform: scale(1.35);
+  }
+
+}
+
+
+/* ==========================================================
+   X AXIS LABELS
+========================================================== */
+
+.tp-payment-revenue-labels {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 8px;
+
+  padding:
+    0
+    18px
+    0
+    52px;
+
+  box-sizing: border-box;
+}
+
+
+.tp-payment-revenue-label {
+  min-width: 0;
+
+  flex: 1;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+
+  text-align: center;
+
+  color: #94a3b8;
+
+  font-size: 9px;
+
+  font-weight: 500;
+
+  line-height: 1.2;
+
+  cursor: default;
+}
+
+
+/* ==========================================================
+   TOOLTIP
+========================================================== */
+
+.tp-payment-revenue-tooltip {
+  position: absolute;
+
+  z-index: 20;
+
+  min-width: 125px;
+
+  padding: 9px 11px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 8px 24px
+    rgba(15, 23, 42, 0.12);
+
+  transform:
+    translate(-50%, -115%);
+
+  pointer-events: none;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  animation:
+    tpPaymentRevenueTooltipIn
+    0.18s
+    ease-out
+    both;
+}
+
+
+.tp-payment-revenue-tooltip::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+  bottom: -5px;
+
+  width: 9px;
+  height: 9px;
+
+  background: #ffffff;
+
+  border-right: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+
+  transform:
+    translateX(-50%)
+    rotate(45deg);
+}
+
+
+.tp-payment-revenue-tooltip span {
+
+  color: #64748b;
+
+  font-size: 9px;
+
+  font-weight: 500;
+}
+
+
+.tp-payment-revenue-tooltip strong {
+
+  color: #0f172a;
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+
+@keyframes tpPaymentRevenueTooltipIn {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translate(-50%, -105%)
+      scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translate(-50%, -115%)
+      scale(1);
+  }
+
+}
+
+
+/* ==========================================================
+   REVENUE SUMMARY
+========================================================== */
+
+.tp-payment-revenue-summary {
+
+  min-height: 44px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 12px;
+
+  padding: 0 12px;
+
+  border:
+    1px solid
+    #edf0f5;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #fafbfc 100%
+    );
+}
+
+
+.tp-payment-revenue-summary span {
+
+  color: #94a3b8;
+
+  font-size: 10px;
+
+  font-weight: 500;
+}
+
+
+.tp-payment-revenue-summary strong {
+
+  color: #0f172a;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+
+/* ==========================================================
+   CHART HOVER EFFECT
+========================================================== */
+
+.tp-payment-revenue-chart__canvas:hover
+.tp-payment-revenue-line {
+
+  stroke: #4f46e5;
+
+  filter:
+    drop-shadow(
+      0 4px 8px
+      rgba(79, 70, 229, 0.24)
+    );
+}
+
+
+/* ==========================================================
+   EMPTY CHART
+========================================================== */
+
+.tp-payment-analytics__empty--chart {
+
+  min-height: 245px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #94a3b8;
+
+  font-size: 11px;
+
+  text-align: center;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1100px) {
+
+  .tp-payment-revenue-chart__canvas {
+    height: 225px;
+  }
+
+}
+
+
+@media (max-width: 800px) {
+
+  .tp-payment-revenue-chart__canvas {
+    height: 215px;
+  }
+
+  .tp-payment-revenue-labels {
+    padding-left: 45px;
+    padding-right: 12px;
+  }
+
+  .tp-payment-revenue-y-label {
+    font-size: 9px;
+  }
+
 }
 
 
 @media (max-width: 520px) {
 
-  .tp-payment-analytics {
-    padding: 16px;
+  .tp-payment-revenue-chart__canvas {
+    height: 195px;
   }
 
-  .tp-payment-revenue-chart {
+  .tp-payment-revenue-labels {
+    padding-left: 38px;
+    padding-right: 6px;
+
+    gap: 4px;
+  }
+
+  .tp-payment-revenue-label {
+    font-size: 8px;
+  }
+
+  .tp-payment-revenue-summary {
+    min-height: 40px;
+
+    padding: 0 10px;
+  }
+
+  .tp-payment-revenue-summary span {
+    font-size: 9px;
+  }
+
+  .tp-payment-revenue-summary strong {
+    font-size: 12px;
+  }
+
+}
+/* ==========================================================
+   REVENUE TREND - FINAL VISUAL POLISH
+   Add at the END of PaymentAnalytics.css
+========================================================== */
+
+
+/* ==========================================================
+   GRAPH GRID - DARKER
+========================================================== */
+
+.tp-payment-revenue-grid line {
+  stroke: #cbd3e1 !important;
+  stroke-width: 1.1px !important;
+  stroke-dasharray: 3 4 !important;
+
+  opacity: 0.9;
+
+  vector-effect: non-scaling-stroke;
+}
+
+
+/* ==========================================================
+   Y AXIS VALUES - MORE VISIBLE
+========================================================== */
+
+.tp-payment-revenue-y-label {
+  fill: #64748b !important;
+
+  font-size: 10px !important;
+
+  font-weight: 600 !important;
+
+  opacity: 1;
+}
+
+
+/* ==========================================================
+   REVENUE LINE - DARKER PURPLE
+========================================================== */
+
+.tp-payment-revenue-line {
+  stroke: #4f46e5 !important;
+
+  stroke-width: 2.8px !important;
+
+  stroke-linecap: round;
+
+  stroke-linejoin: round;
+
+  filter:
+    drop-shadow(
+      0 2px 4px
+      rgba(79, 70, 229, 0.22)
+    );
+
+  vector-effect: non-scaling-stroke;
+}
+
+
+/* ==========================================================
+   REVENUE AREA - COLORED AREA BELOW LINE
+========================================================== */
+
+.tp-payment-revenue-area {
+  fill: url(#tpPaymentRevenueAreaGradient) !important;
+
+  opacity: 1 !important;
+
+  stroke: none;
+
+  pointer-events: none;
+}
+
+
+/* ==========================================================
+   SVG GRADIENT FALLBACK
+   If JSX gradient is already present, this still works
+   with the existing gradient definition.
+========================================================== */
+
+.tp-payment-revenue-svg {
+  overflow: visible;
+}
+
+
+/* ==========================================================
+   REVENUE POINTS
+========================================================== */
+
+.tp-payment-revenue-point__outer {
+  fill: #ffffff;
+
+  stroke: #4f46e5;
+
+  stroke-width: 2px;
+
+  opacity: 0;
+
+  vector-effect: non-scaling-stroke;
+}
+
+
+.tp-payment-revenue-point__inner {
+  fill: #4f46e5;
+
+  opacity: 0;
+}
+
+
+/* ==========================================================
+   SHOW POINT WHEN HOVERING
+========================================================== */
+
+.tp-payment-revenue-point:hover
+.tp-payment-revenue-point__outer {
+
+  opacity: 1;
+
+  transform: scale(1.2);
+}
+
+
+.tp-payment-revenue-point:hover
+.tp-payment-revenue-point__inner {
+
+  opacity: 1;
+
+  transform: scale(1.15);
+}
+
+
+/* ==========================================================
+   GRAPH X AXIS LABELS
+========================================================== */
+
+.tp-payment-revenue-label {
+  color: #64748b !important;
+
+  font-size: 9px !important;
+
+  font-weight: 600 !important;
+}
+
+
+/* ==========================================================
+   GRAPH CONTAINER
+========================================================== */
+
+.tp-payment-revenue-chart__canvas {
+
+  position: relative;
+
+  width: 100%;
+
+  height: 245px;
+
+  overflow: visible;
+}
+
+
+/* ==========================================================
+   GRAPH BOTTOM AREA - SOFT DEPTH
+========================================================== */
+
+.tp-payment-revenue-chart__canvas::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 8%;
+
+  right: 4%;
+
+  bottom: 18px;
+
+  height: 45%;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(79, 70, 229, 0.035) 0%,
+      rgba(79, 70, 229, 0.012) 55%,
+      rgba(79, 70, 229, 0) 100%
+    );
+
+  border-radius: 0 0 12px 12px;
+
+  z-index: 0;
+}
+
+
+/* ==========================================================
+   KEEP SVG ABOVE DECORATIVE LAYER
+========================================================== */
+
+.tp-payment-revenue-svg {
+
+  position: relative;
+
+  z-index: 1;
+}
+
+
+/* ==========================================================
+   SUMMARY CARD
+========================================================== */
+
+.tp-payment-revenue-summary {
+
+  border-color: #e2e8f0 !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #f8fafc 100%
+    ) !important;
+
+  box-shadow:
+    0 2px 8px
+    rgba(15, 23, 42, 0.035);
+}
+
+
+.tp-payment-revenue-summary span {
+
+  color: #64748b !important;
+
+  font-size: 10px;
+
+  font-weight: 600;
+}
+
+
+.tp-payment-revenue-summary strong {
+
+  color: #0f172a !important;
+
+  font-size: 13px;
+
+  font-weight: 800;
+}
+
+
+/* ==========================================================
+   GRAPH HOVER
+========================================================== */
+
+.tp-payment-revenue-chart__canvas:hover
+.tp-payment-revenue-line {
+
+  stroke: #4338ca !important;
+
+  stroke-width: 3px !important;
+
+  filter:
+    drop-shadow(
+      0 3px 6px
+      rgba(67, 56, 202, 0.25)
+    );
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 800px) {
+
+  .tp-payment-revenue-grid line {
+    stroke-width: 1px !important;
+  }
+
+  .tp-payment-revenue-y-label {
+    font-size: 9px !important;
+  }
+
+  .tp-payment-revenue-line {
+    stroke-width: 2.5px !important;
+  }
+
+}
+/* ==========================================================
+   REVENUE TREND — X AXIS DATE POSITION
+========================================================== */
+
+.tp-payment-revenue-labels {
+  position: relative;
+
+  margin-top: -8px;
+
+  padding-top: 0;
+}
+
+.tp-payment-revenue-label {
+  transform: translateY(-4px);
+
+  line-height: 1;
+
+  font-size: 9px;
+  font-weight: 600;
+
+  color: #64748b;
+}
+
+
+/* Keep Revenue Summary separated from dates */
+.tp-payment-revenue-summary {
+  margin-top: 8px;
+}
+/* ==========================================================
+   REVENUE BY TOP STATIONS
+   Reference Style
+========================================================== */
+
+.tp-payment-station-list {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+
+  margin-top: 2px;
+}
+
+
+/* ==========================================================
+   STATION ITEM
+========================================================== */
+
+.tp-payment-station-item {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.tp-payment-station-item:hover {
+  transform: translateX(2px);
+}
+
+
+/* ==========================================================
+   TOP ROW
+========================================================== */
+
+.tp-payment-station-item__top {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+}
+
+
+/* ==========================================================
+   LEFT SIDE
+========================================================== */
+
+.tp-payment-station-item__info {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+
+/* ==========================================================
+   RANK
+========================================================== */
+
+.tp-payment-station-item__rank {
+  width: 18px;
+  height: 18px;
+
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 5px;
+
+  background: #f1f5f9;
+  color: #64748b;
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+
+/* ==========================================================
+   STATION NAME
+========================================================== */
+
+.tp-payment-station-item__name {
+  min-width: 0;
+
+  overflow: hidden;
+
+  color: #334155;
+
+  font-size: 11px;
+  line-height: 1.2;
+
+  font-weight: 700;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* ==========================================================
+   AMOUNT
+========================================================== */
+
+.tp-payment-station-item__amount {
+  flex-shrink: 0;
+
+  color: #0f172a;
+
+  font-size: 11px;
+  line-height: 1.2;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+
+/* ==========================================================
+   REVENUE BAR BACKGROUND
+========================================================== */
+
+.tp-payment-station-item__bar {
+  width: 100%;
+  height: 7px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: #eef1f6;
+}
+
+
+/* ==========================================================
+   REVENUE BAR
+========================================================== */
+
+.tp-payment-station-item__bar > span {
+  display: block;
+
+  height: 100%;
+
+  min-width: 5px;
+
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    #4f46e5 0%,
+    #6366f1 100%
+  );
+
+  transform-origin: left center;
+
+  animation:
+    tpPaymentStationBarAnimation
+    0.8s
+    cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+
+  transition:
+    width 0.5s ease;
+}
+
+
+/* ==========================================================
+   BAR HOVER
+========================================================== */
+
+.tp-payment-station-item:hover
+.tp-payment-station-item__bar > span {
+  filter: brightness(1.08);
+}
+
+
+/* ==========================================================
+   BAR ANIMATION
+========================================================== */
+
+@keyframes tpPaymentStationBarAnimation {
+
+  from {
+    width: 0 !important;
+    opacity: 0.3;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+/* ==========================================================
+   EMPTY STATE
+========================================================== */
+
+.tp-payment-station-list
+.tp-payment-analytics__empty {
+  min-height: 150px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #94a3b8;
+
+  font-size: 11px;
+
+  text-align: center;
+}
+
+
+/* ==========================================================
+   CARD SPACING
+========================================================== */
+
+.tp-payment-analytics__card
+.tp-payment-station-list {
+  padding-top: 2px;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 900px) {
+
+  .tp-payment-station-list {
+    gap: 12px;
+  }
+
+  .tp-payment-station-item__name {
+    font-size: 10px;
+  }
+
+  .tp-payment-station-item__amount {
+    font-size: 10px;
+  }
+
+}
+
+
+@media (max-width: 520px) {
+
+  .tp-payment-station-list {
+    gap: 11px;
+  }
+
+  .tp-payment-station-item__top {
     gap: 8px;
+  }
+
+  .tp-payment-station-item__rank {
+    width: 17px;
+    height: 17px;
+
+    font-size: 8px;
+  }
+
+  .tp-payment-station-item__name {
+    font-size: 10px;
+  }
+
+  .tp-payment-station-item__amount {
+    font-size: 10px;
+  }
+
+  .tp-payment-station-item__bar {
+    height: 6px;
   }
 
 }
