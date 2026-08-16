@@ -9,6 +9,8 @@ const connectDB = require("./config/db");
 
 const app = express();
 const adminRoutes = require("./routes/adminRoutes");
+const paymentRoutes =
+  require("./routes/paymentRoutes");
 // =========================
 // Database
 // =========================
@@ -65,7 +67,10 @@ app.use(
   "/api/admin",
   adminRoutes
 );
-
+app.use(
+  "/api/admin/payments",
+  paymentRoutes
+);
 // =========================
 // Test Route
 // =========================

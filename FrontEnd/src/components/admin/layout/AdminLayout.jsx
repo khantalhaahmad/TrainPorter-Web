@@ -120,6 +120,10 @@ const AdminLayout = () => {
 
     };
 
+    const isPaymentPage =
+  location.pathname === "/admin/payments";
+
+
   return (
 
     <div className="tp-admin-layout">
@@ -139,24 +143,27 @@ const AdminLayout = () => {
       ========================================== */}
 
       <div className="tp-admin-main-wrapper">
+{!isPaymentPage && (
+  <Header
+    title={currentHeader.title}
+    breadcrumb={currentHeader.breadcrumb}
+    searchPlaceholder={
+      currentHeader.searchPlaceholder
+    }
+  />
+)}
 
-        <Header
+     <main
+  className={`tp-admin-content ${
+    isPaymentPage
+      ? "tp-admin-payment-content"
+      : ""
+  }`}
+>
 
-          title={currentHeader.title}
+  <Outlet />
 
-          breadcrumb={currentHeader.breadcrumb}
-
-          searchPlaceholder={
-            currentHeader.searchPlaceholder
-          }
-
-        />
-
-        <main className="tp-admin-content">
-
-          <Outlet />
-
-        </main>
+</main>
 
       </div>
 

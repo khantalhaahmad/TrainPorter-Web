@@ -4,6 +4,7 @@ import DashboardLayout from '../../layouts/DashboardLayout';
 import Button from '../../components/ui/Button';
 import Card from '../../components/ui/Card';
 import Badge from '../../components/ui/Badge';
+import api from '../../services/api';
 import './PaymentPage.css';
 
 const PaymentPage = () => {
@@ -37,46 +38,127 @@ useEffect(() => {
     const transactionId =`TP-${Date.now()}`;
     const [paymentTime, setPaymentTime] = useState('');
     const [isProcessing, setIsProcessing] = useState(false);
-    const handlePayment = (selectedMethod) => {
+    const handlePayment = async (selectedMethod) => {
 
-    setMethod(selectedMethod);
+    try {
 
-    // ==========================
-    // Save Payment Method
-    // ==========================
+        if (!booking?._id) {
+            alert("Booking information not found.");
+            return;
+        }
 
-    const bookingData = JSON.parse(
-        localStorage.getItem("bookingData")
-    );
+        setMethod(selectedMethod);
+        setIsProcessing(true);
 
-    if (bookingData) {
+        // ==========================
+        // Payment Method
+        // ==========================
 
-        bookingData.paymentMethod =
+        const paymentMethod =
             selectedMethod === "cash"
                 ? "COD"
                 : "UPI";
 
-        localStorage.setItem(
-            "bookingData",
-            JSON.stringify(bookingData)
+        // ==========================
+        // Transaction ID
+        // ==========================
+
+        const transactionId =
+            paymentMethod === "COD"
+                ? ""
+                : `TP-${Date.now()}`;
+
+        // ==========================
+        // Update Payment Backend
+        // ==========================
+
+        const response = await api.patch(
+            `/bookings/${booking._id}/payment`,
+            {
+                paymentMethod,
+                transactionId,
+            }
         );
 
-    }
+        if (!response?.data?.success) {
+            throw new Error(
+                response?.data?.message ||
+                "Payment update failed."
+            );
+        }
 
-    setIsProcessing(true);
+        // ==========================
+        // Backend Payment Response
+        // ==========================
 
-    setTimeout(() => {
+        const updatedPayment =
+            response.data.data;
+
+        // ==========================
+        // Update Current Booking
+        // ==========================
+
+        const updatedBooking = {
+
+            ...booking,
+
+            paymentStatus:
+                updatedPayment.paymentStatus,
+
+            paymentMethod:
+                updatedPayment.paymentMethod,
+
+            transactionId:
+                updatedPayment.transactionId,
+
+            paidAt:
+                updatedPayment.paidAt,
+
+        };
+
+        localStorage.setItem(
+            "currentBooking",
+            JSON.stringify(updatedBooking)
+        );
+
+        // ==========================
+        // Update Booking Data
+        // ==========================
+
+        const bookingData = JSON.parse(
+            localStorage.getItem("bookingData")
+        );
+
+        if (bookingData) {
+
+            bookingData.paymentMethod =
+                updatedPayment.paymentMethod;
+
+            bookingData.transactionId =
+                updatedPayment.transactionId;
+
+            localStorage.setItem(
+                "bookingData",
+                JSON.stringify(bookingData)
+            );
+
+        }
+
+        // ==========================
+        // Payment Time
+        // ==========================
 
         const now = new Date();
 
-        const formatted = now.toLocaleString("en-IN", {
-            day: "2-digit",
-            month: "long",
-            year: "numeric",
-            hour: "2-digit",
-            minute: "2-digit",
-            hour12: true,
-        });
+        const formatted =
+            now.toLocaleString("en-IN", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: true,
+            });
 
         setPaymentTime(formatted);
 
@@ -84,7 +166,22 @@ useEffect(() => {
 
         setIsSuccess(true);
 
-    }, 10000);
+    } catch (error) {
+
+        console.error(
+            "PAYMENT UPDATE ERROR:",
+            error
+        );
+
+        setIsProcessing(false);
+
+        alert(
+            error?.response?.data?.message ||
+            error?.message ||
+            "Payment failed. Please try again."
+        );
+
+    }
 
 };
 const handleSubmitRating = () => {

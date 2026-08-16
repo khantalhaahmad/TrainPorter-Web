@@ -109,62 +109,60 @@ const getDashboardData = async () => {
   // ==========================
 
   const todayRevenueResult =
-    await Booking.aggregate([
-      {
-        $match: {
-          status: "completed",
-          createdAt: {
-  $gte: startOfDay,
-},
+  await Booking.aggregate([
+    {
+      $match: {
+        paymentStatus: "paid",
+        paidAt: {
+          $gte: startOfDay,
         },
       },
-      {
-        $group: {
-          _id: null,
-          total: {
-            $sum: "$amount",
-          },
+    },
+    {
+      $group: {
+        _id: null,
+        total: {
+          $sum: "$amount",
         },
       },
-    ]);
-
-  const monthRevenueResult =
-    await Booking.aggregate([
-      {
-        $match: {
-          status: "completed",
-         createdAt: {
-  $gte: startOfMonth,
-},
+    },
+  ]);
+ const monthRevenueResult =
+  await Booking.aggregate([
+    {
+      $match: {
+        paymentStatus: "paid",
+        paidAt: {
+          $gte: startOfMonth,
         },
       },
-      {
-        $group: {
-          _id: null,
-          total: {
-            $sum: "$amount",
-          },
+    },
+    {
+      $group: {
+        _id: null,
+        total: {
+          $sum: "$amount",
         },
       },
-    ]);
+    },
+  ]);
 
   const totalRevenueResult =
-    await Booking.aggregate([
-      {
-        $match: {
-          status: "completed",
+  await Booking.aggregate([
+    {
+      $match: {
+        paymentStatus: "paid",
+      },
+    },
+    {
+      $group: {
+        _id: null,
+        total: {
+          $sum: "$amount",
         },
       },
-      {
-        $group: {
-          _id: null,
-          total: {
-            $sum: "$amount",
-          },
-        },
-      },
-    ]);
-
+    },
+  ]);
   const todayRevenue =
     todayRevenueResult[0]?.total || 0;
 
@@ -233,34 +231,35 @@ const getDashboardData = async () => {
   // ==========================
 
   const revenueTrend =
-    await Booking.aggregate([
-      {
-        $match: {
-          status: "completed",
-        },
+  await Booking.aggregate([
+    {
+      $match: {
+        paymentStatus: "paid",
       },
-      {
-        $group: {
-          _id: {
-            $dateToString: {
-              format: "%Y-%m-%d",
-              date: "$createdAt",
-            },
-          },
-          revenue: {
-            $sum: "$amount",
+    },
+    {
+      $group: {
+        _id: {
+          $dateToString: {
+            format: "%Y-%m-%d",
+            date: "$paidAt",
           },
         },
-      },
-      {
-        $sort: {
-          _id: 1,
+
+        revenue: {
+          $sum: "$amount",
         },
       },
-      {
-        $limit: 7,
+    },
+    {
+      $sort: {
+        _id: 1,
       },
-    ]);
+    },
+    {
+      $limit: 7,
+    },
+  ]);
 
   // ==========================
   // Return Dashboard

@@ -1,0 +1,883 @@
+/* =========================================================
+   TRAINPORTER — ADMIN PAYMENTS PAGE
+   Premium Light / White Theme
+   Scope: Payments page only
+========================================================= */
+
+
+/* =========================================================
+   PAGE ROOT
+========================================================= */
+
+.tp-payment-page {
+  --tp-payment-bg: #ffffff;
+  --tp-payment-bg-deep: #f8fafc;
+
+  --tp-payment-surface: #ffffff;
+  --tp-payment-surface-2: #f8fafc;
+  --tp-payment-surface-3: #f1f5f9;
+
+  --tp-payment-border: #e2e8f0;
+  --tp-payment-border-strong: #cbd5e1;
+
+  --tp-payment-text: #0f172a;
+  --tp-payment-text-soft: #334155;
+  --tp-payment-text-muted: #64748b;
+
+  --tp-payment-primary: #4f46e5;
+  --tp-payment-primary-hover: #4338ca;
+  --tp-payment-primary-soft: #eef2ff;
+
+  --tp-payment-success: #16a34a;
+  --tp-payment-warning: #d97706;
+  --tp-payment-danger: #dc2626;
+
+  min-height: 100vh;
+  width: 100%;
+
+  padding: 28px 30px 40px;
+
+  position: relative;
+
+  color: var(--tp-payment-text);
+
+  background: #ffffff;
+
+  box-sizing: border-box;
+
+  overflow-x: hidden;
+}
+
+
+/* =========================================================
+   GLOBAL BOX SIZING
+========================================================= */
+
+.tp-payment-page *,
+.tp-payment-page *::before,
+.tp-payment-page *::after {
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   PAGE HEADER
+========================================================= */
+
+.tp-payment-page__header {
+  width: 100%;
+
+  min-height: 74px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin-bottom: 24px;
+
+  padding: 0 2px;
+}
+
+
+/* =========================================================
+   HEADER LEFT
+========================================================= */
+
+.tp-payment-page__header-left {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  min-width: 0;
+}
+
+
+.tp-payment-page__header-left > div:last-child {
+  min-width: 0;
+}
+
+
+.tp-payment-page__header-left h1 {
+  margin: 0;
+
+  font-size: 28px;
+  line-height: 1.15;
+
+  font-weight: 700;
+
+  letter-spacing: -0.03em;
+
+  color: #0f172a;
+}
+
+
+.tp-payment-page__header-left p {
+  margin: 7px 0 0;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  color: #64748b;
+}
+
+
+/* =========================================================
+   HEADER ICON
+========================================================= */
+
+.tp-payment-page__icon {
+  width: 46px;
+  height: 46px;
+
+  flex: 0 0 46px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  color: #4f46e5;
+
+  background: #eef2ff;
+
+  border: 1px solid #e0e7ff;
+
+  box-shadow:
+    0 4px 12px rgba(79, 70, 229, 0.08);
+}
+
+
+/* =========================================================
+   HEADER ACTION AREA
+========================================================= */
+
+.tp-payment-page__header-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   COMMON HEADER BUTTON
+========================================================= */
+
+.tp-payment-page__header-actions button {
+  height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 13px;
+
+  border-radius: 9px;
+
+  border: 1px solid #e2e8f0;
+
+  background: #ffffff;
+
+  color: #475569;
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 1px 2px rgba(15, 23, 42, 0.04);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.tp-payment-page__header-actions button:hover {
+  background: #f8fafc;
+
+  border-color: #cbd5e1;
+
+  color: #0f172a;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 4px 10px rgba(15, 23, 42, 0.06);
+}
+
+
+.tp-payment-page__header-actions button:active {
+  transform: translateY(0);
+}
+
+
+/* =========================================================
+   DATE BUTTON
+========================================================= */
+
+.tp-payment-page__date-button {
+  min-width: 185px;
+}
+
+
+.tp-payment-page__date-button svg:first-child {
+  color: #64748b;
+}
+
+
+.tp-payment-page__date-button svg:last-child {
+  color: #94a3b8;
+}
+
+
+/* =========================================================
+   EXPORT BUTTON
+========================================================= */
+
+.tp-payment-page__export-button {
+  color: #334155 !important;
+}
+
+
+/* =========================================================
+   FILTER BUTTON
+========================================================= */
+
+.tp-payment-page__filter-button {
+  color: #4f46e5 !important;
+
+  background: #eef2ff !important;
+
+  border-color: #e0e7ff !important;
+}
+
+
+.tp-payment-page__filter-button:hover {
+  color: #4338ca !important;
+
+  background: #e0e7ff !important;
+
+  border-color: #c7d2fe !important;
+}
+
+
+/* =========================================================
+   REFRESH BUTTON
+========================================================= */
+
+.tp-payment-page__refresh {
+  height: 40px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 14px;
+
+  border: 1px solid #4f46e5;
+
+  border-radius: 9px;
+
+  background: #4f46e5;
+
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 4px 10px rgba(79, 70, 229, 0.16);
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.tp-payment-page__refresh:hover:not(:disabled) {
+  background: #4338ca;
+
+  border-color: #4338ca;
+
+  color: #ffffff;
+
+  transform: translateY(-1px);
+
+  box-shadow:
+    0 6px 14px rgba(79, 70, 229, 0.20);
+}
+
+
+.tp-payment-page__refresh:active {
+  transform: translateY(0);
+}
+
+
+.tp-payment-page__refresh:disabled {
+  opacity: 0.55;
+
+  cursor: not-allowed;
+
+  box-shadow: none;
+}
+
+
+/* =========================================================
+   REFRESH SPINNER
+========================================================= */
+
+.tp-payment-page__refresh-icon--spinning {
+  animation:
+    tp-payment-refresh-spin 0.8s linear infinite;
+}
+
+
+@keyframes tp-payment-refresh-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   PAGE SECTIONS
+========================================================= */
+
+.tp-payment-page__section {
+  width: 100%;
+
+  margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   SECTION LOADER
+========================================================= */
+
+.tp-payment-page__section-loader {
+  min-height: 150px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  border-radius: 14px;
+
+  border: 1px solid #e2e8f0;
+
+  background: #ffffff;
+
+  color: #64748b;
+
+  font-size: 13px;
+
+  box-shadow:
+    0 4px 14px rgba(15, 23, 42, 0.05);
+}
+
+
+/* =========================================================
+   PAGE SPINNER
+========================================================= */
+
+.tp-payment-page__spinner {
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+
+  border: 3px solid #e2e8f0;
+
+  border-top-color: #4f46e5;
+
+  animation:
+    tp-payment-spinner 0.8s linear infinite;
+}
+
+
+@keyframes tp-payment-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   ERROR STATE
+========================================================= */
+
+.tp-payment-page__error {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 20px;
+
+  padding: 15px 17px;
+
+  border-radius: 12px;
+
+  border: 1px solid #fecaca;
+
+  background: #fff7f7;
+
+  color: #991b1b;
+
+  box-shadow:
+    0 4px 12px rgba(15, 23, 42, 0.04);
+}
+
+
+.tp-payment-page__error-content {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  min-width: 0;
+}
+
+
+.tp-payment-page__error-content > svg {
+  flex: 0 0 auto;
+
+  margin-top: 2px;
+
+  color: #dc2626;
+}
+
+
+.tp-payment-page__error-content strong {
+  display: block;
+
+  margin: 0;
+
+  color: #991b1b;
+
+  font-size: 13px;
+  font-weight: 650;
+}
+
+
+.tp-payment-page__error-content p {
+  margin: 4px 0 0;
+
+  color: #b91c1c;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+
+.tp-payment-page__error > button {
+  height: 34px;
+
+  padding: 0 13px;
+
+  flex-shrink: 0;
+
+  border: 1px solid #fecaca;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #b91c1c;
+
+  font-family: inherit;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+
+.tp-payment-page__error > button:hover {
+  background: #fef2f2;
+
+  border-color: #fca5a5;
+
+  color: #991b1b;
+}
+
+
+/* =========================================================
+   FORM ELEMENTS
+   Scoped only to Payments page
+========================================================= */
+
+.tp-payment-page input,
+.tp-payment-page select,
+.tp-payment-page textarea {
+  font-family: inherit;
+}
+
+
+/* =========================================================
+   FOCUS STATES
+========================================================= */
+
+.tp-payment-page button:focus-visible,
+.tp-payment-page input:focus-visible,
+.tp-payment-page select:focus-visible,
+.tp-payment-page textarea:focus-visible {
+  outline: 2px solid rgba(79, 70, 229, 0.28);
+
+  outline-offset: 2px;
+}
+
+
+/* =========================================================
+   LINKS
+========================================================= */
+
+.tp-payment-page a {
+  color: #4f46e5;
+
+  text-decoration: none;
+
+  transition: color 0.2s ease;
+}
+
+
+.tp-payment-page a:hover {
+  color: #4338ca;
+}
+
+
+/* =========================================================
+   SCROLLBAR — PAYMENT PAGE ONLY
+========================================================= */
+
+.tp-payment-page {
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    #cbd5e1
+    transparent;
+}
+
+
+.tp-payment-page::-webkit-scrollbar {
+  width: 7px;
+}
+
+
+.tp-payment-page::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.tp-payment-page::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+
+  border-radius: 20px;
+}
+
+
+.tp-payment-page::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+
+  .tp-payment-page {
+    padding: 24px 22px 36px;
+  }
+
+
+  .tp-payment-page__header {
+    align-items: flex-start;
+  }
+
+
+  .tp-payment-page__header-actions {
+    flex-wrap: wrap;
+
+    justify-content: flex-end;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 760px) {
+
+  .tp-payment-page {
+    padding: 20px 15px 30px;
+  }
+
+
+  .tp-payment-page__header {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    gap: 18px;
+
+    margin-bottom: 20px;
+  }
+
+
+  .tp-payment-page__header-left h1 {
+    font-size: 23px;
+  }
+
+
+  .tp-payment-page__header-left p {
+    font-size: 12px;
+  }
+
+
+  .tp-payment-page__header-actions {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+
+    justify-content: stretch;
+  }
+
+
+  .tp-payment-page__header-actions button {
+    width: 100%;
+  }
+
+
+  .tp-payment-page__date-button {
+    min-width: 0;
+
+    grid-column: 1 / -1;
+  }
+
+
+  .tp-payment-page__section {
+    margin-bottom: 16px;
+  }
+
+
+  .tp-payment-page__error {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .tp-payment-page__error > button {
+    width: 100%;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .tp-payment-page {
+    padding: 16px 12px 25px;
+  }
+
+
+  .tp-payment-page__icon {
+    width: 40px;
+    height: 40px;
+
+    flex-basis: 40px;
+  }
+
+
+  .tp-payment-page__header-left {
+    gap: 11px;
+  }
+
+
+  .tp-payment-page__header-left h1 {
+    font-size: 21px;
+  }
+
+
+  .tp-payment-page__header-actions {
+    grid-template-columns: 1fr;
+  }
+
+
+  .tp-payment-page__date-button {
+    grid-column: auto;
+  }
+
+}
+/* =========================================================
+   PAYMENT PAGE — HIDE GLOBAL HEADER
+   Only affects /admin/payments
+========================================================= */
+
+.tp-payment-page {
+  min-height: 100vh;
+}
+
+/*
+  Hide the global admin top header only when
+  Payments page is active.
+*/
+body:has(.tp-payment-page) .admin-header,
+body:has(.tp-payment-page) .admin-topbar,
+body:has(.tp-payment-page) .dashboard-header,
+body:has(.tp-payment-page) .top-header {
+  display: none !important;
+}
+
+
+/* =========================================================
+   PAYMENT CONTENT — MOVE UP
+========================================================= */
+
+body:has(.tp-payment-page) .admin-content,
+body:has(.tp-payment-page) .dashboard-content,
+body:has(.tp-payment-page) .admin-main {
+  padding-top: 24px !important;
+}
+
+
+/* =========================================================
+   PAYMENT PAGE HEADER
+========================================================= */
+
+.tp-payment-page .payment-page-header {
+  margin-top: 0 !important;
+}
+
+
+/* =========================================================
+   REMOVE EXCESSIVE TOP GAP
+========================================================= */
+
+.tp-payment-page {
+  padding-top: 0 !important;
+}
+
+.tp-payment-page > *:first-child {
+  margin-top: 0 !important;
+}
+/* =========================================
+   PAYMENT PAGE — TOP SPACING
+========================================= */
+
+.tp-admin-payment-content {
+  padding-top: 42px !important;
+}
+/* ==========================================================
+   LOADING STATE
+========================================================== */
+
+.tp-payment-table-loading {
+  min-height: 360px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  background: #ffffff;
+
+  color: #64748b;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+/* ==========================================================
+   LOADING SPINNER
+========================================================== */
+
+.tp-payment-table-spinner {
+  width: 34px;
+  height: 34px;
+
+  border: 3px solid #e8edf5;
+
+  border-top-color: #4f46e5;
+
+  border-radius: 50%;
+
+  animation:
+    tpPaymentTableSpin 0.75s linear infinite;
+}
+
+
+.tp-payment-table-loading p {
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+
+@keyframes tpPaymentTableSpin {
+
+  to {
+    transform: rotate(360deg);
+  }
+
+}

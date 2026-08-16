@@ -19,6 +19,12 @@ const {
   "../controllers/bookingController"
 );
 
+const {
+  updateBookingPayment,
+} = require(
+  "../controllers/paymentController"
+);
+
 router.post(
   "/",
   authMiddleware,
@@ -29,6 +35,11 @@ router.get(
   "/my-bookings",
   authMiddleware,
   getMyBookings
+);
+router.patch(
+  "/:id/payment",
+  authMiddleware,
+  updateBookingPayment
 );
 
 router.get(

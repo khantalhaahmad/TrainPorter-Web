@@ -1,0 +1,539 @@
+/* ==========================================================
+   TRAINPORTER — PAYMENT FILTERS
+   Premium Compact Filter Card
+========================================================== */
+
+
+/* ==========================================================
+   MAIN FILTER CARD
+========================================================== */
+
+.tp-payment-filters {
+  width: 100%;
+
+  padding: 15px 16px;
+
+  background: #ffffff;
+
+  border: 1px solid #e4e8ef;
+
+  border-radius: 14px;
+
+  box-shadow:
+    0 2px 8px rgba(15, 23, 42, 0.025);
+
+  box-sizing: border-box;
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.tp-payment-filters__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 13px;
+}
+
+
+/* ==========================================================
+   HEADING
+========================================================== */
+
+.tp-payment-filters__heading {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+
+.tp-payment-filters__heading-icon {
+  width: 32px;
+  height: 32px;
+
+  flex: 0 0 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #eef2ff;
+
+  color: #4f46e5;
+}
+
+
+.tp-payment-filters__heading h3 {
+  margin: 0;
+
+  color: #172033;
+
+  font-size: 13px;
+
+  line-height: 1.2;
+
+  font-weight: 750;
+}
+
+
+.tp-payment-filters__heading p {
+  margin: 3px 0 0;
+
+  color: #94a3b8;
+
+  font-size: 10px;
+
+  line-height: 1.25;
+}
+
+
+/* ==========================================================
+   CLEAR FILTER BUTTON
+========================================================== */
+
+.tp-payment-filters__clear {
+  height: 32px;
+
+  padding: 0 11px;
+
+  flex: 0 0 auto;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #64748b;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    color 0.18s ease,
+    transform 0.15s ease;
+}
+
+
+.tp-payment-filters__clear:hover {
+  background: #f8faff;
+
+  border-color: #c7d2fe;
+
+  color: #4f46e5;
+}
+
+
+.tp-payment-filters__clear:active {
+  transform: translateY(1px);
+}
+
+
+/* ==========================================================
+   FILTER CONTROLS
+========================================================== */
+
+.tp-payment-filters__controls {
+  width: 100%;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(250px, 1.8fr)
+    repeat(3, minmax(135px, 1fr))
+    minmax(135px, 0.9fr)
+    minmax(135px, 0.9fr);
+
+  gap: 9px;
+
+  align-items: end;
+}
+
+
+/* ==========================================================
+   INDIVIDUAL FILTER
+========================================================== */
+
+.tp-payment-filter {
+  min-width: 0;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+
+.tp-payment-filter label {
+  color: #64748b;
+
+  font-size: 9px;
+
+  line-height: 1;
+
+  font-weight: 700;
+}
+
+
+/* ==========================================================
+   SEARCH FILTER
+========================================================== */
+
+.tp-payment-filter--search {
+  position: relative;
+
+  height: 38px;
+
+  display: flex;
+
+  justify-content: center;
+}
+
+
+.tp-payment-filter--search input {
+  width: 100%;
+
+  height: 38px;
+
+  padding:
+    0
+    11px
+    0
+    35px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #172033;
+
+  font-size: 10px;
+
+  font-weight: 500;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+
+  box-sizing: border-box;
+}
+
+
+.tp-payment-filter--search input::placeholder {
+  color: #a1aaba;
+}
+
+
+.tp-payment-filter--search input:hover {
+  border-color: #d5dbe4;
+}
+
+
+.tp-payment-filter--search input:focus {
+  border-color: #a5b4fc;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(99, 102, 241, 0.08);
+}
+
+
+.tp-payment-filter__search-icon {
+  position: absolute;
+
+  left: 11px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #94a3b8;
+
+  pointer-events: none;
+}
+
+
+/* ==========================================================
+   SELECT
+========================================================== */
+
+.tp-payment-filter select {
+  width: 100%;
+
+  height: 38px;
+
+  padding:
+    0
+    10px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #ffffff;
+
+  color: #334155;
+
+  font-size: 10px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+
+  box-sizing: border-box;
+}
+
+
+.tp-payment-filter select:hover {
+  border-color: #d5dbe4;
+}
+
+
+.tp-payment-filter select:focus {
+  border-color: #a5b4fc;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(99, 102, 241, 0.08);
+}
+
+
+/* ==========================================================
+   DATE WRAPPER
+========================================================== */
+
+.tp-payment-filter__date-wrapper {
+  width: 100%;
+
+  height: 38px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  padding:
+    0
+    9px;
+
+  border: 1px solid #e2e8f0;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #94a3b8;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+
+.tp-payment-filter__date-wrapper:hover {
+  border-color: #d5dbe4;
+}
+
+
+.tp-payment-filter__date-wrapper:focus-within {
+  border-color: #a5b4fc;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 0 0 3px
+    rgba(99, 102, 241, 0.08);
+}
+
+
+.tp-payment-filter__date-wrapper input {
+  width: 100%;
+
+  min-width: 0;
+
+  padding: 0;
+
+  border: 0;
+
+  outline: 0;
+
+  background: transparent;
+
+  color: #475569;
+
+  font-size: 9px;
+
+  font-weight: 600;
+}
+
+
+.tp-payment-filter__date-wrapper input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+
+  opacity: 0.55;
+}
+
+
+/* ==========================================================
+   FOCUS ACCESSIBILITY
+========================================================== */
+
+.tp-payment-filters button:focus-visible,
+.tp-payment-filters input:focus-visible,
+.tp-payment-filters select:focus-visible {
+  outline: 2px solid
+    rgba(79, 70, 229, 0.22);
+
+  outline-offset: 2px;
+}
+
+
+/* ==========================================================
+   LARGE DESKTOP
+========================================================== */
+
+@media (min-width: 1400px) {
+
+  .tp-payment-filters__controls {
+    grid-template-columns:
+      minmax(280px, 1.9fr)
+      repeat(3, minmax(145px, 1fr))
+      minmax(145px, 0.9fr)
+      minmax(145px, 0.9fr);
+  }
+
+}
+
+
+/* ==========================================================
+   MEDIUM DESKTOP
+========================================================== */
+
+@media (max-width: 1250px) {
+
+  .tp-payment-filters__controls {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+
+  .tp-payment-filter--search {
+    grid-column: span 3;
+  }
+
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 800px) {
+
+  .tp-payment-filters__header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .tp-payment-filters__clear {
+    align-self: flex-start;
+  }
+
+
+  .tp-payment-filters__controls {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+
+  .tp-payment-filter--search {
+    grid-column: span 2;
+  }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 520px) {
+
+  .tp-payment-filters {
+    padding: 14px;
+  }
+
+
+  .tp-payment-filters__controls {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+  }
+
+
+  .tp-payment-filter--search {
+    grid-column: span 1;
+  }
+
+
+  .tp-payment-filters__header {
+    margin-bottom: 12px;
+  }
+
+
+  .tp-payment-filters__heading h3 {
+    font-size: 12px;
+  }
+
+
+  .tp-payment-filters__heading p {
+    font-size: 9px;
+  }
+
+}
