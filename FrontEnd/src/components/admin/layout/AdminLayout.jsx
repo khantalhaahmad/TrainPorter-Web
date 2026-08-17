@@ -13,6 +13,9 @@ const AdminLayout = () => {
 
   const location = useLocation();
 
+  const isUsersPage =
+  location.pathname === "/admin/users";
+
   /* ==========================================
       Header Configuration
   ========================================== */
@@ -120,8 +123,9 @@ const AdminLayout = () => {
 
     };
 
-    const isPaymentPage =
+   const isPaymentPage =
   location.pathname === "/admin/payments";
+
 
 
   return (
@@ -144,13 +148,15 @@ const AdminLayout = () => {
 
       <div className="tp-admin-main-wrapper">
 {!isPaymentPage && (
-  <Header
-    title={currentHeader.title}
-    breadcrumb={currentHeader.breadcrumb}
-    searchPlaceholder={
-      currentHeader.searchPlaceholder
-    }
-  />
+ <Header
+  title={currentHeader.title}
+  breadcrumb={currentHeader.breadcrumb}
+  searchPlaceholder={
+    currentHeader.searchPlaceholder
+  }
+  hideSearch={isUsersPage}
+  hideActions={isUsersPage}
+/>
 )}
 
      <main
