@@ -638,17 +638,728 @@ const updateBookingStatus = async (
 
 };
 
+// ==========================================================
+// USERS
+// ==========================================================
+
+// ==========================
+// User Statistics
+// ==========================
+
+const getUserStats = async () => {
+  try {
+    const now = new Date();
+
+    // Active = active within last 30 days
+    const activeSince = new Date(now);
+    activeSince.setDate(
+      activeSince.getDate() - 30
+    );
+
+    const [
+      totalUsers,
+      activeUsers,
+      newUsers,
+      verifiedUsers,
+      blockedUsers,
+    ] = await Promise.all([
+      // Total Users
+      User.countDocuments({
+        role: "user",
+      }),
+
+      // Active Users
+      User.countDocuments({
+        role: "user",
+        isBlocked: false,
+        lastActiveAt: {
+          $gte: activeSince,
+        },
+      }),
+
+      // New Users - current month
+      User.countDocuments({
+        role: "user",
+        createdAt: {
+          $gte: new Date(
+            now.getFullYear(),
+            now.getMonth(),
+            1
+          ),
+        },
+      }),
+
+      // Verified Users
+      User.countDocuments({
+        role: "user",
+        isVerified: true,
+      }),
+
+      // Blocked Users
+      User.countDocuments({
+        role: "user",
+        isBlocked: true,
+      }),
+    ]);
+
+    return {
+      totalUsers,
+      activeUsers,
+      newUsers,
+      verifiedUsers,
+      blockedUsers,
+    };
+
+  } catch (error) {
+
+    console.error(
+      "GET USER STATS ERROR:",
+      error
+    );
+
+    throw error;
+  }
+};
+
+
+// ==========================
+// Get All Users
+// ==========================
+
+const getUsers = async (query = {}) => {
+  try {
+
+    const page =
+      Math.max(
+        parseInt(query.page) || 1,
+        1
+      );
+
+    const limit =
+      Math.min(
+        Math.max(
+          parseInt(query.limit) || 5,
+          1
+        ),
+        100
+      );
+
+    const skip =
+      (page - 1) * limit;
+
+    const filter = {
+      role: "user",
+    };
+
+    // ==========================
+    // Search
+    // ==========================
+
+    if (query.search?.trim()) {
+
+      const search =
+        query.search.trim();
+
+      filter.$or = [
+        {
+          userCode: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          name: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          phone: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+        {
+          email: {
+            $regex: search,
+            $options: "i",
+          },
+        },
+      ];
+    }
+
+    // ==========================
+    // Membership Filter
+    // ==========================
+
+    if (
+      query.membership &&
+      query.membership !== "all"
+    ) {
+      filter.membership =
+        query.membership;
+    }
+
+    // ==========================
+    // Verification Filter
+    // ==========================
+
+    if (
+      query.verification &&
+      query.verification !== "all"
+    ) {
+
+      if (
+        query.verification === "verified"
+      ) {
+        filter.isVerified = true;
+      }
+
+      if (
+        query.verification === "unverified"
+      ) {
+        filter.isVerified = false;
+      }
+    }
+
+    // ==========================
+    // Status Filter
+    // ==========================
+
+    if (
+      query.status &&
+      query.status !== "all"
+    ) {
+
+      const now = new Date();
+
+      const activeSince =
+        new Date(now);
+
+      activeSince.setDate(
+        activeSince.getDate() - 30
+      );
+
+      if (
+        query.status === "blocked"
+      ) {
+
+        filter.isBlocked = true;
+
+      } else if (
+        query.status === "active"
+      ) {
+
+        filter.isBlocked = false;
+
+        filter.lastActiveAt = {
+          $gte: activeSince,
+        };
+
+      } else if (
+        query.status === "inactive"
+      ) {
+
+        filter.isBlocked = false;
+
+        filter.$or = [
+          {
+            lastActiveAt: {
+              $lt: activeSince,
+            },
+          },
+          {
+            lastActiveAt: null,
+          },
+        ];
+      }
+    }
+
+    // ==========================
+    // Date Filter
+    // ==========================
+
+    if (
+      query.from ||
+      query.to
+    ) {
+
+      filter.createdAt = {};
+
+      if (query.from) {
+        filter.createdAt.$gte =
+          new Date(query.from);
+      }
+
+      if (query.to) {
+
+        const endDate =
+          new Date(query.to);
+
+        endDate.setHours(
+          23,
+          59,
+          59,
+          999
+        );
+
+        filter.createdAt.$lte =
+          endDate;
+      }
+    }
+
+    // ==========================
+    // Total Users
+    // ==========================
+
+    const total =
+      await User.countDocuments(
+        filter
+      );
+
+    // ==========================
+    // Users
+    // ==========================
+
+    const users =
+      await User.find(filter)
+        .select(
+          "userCode name phone email membership coins isVerified isBlocked createdAt lastActiveAt"
+        )
+        .sort({
+          createdAt: -1,
+        })
+        .skip(skip)
+        .limit(limit)
+        .lean();
+
+    // ==========================
+    // Booking + Spending Summary
+    // ==========================
+
+    const userIds =
+      users.map(
+        (user) => user._id
+      );
+
+    const bookingSummary =
+      await Booking.aggregate([
+        {
+          $match: {
+            userId: {
+              $in: userIds,
+            },
+          },
+        },
+
+        {
+          $group: {
+            _id: "$userId",
+
+            totalBookings: {
+              $sum: 1,
+            },
+
+            totalSpent: {
+              $sum: {
+                $cond: [
+                  {
+                    $eq: [
+                      "$paymentStatus",
+                      "paid",
+                    ],
+                  },
+                  "$amount",
+                  0,
+                ],
+              },
+            },
+          },
+        },
+      ]);
+
+    const summaryMap =
+      new Map();
+
+    bookingSummary.forEach(
+      (item) => {
+        summaryMap.set(
+          item._id.toString(),
+          {
+            totalBookings:
+              item.totalBookings || 0,
+
+            totalSpent:
+              item.totalSpent || 0,
+          }
+        );
+      }
+    );
+
+    // ==========================
+    // Format Users
+    // ==========================
+
+    const formattedUsers =
+      users.map((user) => {
+
+        const summary =
+          summaryMap.get(
+            user._id.toString()
+          ) || {
+            totalBookings: 0,
+            totalSpent: 0,
+          };
+
+        let status = "inactive";
+
+        if (user.isBlocked) {
+          status = "blocked";
+        } else if (
+          user.lastActiveAt &&
+          user.lastActiveAt >=
+            new Date(
+              Date.now() -
+                30 *
+                  24 *
+                  60 *
+                  60 *
+                  1000
+            )
+        ) {
+          status = "active";
+        }
+
+        return {
+          ...user,
+
+          status,
+
+          bookings:
+            summary.totalBookings,
+
+          totalSpent:
+            summary.totalSpent,
+        };
+      });
+
+    return {
+      users: formattedUsers,
+
+      pagination: {
+        total,
+        page,
+        limit,
+
+        totalPages:
+          Math.ceil(
+            total / limit
+          ),
+
+        hasNext:
+          page <
+          Math.ceil(
+            total / limit
+          ),
+
+        hasPrevious:
+          page > 1,
+      },
+    };
+
+  } catch (error) {
+
+    console.error(
+      "GET USERS ERROR:",
+      error
+    );
+
+    throw error;
+  }
+};
+
+
+// ==========================
+// Get Single User
+// ==========================
+
+const getUserById = async (
+  userId
+) => {
+  try {
+
+    const user =
+      await User.findOne({
+        _id: userId,
+        role: "user",
+      })
+        .select(
+          "userCode name phone email membership coins isVerified isBlocked createdAt updatedAt lastActiveAt"
+        )
+        .lean();
+
+    if (!user) {
+      throw new Error(
+        "User not found."
+      );
+    }
+
+    // ==========================
+    // Booking Summary
+    // ==========================
+
+    const bookingSummaryResult =
+      await Booking.aggregate([
+        {
+          $match: {
+            userId: user._id,
+          },
+        },
+
+        {
+          $group: {
+            _id: null,
+
+            totalBookings: {
+              $sum: 1,
+            },
+
+            completedBookings: {
+              $sum: {
+                $cond: [
+                  {
+                    $eq: [
+                      "$status",
+                      "completed",
+                    ],
+                  },
+                  1,
+                  0,
+                ],
+              },
+            },
+
+            pendingBookings: {
+              $sum: {
+                $cond: [
+                  {
+                    $in: [
+                      "$status",
+                      [
+                        "pending",
+                        "assigned",
+                        "accepted",
+                        "arrived",
+                        "in_progress",
+                      ],
+                    ],
+                  },
+                  1,
+                  0,
+                ],
+              },
+            },
+
+            cancelledBookings: {
+              $sum: {
+                $cond: [
+                  {
+                    $eq: [
+                      "$status",
+                      "cancelled",
+                    ],
+                  },
+                  1,
+                  0,
+                ],
+              },
+            },
+
+            totalSpent: {
+              $sum: {
+                $cond: [
+                  {
+                    $eq: [
+                      "$paymentStatus",
+                      "paid",
+                    ],
+                  },
+                  "$amount",
+                  0,
+                ],
+              },
+            },
+
+            successfulPayments: {
+              $sum: {
+                $cond: [
+                  {
+                    $eq: [
+                      "$paymentStatus",
+                      "paid",
+                    ],
+                  },
+                  1,
+                  0,
+                ],
+              },
+            },
+
+            refundedAmount: {
+              $sum: {
+                $cond: [
+                  {
+                    $eq: [
+                      "$paymentStatus",
+                      "refunded",
+                    ],
+                  },
+                  "$refundAmount",
+                  0,
+                ],
+              },
+            },
+
+            pendingPayments: {
+              $sum: {
+                $cond: [
+                  {
+                    $eq: [
+                      "$paymentStatus",
+                      "pending",
+                    ],
+                  },
+                  1,
+                  0,
+                ],
+              },
+            },
+          },
+        },
+      ]);
+
+    const bookingSummary =
+      bookingSummaryResult[0] || {
+        totalBookings: 0,
+        completedBookings: 0,
+        pendingBookings: 0,
+        cancelledBookings: 0,
+        totalSpent: 0,
+        successfulPayments: 0,
+        refundedAmount: 0,
+        pendingPayments: 0,
+      };
+
+    // ==========================
+    // User Status
+    // ==========================
+
+    const activeSince =
+      new Date();
+
+    activeSince.setDate(
+      activeSince.getDate() - 30
+    );
+
+    let status = "inactive";
+
+    if (user.isBlocked) {
+      status = "blocked";
+    } else if (
+      user.lastActiveAt &&
+      user.lastActiveAt >= activeSince
+    ) {
+      status = "active";
+    }
+
+    // ==========================
+    // Recent Activity
+    // ==========================
+
+    const recentActivity =
+      await Activity.find({
+        userId: user._id,
+      })
+        .sort({
+          createdAt: -1,
+        })
+        .limit(10)
+        .select(
+          "title description type createdAt"
+        )
+        .lean();
+
+    return {
+      user: {
+        ...user,
+        status,
+      },
+
+      bookingSummary: {
+        totalBookings:
+          bookingSummary.totalBookings,
+
+        completedBookings:
+          bookingSummary.completedBookings,
+
+        pendingBookings:
+          bookingSummary.pendingBookings,
+
+        cancelledBookings:
+          bookingSummary.cancelledBookings,
+      },
+
+      paymentSummary: {
+        totalSpent:
+          bookingSummary.totalSpent,
+
+        successfulPayments:
+          bookingSummary.successfulPayments,
+
+        refundedAmount:
+          bookingSummary.refundedAmount,
+
+        pendingPayments:
+          bookingSummary.pendingPayments,
+      },
+
+      recentActivity,
+    };
+
+  } catch (error) {
+
+    console.error(
+      "GET USER DETAILS ERROR:",
+      error
+    );
+
+    throw error;
+  }
+};
+
+
 module.exports = {
   getDashboardData,
 
+  // ==========================
   // Porter
+  // ==========================
   getPorterApplications,
   getPorterApplication,
   approvePorter,
   rejectPorter,
 
+  // ==========================
   // Booking
+  // ==========================
   getBookings,
   getBooking,
   updateBookingStatus,
+
+  // ==========================
+  // Users
+  // ==========================
+  getUserStats,
+  getUsers,
+  getUserById,
 };

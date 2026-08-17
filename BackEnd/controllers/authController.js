@@ -80,12 +80,15 @@ console.log("================================");
       );
     }
 
-    let user =
-      await User.findOne({
-        phone,
-      });
+let user = await User.findOne({
+  phone,
+});
 
-      if (user && user.isBlocked) {
+// ==========================
+// Blocked User Check
+// ==========================
+
+if (user && user.isBlocked) {
   return errorResponse(
     res,
     "Your account has been blocked by the administrator.",
@@ -93,40 +96,62 @@ console.log("================================");
   );
 }
 
-  if (!user) {
+// ==========================
+// Create New User
+// ==========================
+
+if (!user) {
 
   console.log("========== CREATING USER ==========");
   console.log("Phone:", phone);
 
   try {
 
-  const newUser = await User.create({
-    phone,
-    isVerified: true,
-  });
+    const userCount = await User.countDocuments({
+      role: "user",
+    });
 
-  console.log("========== USER CREATED ==========");
-  console.log(newUser);
+    const userCode = `USR-${userCount + 1001}`;
 
-  user = newUser;
+    user = await User.create({
+      phone,
+      userCode,
+      isVerified: true,
+      lastActiveAt: new Date(),
+    });
 
-} catch (err) {
+    console.log("========== USER CREATED ==========");
+    console.log(user);
+    console.log("User Code:", userCode);
+    console.log("===================================");
 
-  console.log("========== USER CREATE ERROR ==========");
-  console.log(err);
-  console.log(err.message);
-  console.log(err.code);
-  console.log(err.keyPattern);
-  console.log(err.keyValue);
-  console.log("======================================");
+  } catch (err) {
 
-  throw err;
+    console.log(
+      "========== USER CREATE ERROR =========="
+    );
 
+    console.log(err);
+    console.log(err.message);
+    console.log(err.code);
+    console.log(err.keyPattern);
+    console.log(err.keyValue);
+
+    console.log(
+      "======================================"
+    );
+
+    throw err;
+  }
 }
-  console.log("===================================");
 
-  user = newUser;
-}
+// ==========================
+// Existing User Login
+// ==========================
+
+user.lastActiveAt = new Date();
+
+await user.save();
 
 const application =
   await PorterApplication.findOne({

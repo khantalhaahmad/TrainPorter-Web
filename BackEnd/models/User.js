@@ -8,6 +8,13 @@ const userSchema = new mongoose.Schema(
       unique: true,
     },
 
+userCode: {
+  type: String,
+  unique: true,
+  sparse: true,
+  index: true,
+},
+
     name: {
       type: String,
       default: "",
@@ -58,7 +65,12 @@ password: {
     isBlocked: {
       type: Boolean,
       default: false,
-    }
+    },
+
+    lastActiveAt: {
+  type: Date,
+  default: null,
+},
   },
   {
     timestamps: true,

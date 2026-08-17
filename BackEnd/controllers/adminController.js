@@ -269,17 +269,136 @@ const updateBookingStatus = async (req, res) => {
 
 };
 
+/* ==========================================================
+   USERS
+========================================================== */
+
+// ==========================
+// User Statistics
+// ==========================
+
+const getUserStats = async (req, res) => {
+  try {
+
+    const stats =
+      await adminService.getUserStats();
+
+    return successResponse(
+      res,
+      "User statistics fetched successfully",
+      {
+        stats,
+      }
+    );
+
+  } catch (error) {
+
+    console.error(
+      "GET USER STATS ERROR:",
+      error
+    );
+
+    return errorResponse(
+      res,
+      error.message,
+      500
+    );
+
+  }
+};
+
+
+// ==========================
+// Get Users
+// ==========================
+
+const getUsers = async (req, res) => {
+  try {
+
+    const result =
+      await adminService.getUsers(
+        req.query
+      );
+
+    return successResponse(
+      res,
+      "Users fetched successfully",
+      result
+    );
+
+  } catch (error) {
+
+    console.error(
+      "GET USERS ERROR:",
+      error
+    );
+
+    return errorResponse(
+      res,
+      error.message,
+      500
+    );
+
+  }
+};
+
+
+// ==========================
+// Get Single User
+// ==========================
+
+const getUser = async (req, res) => {
+  try {
+
+    const result =
+      await adminService.getUserById(
+        req.params.id
+      );
+
+    return successResponse(
+      res,
+      "User details fetched successfully",
+      result
+    );
+
+  } catch (error) {
+
+    console.error(
+      "GET USER DETAILS ERROR:",
+      error
+    );
+
+    return errorResponse(
+      res,
+      error.message,
+      500
+    );
+
+  }
+};
+
 module.exports = {
   getDashboard,
 
+  // ==========================
   // Porter
+  // ==========================
   getPorterApplications,
   getPorterApplication,
   approvePorter,
   rejectPorter,
 
+  // ==========================
   // Booking
+  // ==========================
   getBookings,
   getBooking,
   updateBookingStatus,
+
+  // ==========================
+  // Users
+  // ==========================
+  getUserStats,
+  getUsers,
+  getUser,
 };

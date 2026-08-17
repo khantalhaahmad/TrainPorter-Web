@@ -7,6 +7,10 @@ const adminMiddleware = require("../middleware/adminMiddleware");
 
 const {
   getDashboard,
+
+  // ==========================
+  // Porters
+  // ==========================
   getPorterApplications,
   getPorterApplication,
   approvePorter,
@@ -19,6 +23,12 @@ const {
   getBooking,
   updateBookingStatus,
 
+  // ==========================
+  // Users
+  // ==========================
+  getUserStats,
+  getUsers,
+  getUser,
 } = require("../controllers/adminController");
 
 router.get(
@@ -78,6 +88,34 @@ router.put(
   authMiddleware,
   adminMiddleware,
   updateBookingStatus
+);
+
+/* ==========================================================
+   USERS
+========================================================== */
+
+// User Statistics
+router.get(
+  "/users/stats",
+  authMiddleware,
+  adminMiddleware,
+  getUserStats
+);
+
+// Get Users
+router.get(
+  "/users",
+  authMiddleware,
+  adminMiddleware,
+  getUsers
+);
+
+// Get Single User
+router.get(
+  "/users/:id",
+  authMiddleware,
+  adminMiddleware,
+  getUser
 );
 
 module.exports = router;
