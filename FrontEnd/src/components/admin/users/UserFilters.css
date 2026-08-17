@@ -1,0 +1,511 @@
+/* ==========================================================
+   TRAINPORTER ADMIN — USER FILTERS
+========================================================== */
+
+.tp-users-filters {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 20px;
+  padding: 14px;
+
+  border: 1px solid #e7ebf2;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  box-sizing: border-box;
+
+  box-shadow:
+    0 2px 7px rgba(24, 39, 75, 0.025);
+}
+
+
+/* ==========================================================
+   SEARCH
+========================================================== */
+
+.tp-users-search {
+  position: relative;
+
+  flex: 1;
+  min-width: 240px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+}
+
+.tp-users-search__icon {
+  position: absolute;
+  left: 13px;
+
+  color: #8792a7;
+
+  pointer-events: none;
+}
+
+.tp-users-search input {
+  width: 100%;
+  height: 100%;
+
+  padding: 0 40px 0 39px;
+
+  border: 1px solid #e1e6ee;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #fbfcfe;
+
+  color: #1d2941;
+
+  font-family: inherit;
+  font-size: 12.5px;
+  font-weight: 400;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.tp-users-search input::placeholder {
+  color: #9aa4b5;
+}
+
+.tp-users-search input:hover {
+  background: #ffffff;
+  border-color: #d5dbe5;
+}
+
+.tp-users-search input:focus {
+  background: #ffffff;
+  border-color: #7669e8;
+
+  box-shadow:
+    0 0 0 3px rgba(118, 105, 232, 0.09);
+}
+
+
+/* Search clear */
+
+.tp-users-search__clear {
+  position: absolute;
+  right: 10px;
+
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 6px;
+
+  background: transparent;
+
+  color: #8b95a7;
+
+  cursor: pointer;
+}
+
+.tp-users-search__clear:hover {
+  background: #f0f2f6;
+  color: #4c5870;
+}
+
+
+/* ==========================================================
+   SELECT FILTERS
+========================================================== */
+
+.tp-users-select-wrapper {
+  position: relative;
+
+  flex-shrink: 0;
+
+  width: 150px;
+  height: 42px;
+}
+
+.tp-users-select-wrapper select {
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 100%;
+  height: 100%;
+
+  padding:
+    0 34px 0 12px;
+
+  border: 1px solid #e1e6ee;
+  border-radius: 9px;
+
+  outline: none;
+
+  background: #fbfcfe;
+
+  color: #445169;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.tp-users-select-wrapper select:hover {
+  background: #ffffff;
+  border-color: #d5dbe5;
+}
+
+.tp-users-select-wrapper select:focus {
+  background: #ffffff;
+  border-color: #7669e8;
+
+  box-shadow:
+    0 0 0 3px rgba(118, 105, 232, 0.09);
+}
+
+.tp-users-select-icon {
+  position: absolute;
+
+  top: 50%;
+  right: 11px;
+
+  transform: translateY(-50%);
+
+  color: #7d889d;
+
+  pointer-events: none;
+}
+
+
+/* ==========================================================
+   DATE FILTER
+========================================================== */
+
+.tp-users-filter-date {
+  position: relative;
+
+  flex-shrink: 0;
+
+  width: 190px;
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+
+  border: 1px solid #e1e6ee;
+  border-radius: 9px;
+
+  background: #fbfcfe;
+
+  box-sizing: border-box;
+
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.tp-users-filter-date:hover {
+  background: #ffffff;
+  border-color: #d5dbe5;
+}
+
+.tp-users-filter-date__header {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0 12px;
+
+  color: #56627a;
+
+  box-sizing: border-box;
+}
+
+.tp-users-filter-date__header svg {
+  flex-shrink: 0;
+
+  color: #7b86a0;
+}
+
+.tp-users-filter-date__header span {
+  overflow: hidden;
+
+  color: #56627a;
+
+  font-size: 11.5px;
+  font-weight: 500;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* Hidden date inputs until focused */
+
+.tp-users-filter-date__inputs {
+  position: absolute;
+
+  left: 0;
+  top: calc(100% + 7px);
+
+  z-index: 50;
+
+  width: 245px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 10px;
+
+  border: 1px solid #e1e6ee;
+  border-radius: 10px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 12px 30px rgba(20, 30, 55, 0.12);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  transform: translateY(-4px);
+
+  transition:
+    opacity 0.15s ease,
+    visibility 0.15s ease,
+    transform 0.15s ease;
+}
+
+.tp-users-filter-date:hover
+  .tp-users-filter-date__inputs,
+.tp-users-filter-date:focus-within
+  .tp-users-filter-date__inputs {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+
+  transform: translateY(0);
+}
+
+.tp-users-filter-date__inputs input {
+  width: 100%;
+  min-width: 0;
+  height: 34px;
+
+  padding: 0 7px;
+
+  border: 1px solid #dfe4ec;
+  border-radius: 7px;
+
+  background: #ffffff;
+
+  color: #344054;
+
+  font-family: inherit;
+  font-size: 10px;
+
+  outline: none;
+
+  box-sizing: border-box;
+}
+
+.tp-users-filter-date__inputs input:focus {
+  border-color: #7669e8;
+
+  box-shadow:
+    0 0 0 3px rgba(118, 105, 232, 0.08);
+}
+
+.tp-users-filter-date__inputs span {
+  flex-shrink: 0;
+
+  color: #8b95a7;
+
+  font-size: 10px;
+}
+
+
+/* ==========================================================
+   CLEAR FILTERS
+========================================================== */
+
+.tp-users-clear-filters {
+  height: 42px;
+
+  flex-shrink: 0;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  padding: 0 11px;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: #7165d8;
+
+  font-family: inherit;
+  font-size: 11.5px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.tp-users-clear-filters:hover {
+  background: #f3f1ff;
+  color: #594cc8;
+}
+
+.tp-users-clear-filters:focus-visible {
+  outline: 2px solid #7669e8;
+  outline-offset: 2px;
+}
+
+
+/* ==========================================================
+   RESPONSIVE — LARGE TABLET
+========================================================== */
+
+@media (max-width: 1200px) {
+  .tp-users-filters {
+    flex-wrap: wrap;
+  }
+
+  .tp-users-search {
+    flex-basis: 100%;
+    min-width: 100%;
+  }
+
+  .tp-users-select-wrapper {
+    flex: 1;
+    width: auto;
+    min-width: 145px;
+  }
+
+  .tp-users-filter-date {
+    flex: 1;
+    width: auto;
+    min-width: 170px;
+  }
+}
+
+
+/* ==========================================================
+   RESPONSIVE — TABLET
+========================================================== */
+
+@media (max-width: 760px) {
+  .tp-users-filters {
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 9px;
+  }
+
+  .tp-users-search {
+    grid-column: 1 / -1;
+
+    width: 100%;
+  }
+
+  .tp-users-select-wrapper {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tp-users-filter-date {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tp-users-clear-filters {
+    width: 100%;
+  }
+}
+
+
+/* ==========================================================
+   RESPONSIVE — MOBILE
+========================================================== */
+
+@media (max-width: 480px) {
+  .tp-users-filters {
+    display: flex;
+    flex-direction: column;
+
+    align-items: stretch;
+
+    padding: 11px;
+  }
+
+  .tp-users-search,
+  .tp-users-select-wrapper,
+  .tp-users-filter-date,
+  .tp-users-clear-filters {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .tp-users-filter-date__inputs {
+    left: 0;
+    right: 0;
+
+    width: auto;
+  }
+}
+
+
+/* ==========================================================
+   REDUCED MOTION
+========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .tp-users-search input,
+  .tp-users-select-wrapper select,
+  .tp-users-filter-date,
+  .tp-users-clear-filters,
+  .tp-users-filter-date__inputs {
+    transition: none;
+  }
+}

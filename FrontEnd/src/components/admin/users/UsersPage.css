@@ -1,0 +1,560 @@
+/* ==========================================================
+   TRAINPORTER ADMIN — USERS PAGE
+   Page-level styles only
+========================================================== */
+
+.tp-users-page {
+  width: 100%;
+  min-width: 0;
+  padding: 28px 30px 34px;
+  box-sizing: border-box;
+
+  background: #f7f9fc;
+  color: #17213a;
+
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
+
+
+/* ==========================================================
+   PAGE HEADER
+========================================================== */
+
+.tp-users-page__header {
+  width: 100%;
+
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+
+  margin-bottom: 28px;
+}
+
+.tp-users-page__heading {
+  min-width: 0;
+}
+
+.tp-users-page__heading h1 {
+  margin: 0;
+
+  color: #17213a;
+
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+
+  letter-spacing: -0.6px;
+}
+
+.tp-users-page__heading p {
+  margin: 7px 0 0;
+
+  color: #66738f;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+
+/* ==========================================================
+   HEADER ACTIONS
+========================================================== */
+
+.tp-users-page__actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 9px;
+
+  flex-shrink: 0;
+}
+
+.tp-users-action-btn {
+  height: 42px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 15px;
+
+  border: 1px solid #e2e7f0;
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #1e2942;
+
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 1px 2px rgba(17, 24, 39, 0.02);
+
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+
+.tp-users-action-btn:hover {
+  background: #fafbff;
+  border-color: #cfd6e4;
+
+  box-shadow:
+    0 4px 12px rgba(25, 35, 60, 0.06);
+}
+
+.tp-users-action-btn:active {
+  transform: translateY(1px);
+}
+
+.tp-users-action-btn svg {
+  flex-shrink: 0;
+}
+
+.tp-users-action-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+/* Filter button */
+
+.tp-users-filter-btn {
+  color: #5148d9;
+
+  background: #f5f3ff;
+  border-color: #ebe8ff;
+}
+
+.tp-users-filter-btn:hover {
+  background: #eeebff;
+  border-color: #ddd8ff;
+}
+
+
+/* ==========================================================
+   DATE RANGE
+========================================================== */
+
+.tp-users-date-wrapper {
+  position: relative;
+}
+
+.tp-users-date-btn {
+  min-width: 220px;
+  justify-content: space-between;
+}
+
+.tp-users-date-btn span {
+  flex: 1;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  text-align: left;
+}
+
+.tp-users-date-popover {
+  position: absolute;
+
+  top: calc(100% + 8px);
+  right: 0;
+
+  z-index: 100;
+
+  width: 260px;
+
+  padding: 14px;
+
+  border: 1px solid #e2e7f0;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 18px 45px rgba(15, 23, 42, 0.13);
+}
+
+.tp-users-date-field {
+  display: flex;
+  flex-direction: column;
+
+  gap: 6px;
+
+  margin-bottom: 12px;
+}
+
+.tp-users-date-field:last-child {
+  margin-bottom: 0;
+}
+
+.tp-users-date-field label {
+  color: #59667f;
+
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tp-users-date-field input {
+  width: 100%;
+  height: 38px;
+
+  padding: 0 10px;
+
+  border: 1px solid #dfe4ed;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #1e2942;
+
+  font-family: inherit;
+  font-size: 12px;
+
+  outline: none;
+
+  box-sizing: border-box;
+}
+
+.tp-users-date-field input:focus {
+  border-color: #7669e8;
+
+  box-shadow:
+    0 0 0 3px rgba(118, 105, 232, 0.1);
+}
+
+
+/* ==========================================================
+   ERROR
+========================================================== */
+
+.tp-users-error {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  margin-bottom: 20px;
+  padding: 12px 14px;
+
+  border: 1px solid #ffd8dc;
+  border-radius: 10px;
+
+  background: #fff5f6;
+
+  color: #b4232d;
+
+  font-size: 13px;
+  line-height: 1.4;
+
+  box-sizing: border-box;
+}
+
+.tp-users-error button {
+  flex-shrink: 0;
+
+  padding: 7px 12px;
+
+  border: 0;
+  border-radius: 7px;
+
+  background: #b4232d;
+
+  color: #ffffff;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.tp-users-error button:hover {
+  background: #991b25;
+}
+
+
+/* ==========================================================
+   MAIN USERS TABLE SECTION
+========================================================== */
+
+.tp-users-table-section {
+  width: 100%;
+
+  margin-top: 20px;
+
+  overflow: hidden;
+
+  border: 1px solid #e7ebf2;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 2px 8px rgba(24, 39, 75, 0.025);
+}
+
+
+/* ==========================================================
+   TABLE SECTION HEADER
+========================================================== */
+
+.tp-users-table-section__header {
+  min-height: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 18px;
+
+  border-bottom: 1px solid #edf0f5;
+
+  box-sizing: border-box;
+}
+
+.tp-users-table-title {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+}
+
+.tp-users-table-title h2 {
+  margin: 0;
+
+  color: #17213a;
+
+  font-size: 17px;
+  font-weight: 650;
+  line-height: 1.3;
+}
+
+.tp-users-table-title span {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 24px;
+
+  padding: 0 9px;
+
+  border-radius: 20px;
+
+  background: #f1f3f8;
+
+  color: #66738f;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+
+/* ==========================================================
+   REFRESH ANIMATION
+========================================================== */
+
+.tp-users-refresh-icon {
+  animation:
+    tp-users-spin 0.8s linear infinite;
+}
+
+@keyframes tp-users-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* ==========================================================
+   COMMON INTERACTION FOCUS
+========================================================== */
+
+.tp-users-action-btn:focus-visible,
+.tp-users-error button:focus-visible {
+  outline: 2px solid #7669e8;
+  outline-offset: 2px;
+}
+
+
+/* ==========================================================
+   TABLE OVERFLOW
+========================================================== */
+
+.tp-users-table-section {
+  overflow-x: auto;
+}
+
+.tp-users-table-section__header {
+  min-width: 900px;
+}
+
+
+/* ==========================================================
+   RESPONSIVE — LARGE DESKTOP
+========================================================== */
+
+@media (max-width: 1280px) {
+  .tp-users-page {
+    padding: 24px 22px 30px;
+  }
+
+  .tp-users-page__header {
+    gap: 18px;
+  }
+
+  .tp-users-page__heading h1 {
+    font-size: 28px;
+  }
+
+  .tp-users-action-btn {
+    padding: 0 12px;
+  }
+
+  .tp-users-date-btn {
+    min-width: 200px;
+  }
+}
+
+
+/* ==========================================================
+   RESPONSIVE — TABLET
+========================================================== */
+
+@media (max-width: 1024px) {
+  .tp-users-page {
+    padding: 22px 18px 28px;
+  }
+
+  .tp-users-page__header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tp-users-page__actions {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .tp-users-date-btn {
+    min-width: 210px;
+  }
+}
+
+
+/* ==========================================================
+   RESPONSIVE — MOBILE
+========================================================== */
+
+@media (max-width: 640px) {
+  .tp-users-page {
+    padding: 18px 14px 24px;
+  }
+
+  .tp-users-page__header {
+    margin-bottom: 20px;
+  }
+
+  .tp-users-page__heading h1 {
+    font-size: 24px;
+  }
+
+  .tp-users-page__heading p {
+    font-size: 13px;
+  }
+
+  .tp-users-page__actions {
+    width: 100%;
+
+    display: grid;
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+  }
+
+  .tp-users-action-btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tp-users-date-wrapper {
+    width: 100%;
+  }
+
+  .tp-users-date-btn {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .tp-users-date-popover {
+    left: 0;
+    right: auto;
+
+    width: min(
+      260px,
+      calc(100vw - 28px)
+    );
+  }
+
+  .tp-users-error {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .tp-users-error button {
+    width: 100%;
+  }
+
+  .tp-users-table-section {
+    margin-top: 16px;
+
+    border-radius: 10px;
+  }
+
+  .tp-users-table-section__header {
+    min-height: 62px;
+  }
+
+  .tp-users-table-title h2 {
+    font-size: 16px;
+  }
+}
+
+
+/* ==========================================================
+   REDUCED MOTION
+========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .tp-users-action-btn {
+    transition: none;
+  }
+
+  .tp-users-refresh-icon {
+    animation: none;
+  }
+}

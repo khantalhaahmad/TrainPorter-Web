@@ -14,20 +14,59 @@ const api = axios.create({
 api.interceptors.request.use(
   (config) => {
 
-    const isAdminRoute = config.url.startsWith("/admin");
+    const isAdminRoute =
+      config.url?.startsWith("/admin");
 
     const token = isAdminRoute
       ? localStorage.getItem("adminToken")
       : localStorage.getItem("token");
 
+    console.log(
+      "========== API REQUEST =========="
+    );
+
+    console.log(
+      "URL:",
+      config.url
+    );
+
+    console.log(
+      "IS ADMIN ROUTE:",
+      isAdminRoute
+    );
+
+    console.log(
+      "TOKEN TYPE:",
+      isAdminRoute
+        ? "adminToken"
+        : "userToken"
+    );
+
+    console.log(
+      "TOKEN:",
+      token
+    );
+
     if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
+      config.headers.Authorization =
+        `Bearer ${token}`;
     }
+
+    console.log(
+      "AUTH HEADER:",
+      config.headers.Authorization
+    );
+
+    console.log(
+      "================================="
+    );
 
     return config;
 
   },
-  (error) => Promise.reject(error)
+  (error) => {
+    return Promise.reject(error);
+  }
 );
 
 // ======================================

@@ -12,25 +12,55 @@ export const getDashboard = async () => {
    Users
 ========================================================== */
 
-export const getUsers = async (params = {}) => {
-  return await api.get("/admin/users", { params });
+export const getUserStats = async () => {
+  return await api.get(
+    "/admin/users/stats"
+  );
 };
 
-export const getUserById = async (id) => {
-  return await api.get(`/admin/users/${id}`);
+export const getUsers = async (
+  params = {}
+) => {
+  return await api.get(
+    "/admin/users",
+    {
+      params,
+    }
+  );
 };
 
-export const blockUser = async (id) => {
-  return await api.put(`/admin/users/${id}/block`);
+export const getUserById = async (
+  id
+) => {
+  return await api.get(
+    `/admin/users/${id}`
+  );
 };
 
-export const unblockUser = async (id) => {
-  return await api.put(`/admin/users/${id}/unblock`);
+export const blockUser = async (
+  id
+) => {
+  return await api.put(
+    `/admin/users/${id}/block`
+  );
 };
 
-export const deleteUser = async (id) => {
-  return await api.delete(`/admin/users/${id}`);
+export const unblockUser = async (
+  id
+) => {
+  return await api.put(
+    `/admin/users/${id}/unblock`
+  );
 };
+
+export const deleteUser = async (
+  id
+) => {
+  return await api.delete(
+    `/admin/users/${id}`
+  );
+};
+
 
 /* ==========================================================
    Porter Applications

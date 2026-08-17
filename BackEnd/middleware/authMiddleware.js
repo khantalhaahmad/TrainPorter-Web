@@ -39,17 +39,42 @@ const authMiddleware = (
       process.env.JWT_SECRET
     );
 
-    const decoded =
-      jwt.verify(
-        token,
-        process.env.JWT_SECRET
-      );
+    const decoded = jwt.verify(
+  token,
+  process.env.JWT_SECRET
+);
 
-    req.user = decoded;
-    console.log("AUTH USER:", req.user);
+console.log(
+  "========== JWT VERIFIED =========="
+);
 
-    next();
+console.log(
+  "REQUEST URL:",
+  req.originalUrl
+);
 
+console.log(
+  "DECODED ID:",
+  decoded.id
+);
+
+console.log(
+  "DECODED ROLE:",
+  decoded.role
+);
+
+console.log(
+  "DECODED TOKEN:",
+  decoded
+);
+
+console.log(
+  "=================================="
+);
+
+req.user = decoded;
+
+next();
   } catch (error) {
 
     console.log(

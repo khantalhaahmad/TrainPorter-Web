@@ -1,0 +1,408 @@
+/* ==========================================================
+   TRAINPORTER ADMIN — USER STATS
+========================================================== */
+
+.tp-users-stats {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  gap: 14px;
+
+  margin-bottom: 20px;
+}
+
+
+/* ==========================================================
+   STAT CARD
+========================================================== */
+
+.tp-users-stat-card {
+  position: relative;
+
+  min-width: 0;
+  min-height: 142px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  padding: 18px 18px 15px;
+
+  border: 1px solid #e7ebf2;
+  border-radius: 12px;
+
+  background: #ffffff;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 2px 7px rgba(24, 39, 75, 0.025);
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.tp-users-stat-card:hover {
+  transform: translateY(-2px);
+
+  border-color: #dce2ec;
+
+  box-shadow:
+    0 8px 22px rgba(24, 39, 75, 0.07);
+}
+
+
+/* ==========================================================
+   CARD TOP
+========================================================== */
+
+.tp-users-stat-card__top {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 13px;
+}
+
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.tp-users-stat-icon {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+}
+
+
+/* Total */
+
+.tp-users-stat-icon--total {
+  background: #f0edff;
+  color: #6658d8;
+}
+
+
+/* Active */
+
+.tp-users-stat-icon--active {
+  background: #eaf8f0;
+  color: #22965a;
+}
+
+
+/* New */
+
+.tp-users-stat-icon--new {
+  background: #eef5ff;
+  color: #3679d8;
+}
+
+
+/* Verified */
+
+.tp-users-stat-icon--verified {
+  background: #ecf8f7;
+  color: #238c86;
+}
+
+
+/* Blocked */
+
+.tp-users-stat-icon--blocked {
+  background: #fff0f1;
+  color: #d14b56;
+}
+
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.tp-users-stat-card__content {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.tp-users-stat-card__label {
+  display: block;
+
+  color: #6b7890;
+
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.3;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tp-users-stat-card__value {
+  display: block;
+
+  color: #17213a;
+
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.1;
+
+  letter-spacing: -0.5px;
+}
+
+
+/* ==========================================================
+   FOOTER
+========================================================== */
+
+.tp-users-stat-card__footer {
+  display: flex;
+  align-items: center;
+
+  margin-top: 16px;
+}
+
+.tp-users-stat-indicator {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 22px;
+
+  padding: 0 8px;
+
+  border-radius: 6px;
+
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+
+/* Total */
+
+.tp-users-stat-indicator--total {
+  background: #f5f3ff;
+  color: #6658d8;
+}
+
+
+/* Active */
+
+.tp-users-stat-indicator--active {
+  background: #edf9f2;
+  color: #278858;
+}
+
+
+/* New */
+
+.tp-users-stat-indicator--new {
+  background: #f0f6ff;
+  color: #3b74c4;
+}
+
+
+/* Verified */
+
+.tp-users-stat-indicator--verified {
+  background: #eef9f8;
+  color: #267f7a;
+}
+
+
+/* Blocked */
+
+.tp-users-stat-indicator--blocked {
+  background: #fff3f4;
+  color: #c44852;
+}
+
+
+/* ==========================================================
+   LOADING STATE
+========================================================== */
+
+.tp-users-stat-card--loading {
+  pointer-events: none;
+}
+
+.tp-users-stat-icon-skeleton {
+  width: 40px;
+  height: 40px;
+
+  flex-shrink: 0;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #f0f2f6 25%,
+      #e7eaf0 37%,
+      #f0f2f6 63%
+    );
+
+  background-size: 400% 100%;
+
+  animation:
+    tp-users-stat-loading 1.4s ease infinite;
+}
+
+.tp-users-stat-text-skeleton {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.tp-users-stat-text-skeleton span {
+  width: 72px;
+  height: 10px;
+
+  display: block;
+
+  border-radius: 5px;
+
+  background: #edf0f4;
+
+  animation:
+    tp-users-stat-pulse 1.3s ease infinite;
+}
+
+.tp-users-stat-text-skeleton strong {
+  width: 58px;
+  height: 24px;
+
+  display: block;
+
+  border-radius: 6px;
+
+  background: #edf0f4;
+
+  animation:
+    tp-users-stat-pulse 1.3s ease infinite;
+}
+
+.tp-users-stat-chart-skeleton {
+  width: 90px;
+  height: 8px;
+
+  border-radius: 5px;
+
+  background: #f0f2f5;
+
+  animation:
+    tp-users-stat-pulse 1.3s ease infinite;
+}
+
+@keyframes tp-users-stat-loading {
+  0% {
+    background-position: 100% 0;
+  }
+
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@keyframes tp-users-stat-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 1200px) {
+  .tp-users-stats {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+}
+
+
+/* ==========================================================
+   SMALL TABLET
+========================================================== */
+
+@media (max-width: 820px) {
+  .tp-users-stats {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+  }
+
+  .tp-users-stat-card {
+    min-height: 136px;
+  }
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 520px) {
+  .tp-users-stats {
+    grid-template-columns: 1fr;
+
+    gap: 10px;
+  }
+
+  .tp-users-stat-card {
+    min-height: 122px;
+
+    padding: 15px;
+  }
+
+  .tp-users-stat-card__value {
+    font-size: 23px;
+  }
+}
+
+
+/* ==========================================================
+   REDUCED MOTION
+========================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .tp-users-stat-card {
+    transition: none;
+  }
+
+  .tp-users-stat-icon-skeleton,
+  .tp-users-stat-text-skeleton span,
+  .tp-users-stat-text-skeleton strong,
+  .tp-users-stat-chart-skeleton {
+    animation: none;
+  }
+}
