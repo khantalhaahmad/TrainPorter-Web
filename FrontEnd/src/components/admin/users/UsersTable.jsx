@@ -518,7 +518,7 @@ const UsersTable = ({
                     />
 
                     <span>
-                      View
+                      
                     </span>
 
                   </button>

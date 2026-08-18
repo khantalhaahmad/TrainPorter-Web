@@ -147,18 +147,15 @@ const AdminLayout = () => {
       ========================================== */}
 
       <div className="tp-admin-main-wrapper">
-{!isPaymentPage && (
- <Header
-  title={currentHeader.title}
-  breadcrumb={currentHeader.breadcrumb}
-  searchPlaceholder={
-    currentHeader.searchPlaceholder
-  }
-  hideSearch={isUsersPage}
-  hideActions={isUsersPage}
-/>
+{!isPaymentPage && !isUsersPage && (
+  <Header
+    title={currentHeader.title}
+    breadcrumb={currentHeader.breadcrumb}
+    searchPlaceholder={
+      currentHeader.searchPlaceholder
+    }
+  />
 )}
-
      <main
   className={`tp-admin-content ${
     isPaymentPage

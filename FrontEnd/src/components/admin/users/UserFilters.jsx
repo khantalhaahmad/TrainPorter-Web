@@ -5,6 +5,7 @@ import {
   ChevronDown,
   CalendarDays,
   X,
+  RotateCcw,
 } from "lucide-react";
 
 import "./UserFilters.css";
@@ -299,22 +300,18 @@ const UserFilters = ({
           CLEAR FILTERS
       ================================================== */}
 
-      {hasActiveFilters && (
-        <button
-          type="button"
-          className="tp-users-clear-filters"
-          onClick={
-            onClearFilters
-          }
-        >
-          <X size={15} />
+      <button
+  type="button"
+  className="tp-users-clear-filters"
+  onClick={onClearFilters}
+  disabled={!hasActiveFilters}
+>
+  <RotateCcw size={15} />
 
-          <span>
-            Clear Filters
-          </span>
-        </button>
-      )}
-
+  <span>
+    Clear Filters
+  </span>
+</button>
     </section>
   );
 };
