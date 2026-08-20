@@ -1,0 +1,205 @@
+.tp-top-porters-card {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.tp-top-porters-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 22px;
+    border-bottom: 1px solid #eef0f3;
+}
+
+.tp-top-porters-header h3 {
+    margin: 0;
+    color: #111827;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.tp-top-porters-header p {
+    margin: 5px 0 0;
+    color: #6b7280;
+    font-size: 12px;
+}
+
+.tp-top-porters-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff7ed;
+    color: #f97316;
+}
+
+
+/* =========================
+   LIST
+========================= */
+
+.tp-top-porters-list {
+    padding: 6px 20px;
+}
+
+
+/* =========================
+   PORTER ITEM
+========================= */
+
+.tp-top-porter-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid #f1f3f5;
+}
+
+.tp-top-porter-item:last-child {
+    border-bottom: none;
+}
+
+
+/* =========================
+   RANK
+========================= */
+
+.tp-top-porter-rank {
+    width: 28px;
+    min-width: 28px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #6b7280;
+}
+
+
+/* =========================
+   AVATAR
+========================= */
+
+.tp-top-porter-avatar {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #fff7ed;
+    color: #ea580c;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   INFO
+========================= */
+
+.tp-top-porter-info {
+    min-width: 0;
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tp-top-porter-info strong {
+    color: #111827;
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.tp-top-porter-info span {
+    color: #6b7280;
+    font-size: 11px;
+}
+
+
+/* =========================
+   RATING
+========================= */
+
+.tp-top-porter-rating {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+}
+
+.tp-top-porter-rating div {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    color: #f59e0b;
+}
+
+.tp-top-porter-rating strong {
+    color: #111827;
+    font-size: 13px;
+}
+
+.tp-top-porter-rating span {
+    color: #9ca3af;
+    font-size: 10px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.tp-top-porters-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 20px;
+
+    background: #fafafa;
+    border-top: 1px solid #eef0f3;
+}
+
+.tp-top-porters-footer span {
+    color: #9ca3af;
+    font-size: 11px;
+}
+
+.tp-top-porters-footer button {
+    border: none;
+    background: transparent;
+
+    color: #f97316;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    padding: 0;
+}
+
+.tp-top-porters-footer button:hover {
+    color: #ea580c;
+}
