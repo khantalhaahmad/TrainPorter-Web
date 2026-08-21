@@ -3,6 +3,26 @@ const Booking = require("../models/Booking");
 const PorterApplication = require("../models/PorterApplication");
 const Activity = require("../models/Activity");
 const Porter = require("../models/Porter");
+const Notification = require("../models/Notification");
+
+
+const createNotification = async ({
+  type,
+  title,
+  message,
+  referenceId = null,
+}) => {
+  try {
+    await Notification.create({
+      type,
+      title,
+      message,
+      referenceId,
+    });
+  } catch (error) {
+    console.error("CREATE NOTIFICATION ERROR:", error);
+  }
+};
 
 const getDashboardData = async () => {
   // ==========================
@@ -93,6 +113,11 @@ const getDashboardData = async () => {
     await Booking.countDocuments({
       status: "accepted",
     });
+
+    const pendingPayments =
+  await Booking.countDocuments({
+    paymentStatus: "pending",
+  });
 
   const arrivedBookings =
     await Booking.countDocuments({
@@ -261,6 +286,217 @@ const getDashboardData = async () => {
     },
   ]);
 
+
+    // ==========================
+// Top Stations
+// ==========================
+
+const topStations = await Booking.aggregate([
+
+  // 1. Station available hona chahiye
+  {
+    $match: {
+      station: {
+        $exists: true,
+        $ne: null,
+      },
+    },
+  },
+
+  // 2. Station ko normalize karo
+  //    " gaya "
+  //    "Gaya"
+  //    "GAYA"
+  //    => "GAYA"
+  {
+    $project: {
+      normalizedStation: {
+        $trim: {
+          input: {
+            $toUpper: "$station",
+          },
+        },
+      },
+    },
+  },
+
+  // 3. Empty station remove karo
+  {
+    $match: {
+      normalizedStation: {
+        $ne: "",
+      },
+    },
+  },
+
+  // 4. Same normalized station ko group karo
+  {
+    $group: {
+      _id: "$normalizedStation",
+
+      bookings: {
+        $sum: 1,
+      },
+    },
+  },
+
+  // 5. Primary sorting:
+  //    bookings DESC
+  //
+  //    Secondary sorting:
+  //    station name ASC
+  {
+    $sort: {
+      bookings: -1,
+      _id: 1,
+    },
+  },
+
+  // 6. Sirf Top 5
+  {
+    $limit: 5,
+  },
+
+  // 7. Frontend-friendly response
+  {
+    $project: {
+      _id: 0,
+
+      station: "$_id",
+
+      bookings: 1,
+    },
+  },
+
+]);
+
+// ==========================
+// Top Porters
+// ==========================
+
+const topPorters = await Booking.aggregate([
+
+  // Booking ke saath porter hona chahiye
+  {
+  $match: {
+    $or: [
+      {
+        porterId: {
+          $ne: null,
+        },
+      },
+      {
+        "assignedPorter.porterId": {
+          $ne: null,
+        },
+      },
+    ],
+
+    // Only completed bookings count
+    status: "completed",
+  },
+},
+
+  // Porter ID normalize karo
+  {
+    $project: {
+      porterId: {
+        $ifNull: [
+          "$porterId",
+          "$assignedPorter.porterId",
+        ],
+      },
+    },
+  },
+
+  // Same porter ki bookings group karo
+  {
+    $group: {
+      _id: "$porterId",
+
+      bookings: {
+        $sum: 1,
+      },
+    },
+  },
+
+  // Porter details fetch karo
+  {
+    $lookup: {
+      from: "porters",
+      localField: "_id",
+      foreignField: "_id",
+      as: "porter",
+    },
+  },
+
+  {
+    $unwind: {
+      path: "$porter",
+      preserveNullAndEmptyArrays: true,
+    },
+  },
+
+  // Highest bookings first
+  // Same count hone par name alphabetical
+  {
+    $sort: {
+      bookings: -1,
+      "porter.name": 1,
+    },
+  },
+
+  // Top 5
+  {
+    $limit: 5,
+  },
+
+  // Frontend ke liye clean response
+  {
+    $project: {
+      _id: 0,
+
+      id: "$_id",
+
+      name: {
+        $ifNull: [
+          "$porter.name",
+          "Unknown Porter",
+        ],
+      },
+
+      bookings: 1,
+
+      rating: {
+        $ifNull: [
+          "$porter.rating",
+          0,
+        ],
+      },
+
+      profilePhoto: {
+        $ifNull: [
+          "$porter.profilePhoto",
+          "",
+        ],
+      },
+    },
+  },
+
+]);
+
+// ==========================
+// Notifications
+// ==========================
+
+const notifications =
+  await Notification.find()
+    .sort({
+      createdAt: -1,
+    })
+    .limit(5)
+    .lean();
+
   // ==========================
   // Return Dashboard
   // ==========================
@@ -300,16 +536,21 @@ const getDashboardData = async () => {
 
     revenueTrend,
 
+    topStations,
+
+    topPorters,
+
     recentBookings,
 
     recentActivities,
 
-    pendingActions: {
-      pendingPorters,
-      pendingBookings,
-    },
-
-    notifications: [],
+  pendingActions: {
+  pendingPorters,
+  assignedBookings,
+  cancelledBookings,
+  pendingPayments,
+},
+    notifications,
   };
 };
 

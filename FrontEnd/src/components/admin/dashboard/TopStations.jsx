@@ -10,57 +10,37 @@ const TopStations = ({
   stations = [],
 }) => {
 
-  const stationData =
-    stations.length > 0
-      ? stations
-      : [
-          {
-            station: "New Delhi",
-            bookings: 324,
-          },
-          {
-            station: "Patna Jn",
-            bookings: 276,
-          },
-          {
-            station: "Howrah",
-            bookings: 231,
-          },
-          {
-            station: "Mumbai Central",
-            bookings: 198,
-          },
-          {
-            station: "Secunderabad",
-            bookings: 175,
-          },
-        ];
+  const stationData = Array.isArray(stations)
+    ? stations
+    : [];
 
   const maxBookings =
-    Math.max(
-      ...stationData.map(
-        item => item.bookings
-      )
-    );
+    stationData.length > 0
+      ? Math.max(
+          ...stationData.map(
+            (item) => item.bookings || 0
+          )
+        )
+      : 0;
 
   return (
 
     <div className="tp-stations-card">
+
+      {/* ==========================================
+            HEADER
+      ========================================== */}
 
       <div className="tp-stations-header">
 
         <div>
 
           <h3>
-
             Top Stations
-
           </h3>
 
           <p>
-
             Highest booking stations
-
           </p>
 
         </div>
@@ -75,69 +55,101 @@ const TopStations = ({
 
       </div>
 
+
+      {/* ==========================================
+            STATION LIST
+      ========================================== */}
+
       <div className="tp-stations-list">
 
-        {stationData.map(
-          (
-            station,
-            index
-          ) => (
+        {stationData.length === 0 ? (
 
-            <div
-              key={index}
-              className="tp-station-item"
-            >
+          <div className="tp-stations-empty">
 
-              <div className="tp-station-rank">
+            No station data available
 
-                #{index + 1}
+          </div>
 
-              </div>
+        ) : (
 
-              <div className="tp-station-icon">
+          stationData.map(
+            (
+              station,
+              index
+            ) => {
 
-                <TrainFront size={20} />
+              const bookings =
+                station.bookings || 0;
 
-              </div>
+              const progress =
+                maxBookings > 0
+                  ? (bookings / maxBookings) * 100
+                  : 0;
 
-              <div className="tp-station-content">
+              return (
 
-                <div className="tp-station-top">
+                <div
+                  key={`${station.station}-${index}`}
+                  className="tp-station-item"
+                >
 
-                  <h4>
+                  {/* Rank */}
 
-                    {station.station}
+                  <div className="tp-station-rank">
 
-                  </h4>
+                    #{index + 1}
 
-                  <span>
+                  </div>
 
-                    {station.bookings}
 
-                  </span>
+                  {/* Station Icon */}
+
+                  <div className="tp-station-icon">
+
+                    <TrainFront size={20} />
+
+                  </div>
+
+
+                  {/* Station Information */}
+
+                  <div className="tp-station-content">
+
+                    <div className="tp-station-top">
+
+                      <h4>
+                        {station.station || "Unknown Station"}
+                      </h4>
+
+                      <span>
+                        {bookings}
+                      </span>
+
+                    </div>
+
+
+                    {/* Progress */}
+
+                    <div className="tp-progress">
+
+                      <div
+                        className="tp-progress-fill"
+                        style={{
+                          width: `${progress}%`,
+                        }}
+                      />
+
+                    </div>
+
+                  </div>
 
                 </div>
 
-                <div className="tp-progress">
+              );
 
-                  <div
-                    className="tp-progress-fill"
-                    style={{
-                      width: `${
-                        (station.bookings /
-                          maxBookings) *
-                        100
-                      }%`,
-                    }}
-                  />
-
-                </div>
-
-              </div>
-
-            </div>
-
+            }
           )
+
         )}
 
       </div>

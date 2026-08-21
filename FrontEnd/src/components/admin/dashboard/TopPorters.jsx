@@ -3,38 +3,7 @@ import { Star, TrendingUp } from "lucide-react";
 
 import "./TopPorters.css";
 
-const TopPorters = () => {
-
-  const porters = [
-    {
-      id: 1,
-      name: "Rahul Kumar",
-      rating: 4.9,
-      bookings: 128,
-      initials: "RK",
-    },
-    {
-      id: 2,
-      name: "Aman Singh",
-      rating: 4.8,
-      bookings: 114,
-      initials: "AS",
-    },
-    {
-      id: 3,
-      name: "Mohit Kumar",
-      rating: 4.8,
-      bookings: 97,
-      initials: "MK",
-    },
-    {
-      id: 4,
-      name: "Arjun Yadav",
-      rating: 4.7,
-      bookings: 91,
-      initials: "AY",
-    },
-  ];
+const TopPorters = ({ porters = [] }) => {
 
   return (
     <div className="tp-top-porters-card">
@@ -60,72 +29,129 @@ const TopPorters = () => {
       {/* Porter List */}
       <div className="tp-top-porters-list">
 
-        {porters.map((porter, index) => (
+        {porters.length === 0 ? (
 
-          <div
-            className="tp-top-porter-item"
-            key={porter.id}
-          >
-
-            {/* Rank */}
-            <div className="tp-top-porter-rank">
-
-              {index === 0
-                ? "🥇"
-                : index === 1
-                ? "🥈"
-                : index === 2
-                ? "🥉"
-                : index + 1}
-
-            </div>
-
-
-            {/* Avatar */}
-            <div className="tp-top-porter-avatar">
-
-              {porter.initials}
-
-            </div>
-
-
-            {/* Porter Information */}
-            <div className="tp-top-porter-info">
-
-              <strong>
-                {porter.name}
-              </strong>
-
-              <span>
-                {porter.bookings} completed bookings
-              </span>
-
-            </div>
-
-
-            {/* Rating */}
-            <div className="tp-top-porter-rating">
-
-              <div>
-                <Star
-                  size={14}
-                  fill="currentColor"
-                />
-
-                <strong>
-                  {porter.rating}
-                </strong>
-              </div>
-
-              <span>
-                Rating
-              </span>
-
-            </div>
-
+          <div className="tp-top-porters-empty">
+            No completed bookings found
           </div>
 
-        ))}
+        ) : (
+
+          porters.map((porter, index) => {
+
+            const name =
+              porter.name ||
+              porter.fullName ||
+              "Unknown Porter";
+
+            const initials =
+              name
+                .split(" ")
+                .filter(Boolean)
+                .slice(0, 2)
+                .map(
+                  (word) =>
+                    word.charAt(0).toUpperCase()
+                )
+                .join("") || "P";
+
+            const rating =
+              porter.rating ??
+              porter.averageRating ??
+              0;
+
+            const bookings =
+              porter.bookings ??
+              porter.completedBookings ??
+              porter.totalBookings ??
+              0;
+
+            return (
+
+              <div
+                className="tp-top-porter-item"
+                key={porter._id || porter.id || index}
+              >
+
+                {/* Rank */}
+                <div className="tp-top-porter-rank">
+
+                  {index === 0
+                    ? "🥇"
+                    : index === 1
+                    ? "🥈"
+                    : index === 2
+                    ? "🥉"
+                    : `#${index + 1}`}
+
+                </div>
+
+
+                {/* Avatar */}
+                <div className="tp-top-porter-avatar">
+
+                  {porter.profilePhoto ? (
+
+                    <img
+                      src={porter.profilePhoto}
+                      alt={name}
+                    />
+
+                  ) : (
+
+                    initials
+
+                  )}
+
+                </div>
+
+
+                {/* Porter Information */}
+                <div className="tp-top-porter-info">
+
+                  <strong>
+                    {name}
+                  </strong>
+
+                  <span>
+                    {bookings} completed{" "}
+                    {bookings === 1
+                      ? "booking"
+                      : "bookings"}
+                  </span>
+
+                </div>
+
+
+                {/* Rating */}
+                <div className="tp-top-porter-rating">
+
+                  <div>
+
+                    <Star
+                      size={14}
+                      fill="currentColor"
+                    />
+
+                    <strong>
+                      {Number(rating).toFixed(1)}
+                    </strong>
+
+                  </div>
+
+                  <span>
+                    Rating
+                  </span>
+
+                </div>
+
+              </div>
+
+            );
+
+          })
+
+        )}
 
       </div>
 

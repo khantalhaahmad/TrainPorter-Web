@@ -5,6 +5,7 @@ const {
   getPaymentAnalytics,
 } = require("../services/paymentService");
 
+const Notification = require("../models/Notification");
 
 // ==========================================================
 // GET PAYMENT SUMMARY
@@ -294,6 +295,21 @@ const updateBookingPayment = async (req, res) => {
     // ======================================================
 
     await booking.save();
+
+    // ==========================
+// Remove Pending Payment Notification
+// ==========================
+
+if (booking.paymentStatus === "paid") {
+
+  await Notification.deleteMany({
+    type: "payment",
+    referenceId: booking._id,
+    title: "Pending Payment",
+  });
+
+}
+
 
     return res.status(200).json({
 

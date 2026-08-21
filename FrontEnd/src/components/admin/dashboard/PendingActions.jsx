@@ -1,50 +1,64 @@
 import React from "react";
 import {
   UserCheck,
-  AlertTriangle,
-  Ticket,
-  Users,
+  ClipboardCheck,
+  XCircle,
+  CreditCard,
   ArrowRight,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 import "./PendingActions.css";
 
 const PendingActions = ({ data = {} }) => {
 
+  const navigate = useNavigate();
+
   const actions = [
     {
       title: "Porter Applications",
-      value: data.pendingPorters || 0,
+      value: data.pendingPorters ?? 0,
       color: "#F59E0B",
       icon: UserCheck,
       button: "Review",
+      path: "/admin/porters",
     },
     {
-      title: "Pending Complaints",
-      value: data.pendingComplaints || 0,
-      color: "#EF4444",
-      icon: AlertTriangle,
-      button: "Open",
-    },
-    {
-      title: "Unassigned Bookings",
-      value: data.unassignedBookings || 0,
+      title: "Assigned Bookings",
+      value: data.assignedBookings ?? 0,
       color: "#3B82F6",
-      icon: Ticket,
-      button: "Assign",
+      icon: ClipboardCheck,
+      button: "View",
+      path: "/admin/bookings",
     },
     {
-      title: "New Users Today",
-      value: data.newUsersToday || 0,
-      color: "#10B981",
-      icon: Users,
+      title: "Cancelled Bookings",
+      value: data.cancelledBookings ?? 0,
+      color: "#EF4444",
+      icon: XCircle,
       button: "View",
+      path: "/admin/bookings",
+    },
+    {
+      title: "Pending Payments",
+      value: data.pendingPayments ?? 0,
+      color: "#10B981",
+      icon: CreditCard,
+      button: "View",
+      path: "/admin/payments",
     },
   ];
 
-  return (
+  const handleAction = (path) => {
+    navigate(path);
+  };
 
+  return (
     <div className="tp-pending-card">
+
+      {/* =========================
+          HEADER
+      ========================= */}
 
       <div className="tp-pending-header">
 
@@ -62,6 +76,11 @@ const PendingActions = ({ data = {} }) => {
 
       </div>
 
+
+      {/* =========================
+          ACTION LIST
+      ========================= */}
+
       <div className="tp-pending-list">
 
         {actions.map((item) => {
@@ -69,11 +88,12 @@ const PendingActions = ({ data = {} }) => {
           const Icon = item.icon;
 
           return (
-
             <div
               key={item.title}
               className="tp-pending-item"
             >
+
+              {/* Icon */}
 
               <div
                 className="tp-pending-icon"
@@ -82,28 +102,36 @@ const PendingActions = ({ data = {} }) => {
                   color: item.color,
                 }}
               >
-
-                <Icon size={22} />
-
+                <Icon size={21} />
               </div>
+
+
+              {/* Content */}
 
               <div className="tp-pending-content">
 
                 <h4>
-
                   {item.title}
-
                 </h4>
 
                 <span>
-
-                  {item.value} Pending
-
+                  {item.value}{" "}
+                  {item.value === 1
+                    ? "Item"
+                    : "Items"}
                 </span>
 
               </div>
 
-              <button>
+
+              {/* Action Button */}
+
+              <button
+                type="button"
+                onClick={() =>
+                  handleAction(item.path)
+                }
+              >
 
                 {item.button}
 
@@ -112,7 +140,6 @@ const PendingActions = ({ data = {} }) => {
               </button>
 
             </div>
-
           );
 
         })}
@@ -120,9 +147,7 @@ const PendingActions = ({ data = {} }) => {
       </div>
 
     </div>
-
   );
-
 };
 
 export default PendingActions;

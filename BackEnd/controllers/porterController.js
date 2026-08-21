@@ -3,6 +3,7 @@ const cloudinary = require("../config/cloudinary");
 const User = require("../models/User");
 const Porter = require("../models/Porter");
 const PorterApplication = require("../models/PorterApplication");
+const Notification = require("../models/Notification");
 
 const {
   successResponse,
@@ -357,16 +358,29 @@ accountNumber;
       existingApplication.termsAccepted =
         termsAccepted;
 
-      await existingApplication.save();
+     await existingApplication.save();
 
-      return successResponse(
-        res,
-        "Application resubmitted successfully.",
-        {
-          application:
-            existingApplication,
-        }
-      );
+
+// ========================================
+// Create Notification - Resubmitted
+// ========================================
+
+await Notification.create({
+  type: "porter",
+  title: "Porter Application Resubmitted",
+  message: `${existingApplication.fullName} has resubmitted the porter application for review.`,
+  referenceId: existingApplication._id,
+});
+
+
+return successResponse(
+  res,
+  "Application resubmitted successfully.",
+  {
+    application:
+      existingApplication,
+  }
+);
 
     }
 
@@ -446,6 +460,13 @@ accountNumber,
         termsAccepted,
 
       });
+
+      await Notification.create({
+  type: "porter",
+  title: "New Porter Application",
+  message: `${application.fullName} has submitted a new porter application.`,
+  referenceId: application._id,
+});
 
     return successResponse(
       res,

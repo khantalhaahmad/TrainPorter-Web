@@ -1,115 +1,173 @@
+/* =========================================================
+   TOP PORTERS CARD
+========================================================= */
+
 .tp-top-porters-card {
     width: 100%;
     background: #ffffff;
     border: 1px solid #e5e7eb;
     border-radius: 16px;
     overflow: hidden;
+    box-sizing: border-box;
 }
 
 
-/* =========================
+/* =========================================================
    HEADER
-========================= */
+========================================================= */
 
 .tp-top-porters-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 22px;
+
+    padding: 18px 20px;
+
     border-bottom: 1px solid #eef0f3;
 }
 
 .tp-top-porters-header h3 {
     margin: 0;
+
     color: #111827;
-    font-size: 17px;
+
+    font-size: 16px;
     font-weight: 700;
+    line-height: 1.3;
 }
 
 .tp-top-porters-header p {
-    margin: 5px 0 0;
+    margin: 4px 0 0;
+
     color: #6b7280;
-    font-size: 12px;
+
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.4;
 }
 
 .tp-top-porters-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
+    width: 34px;
+    height: 34px;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
+    border-radius: 9px;
+
     background: #fff7ed;
     color: #f97316;
+
+    flex-shrink: 0;
 }
 
 
-/* =========================
-   LIST
-========================= */
+/* =========================================================
+   PORTER LIST
+========================================================= */
 
 .tp-top-porters-list {
-    padding: 6px 20px;
+    padding: 4px 18px;
 }
 
 
-/* =========================
+/* =========================================================
    PORTER ITEM
-========================= */
+========================================================= */
 
 .tp-top-porter-item {
+    width: 100%;
+
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 14px 0;
+
+    gap: 11px;
+
+    padding: 12px 0;
+
     border-bottom: 1px solid #f1f3f5;
+
+    box-sizing: border-box;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .tp-top-porter-item:last-child {
     border-bottom: none;
 }
 
-
-/* =========================
-   RANK
-========================= */
-
-.tp-top-porter-rank {
-    width: 28px;
-    min-width: 28px;
-    text-align: center;
-    font-size: 16px;
-    font-weight: 700;
-    color: #6b7280;
+.tp-top-porter-item:hover {
+    background: #fafafa;
 }
 
 
-/* =========================
-   AVATAR
-========================= */
+/* =========================================================
+   RANK
+========================================================= */
 
-.tp-top-porter-avatar {
-    width: 40px;
-    height: 40px;
-    min-width: 40px;
-
-    border-radius: 50%;
+.tp-top-porter-rank {
+    width: 25px;
+    min-width: 25px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background: #fff7ed;
-    color: #ea580c;
+    text-align: center;
+
+    color: #6b7280;
 
     font-size: 12px;
     font-weight: 700;
+
+    line-height: 1;
 }
 
 
-/* =========================
-   INFO
-========================= */
+/* =========================================================
+   AVATAR
+========================================================= */
+
+.tp-top-porter-avatar {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    border-radius: 50%;
+
+    background: #fff7ed;
+    color: #ea580c;
+
+    border: 1px solid #fed7aa;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    flex-shrink: 0;
+}
+
+.tp-top-porter-avatar img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+}
+
+
+/* =========================================================
+   PORTER INFORMATION
+========================================================= */
 
 .tp-top-porter-info {
     min-width: 0;
@@ -117,13 +175,19 @@
 
     display: flex;
     flex-direction: column;
-    gap: 4px;
+
+    gap: 3px;
 }
 
 .tp-top-porter-info strong {
+    min-width: 0;
+
     color: #111827;
-    font-size: 13px;
+
+    font-size: 12px;
     font-weight: 700;
+
+    line-height: 1.3;
 
     white-space: nowrap;
     overflow: hidden;
@@ -132,74 +196,174 @@
 
 .tp-top-porter-info span {
     color: #6b7280;
-    font-size: 11px;
+
+    font-size: 10px;
+    font-weight: 500;
+
+    line-height: 1.3;
+
+    white-space: nowrap;
 }
 
 
-/* =========================
+/* =========================================================
    RATING
-========================= */
+========================================================= */
 
 .tp-top-porter-rating {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 3px;
+
+    gap: 2px;
+
+    min-width: 42px;
 }
 
 .tp-top-porter-rating div {
     display: flex;
     align-items: center;
-    gap: 4px;
+
+    gap: 3px;
 
     color: #f59e0b;
 }
 
 .tp-top-porter-rating strong {
     color: #111827;
-    font-size: 13px;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    line-height: 1;
 }
 
 .tp-top-porter-rating span {
     color: #9ca3af;
-    font-size: 10px;
+
+    font-size: 9px;
+    font-weight: 500;
+
+    line-height: 1;
 }
 
 
-/* =========================
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.tp-top-porters-empty {
+    min-height: 120px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    color: #9ca3af;
+
+    font-size: 11px;
+    font-weight: 500;
+
+    text-align: center;
+}
+
+
+/* =========================================================
    FOOTER
-========================= */
+========================================================= */
 
 .tp-top-porters-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 14px 20px;
+    min-height: 42px;
+
+    padding: 11px 18px;
 
     background: #fafafa;
+
     border-top: 1px solid #eef0f3;
+
+    box-sizing: border-box;
 }
 
 .tp-top-porters-footer span {
     color: #9ca3af;
-    font-size: 11px;
+
+    font-size: 10px;
+    font-weight: 500;
 }
 
 .tp-top-porters-footer button {
     border: none;
+    outline: none;
+
+    padding: 0;
+
     background: transparent;
 
     color: #f97316;
 
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
 
     cursor: pointer;
 
-    padding: 0;
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 .tp-top-porters-footer button:hover {
     color: #ea580c;
+    transform: translateX(2px);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .tp-top-porters-header {
+        padding: 16px;
+    }
+
+    .tp-top-porters-list {
+        padding: 4px 16px;
+    }
+
+    .tp-top-porter-item {
+        gap: 9px;
+        padding: 11px 0;
+    }
+
+    .tp-top-porter-avatar {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+
+    .tp-top-porters-footer {
+        padding: 10px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .tp-top-porter-rating {
+        min-width: 38px;
+    }
+
+    .tp-top-porter-info span {
+        font-size: 9px;
+    }
+
+    .tp-top-porter-info strong {
+        font-size: 11px;
+    }
 }

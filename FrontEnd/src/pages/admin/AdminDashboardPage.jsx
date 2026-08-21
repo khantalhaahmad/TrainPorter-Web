@@ -25,8 +25,25 @@ const AdminDashboardPage = () => {
 
       const response = await getDashboard();
 
-      setDashboardData(response.data);
+console.log(
+  "========== DASHBOARD RESPONSE =========="
+);
 
+console.log("FULL RESPONSE:", response);
+console.log("RESPONSE DATA:", response.data);
+console.log(
+  "NOTIFICATIONS:",
+  response.data?.notifications
+);
+
+console.log(
+  "NOTIFICATION COUNT:",
+  response.data?.notifications?.length
+);
+
+console.log("========================================");
+
+setDashboardData(response.data);
     } catch (error) {
 
       console.error(error);
@@ -134,8 +151,9 @@ const AdminDashboardPage = () => {
             <BookingStatusChart
               data={dashboardData?.bookingStatus}
             />
-
-            <TopStations />
+<TopStations
+  stations={dashboardData?.topStations}
+/>
 
           </div>
 
@@ -154,7 +172,9 @@ const AdminDashboardPage = () => {
             }}
           >
 
-            <TopPorters />
+           <TopPorters
+  porters={dashboardData?.topPorters || []}
+/>
 
             <PendingActions
               data={
@@ -232,7 +252,9 @@ const AdminDashboardPage = () => {
             }}
           >
 
-            <SystemStatus />
+        <SystemStatus
+  status={dashboardData?.systemStatus}
+/>
 
           </div>
 

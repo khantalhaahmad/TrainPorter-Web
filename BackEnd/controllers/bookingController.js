@@ -1,6 +1,7 @@
 const Booking = require("../models/Booking");
 const Activity = require("../models/Activity");
-const Porter = require("../models/Porter");   // NEW
+const Porter = require("../models/Porter");
+const Notification = require("../models/Notification");
 
 const calculateFare = require(
   "../utils/fareCalculator"
@@ -134,6 +135,32 @@ await Porter.findByIdAndUpdate(
     availabilityStatus: "busy",
   }
 );
+
+// ==========================
+// Admin Notification
+// ==========================
+
+await Notification.create({
+  type: "booking",
+  title: "New Booking Received",
+  message: `${booking.trainName} booking created and porter assigned.`,
+  referenceId: booking._id,
+});
+
+// ==========================
+// Pending Payment Notification
+// ==========================
+
+if (booking.paymentStatus === "pending") {
+
+  await Notification.create({
+    type: "payment",
+    title: "Pending Payment",
+    message: `${booking.trainName} booking has a pending payment of ₹${booking.amount}.`,
+    referenceId: booking._id,
+  });
+
+}
 
 
     await Activity.create({
@@ -341,10 +368,13 @@ const updateBookingStatus = async (req, res) => {
   }
 
 };
-const cancelBooking = async (
-  req,
-  res
-) => {
+const cancelBooking = async (req, res) => {
+
+  console.log("========== CANCEL BOOKING HIT ==========");
+  console.log("Booking ID:", req.params.id);
+  console.log("User ID:", req.user.id);
+  console.log("========================================");
+
   try {
 
     const booking =
@@ -359,22 +389,27 @@ const cancelBooking = async (
       });
     }
 
+    console.log("BOOKING FOUND:", {
+      id: booking._id,
+      userId: booking.userId,
+      status: booking.status,
+    });
+
     if (
-  booking.status === "arrived" ||
-  booking.status === "in_progress" ||
-  booking.status === "completed" ||
-  booking.status === "cancelled"
-) {
-  return res.status(400).json({
-    success: false,
-    message:
-      "Booking cannot be cancelled now",
-  });
-}
+      booking.status === "arrived" ||
+      booking.status === "in_progress" ||
+      booking.status === "completed" ||
+      booking.status === "cancelled"
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Booking cannot be cancelled now",
+      });
+    }
 
-booking.status = "cancelled";
+    booking.status = "cancelled";
 
-await booking.save();
+    await booking.save();
 
 if (booking.porterId) {
 
@@ -393,6 +428,16 @@ if (booking.porterId) {
   );
 
 }
+// ==========================
+// Admin Notification
+// ==========================
+
+await Notification.create({
+  type: "alert",
+  title: "Booking Cancelled",
+  message: `${booking.trainName} booking has been cancelled.`,
+  referenceId: booking._id,
+});
 
 await Activity.create({
   userId: booking.userId,

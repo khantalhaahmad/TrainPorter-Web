@@ -40,69 +40,86 @@ const NotificationsPanel = ({
   notifications = [],
 }) => {
 
-  return (
+  /*
+   * Backend se latest notifications expected hain.
+   * Safety ke liye frontend par bhi latest 5 hi show karenge.
+   */
+  const latestNotifications = [...notifications]
+    .sort(
+      (a, b) =>
+        new Date(b.createdAt) -
+        new Date(a.createdAt)
+    )
+    .slice(0, 5);
 
+  return (
     <div className="tp-notification-card">
+
+      {/* ==========================
+          HEADER
+      ========================== */}
 
       <div className="tp-notification-header">
 
         <div>
 
           <h3>
-
             Notifications
-
           </h3>
 
           <p>
-
             Latest system updates
-
           </p>
 
         </div>
 
-        <button>
-
+        <button type="button">
           View All
-
         </button>
 
       </div>
 
+
+      {/* ==========================
+          NOTIFICATION LIST
+      ========================== */}
+
       <div className="tp-notification-list">
 
-        {notifications.length === 0 ? (
+        {latestNotifications.length === 0 ? (
 
           <div className="tp-notification-empty">
 
-            No Notifications
+            <Bell size={24} />
+
+            <span>
+              No Notifications
+            </span>
 
           </div>
 
         ) : (
 
-          notifications.map((item) => {
+          latestNotifications.map((item) => {
 
             const config =
-              notificationIcons[
-                item.type
-              ] ||
+              notificationIcons[item.type] ||
               notificationIcons.default;
 
-            const Icon =
-              config.icon;
+            const Icon = config.icon;
 
             return (
 
               <div
                 key={item._id}
                 className={`tp-notification-item ${
-                  item.isRead
-                    ? ""
-                    : "unread"
+                  item.isRead ? "" : "unread"
                 }`}
               >
+
+                {/* ==========================
+                    ICON
+                ========================== */}
 
                 <div
                   className="tp-notification-icon"
@@ -118,34 +135,52 @@ const NotificationsPanel = ({
 
                 </div>
 
+
+                {/* ==========================
+                    CONTENT
+                ========================== */}
+
                 <div className="tp-notification-content">
 
                   <h4>
-
                     {item.title}
-
                   </h4>
 
                   <p>
-
                     {item.message}
-
                   </p>
 
                   <span>
 
-                    {new Date(
-                      item.createdAt
-                    ).toLocaleString()}
+                    {item.createdAt
+                      ? new Date(
+                          item.createdAt
+                        ).toLocaleString(
+                          "en-IN",
+                          {
+                            day: "2-digit",
+                            month: "short",
+                            year: "numeric",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          }
+                        )
+                      : "Just now"}
 
                   </span>
 
                 </div>
 
+
+                {/* ==========================
+                    UNREAD INDICATOR
+                ========================== */}
+
                 {!item.isRead && (
 
                   <div
                     className="tp-notification-dot"
+                    title="Unread"
                   />
 
                 )}
@@ -161,9 +196,7 @@ const NotificationsPanel = ({
       </div>
 
     </div>
-
   );
-
 };
 
 export default NotificationsPanel;
