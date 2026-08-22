@@ -25,6 +25,9 @@ const Header = ({
   // Hide notification, message and profile actions when true
   hideActions = false,
 
+  // Compact header styling for dashboard
+  dashboardHeader = false,
+
   admin = {
     name: "Super Admin",
 
@@ -36,7 +39,13 @@ const Header = ({
 }) => {
 
   return (
-    <header className="tp-admin-header">
+    <header
+      className={`tp-admin-header ${
+        dashboardHeader
+          ? "tp-dashboard-header"
+          : ""
+      }`}
+    >
 
       {/* ==================================================
           LEFT SECTION
@@ -44,7 +53,9 @@ const Header = ({
 
       <div className="tp-admin-header-left">
 
-        {/* Mobile Menu */}
+        {/* ==================================================
+            MOBILE MENU
+        ================================================== */}
 
         <button
           type="button"
@@ -56,17 +67,27 @@ const Header = ({
         </button>
 
 
-        {/* Page Title */}
+        {/* ==================================================
+            PAGE TITLE
+        ================================================== */}
 
         {title && (
-          <div className="tp-admin-header-page-info">
+          <div
+            className={`tp-admin-header-page-info ${
+              dashboardHeader
+                ? "tp-dashboard-header-title"
+                : ""
+            }`}
+          >
 
             <h1 className="tp-admin-page-title">
               {title}
             </h1>
 
 
-            {/* Breadcrumb */}
+            {/* ==================================================
+                BREADCRUMB
+            ================================================== */}
 
             {breadcrumb && (
               <p className="tp-admin-breadcrumb">
@@ -88,7 +109,7 @@ const Header = ({
 
         {/* ==================================================
             SEARCH
-            Controlled through hideSearch
+            Hidden on dashboard when hideSearch = true
         ================================================== */}
 
         {!hideSearch && (
@@ -111,17 +132,17 @@ const Header = ({
 
         {/* ==================================================
             HEADER ACTIONS
-            Notification + Messages + Admin Profile
 
-            These are completely removed when:
-            hideActions === true
+            Notification
+            Messages
+            Admin Profile
         ================================================== */}
 
         {!hideActions && (
           <>
 
             {/* ==================================================
-                Notifications
+                NOTIFICATIONS
             ================================================== */}
 
             <button
@@ -143,7 +164,7 @@ const Header = ({
 
 
             {/* ==================================================
-                Messages
+                MESSAGES
             ================================================== */}
 
             <button
@@ -165,7 +186,7 @@ const Header = ({
 
 
             {/* ==================================================
-                Admin Profile
+                ADMIN PROFILE
             ================================================== */}
 
             <div className="tp-admin-profile">

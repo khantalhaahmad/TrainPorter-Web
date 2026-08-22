@@ -11,6 +11,7 @@ import {
 import "./DashboardCards.css";
 
 const DashboardCards = ({ stats }) => {
+
   const cards = [
     {
       title: "Total Users",
@@ -58,13 +59,17 @@ const DashboardCards = ({ stats }) => {
         const Icon = card.icon;
 
         return (
-
           <div
             key={card.title}
             className="tp-dashboard-card"
           >
 
-            <div className="tp-dashboard-card-top">
+            {/* ==========================================
+                ICON + TITLE
+                Same Row
+            ========================================== */}
+
+            <div className="tp-dashboard-card-header">
 
               <div
                 className="tp-dashboard-icon"
@@ -73,8 +78,31 @@ const DashboardCards = ({ stats }) => {
                   color: card.color,
                 }}
               >
-                <Icon size={24} />
+                <Icon size={21} />
               </div>
+
+              <p className="tp-dashboard-card-title">
+                {card.title}
+              </p>
+
+            </div>
+
+
+            {/* ==========================================
+                NUMBER + GROWTH
+                Vertical Layout
+            ========================================== */}
+
+            <div className="tp-dashboard-card-bottom">
+
+              {/* Number */}
+
+              <h2 className="tp-dashboard-card-value">
+                {card.value}
+              </h2>
+
+
+              {/* Percentage */}
 
               <div
                 className={`tp-dashboard-growth ${
@@ -83,32 +111,22 @@ const DashboardCards = ({ stats }) => {
                     : "negative"
                 }`}
               >
+
                 {card.trend === "up" ? (
-                  <TrendingUp size={16} />
+                  <TrendingUp size={13} />
                 ) : (
-                  <TrendingDown size={16} />
+                  <TrendingDown size={13} />
                 )}
 
-                {card.growth}
+                <span>
+                  {card.growth}
+                </span>
 
               </div>
 
             </div>
 
-            <h2>
-
-              {card.value}
-
-            </h2>
-
-            <p>
-
-              {card.title}
-
-            </p>
-
           </div>
-
         );
 
       })}

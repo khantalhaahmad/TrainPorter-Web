@@ -1,639 +1,825 @@
 /* ======================================================
    TrainPorter Admin Header
-   Part - 1
 ====================================================== */
 
-.tp-admin-header{
+.tp-admin-header {
 
-    width:100%;
+    width: 100%;
 
-    height:84px;
+    height: 84px;
 
-    background:#ffffff;
+    background: #ffffff;
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:space-between;
+    justify-content: space-between;
 
-    padding:0 32px;
+    padding: 0 32px;
 
-    border-bottom:1px solid #ececec;
+    border-bottom: 1px solid #ececec;
 
-    position:sticky;
+    position: sticky;
 
-    top:0;
+    top: 0;
 
-    z-index:500;
-
-}
-
-.tp-admin-header-left{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:22px;
-
-}
-
-.tp-admin-page-title{
-
-    margin:0;
-
-    font-size:28px;
-
-    font-weight:700;
-
-    color:#1d1d1f;
-
-}
-
-.tp-admin-breadcrumb{
-
-    margin-top:4px;
-
-    color:#8d9099;
-
-    font-size:14px;
-
-    font-weight:500;
-
-}
-
-.tp-admin-mobile-btn{
-
-    width:46px;
-
-    height:46px;
-
-    border:none;
-
-    border-radius:12px;
-
-    background:#f5f5f7;
-
-    display:none;
-
-    align-items:center;
-
-    justify-content:center;
-
-    cursor:pointer;
-
-    transition:.30s;
-
-}
-
-.tp-admin-mobile-btn:hover{
-
-    background:#ff7a00;
-
-    color:#ffffff;
+    z-index: 500;
 
 }
 
 
-/* ===============================
-        Right Section
-================================ */
+/* ======================================================
+   LEFT SECTION
+====================================================== */
 
-.tp-admin-header-right{
+.tp-admin-header-left {
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    flex:1;
+    gap: 22px;
 
-    gap:16px;
-
-}
-
-/* ===============================
-        Search
-================================ */
-
-.tp-admin-header-search{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:12px;
-
-    width:100%;
-
-    max-width:520px;
-
-    margin-right:auto;
-
-    background:#f5f6fa;
-
-    border:1px solid transparent;
-
-    border-radius:14px;
-
-    padding:13px 16px;
-
-    transition:.30s;
-
-}
-.tp-admin-header-search:hover{
-
-    border-color:#ffb15c;
+    min-width: 0;
 
 }
 
-.tp-admin-header-search:focus-within{
 
-    border-color:#ff7a00;
+/* ======================================================
+   PAGE TITLE
+====================================================== */
+
+.tp-admin-header-page-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+}
+
+.tp-admin-page-title {
+
+    margin: 0;
+
+    font-size: 28px;
+
+    font-weight: 700;
+
+    color: #1d1d1f;
+
+}
+
+.tp-admin-breadcrumb {
+
+    margin-top: 4px;
+
+    color: #8d9099;
+
+    font-size: 14px;
+
+    font-weight: 500;
+
+}
+
+
+/* ======================================================
+   MOBILE MENU
+====================================================== */
+
+.tp-admin-mobile-btn {
+
+    width: 46px;
+
+    height: 46px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: #f5f5f7;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: .30s;
+
+}
+
+.tp-admin-mobile-btn:hover {
+
+    background: #ff7a00;
+
+    color: #ffffff;
+
+}
+
+
+/* ======================================================
+   RIGHT SECTION
+====================================================== */
+
+.tp-admin-header-right {
+
+    display: flex;
+
+    align-items: center;
+
+    flex: 1;
+
+    gap: 16px;
+
+}
+
+
+/* ======================================================
+   SEARCH
+   Existing pages only
+====================================================== */
+
+.tp-admin-header-search {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+
+    max-width: 520px;
+
+    margin-right: auto;
+
+    background: #f5f6fa;
+
+    border: 1px solid transparent;
+
+    border-radius: 14px;
+
+    padding: 13px 16px;
+
+    transition: .30s;
+
+}
+
+.tp-admin-header-search:hover {
+
+    border-color: #ffb15c;
+
+}
+
+.tp-admin-header-search:focus-within {
+
+    border-color: #ff7a00;
 
     box-shadow:
-    0 0 0 4px
-    rgba(255,122,0,.12);
+        0 0 0 4px
+        rgba(255, 122, 0, .12);
 
 }
 
-.tp-admin-header-search svg{
+.tp-admin-header-search svg {
 
-    color:#8d9099;
-
-}
-
-.tp-admin-header-search input{
-
-    width:100%;
-
-    border:none;
-
-    background:transparent;
-
-    outline:none;
-
-    color:#2b2b2b;
-
-    font-size:14px;
-
-    font-weight:500;
+    color: #8d9099;
 
 }
 
-.tp-admin-header-search input::placeholder{
+.tp-admin-header-search input {
 
-    color:#9ea3b1;
+    width: 100%;
+
+    border: none;
+
+    background: transparent;
+
+    outline: none;
+
+    color: #2b2b2b;
+
+    font-size: 14px;
+
+    font-weight: 500;
 
 }
+
+.tp-admin-header-search input::placeholder {
+
+    color: #9ea3b1;
+
+}
+
+
 /* ======================================================
-        Notification & Message Buttons
+   NOTIFICATION / MESSAGE BUTTONS
 ====================================================== */
 
-.tp-admin-icon-btn{
+.tp-admin-icon-btn {
 
-    width:48px;
+    width: 48px;
 
-    height:48px;
+    height: 48px;
 
-    border:none;
+    border: none;
 
-    outline:none;
+    outline: none;
 
-    cursor:pointer;
+    cursor: pointer;
 
-    border-radius:14px;
+    border-radius: 14px;
 
-    background:#f5f6fa;
+    background: #f5f6fa;
 
-    display:flex;
+    display: flex;
 
-    align-items:center;
+    align-items: center;
 
-    justify-content:center;
+    justify-content: center;
 
-    position:relative;
+    position: relative;
 
-    transition:.30s ease;
-
-}
-
-.tp-admin-icon-btn svg{
-
-    color:#444;
-
-    transition:.30s ease;
+    transition: .30s ease;
 
 }
 
-.tp-admin-icon-btn:hover{
+.tp-admin-icon-btn svg {
 
-    background:#ff7a00;
+    color: #444;
 
-    transform:translateY(-2px);
+    transition: .30s ease;
+
+}
+
+.tp-admin-icon-btn:hover {
+
+    background: #ff7a00;
+
+    transform: translateY(-2px);
 
     box-shadow:
         0 14px 30px
-        rgba(255,122,0,.22);
+        rgba(255, 122, 0, .22);
 
 }
 
-.tp-admin-icon-btn:hover svg{
+.tp-admin-icon-btn:hover svg {
 
-    color:#ffffff;
-
-}
-
-
-/* =====================================
-            Notification Badge
-===================================== */
-
-.tp-admin-badge{
-
-    position:absolute;
-
-    top:-5px;
-
-    right:-5px;
-
-    width:22px;
-
-    height:22px;
-
-    border-radius:50%;
-
-    background:#ef4444;
-
-    color:#ffffff;
-
-    font-size:11px;
-
-    font-weight:700;
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
-    border:2px solid #ffffff;
+    color: #ffffff;
 
 }
 
 
-/* =====================================
-            Profile
-===================================== */
+/* ======================================================
+   NOTIFICATION BADGE
+====================================================== */
 
-.tp-admin-profile{
+.tp-admin-badge {
 
-    display:flex;
+    position: absolute;
 
-    align-items:center;
+    top: -5px;
 
-    gap:14px;
+    right: -5px;
 
-    padding:8px 12px;
+    width: 22px;
 
-    border-radius:16px;
+    height: 22px;
 
-    cursor:pointer;
+    border-radius: 50%;
 
-    transition:.30s ease;
+    background: #ef4444;
 
-}
+    color: #ffffff;
 
-.tp-admin-profile:hover{
+    font-size: 11px;
 
-    background:#f5f6fa;
+    font-weight: 700;
 
-}
+    display: flex;
 
-.tp-admin-profile img{
+    align-items: center;
 
-    width:52px;
+    justify-content: center;
 
-    height:52px;
-
-    object-fit:cover;
-
-    border-radius:50%;
-
-    border:3px solid #ff7a00;
-
-    flex-shrink:0;
-
-}
-
-.tp-admin-profile-info{
-
-    display:flex;
-
-    flex-direction:column;
-
-    line-height:1.2;
-
-}
-
-.tp-admin-profile-info h4{
-
-    margin:0;
-
-    font-size:16px;
-
-    font-weight:700;
-
-    color:#1f2937;
-
-}
-
-.tp-admin-profile-info span{
-
-    margin-top:4px;
-
-    font-size:13px;
-
-    font-weight:500;
-
-    color:#8d9099;
-
-}
-
-.tp-admin-profile svg{
-
-    color:#888;
-
-    transition:.30s ease;
-
-}
-
-.tp-admin-profile:hover svg{
-
-    transform:rotate(180deg);
+    border: 2px solid #ffffff;
 
 }
 
 
-/* =====================================
-            Divider
-===================================== */
+/* ======================================================
+   ADMIN PROFILE
+====================================================== */
 
-.tp-admin-header-divider{
+.tp-admin-profile {
 
-    width:1px;
+    display: flex;
 
-    height:34px;
+    align-items: center;
 
-    background:#ececec;
+    gap: 14px;
+
+    padding: 8px 12px;
+
+    border-radius: 16px;
+
+    cursor: pointer;
+
+    transition: .30s ease;
+
+}
+
+.tp-admin-profile:hover {
+
+    background: #f5f6fa;
 
 }
 
 
-/* =====================================
-            Focus States
-===================================== */
+/* ======================================================
+   PROFILE IMAGE
+====================================================== */
+
+.tp-admin-profile img {
+
+    width: 52px;
+
+    height: 52px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 3px solid #ff7a00;
+
+    flex-shrink: 0;
+
+}
+
+
+/* ======================================================
+   PROFILE INFO
+====================================================== */
+
+.tp-admin-profile-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    line-height: 1.2;
+
+}
+
+.tp-admin-profile-info h4 {
+
+    margin: 0;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    color: #1f2937;
+
+}
+
+.tp-admin-profile-info span {
+
+    margin-top: 4px;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    color: #8d9099;
+
+}
+
+.tp-admin-profile svg {
+
+    color: #888;
+
+    transition: .30s ease;
+
+}
+
+.tp-admin-profile:hover svg {
+
+    transform: rotate(180deg);
+
+}
+
+
+/* ======================================================
+   DASHBOARD ONLY
+   Compact header actions
+====================================================== */
+
+/*
+   Header.jsx:
+   dashboardHeader === true
+   adds:
+   .tp-dashboard-header
+*/
+
+.tp-dashboard-header
+.tp-admin-header-right {
+
+    gap: 9px;
+
+}
+
+
+/* Dashboard notification/message */
+
+.tp-dashboard-header
+.tp-admin-icon-btn {
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 10px;
+
+}
+
+
+/* Dashboard icons */
+
+.tp-dashboard-header
+.tp-admin-icon-btn svg {
+
+    width: 17px;
+
+    height: 17px;
+
+}
+
+
+/* Dashboard badge */
+
+.tp-dashboard-header
+.tp-admin-badge {
+
+    width: 16px;
+
+    height: 16px;
+
+    top: -4px;
+
+    right: -4px;
+
+    font-size: 8px;
+
+    border-width: 2px;
+
+}
+
+
+/* Dashboard profile */
+
+.tp-dashboard-header
+.tp-admin-profile {
+
+    gap: 9px;
+
+    padding: 5px 8px 5px 5px;
+
+    border-radius: 12px;
+
+    margin-left: 2px;
+
+}
+
+
+/* Dashboard avatar */
+
+.tp-dashboard-header
+.tp-admin-profile img {
+
+    width: 40px;
+
+    height: 40px;
+
+    border-width: 2px;
+
+}
+
+
+/* Dashboard admin name */
+
+.tp-dashboard-header
+.tp-admin-profile-info h4 {
+
+    font-size: 14px;
+
+}
+
+
+/* Dashboard admin role */
+
+.tp-dashboard-header
+.tp-admin-profile-info span {
+
+    margin-top: 3px;
+
+    font-size: 11px;
+
+}
+
+
+/* Dashboard chevron */
+
+.tp-dashboard-header
+.tp-admin-profile svg {
+
+    width: 15px;
+
+    height: 15px;
+
+}
+
+
+/* Dashboard title */
+
+.tp-dashboard-header
+.tp-admin-page-title {
+
+    font-size: 23px;
+
+    font-weight: 700;
+
+}
+
+
+/* ======================================================
+   FOCUS STATES
+====================================================== */
 
 .tp-admin-icon-btn:focus-visible,
 
 .tp-admin-profile:focus-visible,
 
-.tp-admin-mobile-btn:focus-visible{
+.tp-admin-mobile-btn:focus-visible {
 
-    outline:2px solid #ff7a00;
+    outline: 2px solid #ff7a00;
 
-    outline-offset:3px;
-
-}
-
-
-/* =====================================
-        Smooth Animation
-===================================== */
-
-.tp-admin-header *{
-
-    transition:.25s ease;
-
-}
-/* ======================================================
-        Responsive
-====================================================== */
-
-@media (max-width:1400px){
-
-    .tp-admin-header-search{
-
-        width:280px;
-
-    }
-
-}
-
-@media (max-width:1200px){
-
-    .tp-admin-header{
-
-        padding:0 22px;
-
-    }
-
-    .tp-admin-header-search{
-
-        width:220px;
-
-    }
-
-}
-
-@media (max-width:992px){
-
-    .tp-admin-mobile-btn{
-
-        display:flex;
-
-    }
-
-    .tp-admin-header{
-
-        padding:0 18px;
-
-        height:78px;
-
-    }
-
-    .tp-admin-header-search{
-
-        display:none;
-
-    }
-
-    .tp-admin-page-title{
-
-        font-size:24px;
-
-    }
-
-}
-
-@media (max-width:768px){
-
-    .tp-admin-header{
-
-        padding:0 16px;
-
-    }
-
-    .tp-admin-header-right{
-
-        gap:12px;
-
-    }
-
-    .tp-admin-profile{
-
-        padding:6px;
-
-    }
-
-    .tp-admin-profile img{
-
-        width:44px;
-
-        height:44px;
-
-    }
-
-    .tp-admin-profile-info{
-
-        display:none;
-
-    }
-
-    .tp-admin-profile svg{
-
-        display:none;
-
-    }
-
-}
-
-@media (max-width:576px){
-
-    .tp-admin-page-title{
-
-        font-size:20px;
-
-    }
-
-    .tp-admin-breadcrumb{
-
-        display:none;
-
-    }
-
-    .tp-admin-icon-btn{
-
-        width:42px;
-
-        height:42px;
-
-    }
-
-    .tp-admin-icon-btn svg{
-
-        width:18px;
-
-        height:18px;
-
-    }
-
-    .tp-admin-profile img{
-
-        width:40px;
-
-        height:40px;
-
-    }
+    outline-offset: 3px;
 
 }
 
 
 /* ======================================================
-        Hover Effects
+   HEADER TRANSITIONS
 ====================================================== */
 
-.tp-admin-header-search{
+.tp-admin-header * {
 
-    transition:
-        all .30s ease;
-
-}
-
-.tp-admin-profile{
-
-    transition:
-        all .30s ease;
-
-}
-
-.tp-admin-icon-btn{
-
-    transition:
-        all .30s ease;
-
-}
-
-.tp-admin-mobile-btn{
-
-    transition:
-        all .30s ease;
+    transition: .25s ease;
 
 }
 
 
 /* ======================================================
-        Scroll Shadow Ready
+   RESPONSIVE
 ====================================================== */
 
-.tp-admin-header.scrolled{
+@media (max-width: 1400px) {
+
+    .tp-admin-header-search {
+
+        width: 280px;
+
+    }
+
+}
+
+
+@media (max-width: 1200px) {
+
+    .tp-admin-header {
+
+        padding: 0 22px;
+
+    }
+
+    .tp-admin-header-search {
+
+        width: 220px;
+
+    }
+
+}
+
+
+@media (max-width: 992px) {
+
+    .tp-admin-mobile-btn {
+
+        display: flex;
+
+    }
+
+    .tp-admin-header {
+
+        padding: 0 18px;
+
+        height: 78px;
+
+    }
+
+    .tp-admin-header-search {
+
+        display: none;
+
+    }
+
+    .tp-admin-page-title {
+
+        font-size: 24px;
+
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .tp-admin-header {
+
+        padding: 0 16px;
+
+    }
+
+    .tp-admin-header-right {
+
+        gap: 8px;
+
+    }
+
+    .tp-admin-profile {
+
+        padding: 6px;
+
+    }
+
+    .tp-admin-profile img {
+
+        width: 44px;
+
+        height: 44px;
+
+    }
+
+    .tp-admin-profile-info {
+
+        display: none;
+
+    }
+
+    .tp-admin-profile svg {
+
+        display: none;
+
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .tp-admin-page-title {
+
+        font-size: 20px;
+
+    }
+
+    .tp-admin-breadcrumb {
+
+        display: none;
+
+    }
+
+    .tp-admin-icon-btn {
+
+        width: 42px;
+
+        height: 42px;
+
+    }
+
+    .tp-admin-icon-btn svg {
+
+        width: 18px;
+
+        height: 18px;
+
+    }
+
+    .tp-admin-profile img {
+
+        width: 40px;
+
+        height: 40px;
+
+    }
+
+}
+
+
+/* ======================================================
+   DASHBOARD RESPONSIVE
+====================================================== */
+
+@media (max-width: 768px) {
+
+    .tp-dashboard-header
+    .tp-admin-icon-btn {
+
+        width: 38px;
+
+        height: 38px;
+
+    }
+
+    .tp-dashboard-header
+    .tp-admin-profile img {
+
+        width: 38px;
+
+        height: 38px;
+
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .tp-dashboard-header
+    .tp-admin-icon-btn {
+
+        width: 36px;
+
+        height: 36px;
+
+    }
+
+    .tp-dashboard-header
+    .tp-admin-profile img {
+
+        width: 36px;
+
+        height: 36px;
+
+    }
+
+}
+
+
+/* ======================================================
+   SCROLL SHADOW
+====================================================== */
+
+.tp-admin-header.scrolled {
 
     box-shadow:
         0 12px 28px
-        rgba(0,0,0,.08);
+        rgba(0, 0, 0, .08);
 
 }
 
 
 /* ======================================================
-        Glass Effect Ready
+   GLASS EFFECT
 ====================================================== */
 
-.tp-admin-header.glass{
+.tp-admin-header.glass {
 
-    backdrop-filter:blur(16px);
+    backdrop-filter: blur(16px);
 
-    -webkit-backdrop-filter:blur(16px);
+    -webkit-backdrop-filter: blur(16px);
 
     background:
-        rgba(255,255,255,.88);
+        rgba(255, 255, 255, .88);
 
 }
 
 
 /* ======================================================
-        Selection
+   SELECTION
 ====================================================== */
 
-.tp-admin-header ::selection{
+.tp-admin-header ::selection {
 
-    background:#ff7a00;
+    background: #ff7a00;
 
-    color:#ffffff;
+    color: #ffffff;
 
 }
-
-
-/* ======================================================
-        End
-====================================================== */

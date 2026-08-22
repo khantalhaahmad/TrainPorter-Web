@@ -250,3 +250,121 @@
 .tp-admin-payment-content {
   padding-top: 0 !important;
 }
+/* ======================================================
+   HEADER RIGHT SECTION
+====================================================== */
+
+.tp-admin-header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    /* Push actions to extreme right */
+    margin-left: auto;
+
+    flex: 0 0 auto;
+}
+
+
+/* ======================================================
+   DASHBOARD HEADER
+====================================================== */
+
+.tp-dashboard-header .tp-admin-header-right {
+    margin-left: auto;
+}
+
+
+/* ======================================================
+   SMALL HEADER ACTIONS
+====================================================== */
+
+.tp-dashboard-header .tp-admin-icon-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+}
+
+.tp-dashboard-header .tp-admin-icon-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* ======================================================
+   SMALL BADGE
+====================================================== */
+
+.tp-dashboard-header .tp-admin-badge {
+    width: 18px;
+    height: 18px;
+
+    top: -4px;
+    right: -4px;
+
+    font-size: 9px;
+
+    border-width: 2px;
+}
+
+
+/* ======================================================
+   SMALL ADMIN PROFILE
+====================================================== */
+
+.tp-dashboard-header .tp-admin-profile {
+    gap: 9px;
+    padding: 5px 7px;
+}
+
+.tp-dashboard-header .tp-admin-profile img {
+    width: 42px;
+    height: 42px;
+    border-width: 2px;
+}
+
+.tp-dashboard-header .tp-admin-profile-info h4 {
+    font-size: 14px;
+}
+
+.tp-dashboard-header .tp-admin-profile-info span {
+    font-size: 11px;
+    margin-top: 2px;
+}
+
+.tp-dashboard-header .tp-admin-profile svg {
+    width: 15px;
+    height: 15px;
+}
+
+
+/* ======================================================
+   DASHBOARD HEADER LEFT
+====================================================== */
+
+.tp-dashboard-header .tp-admin-header-left {
+    flex: 0 0 auto;
+}
+
+
+/* ======================================================
+   RESPONSIVE
+====================================================== */
+
+@media (max-width: 768px) {
+
+    .tp-dashboard-header .tp-admin-header-right {
+        gap: 7px;
+    }
+
+    .tp-dashboard-header .tp-admin-icon-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .tp-dashboard-header .tp-admin-profile img {
+        width: 38px;
+        height: 38px;
+    }
+
+}

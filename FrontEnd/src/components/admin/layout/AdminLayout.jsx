@@ -13,14 +13,37 @@ const AdminLayout = () => {
 
   const location = useLocation();
 
-  const isUsersPage =
-  location.pathname === "/admin/users";
+  /* ==================================================
+      PAGE DETECTION
+  ================================================== */
 
-  /* ==========================================
-      Header Configuration
-  ========================================== */
+  const isDashboardPage =
+    location.pathname === "/admin" ||
+    location.pathname === "/admin/dashboard";
+
+  const isUsersPage =
+    location.pathname === "/admin/users";
+
+  const isPaymentPage =
+    location.pathname === "/admin/payments";
+
+
+  /* ==================================================
+      HEADER CONFIGURATION
+  ================================================== */
 
   const headerConfig = {
+
+    "/admin": {
+
+      title: "Dashboard",
+
+      breadcrumb: "",
+
+      searchPlaceholder:
+        "Search users, bookings...",
+
+    },
 
     "/admin/dashboard": {
 
@@ -112,6 +135,11 @@ const AdminLayout = () => {
 
   };
 
+
+  /* ==================================================
+      CURRENT HEADER
+  ================================================== */
+
   const currentHeader =
     headerConfig[location.pathname] || {
 
@@ -123,18 +151,18 @@ const AdminLayout = () => {
 
     };
 
-   const isPaymentPage =
-  location.pathname === "/admin/payments";
 
-
+  /* ==================================================
+      RETURN
+  ================================================== */
 
   return (
 
     <div className="tp-admin-layout">
 
-      {/* ==========================================
-          Sidebar
-      ========================================== */}
+      {/* ==================================================
+          SIDEBAR
+      ================================================== */}
 
       <aside className="tp-admin-sidebar-wrapper">
 
@@ -142,31 +170,70 @@ const AdminLayout = () => {
 
       </aside>
 
-      {/* ==========================================
-          Main
-      ========================================== */}
+
+      {/* ==================================================
+          MAIN WRAPPER
+      ================================================== */}
 
       <div className="tp-admin-main-wrapper">
-{!isPaymentPage && !isUsersPage && (
-  <Header
-    title={currentHeader.title}
-    breadcrumb={currentHeader.breadcrumb}
-    searchPlaceholder={
-      currentHeader.searchPlaceholder
-    }
-  />
-)}
-     <main
-  className={`tp-admin-content ${
-    isPaymentPage
-      ? "tp-admin-payment-content"
-      : ""
-  }`}
->
 
-  <Outlet />
 
-</main>
+        {/* ==================================================
+            HEADER
+
+            Dashboard:
+            /admin
+            /admin/dashboard
+
+            Search hidden
+            Dashboard title shown
+            Compact actions enabled
+        ================================================== */}
+
+        {!isPaymentPage && !isUsersPage && (
+
+          <Header
+
+            title={
+              currentHeader.title
+            }
+
+            breadcrumb={
+              currentHeader.breadcrumb
+            }
+
+            searchPlaceholder={
+              currentHeader.searchPlaceholder
+            }
+
+            hideSearch={
+              isDashboardPage
+            }
+
+            dashboardHeader={
+              isDashboardPage
+            }
+
+          />
+
+        )}
+
+
+        {/* ==================================================
+            CONTENT
+        ================================================== */}
+
+        <main
+          className={`tp-admin-content ${
+            isPaymentPage
+              ? "tp-admin-payment-content"
+              : ""
+          }`}
+        >
+
+          <Outlet />
+
+        </main>
 
       </div>
 

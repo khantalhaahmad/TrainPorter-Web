@@ -2,218 +2,274 @@
    TrainPorter Dashboard Cards
 ========================================================== */
 
-.tp-dashboard-cards{
+.tp-dashboard-cards {
+    display: grid;
 
-    display:grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
 
-    grid-template-columns:repeat(4,1fr);
+    gap: 24px;
 
-    gap:24px;
+    margin-bottom: 30px;
 
-    margin-bottom:30px;
-
+    width: 100%;
 }
 
-.tp-dashboard-card{
 
-    background:#ffffff;
+/* ==========================================================
+   CARD
+========================================================== */
 
-    border-radius:22px;
+.tp-dashboard-card {
+    background: #ffffff;
 
-    padding:26px;
+    border-radius: 18px;
 
-    position:relative;
+    padding: 18px 22px;
 
-    overflow:hidden;
+    position: relative;
 
-    transition:.35s ease;
+    overflow: hidden;
 
-    border:1px solid #ececec;
+    border: 1px solid #ececec;
 
     box-shadow:
-        0 12px 35px
-        rgba(0,0,0,.05);
+        0 8px 25px rgba(0, 0, 0, 0.045);
 
+    min-width: 0;
+
+    height: 165px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    transition: 0.3s ease;
 }
 
-.tp-dashboard-card:hover{
 
-    transform:translateY(-8px);
+/* Orange top border */
 
-    box-shadow:
-        0 18px 40px
-        rgba(0,0,0,.10);
+.tp-dashboard-card::before {
+    content: "";
 
-}
+    position: absolute;
 
-.tp-dashboard-card::before{
+    top: 0;
 
-    content:"";
+    left: 0;
 
-    position:absolute;
+    width: 100%;
 
-    top:0;
+    height: 4px;
 
-    left:0;
-
-    width:100%;
-
-    height:5px;
-
-    background:linear-gradient(
+    background: linear-gradient(
         90deg,
         #ff7a00,
         #ffb347
     );
-
 }
 
 
-/* ======================================
-        Top
-====================================== */
+/* Hover */
 
-.tp-dashboard-card-top{
+.tp-dashboard-card:hover {
+    transform: translateY(-3px);
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    margin-bottom:28px;
-
+    box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.08);
 }
 
 
-/* ======================================
-        Icon
-====================================== */
+/* ==========================================================
+   ICON + TITLE
+========================================================== */
 
-.tp-dashboard-icon{
+.tp-dashboard-card-header {
+    display: flex;
 
-    width:62px;
+    align-items: center;
 
-    height:62px;
+    justify-content: flex-start;
 
-    border-radius:18px;
+    gap: 12px;
 
-    display:flex;
-
-    align-items:center;
-
-    justify-content:center;
-
+    margin-bottom: 13px;
 }
 
 
-/* ======================================
-        Value
-====================================== */
+/* ==========================================================
+   ICON
+========================================================== */
 
-.tp-dashboard-card h2{
+.tp-dashboard-icon {
+    width: 46px;
 
-    margin:0;
+    height: 46px;
 
-    font-size:34px;
+    min-width: 46px;
 
-    font-weight:700;
+    border-radius: 14px;
 
-    color:#222;
+    display: flex;
 
-    margin-bottom:10px;
+    align-items: center;
 
+    justify-content: center;
 }
 
 
-/* ======================================
-        Label
-====================================== */
+/* ==========================================================
+   TITLE
+========================================================== */
 
-.tp-dashboard-card p{
+.tp-dashboard-card-title {
+    margin: 0;
 
-    margin:0;
+    color: #888;
 
-    color:#888;
+    font-size: 14px;
 
-    font-size:15px;
+    font-weight: 600;
 
-    font-weight:600;
-
+    line-height: 1.2;
 }
 
 
-/* ======================================
-        Growth
-====================================== */
+/* ==========================================================
+   NUMBER + GROWTH
+========================================================== */
 
-.tp-dashboard-growth{
+.tp-dashboard-card-bottom {
+    display: flex;
 
-    display:flex;
+    flex-direction: column;
 
-    align-items:center;
+    align-items: flex-start;
 
-    gap:6px;
+    gap: 6px;
 
-    padding:8px 12px;
-
-    border-radius:30px;
-
-    font-size:13px;
-
-    font-weight:700;
-
-}
-
-.tp-dashboard-growth.positive{
-
-    background:#ecfdf5;
-
-    color:#16a34a;
-
-}
-
-.tp-dashboard-growth.negative{
-
-    background:#fef2f2;
-
-    color:#dc2626;
-
+    margin: 0;
 }
 
 
-/* ======================================
-        Responsive
-====================================== */
+/* ==========================================================
+   NUMBER
+========================================================== */
 
-@media(max-width:1400px){
+.tp-dashboard-card-value {
+    margin: 0;
 
-    .tp-dashboard-cards{
+    color: #222;
 
-        grid-template-columns:repeat(2,1fr);
+    font-size: 30px;
 
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+
+/* ==========================================================
+   GROWTH / PERCENTAGE
+========================================================== */
+
+.tp-dashboard-growth {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    padding: 5px 8px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    white-space: nowrap;
+}
+
+
+/* Positive */
+
+.tp-dashboard-growth.positive {
+    background: #ecfdf5;
+
+    color: #16a34a;
+}
+
+
+/* Negative */
+
+.tp-dashboard-growth.negative {
+    background: #fef2f2;
+
+    color: #dc2626;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1400px) {
+
+    .tp-dashboard-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
 }
 
-@media(max-width:768px){
 
-    .tp-dashboard-cards{
+@media (max-width: 768px) {
 
-        grid-template-columns:1fr;
+    .tp-dashboard-cards {
+        grid-template-columns: 1fr;
 
+        gap: 16px;
     }
 
-    .tp-dashboard-card{
+    .tp-dashboard-card {
+        height: auto;
 
-        padding:22px;
+        min-height: 155px;
 
+        padding: 18px;
     }
 
-    .tp-dashboard-card h2{
+}
 
-        font-size:28px;
 
+@media (max-width: 576px) {
+
+    .tp-dashboard-card {
+        border-radius: 16px;
+
+        padding: 16px;
+    }
+
+    .tp-dashboard-icon {
+        width: 42px;
+
+        height: 42px;
+
+        min-width: 42px;
+
+        border-radius: 12px;
+    }
+
+    .tp-dashboard-card-title {
+        font-size: 13px;
+    }
+
+    .tp-dashboard-card-value {
+        font-size: 28px;
     }
 
 }
