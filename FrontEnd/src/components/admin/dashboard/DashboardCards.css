@@ -273,3 +273,1328 @@
     }
 
 }
+/* ==========================================================
+   TrainPorter Dashboard Cards
+========================================================== */
+
+.tp-dashboard-cards {
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 24px;
+
+    margin-bottom: 30px;
+
+    width: 100%;
+}
+
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.tp-dashboard-card {
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    padding: 18px 22px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid #ececec;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.045);
+
+    min-width: 0;
+
+    height: 165px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    transition: 0.3s ease;
+}
+
+
+/* Orange top border */
+
+.tp-dashboard-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 4px;
+
+    background: linear-gradient(
+        90deg,
+        #ff7a00,
+        #ffb347
+    );
+}
+
+
+/* Hover */
+
+.tp-dashboard-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.08);
+}
+
+
+/* ==========================================================
+   ICON + TITLE
+========================================================== */
+
+.tp-dashboard-card-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 13px;
+}
+
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.tp-dashboard-icon {
+    width: 46px;
+
+    height: 46px;
+
+    min-width: 46px;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.tp-dashboard-card-title {
+    margin: 0;
+
+    color: #888;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    line-height: 1.2;
+}
+
+
+/* ==========================================================
+   NUMBER + GROWTH
+========================================================== */
+
+.tp-dashboard-card-bottom {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 6px;
+
+    margin: 0;
+}
+
+
+/* ==========================================================
+   NUMBER
+========================================================== */
+
+.tp-dashboard-card-value {
+    margin: 0;
+
+    color: #222;
+
+    font-size: 30px;
+
+    font-weight: 700;
+
+    line-height: 1;
+}
+
+
+/* ==========================================================
+   GROWTH / PERCENTAGE
+========================================================== */
+
+.tp-dashboard-growth {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    padding: 5px 8px;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    white-space: nowrap;
+}
+
+
+/* Positive */
+
+.tp-dashboard-growth.positive {
+    background: #ecfdf5;
+
+    color: #16a34a;
+}
+
+
+/* Negative */
+
+.tp-dashboard-growth.negative {
+    background: #fef2f2;
+
+    color: #dc2626;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1400px) {
+
+    .tp-dashboard-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .tp-dashboard-cards {
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+    }
+
+    .tp-dashboard-card {
+        height: auto;
+
+        min-height: 155px;
+
+        padding: 18px;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .tp-dashboard-card {
+        border-radius: 16px;
+
+        padding: 16px;
+    }
+
+    .tp-dashboard-icon {
+        width: 42px;
+
+        height: 42px;
+
+        min-width: 42px;
+
+        border-radius: 12px;
+    }
+
+    .tp-dashboard-card-title {
+        font-size: 13px;
+    }
+
+    .tp-dashboard-card-value {
+        font-size: 28px;
+    }
+
+}
+.tp-dashboard-card-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.tp-dashboard-card-value {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+}
+.tp-dashboard-growth {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 8px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+}
+/* ==========================================================
+   TrainPorter - Dashboard Stats Cards
+   Reference-style compact cards
+========================================================== */
+
+.tp-dashboard-cards {
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+    width: 100%;
+
+    margin-bottom: 24px;
+}
+
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.tp-dashboard-card {
+    position: relative;
+
+    width: 100%;
+
+    height: 122px;
+
+    box-sizing: border-box;
+
+    padding: 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #edf0f5;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 2px 10px rgba(15, 23, 42, 0.025);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.tp-dashboard-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 18px rgba(15, 23, 42, 0.06);
+}
+
+
+/* ==========================================================
+   REMOVE OLD ORANGE TOP BAR
+========================================================== */
+
+.tp-dashboard-card::before {
+    display: none;
+}
+
+
+/* ==========================================================
+   ICON + TITLE
+========================================================== */
+
+.tp-dashboard-card-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: flex-start;
+
+    gap: 12px;
+
+    width: 100%;
+
+    margin: 0;
+
+    padding: 0;
+}
+
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.tp-dashboard-icon {
+    width: 58px;
+
+    height: 58px;
+
+    min-width: 58px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.tp-dashboard-icon svg {
+    width: 25px;
+
+    height: 25px;
+}
+
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.tp-dashboard-card-title {
+    margin: 3px 0 0 0;
+
+    padding: 0;
+
+    color: #263248;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================================
+   NUMBER + GROWTH
+   Starts exactly underneath the title
+========================================================== */
+
+.tp-dashboard-card-bottom {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: flex-start;
+
+    gap: 5px;
+
+    margin-left: 70px;
+
+    margin-top: -35px;
+
+    padding: 0;
+}
+
+
+/* ==========================================================
+   NUMBER
+========================================================== */
+
+.tp-dashboard-card-value {
+    margin: 0;
+
+    padding: 0;
+
+    color: #172033;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    line-height: 1.1;
+}
+
+
+/* ==========================================================
+   GROWTH
+========================================================== */
+
+.tp-dashboard-growth {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    width: fit-content;
+
+    padding: 0;
+
+    margin: 0;
+
+    background: transparent;
+
+    border-radius: 0;
+
+    font-size: 10px;
+
+    font-weight: 500;
+
+    line-height: 1.2;
+
+    white-space: nowrap;
+}
+
+
+.tp-dashboard-growth svg {
+    width: 11px;
+
+    height: 11px;
+}
+
+
+/* Positive */
+
+.tp-dashboard-growth.positive {
+    color: #16a34a;
+
+    background: transparent;
+}
+
+
+/* Negative */
+
+.tp-dashboard-growth.negative {
+    color: #ef4444;
+
+    background: transparent;
+}
+
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 1400px) {
+
+    .tp-dashboard-cards {
+        gap: 16px;
+    }
+
+    .tp-dashboard-card {
+        padding: 16px;
+    }
+
+    .tp-dashboard-icon {
+        width: 54px;
+
+        height: 54px;
+
+        min-width: 54px;
+    }
+
+    .tp-dashboard-card-bottom {
+        margin-left: 66px;
+    }
+}
+
+
+@media (max-width: 1100px) {
+
+    .tp-dashboard-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .tp-dashboard-cards {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .tp-dashboard-card {
+        height: 120px;
+    }
+
+}
+/* ==========================================================
+   TrainPorter Dashboard Stats
+========================================================== */
+
+.tp-dashboard-cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.tp-dashboard-card {
+
+    min-width: 0;
+
+    height: 112px;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    padding: 18px;
+
+    border: 1px solid #ececec;
+
+    box-shadow:
+        0 5px 18px
+        rgba(0, 0, 0, 0.04);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    transition: 0.25s ease;
+
+}
+
+
+/* ==========================================================
+   TOP ORANGE LINE
+========================================================== */
+
+.tp-dashboard-card::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 3px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff7a00,
+            #ffb347
+        );
+
+}
+
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.tp-dashboard-icon {
+
+    width: 52px;
+
+    height: 52px;
+
+    min-width: 52px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.tp-dashboard-card-header {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    gap: 2px;
+
+    flex: 1;
+
+    min-width: 0;
+
+}
+
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.tp-dashboard-card-title {
+
+    margin: 0;
+
+    font-size: 13px;
+
+    line-height: 1.2;
+
+    font-weight: 600;
+
+    color: #374151;
+
+    white-space: nowrap;
+
+}
+
+
+/* ==========================================================
+   VALUE + GROWTH
+========================================================== */
+
+.tp-dashboard-card-bottom {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 3px;
+
+}
+
+
+/* ==========================================================
+   VALUE
+========================================================== */
+
+.tp-dashboard-card-value {
+
+    margin: 0;
+
+    font-size: 24px;
+
+    line-height: 1.05;
+
+    font-weight: 700;
+
+    color: #111827;
+
+}
+
+
+/* ==========================================================
+   GROWTH
+========================================================== */
+
+.tp-dashboard-growth {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    font-size: 11px;
+
+    line-height: 1;
+
+    font-weight: 600;
+
+    padding: 0;
+
+    background: transparent !important;
+
+}
+
+
+/* POSITIVE */
+
+.tp-dashboard-growth.positive {
+
+    color: #16a34a;
+
+}
+
+
+/* NEGATIVE */
+
+.tp-dashboard-growth.negative {
+
+    color: #dc2626;
+
+}
+
+
+/* ==========================================================
+   HOVER
+========================================================== */
+
+.tp-dashboard-card:hover {
+
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 10px 25px
+        rgba(0, 0, 0, 0.07);
+
+}
+
+
+/* ==========================================================
+   1200px
+========================================================== */
+
+@media (max-width: 1200px) {
+
+    .tp-dashboard-cards {
+
+        gap: 14px;
+
+    }
+
+    .tp-dashboard-card {
+
+        padding: 14px;
+
+        height: 104px;
+
+        gap: 10px;
+
+    }
+
+    .tp-dashboard-icon {
+
+        width: 46px;
+
+        height: 46px;
+
+        min-width: 46px;
+
+    }
+
+    .tp-dashboard-card-value {
+
+        font-size: 22px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   992px
+========================================================== */
+
+@media (max-width: 992px) {
+
+    .tp-dashboard-cards {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+}
+
+
+/* ==========================================================
+   576px
+========================================================== */
+
+@media (max-width: 576px) {
+
+    .tp-dashboard-cards {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+/* ==========================================================
+   DASHBOARD STATS CARDS
+========================================================== */
+
+.tp-dashboard-cards {
+    display: grid;
+
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+    gap: 18px;
+
+    width: 100%;
+}
+
+
+/* ==========================================================
+   CARD
+========================================================== */
+
+.tp-dashboard-card {
+    position: relative;
+
+    width: 100%;
+    height: 112px;
+
+    box-sizing: border-box;
+
+    display: grid;
+
+    grid-template-columns: 58px minmax(0, 1fr);
+
+    grid-template-rows: auto auto;
+
+    column-gap: 14px;
+
+    align-content: center;
+
+    padding: 16px 18px;
+
+    background: #ffffff;
+
+    border: 1px solid #ececec;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.04);
+
+    overflow: hidden;
+
+    transition: 0.25s ease;
+}
+
+
+/* ==========================================================
+   TOP ORANGE LINE
+========================================================== */
+
+.tp-dashboard-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: linear-gradient(
+        90deg,
+        #ff7a00,
+        #ffb347
+    );
+}
+
+
+/* ==========================================================
+   HEADER
+   Icon + Title
+========================================================== */
+
+.tp-dashboard-card-header {
+    display: contents;
+}
+
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.tp-dashboard-icon {
+    grid-column: 1;
+    grid-row: 1 / 3;
+
+    width: 52px;
+    height: 52px;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    align-self: center;
+
+    flex-shrink: 0;
+}
+
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.tp-dashboard-card-title {
+    grid-column: 2;
+    grid-row: 1;
+
+    margin: 0;
+
+    align-self: end;
+
+    font-size: 13px;
+
+    line-height: 1.2;
+
+    font-weight: 600;
+
+    color: #374151;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* ==========================================================
+   VALUE + GROWTH
+========================================================== */
+
+.tp-dashboard-card-bottom {
+    grid-column: 2;
+    grid-row: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: flex-start;
+
+    gap: 3px;
+
+    min-width: 0;
+
+    margin-top: 2px;
+}
+
+
+/* ==========================================================
+   NUMBER
+========================================================== */
+
+.tp-dashboard-card-value {
+    margin: 0;
+
+    font-size: 24px;
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    color: #111827;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================================
+   GROWTH
+========================================================== */
+
+.tp-dashboard-growth {
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    padding: 0;
+
+    margin: 0;
+
+    background: transparent !important;
+
+    border-radius: 0;
+
+    font-size: 11px;
+
+    line-height: 1;
+
+    font-weight: 600;
+}
+
+
+.tp-dashboard-growth.positive {
+    color: #16a34a;
+}
+
+
+.tp-dashboard-growth.negative {
+    color: #dc2626;
+}
+
+
+/* ==========================================================
+   HOVER
+========================================================== */
+
+.tp-dashboard-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 24px rgba(0, 0, 0, 0.07);
+}
+
+
+/* ==========================================================
+   1200px
+========================================================== */
+
+@media (max-width: 1200px) {
+
+    .tp-dashboard-cards {
+        gap: 14px;
+    }
+
+    .tp-dashboard-card {
+        height: 105px;
+
+        grid-template-columns: 48px minmax(0, 1fr);
+
+        column-gap: 10px;
+
+        padding: 14px;
+    }
+
+    .tp-dashboard-icon {
+        width: 44px;
+        height: 44px;
+    }
+
+    .tp-dashboard-card-value {
+        font-size: 22px;
+    }
+
+}
+
+
+/* ==========================================================
+   992px
+========================================================== */
+
+@media (max-width: 992px) {
+
+    .tp-dashboard-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+/* ==========================================================
+   576px
+========================================================== */
+
+@media (max-width: 576px) {
+
+    .tp-dashboard-cards {
+        grid-template-columns: 1fr;
+    }
+
+}
+.tp-dashboard-card {
+    height: 124px;
+
+    grid-template-columns: 58px minmax(0, 1fr);
+
+    column-gap: 10px;
+
+    padding: 16px 18px;
+}
+.tp-dashboard-card-bottom {
+    grid-column: 2;
+    grid-row: 2;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 4px;
+
+    min-width: 0;
+
+    margin-top: 2px;
+
+    /* move value/growth slightly left */
+    transform: translateX(-70px);
+}
+.tp-dashboard-icon {
+    width: 46px;
+    height: 46px;
+
+    min-width: 46px;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    align-self: center;
+
+    flex-shrink: 0;
+}
+
+.tp-dashboard-icon svg {
+    width: 19px;
+    height: 19px;
+}
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.tp-dashboard-card-title {
+    grid-column: 2;
+    grid-row: 1;
+
+    margin: 0;
+
+    /* title slightly left */
+    transform: translateX(-15px);
+
+    align-self: end;
+
+    font-size: 13px;
+    line-height: 1.2;
+    font-weight: 600;
+
+    color: #374151;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* ==========================================================
+   NUMBER + GROWTH
+========================================================== */
+
+.tp-dashboard-card-bottom {
+    grid-column: 2;
+    grid-row: 2;
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 9px;
+
+    min-width: 0;
+
+    margin-top: 3px;
+
+    /* number + percentage slightly right */
+    padding-left: -16px;
+}
+
+
+/* ==========================================================
+   NUMBER
+========================================================== */
+
+.tp-dashboard-card-value {
+    margin: 0;
+
+    font-size: 24px;
+    line-height: 1;
+
+    font-weight: 700;
+
+    color: #111827;
+
+    white-space: nowrap;
+}
+
+
+/* ==========================================================
+   PERCENTAGE
+========================================================== */
+
+.tp-dashboard-growth {
+    display: flex;
+
+    align-items: center;
+
+    gap: 4px;
+
+    padding: 2px 0;
+
+    margin: 0;
+
+    background: transparent !important;
+
+    font-size: 11px;
+
+    line-height: 1;
+
+    font-weight: 600;
+}

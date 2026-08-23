@@ -1,0 +1,624 @@
+/* ==========================================================
+   DASHBOARD TOP
+   Stats + Pending Actions
+========================================================== */
+
+.tp-dashboard-top-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        300px;
+
+    gap: 20px;
+
+    align-items: stretch;
+
+    margin-bottom: 24px;
+
+}
+
+
+/* ==========================================================
+   STATS SECTION
+========================================================== */
+
+.tp-dashboard-stats-section {
+
+    min-width: 0;
+
+}
+
+
+/* ==========================================================
+   MAIN DASHBOARD
+========================================================== */
+
+.tp-dashboard-main-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        300px;
+
+    gap: 20px;
+
+    align-items: start;
+
+}
+
+
+/* ==========================================================
+   LEFT CONTENT
+========================================================== */
+
+.tp-dashboard-main-content {
+
+    min-width: 0;
+
+}
+
+
+/* ==========================================================
+   ANALYTICS
+========================================================== */
+
+.tp-dashboard-analytics-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 2fr)
+        minmax(220px, 0.85fr);
+
+    gap: 20px;
+
+}
+
+
+/* ==========================================================
+   TWO COLUMN SECTIONS
+========================================================== */
+
+.tp-dashboard-two-column {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 20px;
+
+    margin-top: 20px;
+
+}
+
+
+/* ==========================================================
+   SINGLE COLUMN
+========================================================== */
+
+.tp-dashboard-single-column {
+
+    margin-top: 20px;
+
+}
+
+
+/* ==========================================================
+   RIGHT SIDEBAR
+========================================================== */
+
+.tp-dashboard-right-sidebar {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+    min-width: 0;
+
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 1200px) {
+
+    .tp-dashboard-top-layout {
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            280px;
+
+        gap: 18px;
+
+    }
+
+    .tp-dashboard-main-layout {
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            280px;
+
+        gap: 18px;
+
+    }
+
+    .tp-dashboard-analytics-grid {
+
+        grid-template-columns:
+            minmax(0, 1.7fr)
+            minmax(210px, 1fr);
+
+        gap: 18px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL DESKTOP / TABLET
+========================================================== */
+
+@media (max-width: 992px) {
+
+    .tp-dashboard-top-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .tp-dashboard-main-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .tp-dashboard-right-sidebar {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 18px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .tp-dashboard-analytics-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .tp-dashboard-two-column {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .tp-dashboard-right-sidebar {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+/* ==========================================================
+   MAIN DASHBOARD LAYOUT
+========================================================== */
+
+.tp-dashboard-layout {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        320px;
+
+    gap: 20px;
+
+    align-items: start;
+
+}
+
+
+/* ==========================================================
+   LEFT COLUMN
+========================================================== */
+
+.tp-dashboard-left {
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+/* ==========================================================
+   STATS
+========================================================== */
+
+.tp-dashboard-stats-section {
+
+    width: 100%;
+
+    min-width: 0;
+
+}
+
+
+/* ==========================================================
+   ANALYTICS
+========================================================== */
+
+.tp-dashboard-analytics-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.65fr)
+        minmax(230px, 0.85fr);
+
+    gap: 20px;
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   BOOKING + REVENUE COMPACT
+========================================================== */
+
+.tp-dashboard-analytics-grid
+.tp-booking-chart-card,
+
+.tp-dashboard-analytics-grid
+.tp-revenue-card {
+
+    height: 330px;
+
+    min-height: 330px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+}
+
+
+/* ==========================================================
+   TWO COLUMN
+========================================================== */
+
+.tp-dashboard-two-column {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 20px;
+
+}
+
+
+/* ==========================================================
+   SINGLE COLUMN
+========================================================== */
+
+.tp-dashboard-single-column {
+
+    width: 100%;
+
+}
+
+
+/* ==========================================================
+   RIGHT SIDEBAR
+========================================================== */
+
+.tp-dashboard-right-sidebar {
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+
+}
+
+
+/* ==========================================================
+   PENDING ACTIONS COMPACT
+========================================================== */
+
+.tp-dashboard-right-sidebar
+.tp-pending-card {
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+}
+
+
+/* Header */
+
+.tp-dashboard-right-sidebar
+.tp-pending-header {
+
+    margin-bottom: 16px;
+
+}
+
+.tp-dashboard-right-sidebar
+.tp-pending-header h3 {
+
+    font-size: 20px;
+
+}
+
+.tp-dashboard-right-sidebar
+.tp-pending-header p {
+
+    margin-top: 4px;
+
+    font-size: 13px;
+
+}
+
+
+/* Items */
+
+.tp-dashboard-right-sidebar
+.tp-pending-list {
+
+    gap: 10px;
+
+}
+
+.tp-dashboard-right-sidebar
+.tp-pending-item {
+
+    padding: 12px;
+
+    gap: 10px;
+
+    border-radius: 14px;
+
+}
+
+
+/* Icons */
+
+.tp-dashboard-right-sidebar
+.tp-pending-icon {
+
+    width: 42px;
+
+    height: 42px;
+
+    border-radius: 12px;
+
+}
+
+.tp-dashboard-right-sidebar
+.tp-pending-icon svg {
+
+    width: 18px;
+
+    height: 18px;
+
+}
+
+
+/* Content */
+
+.tp-dashboard-right-sidebar
+.tp-pending-content h4 {
+
+    font-size: 14px;
+
+    line-height: 1.15;
+
+}
+
+.tp-dashboard-right-sidebar
+.tp-pending-content span {
+
+    margin-top: 3px;
+
+    font-size: 11px;
+
+}
+
+
+/* Buttons */
+
+.tp-dashboard-right-sidebar
+.tp-pending-item button {
+
+    padding: 8px 11px;
+
+    border-radius: 10px;
+
+    font-size: 11px;
+
+    gap: 5px;
+
+}
+
+.tp-dashboard-right-sidebar
+.tp-pending-item button svg {
+
+    width: 13px;
+
+    height: 13px;
+
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 1200px) {
+
+    .tp-dashboard-layout {
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            290px;
+
+        gap: 18px;
+
+    }
+
+    .tp-dashboard-analytics-grid {
+
+        grid-template-columns:
+            minmax(0, 1.5fr)
+            minmax(210px, 0.85fr);
+
+        gap: 18px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL DESKTOP / TABLET
+========================================================== */
+
+@media (max-width: 992px) {
+
+    .tp-dashboard-layout {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .tp-dashboard-right-sidebar {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 18px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .tp-dashboard-analytics-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .tp-dashboard-two-column {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .tp-dashboard-right-sidebar {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width: 576px) {
+
+    .tp-dashboard-analytics-grid
+    .tp-booking-chart-card,
+
+    .tp-dashboard-analytics-grid
+    .tp-revenue-card {
+
+        height: auto;
+
+        min-height: 300px;
+
+    }
+
+}
+/* ==========================================================
+   RECENT BOOKINGS - FULL MAIN CONTENT WIDTH
+========================================================== */
+
+.tp-dashboard-left
+.tp-dashboard-single-column {
+    width: 100% !important;
+    min-width: 0 !important;
+    align-self: stretch !important;
+    flex: 0 0 100% !important;
+}
+
+.tp-dashboard-left
+.tp-dashboard-single-column
+.tp-bookings-card {
+    width: 100% !important;
+    max-width: none !important;
+    min-width: 0 !important;
+    box-sizing: border-box;
+}
+
+.tp-dashboard-left
+.tp-dashboard-single-column
+.tp-bookings-table-wrapper {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+.tp-dashboard-left
+.tp-dashboard-single-column
+.tp-bookings-table {
+    width: 100% !important;
+    min-width: 0 !important;
+}

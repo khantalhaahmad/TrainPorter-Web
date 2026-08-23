@@ -245,3 +245,262 @@
     }
 
 }
+/* ==========================================================
+   PENDING ACTIONS
+========================================================== */
+
+.tp-pending-card {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    background: #ffffff;
+
+    border: 1px solid #ececec;
+
+    border-radius: 16px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 5px 18px rgba(0, 0, 0, 0.04);
+
+    transition: 0.25s ease;
+
+    overflow: hidden;
+}
+
+
+/* ==========================================================
+   HEADER
+========================================================== */
+
+.tp-pending-header {
+    margin-bottom: 14px;
+}
+
+
+.tp-pending-header h3 {
+    margin: 0;
+
+    font-size: 19px;
+
+    line-height: 1.2;
+
+    font-weight: 700;
+
+    color: #1f2937;
+}
+
+
+.tp-pending-header p {
+    margin: 5px 0 0;
+
+    font-size: 12px;
+
+    line-height: 1.3;
+
+    color: #8d9099;
+}
+
+
+/* ==========================================================
+   LIST
+========================================================== */
+
+.tp-pending-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+/* ==========================================================
+   ITEM
+========================================================== */
+
+.tp-pending-item {
+    min-height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 9px 10px;
+
+    box-sizing: border-box;
+
+    background: #fafbfc;
+
+    border: 1px solid transparent;
+
+    border-radius: 12px;
+
+    transition: 0.2s ease;
+}
+
+
+.tp-pending-item:hover {
+    background: #ffffff;
+
+    border-color: #ececec;
+
+    transform: translateX(2px);
+}
+
+
+/* ==========================================================
+   ICON
+========================================================== */
+
+.tp-pending-icon {
+    width: 38px;
+    height: 38px;
+
+    min-width: 38px;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.tp-pending-icon svg {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* ==========================================================
+   CONTENT
+========================================================== */
+
+.tp-pending-content {
+    flex: 1;
+
+    min-width: 0;
+}
+
+
+.tp-pending-content h4 {
+    margin: 0;
+
+    font-size: 13px;
+
+    line-height: 1.15;
+
+    font-weight: 700;
+
+    color: #1f2937;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+.tp-pending-content span {
+    display: block;
+
+    margin-top: 3px;
+
+    font-size: 11px;
+
+    line-height: 1;
+
+    color: #8d9099;
+}
+
+
+/* ==========================================================
+   BUTTON
+========================================================== */
+
+.tp-pending-item button {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    outline: none;
+
+    cursor: pointer;
+
+    background: #fff4eb;
+
+    color: #ff7a00;
+
+    padding: 8px 10px;
+
+    border-radius: 9px;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    transition: 0.2s ease;
+}
+
+
+.tp-pending-item button svg {
+    width: 13px;
+    height: 13px;
+}
+
+
+.tp-pending-item button:hover {
+    background: #ff7a00;
+
+    color: #ffffff;
+}
+
+
+/* ==========================================================
+   HOVER CARD
+========================================================== */
+
+.tp-pending-card:hover {
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.07);
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 992px) {
+
+    .tp-pending-card {
+        padding: 16px;
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 768px) {
+
+    .tp-pending-item {
+        min-height: 58px;
+    }
+
+}

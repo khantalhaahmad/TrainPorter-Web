@@ -102,15 +102,7 @@ const TopStations = ({
                   </div>
 
 
-                  {/* Station Icon */}
-
-                  <div className="tp-station-icon">
-
-                    <TrainFront size={20} />
-
-                  </div>
-
-
+              
                   {/* Station Information */}
 
                   <div className="tp-station-content">

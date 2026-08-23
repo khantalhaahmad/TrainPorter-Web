@@ -83,11 +83,10 @@ const RevenueChart = ({ data = [] }) => {
         </div>
 
       </div>
-
-      <ResponsiveContainer
-        width="100%"
-        height={250}
-      >
+<ResponsiveContainer
+  width="100%"
+  height={150}
+>
 
         <AreaChart
           data={chartData}

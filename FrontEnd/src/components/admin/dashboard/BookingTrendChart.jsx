@@ -58,10 +58,10 @@ const BookingTrendChart = ({ data = [] }) => {
 
       </div>
 
-      <ResponsiveContainer
-        width="100%"
-        height={320}
-      >
+     <ResponsiveContainer
+  width="100%"
+  height={220}
+>
 
         <AreaChart
           data={chartData}

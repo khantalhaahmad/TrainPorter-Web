@@ -11,12 +11,13 @@ import SystemStatus from "../../components/admin/dashboard/SystemStatus";
 import TopStations from "../../components/admin/dashboard/TopStations";
 import TopPorters from "../../components/admin/dashboard/TopPorters";
 
+import "../../components/admin/dashboard/AdminDashboardPage.css";
+
 import { getDashboard } from "../../services/adminService";
 
 const AdminDashboardPage = () => {
 
   const [dashboardData, setDashboardData] = useState(null);
-
   const [loading, setLoading] = useState(true);
 
   const fetchDashboard = async () => {
@@ -25,25 +26,27 @@ const AdminDashboardPage = () => {
 
       const response = await getDashboard();
 
-console.log(
-  "========== DASHBOARD RESPONSE =========="
-);
+      console.log(
+        "========== DASHBOARD RESPONSE =========="
+      );
 
-console.log("FULL RESPONSE:", response);
-console.log("RESPONSE DATA:", response.data);
-console.log(
-  "NOTIFICATIONS:",
-  response.data?.notifications
-);
+      console.log("FULL RESPONSE:", response);
+      console.log("RESPONSE DATA:", response.data);
 
-console.log(
-  "NOTIFICATION COUNT:",
-  response.data?.notifications?.length
-);
+      console.log(
+        "NOTIFICATIONS:",
+        response.data?.notifications
+      );
 
-console.log("========================================");
+      console.log(
+        "NOTIFICATION COUNT:",
+        response.data?.notifications?.length
+      );
 
-setDashboardData(response.data);
+      console.log("========================================");
+
+      setDashboardData(response.data);
+
     } catch (error) {
 
       console.error(error);
@@ -65,13 +68,9 @@ setDashboardData(response.data);
   if (loading) {
 
     return (
-
       <div className="tp-admin-page">
-
         Loading Dashboard...
-
       </div>
-
     );
 
   }
@@ -80,128 +79,82 @@ setDashboardData(response.data);
 
     <div className="tp-admin-page">
 
-      {/* ==========================================
-            DASHBOARD CARDS
-      ========================================== */}
+      {/* ==================================================
+          DASHBOARD LAYOUT
+      ================================================== */}
 
-      <DashboardCards
-        stats={dashboardData?.stats}
-      />
+      <div className="tp-dashboard-layout">
+
+        {/* ==================================================
+            LEFT MAIN COLUMN
+        ================================================== */}
+
+        <div className="tp-dashboard-left">
+
+          {/* ==========================
+              STATS CARDS
+          ========================== */}
+
+          <div className="tp-dashboard-stats-section">
+
+            <DashboardCards
+              stats={dashboardData?.stats}
+            />
+
+          </div>
 
 
-      {/* ==========================================
-            MAIN DASHBOARD GRID
-      ========================================== */}
+          {/* ==========================
+              BOOKING + REVENUE
+          ========================== */}
 
-      <div
-        className="tp-admin-grid"
-        style={{
-          display: "grid",
-          gridTemplateColumns: "2fr 1fr",
-          gap: "28px",
-          marginTop: "28px",
-          alignItems: "start",
-        }}
-      >
-
-        {/* ==========================================
-              LEFT MAIN COLUMN
-        ========================================== */}
-
-        <div>
-
-          {/* ==========================================
-                BOOKING + REVENUE ANALYTICS
-          ========================================== */}
-
-          <div
-            className="tp-admin-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "2fr 1fr",
-              gap: "28px",
-            }}
-          >
+          <div className="tp-dashboard-analytics-grid">
 
             <BookingTrendChart
-              data={dashboardData?.bookingTrend}
+              data={
+                dashboardData?.bookingTrend
+              }
             />
 
             <RevenueChart
-              data={dashboardData?.revenueTrend}
-            />
-
-          </div>
-
-
-          {/* ==========================================
-                BOOKING STATUS + TOP STATIONS
-          ========================================== */}
-
-          <div
-            className="tp-admin-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "28px",
-              marginTop: "28px",
-            }}
-          >
-
-            <BookingStatusChart
-              data={dashboardData?.bookingStatus}
-            />
-<TopStations
-  stations={dashboardData?.topStations}
-/>
-
-          </div>
-
-
-          {/* ==========================================
-                TOP RATED PORTERS + PENDING ACTIONS
-          ========================================== */}
-
-          <div
-            className="tp-admin-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "28px",
-              marginTop: "28px",
-            }}
-          >
-
-           <TopPorters
-  porters={dashboardData?.topPorters || []}
-/>
-
-            <PendingActions
               data={
-                dashboardData?.pendingActions
+                dashboardData?.revenueTrend
               }
             />
 
           </div>
 
 
-          {/* ==========================================
-                RECENT BOOKINGS
-          ========================================== */}
+          {/* ==========================
+              BOOKING STATUS + STATIONS
+          ========================== */}
 
-          <div
-            className="tp-admin-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr",
-              gap: "28px",
-              marginTop: "28px",
-            }}
-          >
+          <div className="tp-dashboard-two-column">
 
-            <RecentBookings
-              bookings={
-                dashboardData?.recentBookings
+            <BookingStatusChart
+              data={
+                dashboardData?.bookingStatus
+              }
+            />
+
+            <TopStations
+              stations={
+                dashboardData?.topStations
+              }
+            />
+
+          </div>
+
+
+          {/* ==========================
+              TOP PORTERS
+          ========================== */}
+
+          <div className="tp-dashboard-single-column">
+
+            <TopPorters
+              porters={
+                dashboardData?.topPorters || []
               }
             />
 
@@ -210,53 +163,43 @@ setDashboardData(response.data);
         </div>
 
 
-        {/* ==========================================
-              RIGHT SIDEBAR
-        ========================================== */}
+        {/* ==================================================
+            RIGHT SIDEBAR
+        ================================================== */}
 
-        <div>
+        <div className="tp-dashboard-right-sidebar">
 
-          {/* ==========================================
-                NOTIFICATIONS
-          ========================================== */}
+          {/* ==========================
+              PENDING ACTIONS
+          ========================== */}
 
-          <div
-            className="tp-admin-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr",
-              gap: "28px",
-            }}
-          >
-
-            <NotificationsPanel
-              notifications={
-                dashboardData?.notifications
-              }
-            />
-
-          </div>
+          <PendingActions
+            data={
+              dashboardData?.pendingActions
+            }
+          />
 
 
-          {/* ==========================================
-                SYSTEM STATUS
-          ========================================== */}
+          {/* ==========================
+              NOTIFICATIONS
+          ========================== */}
 
-          <div
-            className="tp-admin-grid"
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr",
-              gap: "28px",
-              marginTop: "28px",
-            }}
-          >
+          <NotificationsPanel
+            notifications={
+              dashboardData?.notifications
+            }
+          />
 
-        <SystemStatus
-  status={dashboardData?.systemStatus}
-/>
 
-          </div>
+          {/* ==========================
+              SYSTEM STATUS
+          ========================== */}
+
+          <SystemStatus
+            status={
+              dashboardData?.systemStatus
+            }
+          />
 
         </div>
 

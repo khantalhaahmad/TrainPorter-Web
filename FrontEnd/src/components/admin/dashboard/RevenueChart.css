@@ -241,3 +241,77 @@
     }
 
 }
+/* ==========================================================
+   COMPACT REVENUE CARD
+========================================================== */
+
+.tp-revenue-card {
+    padding: 20px;
+    border-radius: 18px;
+}
+
+.tp-revenue-header {
+    margin-bottom: 14px;
+}
+
+.tp-revenue-header h3 {
+    font-size: 20px;
+}
+
+.tp-revenue-header p {
+    margin-top: 4px;
+    font-size: 13px;
+}
+
+.tp-revenue-growth {
+    padding: 8px 11px;
+    gap: 6px;
+    font-size: 12px;
+}
+
+.tp-revenue-growth svg {
+    width: 16px;
+    height: 16px;
+}
+
+.tp-revenue-total {
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.tp-revenue-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+}
+
+.tp-revenue-icon svg {
+    width: 19px;
+    height: 19px;
+}
+
+.tp-revenue-total h2 {
+    font-size: 24px;
+}
+
+.tp-revenue-total span {
+    margin-top: 3px;
+    font-size: 12px;
+}
+
+.tp-revenue-card .recharts-cartesian-axis-tick-value {
+    font-size: 11px;
+}
+
+
+/* Compact card on desktop */
+
+@media (min-width: 993px) {
+
+    .tp-revenue-card {
+        min-height: 330px;
+        height: 330px;
+        overflow: hidden;
+    }
+
+}

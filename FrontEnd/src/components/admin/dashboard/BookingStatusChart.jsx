@@ -60,85 +60,122 @@ const BookingStatusChart = ({ data = {} }) => {
   return (
     <div className="tp-status-card">
 
+      {/* ================================
+          HEADER
+      ================================= */}
+
       <div className="tp-status-header">
 
         <div>
-
           <h3>Booking Status</h3>
 
-          <p>Current Booking Distribution</p>
-
+          <p>
+            Current Booking Distribution
+          </p>
         </div>
 
       </div>
 
-      <div className="tp-status-chart">
 
-        <ResponsiveContainer
-          width="100%"
-          height={260}
-        >
+      {/* ================================
+          CHART + LEGEND
+      ================================= */}
 
-          <PieChart>
+      <div className="tp-status-content">
 
-            <Pie
-              data={chartData}
-              innerRadius={70}
-              outerRadius={95}
-              dataKey="value"
-              paddingAngle={3}
-            >
+        {/* ==========================
+            DONUT
+        ========================== */}
 
-              {chartData.map((entry, index) => (
+        <div className="tp-status-chart-wrapper">
 
-                <Cell
-                  key={index}
-                  fill={COLORS[index]}
-                />
-
-              ))}
-
-            </Pie>
-
-            <Tooltip />
-
-          </PieChart>
-
-        </ResponsiveContainer>
-
-      </div>
-
-      <div className="tp-status-total">
-
-        <h2>{total}</h2>
-
-        <span>Total Bookings</span>
-
-      </div>
-
-      <div className="tp-status-legend">
-
-        {chartData.map((item, index) => (
-
-          <div
-            key={item.name}
-            className="tp-status-item"
+          <ResponsiveContainer
+            width="100%"
+            height="100%"
           >
 
-            <div
-              className="tp-status-color"
-              style={{
-                background: COLORS[index],
-              }}
-            />
+            <PieChart>
 
-            <span>{item.name}</span>
+              <Pie
+                data={chartData}
+                innerRadius={58}
+                outerRadius={78}
+                dataKey="value"
+                paddingAngle={2}
+                stroke="#ffffff"
+                strokeWidth={2}
+              >
 
-            <strong>{item.value}</strong>
+                {chartData.map((entry, index) => (
+
+                  <Cell
+                    key={index}
+                    fill={COLORS[index]}
+                  />
+
+                ))}
+
+              </Pie>
+
+              <Tooltip />
+
+            </PieChart>
+
+          </ResponsiveContainer>
+
+
+          {/* ==========================
+              CENTER VALUE
+          ========================== */}
+
+          <div className="tp-status-center">
+
+            <strong>
+              {total}
+            </strong>
+
+            <span>
+              Total
+            </span>
 
           </div>
 
-        ))}
+        </div>
+
+
+        {/* ================================
+            LEGEND
+        ================================= */}
+
+        <div className="tp-status-legend">
+
+          {chartData.map((item, index) => (
+
+            <div
+              key={item.name}
+              className="tp-status-item"
+            >
+
+              <div
+                className="tp-status-color"
+                style={{
+                  background: COLORS[index],
+                }}
+              />
+
+              <span>
+                {item.name}
+              </span>
+
+              <strong>
+                {item.value}
+              </strong>
+
+            </div>
+
+          ))}
+
+        </div>
 
       </div>
 
