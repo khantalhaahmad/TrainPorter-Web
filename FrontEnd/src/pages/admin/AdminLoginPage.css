@@ -1,278 +1,1257 @@
 /* ==========================================================
-   TrainPorter Admin Login
+   TRAINPORTER ADMIN LOGIN
+   Production Level UI
 ========================================================== */
 
-*{
-    box-sizing:border-box;
+* {
+    box-sizing: border-box;
 }
 
-.tp-admin-login{
 
-    min-height:100vh;
+/* ==========================================================
+   PAGE
+========================================================== */
 
-    display:flex;
+.tp-admin-login-page {
 
-    align-items:center;
+    min-height: 100vh;
+    width: 100%;
 
-    justify-content:center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    padding:40px;
+    padding: 24px;
 
     background:
-    linear-gradient(
-        135deg,
-        #fff7f0 0%,
-        #ffe6cf 40%,
-        #fffaf5 100%
-    );
+        radial-gradient(
+            circle at 10% 20%,
+            rgba(255, 122, 0, 0.08),
+            transparent 30%
+        ),
+        #f5f7fb;
 
 }
 
-/* ======================================
-        Login Card
-====================================== */
 
-.tp-admin-login-card{
+/* ==========================================================
+   MAIN SHELL
+========================================================== */
 
-    width:100%;
+.tp-admin-login-shell {
 
-    max-width:470px;
+    width: 100%;
+    max-width: 1280px;
 
-    background:#ffffff;
+    min-height: 650px;
 
-    border-radius:26px;
+    display: grid;
 
-    padding:45px;
+    grid-template-columns:
+        1fr
+        1fr;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border-radius: 24px;
 
     box-shadow:
-        0 25px 60px
-        rgba(0,0,0,.08);
-
-    border:1px solid #ececec;
+        0 30px 80px
+        rgba(15, 23, 42, 0.14);
 
 }
 
-/* ======================================
-        Header
-====================================== */
 
-.tp-admin-login-header{
+/* ==========================================================
+   LEFT VISUAL
+========================================================== */
 
-    text-align:center;
+.tp-admin-login-visual {
 
-    margin-bottom:40px;
+    position: relative;
 
-}
+    min-height: 650px;
 
-.tp-admin-login-header img{
+    overflow: hidden;
 
-    width:85px;
-
-    margin-bottom:18px;
+    background: #08101d;
 
 }
 
-.tp-admin-login-header h2{
 
-    margin:0;
+/* ==========================================================
+   BACKGROUND IMAGE
+========================================================== */
 
-    font-size:30px;
+.tp-admin-login-visual-image {
 
-    font-weight:700;
+    position: absolute;
 
-    color:#1f2937;
+    inset: 0;
 
-}
+    background-image:
+        url("/trainporter-admin-login-bg.png");
 
-.tp-admin-login-header p{
+    background-size: cover;
 
-    margin-top:10px;
+    background-position: center;
 
-    color:#8d9099;
-
-    font-size:15px;
-
-}
-
-/* ======================================
-        Input
-====================================== */
-
-.tp-admin-input{
-
-    display:flex;
-
-    align-items:center;
-
-    gap:14px;
-
-    background:#f8fafc;
-
-    border:1px solid #e5e7eb;
-
-    border-radius:16px;
-
-    padding:15px 18px;
-
-    margin-bottom:20px;
-
-    transition:.30s;
+    transform: scale(1.03);
 
 }
 
-.tp-admin-input:hover{
 
-    border-color:#ffb347;
+/* ==========================================================
+   OVERLAY
+========================================================== */
+
+.tp-admin-login-visual-overlay {
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(4, 10, 20, 0.90) 0%,
+            rgba(4, 10, 20, 0.66) 50%,
+            rgba(4, 10, 20, 0.48) 100%
+        );
 
 }
 
-.tp-admin-input:focus-within{
 
-    border-color:#ff7a00;
+/* ==========================================================
+   VISUAL CONTENT
+========================================================== */
+
+.tp-admin-login-visual-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    height: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 38px 42px;
+
+    color: #ffffff;
+
+}
+
+
+/* ==========================================================
+   BRAND
+========================================================== */
+
+.tp-admin-brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.tp-admin-brand img {
+
+    width: 44px;
+    height: 44px;
+
+    object-fit: contain;
+
+}
+
+
+.tp-admin-brand div {
+
+    display: flex;
+
+    flex-direction: column;
+
+}
+
+
+.tp-admin-brand strong {
+
+    font-size: 21px;
+
+    line-height: 1;
+
+    font-weight: 800;
+
+    letter-spacing: -0.4px;
+
+}
+
+
+.tp-admin-brand span {
+
+    margin-top: 5px;
+
+    color: rgba(255,255,255,0.68);
+
+    font-size: 11px;
+
+}
+
+
+/* ==========================================================
+   HERO
+========================================================== */
+
+.tp-admin-login-hero {
+
+    margin-top: auto;
+
+    max-width: 470px;
+
+}
+
+
+.tp-admin-login-hero h1 {
+
+    margin: 0;
+
+    font-size: clamp(38px, 4vw, 58px);
+
+    line-height: 1.04;
+
+    font-weight: 800;
+
+    letter-spacing: -2px;
+
+}
+
+
+.tp-admin-login-hero h1 span {
+
+    display: block;
+
+    color: #ff7a00;
+
+    margin-top: 5px;
+
+}
+
+
+.tp-admin-login-hero p {
+
+    max-width: 430px;
+
+    margin: 20px 0 0;
+
+    color: rgba(255,255,255,0.78);
+
+    font-size: 15px;
+
+    line-height: 1.7;
+
+}
+
+
+/* ==========================================================
+   FEATURES
+========================================================== */
+
+.tp-admin-login-features {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+
+    margin-top: 30px;
+
+}
+
+
+.tp-admin-feature {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+}
+
+
+.tp-admin-feature-icon {
+
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,0.10);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    backdrop-filter: blur(10px);
+
+    color: #ffffff;
+
+}
+
+
+.tp-admin-feature span {
+
+    color: rgba(255,255,255,0.90);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+
+/* ==========================================================
+   TRUST CARD
+========================================================== */
+
+.tp-admin-trust-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    max-width: 350px;
+
+    margin-top: 30px;
+
+    padding: 14px 16px;
+
+    border-radius: 14px;
+
+    background:
+        rgba(255,255,255,0.09);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.10);
+
+    backdrop-filter: blur(12px);
+
+}
+
+
+.tp-admin-trust-icon {
+
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    color: #ff7a00;
+
+}
+
+
+.tp-admin-trust-card div:last-child {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+}
+
+
+.tp-admin-trust-card strong {
+
+    font-size: 12px;
+
+    color: #ffffff;
+
+}
+
+
+.tp-admin-trust-card span {
+
+    font-size: 10px;
+
+    line-height: 1.4;
+
+    color:
+        rgba(255,255,255,0.62);
+
+}
+
+
+/* ==========================================================
+   RIGHT FORM PANEL
+========================================================== */
+
+.tp-admin-login-form-panel {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 0;
+
+    padding: 55px;
+
+    background: #ffffff;
+
+    overflow: hidden;
+
+}
+
+
+/* ==========================================================
+   DECORATIVE DOTS
+========================================================== */
+
+.tp-login-decoration {
+
+    position: absolute;
+
+    top: 45px;
+
+    right: 50px;
+
+    width: 100px;
+
+    height: 100px;
+
+    opacity: .45;
+
+    background-image:
+        radial-gradient(
+            #ffb36b 1.5px,
+            transparent 1.5px
+        );
+
+    background-size: 15px 15px;
+
+}
+
+
+/* ==========================================================
+   FORM WRAPPER
+========================================================== */
+
+.tp-admin-login-form-wrapper {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 100%;
+
+    max-width: 430px;
+
+}
+
+
+/* ==========================================================
+   FORM HEADER
+========================================================== */
+
+.tp-admin-form-header {
+
+    margin-bottom: 34px;
+
+}
+
+
+.tp-admin-form-header h2 {
+
+    margin: 0;
+
+    color: #172033;
+
+    font-size: 34px;
+
+    line-height: 1.15;
+
+    font-weight: 800;
+
+    letter-spacing: -1px;
+
+}
+
+
+.tp-admin-form-header h2 span {
+
+    font-size: 27px;
+
+}
+
+
+.tp-admin-form-header p {
+
+    margin: 9px 0 0;
+
+    color: #737b8c;
+
+    font-size: 14px;
+
+}
+
+
+/* ==========================================================
+   MOBILE BRAND
+========================================================== */
+
+.tp-admin-mobile-brand {
+
+    display: none;
+
+}
+
+
+/* ==========================================================
+   FORM GROUP
+========================================================== */
+
+.tp-admin-form-group {
+
+    margin-bottom: 20px;
+
+}
+
+
+.tp-admin-form-group label {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #263044;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+/* ==========================================================
+   INPUT
+========================================================== */
+
+.tp-admin-input {
+
+    width: 100%;
+
+    height: 52px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 15px;
+
+    border:
+        1px solid
+        #dfe3ea;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    transition:
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+
+}
+
+
+.tp-admin-input:hover {
+
+    border-color: #cbd1da;
+
+}
+
+
+.tp-admin-input:focus-within {
+
+    border-color: #ff7a00;
+
+    background: #fffdfb;
 
     box-shadow:
         0 0 0 4px
-        rgba(255,122,0,.10);
+        rgba(255,122,0,.09);
 
 }
 
-.tp-admin-input svg{
 
-    color:#9ca3af;
+.tp-admin-input > svg {
 
-    flex-shrink:0;
+    flex-shrink: 0;
 
-}
-
-.tp-admin-input input{
-
-    flex:1;
-
-    border:none;
-
-    outline:none;
-
-    background:transparent;
-
-    font-size:15px;
-
-    color:#1f2937;
+    color: #9aa2b1;
 
 }
 
-.tp-admin-input input::placeholder{
 
-    color:#9ca3af;
+.tp-admin-input input {
 
-}
+    flex: 1;
 
-/* ======================================
-        Password Button
-====================================== */
+    width: 100%;
 
-.tp-admin-input button{
+    height: 100%;
 
-    border:none;
+    border: none;
 
-    background:transparent;
+    outline: none;
 
-    cursor:pointer;
+    background: transparent;
 
-    display:flex;
+    color: #172033;
 
-    align-items:center;
-
-    justify-content:center;
-
-    color:#9ca3af;
+    font-size: 14px;
 
 }
 
-/* ======================================
-        Login Button
-====================================== */
 
-.tp-admin-login-btn{
+.tp-admin-input input::placeholder {
 
-    width:100%;
+    color: #9aa2b1;
 
-    border:none;
+}
 
-    cursor:pointer;
 
-    padding:16px;
+/* ==========================================================
+   PASSWORD TOGGLE
+========================================================== */
 
-    border-radius:16px;
+.tp-password-toggle {
+
+    width: 32px;
+    height: 32px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: none;
+
+    background: transparent;
+
+    color: #9aa2b1;
+
+    cursor: pointer;
+
+    border-radius: 7px;
+
+}
+
+
+.tp-password-toggle:hover {
+
+    background: #f5f6f8;
+
+    color: #5f6878;
+
+}
+
+
+/* ==========================================================
+   OPTIONS
+========================================================== */
+
+.tp-admin-login-options {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin-top: 2px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.tp-remember-me {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    cursor: pointer;
+
+    color: #687184;
+
+    font-size: 11px;
+
+}
+
+
+.tp-remember-me input {
+
+    width: 15px;
+    height: 15px;
+
+    accent-color: #ff7a00;
+
+    cursor: pointer;
+
+}
+
+
+.tp-forgot-password {
+
+    border: none;
+
+    padding: 0;
+
+    background: transparent;
+
+    color: #f97316;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+}
+
+
+.tp-forgot-password:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* ==========================================================
+   LOGIN BUTTON
+========================================================== */
+
+.tp-admin-login-btn {
+
+    width: 100%;
+
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    border: none;
+
+    border-radius: 10px;
 
     background:
         linear-gradient(
             135deg,
-            #ff7a00,
-            #ff9d2f
+            #ff7200,
+            #ff9c32
         );
 
-    color:#ffffff;
+    color: #ffffff;
 
-    font-size:16px;
+    font-size: 13px;
 
-    font-weight:700;
+    font-weight: 800;
 
-    transition:.30s;
-
-    margin-top:10px;
-
-}
-
-.tp-admin-login-btn:hover{
-
-    transform:translateY(-2px);
+    cursor: pointer;
 
     box-shadow:
-        0 18px 35px
-        rgba(255,122,0,.28);
+        0 12px 24px
+        rgba(255,122,0,.20);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        opacity .2s ease;
 
 }
 
-.tp-admin-login-btn:disabled{
 
-    opacity:.7;
+.tp-admin-login-btn:hover {
 
-    cursor:not-allowed;
+    transform: translateY(-1px);
 
-}
-
-/* ======================================
-        Responsive
-====================================== */
-
-@media(max-width:768px){
-
-    .tp-admin-login{
-
-        padding:20px;
-
-    }
-
-    .tp-admin-login-card{
-
-        padding:30px;
-
-    }
+    box-shadow:
+        0 16px 30px
+        rgba(255,122,0,.27);
 
 }
 
-@media(max-width:480px){
 
-    .tp-admin-login-card{
+.tp-admin-login-btn:active {
 
-        padding:24px;
+    transform: translateY(0);
+
+}
+
+
+.tp-admin-login-btn:disabled {
+
+    opacity: .65;
+
+    cursor: not-allowed;
+
+    transform: none;
+
+}
+
+
+/* ==========================================================
+   DIVIDER
+========================================================== */
+
+.tp-login-divider {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 25px 0 18px;
+
+}
+
+
+.tp-login-divider span {
+
+    flex: 1;
+
+    height: 1px;
+
+    background: #e9ebef;
+
+}
+
+
+.tp-login-divider small {
+
+    color: #9aa2b1;
+
+    font-size: 10px;
+
+    white-space: nowrap;
+
+}
+
+
+/* ==========================================================
+   GOOGLE BUTTON
+========================================================== */
+
+.tp-google-login-btn {
+
+    width: 100%;
+
+    height: 46px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    border:
+        1px solid
+        #e0e3e8;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    color: #303747;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s ease;
+
+}
+
+
+.tp-google-login-btn:hover {
+
+    background: #fafafa;
+
+    border-color: #cdd2da;
+
+}
+
+
+.tp-google-icon {
+
+    width: 20px;
+    height: 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 16px;
+
+    font-weight: 800;
+
+    color: #4285f4;
+
+}
+
+
+/* ==========================================================
+   SECURITY
+========================================================== */
+
+.tp-login-security {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 25px;
+
+    color: #737b8c;
+
+    font-size: 10px;
+
+}
+
+
+.tp-login-security svg {
+
+    flex-shrink: 0;
+
+    color: #7c8798;
+
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width: 1000px) {
+
+    .tp-admin-login-page {
+
+        padding: 18px;
 
     }
 
-    .tp-admin-login-header h2{
 
-        font-size:24px;
+    .tp-admin-login-shell {
+
+        grid-template-columns:
+            .9fr
+            1.1fr;
+
+        min-height: 610px;
 
     }
 
+
+    .tp-admin-login-visual {
+
+        min-height: 610px;
+
+    }
+
+
+    .tp-admin-login-visual-content {
+
+        padding: 30px;
+
+    }
+
+
+    .tp-admin-login-hero h1 {
+
+        font-size: 40px;
+
+    }
+
+
+    .tp-admin-login-form-panel {
+
+        padding: 35px;
+
+    }
+
+
+    .tp-admin-form-header h2 {
+
+        font-size: 29px;
+
+    }
+
+}
+
+
+/* ==========================================================
+   TABLET / SMALL
+========================================================== */
+
+@media (max-width: 760px) {
+
+    .tp-admin-login-page {
+
+        padding: 0;
+
+        background: #f8f9fb;
+
+    }
+
+
+    .tp-admin-login-shell {
+
+        min-height: 100vh;
+
+        grid-template-columns: 1fr;
+
+        border-radius: 0;
+
+        box-shadow: none;
+
+    }
+
+
+    .tp-admin-login-visual {
+
+        display: none;
+
+    }
+
+
+    .tp-admin-login-form-panel {
+
+        min-height: 100vh;
+
+        padding:
+            35px 24px;
+
+        align-items: center;
+
+    }
+
+
+    .tp-login-decoration {
+
+        top: 25px;
+
+        right: 20px;
+
+    }
+
+
+    .tp-admin-login-form-wrapper {
+
+        max-width: 460px;
+
+    }
+
+
+    .tp-admin-mobile-brand {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 9px;
+
+        margin-bottom: 35px;
+
+    }
+
+
+    .tp-admin-mobile-brand img {
+
+        width: 36px;
+        height: 36px;
+
+        object-fit: contain;
+
+    }
+
+
+    .tp-admin-mobile-brand span {
+
+        color: #172033;
+
+        font-size: 18px;
+
+        font-weight: 800;
+
+    }
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width: 480px) {
+
+    .tp-admin-login-form-panel {
+
+        padding:
+            28px 20px;
+
+    }
+
+
+    .tp-admin-form-header {
+
+        margin-bottom: 28px;
+
+    }
+
+
+    .tp-admin-form-header h2 {
+
+        font-size: 27px;
+
+    }
+
+
+    .tp-admin-form-header h2 span {
+
+        font-size: 22px;
+
+    }
+
+
+    .tp-admin-form-header p {
+
+        font-size: 13px;
+
+        line-height: 1.5;
+
+    }
+
+
+    .tp-admin-input {
+
+        height: 50px;
+
+    }
+
+
+    .tp-admin-login-btn {
+
+        height: 50px;
+
+    }
+
+
+    .tp-admin-login-options {
+
+        margin-bottom: 20px;
+
+    }
+
+
+    .tp-login-security {
+
+        justify-content: center;
+
+        text-align: center;
+
+    }
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width: 360px) {
+
+    .tp-admin-login-form-panel {
+
+        padding:
+            24px 16px;
+
+    }
+
+
+    .tp-admin-form-header h2 {
+
+        font-size: 24px;
+
+    }
+
+
+    .tp-admin-mobile-brand {
+
+        margin-bottom: 28px;
+
+    }
+
+}
+.tp-admin-login-left {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(5, 15, 30, 0.92),
+            rgba(5, 15, 30, 0.72)
+        ),
+        url("/images/clean-admin-bg.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }

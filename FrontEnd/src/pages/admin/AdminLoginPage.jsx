@@ -1,10 +1,24 @@
 import React, { useState } from "react";
-import { Mail, Lock, Eye, EyeOff } from "lucide-react";
+
+import {
+  Mail,
+  Lock,
+  Eye,
+  EyeOff,
+  ArrowRight,
+  ShieldCheck,
+  CalendarCheck,
+  UserCheck,
+  CreditCard,
+  BarChart3,
+} from "lucide-react";
+
 import { useNavigate } from "react-router-dom";
 
 import { useAdminAuth } from "../../context/AdminAuthContext";
 
 import "./AdminLoginPage.css";
+
 
 const AdminLoginPage = () => {
 
@@ -18,41 +32,43 @@ const AdminLoginPage = () => {
   const [loading, setLoading] =
     useState(false);
 
-  const [formData, setFormData] =
-    useState({
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
 
-      email: "",
 
-      password: "",
-
-    });
+  /* ==========================================================
+     INPUT CHANGE
+  ========================================================== */
 
   const handleChange = (e) => {
 
-    setFormData({
-
-      ...formData,
-
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-
-    });
+    }));
 
   };
+
+
+  /* ==========================================================
+     LOGIN
+  ========================================================== */
 
   const handleSubmit = async (e) => {
 
     e.preventDefault();
+
+    if (loading) return;
 
     try {
 
       setLoading(true);
 
       await login(
-
         formData.email,
-
         formData.password
-
       );
 
       navigate("/admin");
@@ -60,11 +76,8 @@ const AdminLoginPage = () => {
     } catch (error) {
 
       alert(
-
         error?.response?.data?.message ||
-
         "Login Failed"
-
       );
 
     } finally {
@@ -75,139 +88,424 @@ const AdminLoginPage = () => {
 
   };
 
+
   return (
 
-    <div className="tp-admin-login">
+    <main className="tp-admin-login-page">
 
-      <div className="tp-admin-login-card">
+      <div className="tp-admin-login-shell">
 
-        <div className="tp-admin-login-header">
 
-          <img
-            src="/logo.png"
-            alt="TrainPorter"
-          />
+        {/* ==================================================
+            LEFT BRAND / VISUAL PANEL
+        ================================================== */}
 
-          <h2>
+        <section className="tp-admin-login-visual">
 
-            TrainPorter Admin
 
-          </h2>
+          {/* Background image */}
 
-          <p>
+          <div className="tp-admin-login-visual-image" />
 
-            Login to continue
 
-          </p>
+          {/* Dark overlay */}
 
-        </div>
+          <div className="tp-admin-login-visual-overlay" />
 
-        <form
-          onSubmit={handleSubmit}
-        >
 
-          <div className="tp-admin-input">
+          {/* Content */}
 
-            <Mail size={18} />
+          <div className="tp-admin-login-visual-content">
 
-            <input
 
-              type="email"
+            {/* BRAND */}
 
-              name="email"
+            <div className="tp-admin-brand">
 
-              placeholder="Email"
+              <img
+                src="/logo.png"
+                alt="TrainPorter"
+              />
 
-              value={formData.email}
+              <div>
 
-              onChange={handleChange}
+                <strong>
+                  TrainPorter
+                </strong>
 
-              required
+                <span>
+                  Admin Portal
+                </span>
 
-            />
+              </div>
+
+            </div>
+
+
+            {/* HERO */}
+
+            <div className="tp-admin-login-hero">
+
+              <h1>
+
+                Smart. Secure.
+
+                <span>
+                  Seamless.
+                </span>
+
+              </h1>
+
+              <p>
+
+                Manage porters, bookings, and
+                operations all in one powerful
+                admin dashboard.
+
+              </p>
+
+            </div>
+
+
+            {/* FEATURES */}
+
+            <div className="tp-admin-login-features">
+
+
+              <div className="tp-admin-feature">
+
+                <div className="tp-admin-feature-icon">
+                  <CalendarCheck size={18} />
+                </div>
+
+                <span>
+                  Real-time Booking Management
+                </span>
+
+              </div>
+
+
+              <div className="tp-admin-feature">
+
+                <div className="tp-admin-feature-icon">
+                  <UserCheck size={18} />
+                </div>
+
+                <span>
+                  Porter Verification & Tracking
+                </span>
+
+              </div>
+
+
+              <div className="tp-admin-feature">
+
+                <div className="tp-admin-feature-icon">
+                  <CreditCard size={18} />
+                </div>
+
+                <span>
+                  Secure Payments & Reports
+                </span>
+
+              </div>
+
+
+              <div className="tp-admin-feature">
+
+                <div className="tp-admin-feature-icon">
+                  <BarChart3 size={18} />
+                </div>
+
+                <span>
+                  Analytics & Insights
+                </span>
+
+              </div>
+
+
+            </div>
+
+
+            {/* TRUST CARD */}
+
+            <div className="tp-admin-trust-card">
+
+              <div className="tp-admin-trust-icon">
+
+                <ShieldCheck size={27} />
+
+              </div>
+
+              <div>
+
+                <strong>
+                  Trusted by 10,000+ users
+                </strong>
+
+                <span>
+                  Powering smarter railway
+                  services across India.
+                </span>
+
+              </div>
+
+            </div>
+
 
           </div>
 
-          <div className="tp-admin-input">
+        </section>
 
-            <Lock size={18} />
 
-            <input
+        {/* ==================================================
+            RIGHT LOGIN PANEL
+        ================================================== */}
 
-              type={
-                showPassword
-                  ? "text"
-                  : "password"
-              }
+        <section className="tp-admin-login-form-panel">
 
-              name="password"
 
-              placeholder="Password"
+          {/* Decorative dots */}
 
-              value={formData.password}
+          <div className="tp-login-decoration" />
 
-              onChange={handleChange}
 
-              required
+          <div className="tp-admin-login-form-wrapper">
 
-            />
 
-            <button
+            {/* HEADER */}
 
-              type="button"
+            <div className="tp-admin-form-header">
 
-              onClick={() =>
+              <div className="tp-admin-mobile-brand">
 
-                setShowPassword(
+                <img
+                  src="/logo.png"
+                  alt="TrainPorter"
+                />
 
-                  !showPassword
+                <span>
+                  TrainPorter
+                </span>
 
-                )
+              </div>
 
-              }
 
+              <h2>
+                Welcome Back! <span>👋</span>
+              </h2>
+
+              <p>
+                Login to your TrainPorter admin account
+              </p>
+
+            </div>
+
+
+            {/* FORM */}
+
+            <form
+              className="tp-admin-login-form"
+              onSubmit={handleSubmit}
             >
 
-              {showPassword ? (
 
-                <EyeOff size={18} />
+              {/* EMAIL */}
 
-              ) : (
+              <div className="tp-admin-form-group">
 
-                <Eye size={18} />
+                <label htmlFor="admin-email">
+                  Email Address
+                </label>
 
-              )}
+                <div className="tp-admin-input">
 
-            </button>
+                  <Mail size={18} />
+
+                  <input
+                    id="admin-email"
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    autoComplete="email"
+                    required
+                  />
+
+                </div>
+
+              </div>
+
+
+              {/* PASSWORD */}
+
+              <div className="tp-admin-form-group">
+
+                <label htmlFor="admin-password">
+                  Password
+                </label>
+
+                <div className="tp-admin-input">
+
+                  <Lock size={18} />
+
+                  <input
+                    id="admin-password"
+                    type={
+                      showPassword
+                        ? "text"
+                        : "password"
+                    }
+                    name="password"
+                    placeholder="Enter your password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    autoComplete="current-password"
+                    required
+                  />
+
+                  <button
+                    type="button"
+                    className="tp-password-toggle"
+                    onClick={() =>
+                      setShowPassword(
+                        (prev) => !prev
+                      )
+                    }
+                    aria-label={
+                      showPassword
+                        ? "Hide password"
+                        : "Show password"
+                    }
+                  >
+
+                    {showPassword ? (
+                      <EyeOff size={18} />
+                    ) : (
+                      <Eye size={18} />
+                    )}
+
+                  </button>
+
+                </div>
+
+              </div>
+
+
+              {/* OPTIONS */}
+
+              <div className="tp-admin-login-options">
+
+                <label className="tp-remember-me">
+
+                  <input
+                    type="checkbox"
+                    defaultChecked
+                  />
+
+                  <span>
+                    Remember Me
+                  </span>
+
+                </label>
+
+
+                <button
+                  type="button"
+                  className="tp-forgot-password"
+                >
+                  Forgot Password?
+                </button>
+
+              </div>
+
+
+              {/* LOGIN */}
+
+              <button
+                type="submit"
+                className="tp-admin-login-btn"
+                disabled={loading}
+              >
+
+                <span>
+
+                  {loading
+                    ? "Signing In..."
+                    : "Login to Dashboard"}
+
+                </span>
+
+
+                {!loading && (
+                  <ArrowRight size={18} />
+                )}
+
+              </button>
+
+
+              {/* DIVIDER */}
+
+              <div className="tp-login-divider">
+
+                <span />
+
+                <small>
+                  or continue with
+                </small>
+
+                <span />
+
+              </div>
+
+
+              {/* GOOGLE */}
+
+              <button
+                type="button"
+                className="tp-google-login-btn"
+              >
+
+                <span className="tp-google-icon">
+                  G
+                </span>
+
+                <span>
+                  Login with Google
+                </span>
+
+              </button>
+
+
+              {/* SECURITY */}
+
+              <div className="tp-login-security">
+
+                <ShieldCheck size={16} />
+
+                <span>
+                  Secure access. Only authorized
+                  administrators.
+                </span>
+
+              </div>
+
+
+            </form>
 
           </div>
 
-          <button
+        </section>
 
-            type="submit"
-
-            className="tp-admin-login-btn"
-
-            disabled={loading}
-
-          >
-
-            {loading
-
-              ? "Signing In..."
-
-              : "Login"}
-
-          </button>
-
-        </form>
 
       </div>
 
-    </div>
+    </main>
 
   );
 
 };
+
 
 export default AdminLoginPage;
