@@ -107,11 +107,24 @@ if (!user) {
 
   try {
 
-    const userCount = await User.countDocuments({
-      role: "user",
-    });
+   const usersWithCode = await User.find({
+  userCode: { $regex: /^USR-\d+$/ }
+}).select("userCode");
 
-    const userCode = `USR-${userCount + 1001}`;
+let maxUserCode = 1000;
+
+for (const existingUser of usersWithCode) {
+  const number = parseInt(
+    existingUser.userCode.replace("USR-", ""),
+    10
+  );
+
+  if (number > maxUserCode) {
+    maxUserCode = number;
+  }
+}
+
+const userCode = `USR-${maxUserCode + 1}`;
 
     user = await User.create({
       phone,
